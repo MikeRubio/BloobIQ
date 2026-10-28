@@ -1,0 +1,2 @@
+-- Intentionally empty. Versioned Flags content is inserted by the migration so
+-- every generated daily challenge remains pinned to its source pack.

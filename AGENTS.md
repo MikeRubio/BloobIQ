@@ -1,41 +1,50 @@
-This is an Expo/React Native mobile application. Prioritize mobile-first patterns, performance, and cross-platform compatibility.
+# BloopIQ engineering guide
 
-## Expo has changed — do not trust your training data
+BloopIQ is an Expo SDK 58 / React Native mobile quiz game. Keep casual packs guest-first and offline-capable. Ranked Daily state must remain honest, server-authoritative, and clearly unavailable when backend configuration or connectivity is missing.
 
-Expo ships breaking changes every SDK release. APIs you remember are likely renamed, moved, or removed. Before writing any code that touches an Expo, EAS, or React Native API:
+## Required checks
 
-1. Read the major version of the `expo` package in `package.json`.
-2. Fetch the matching versioned docs: `https://docs.expo.dev/versions/v<major>.0.0/`
-3. For anything else, fetch https://docs.expo.dev/llms.txt — an index of all Expo docs with corrections to common LLM misconceptions. Follow its links to the specific page you need; never answer from memory.
-
-## Commands
-
-Use `bunx` instead of `npx` if the project uses bun (`bun.lock` present).
+Before finishing a change, run:
 
 ```bash
-npx expo install <package>  # ALWAYS use instead of npm/yarn/pnpm/bun add — resolves SDK-compatible versions
-npx expo start              # start the dev server
-npx expo lint               # lint
-npx tsc --noEmit            # typecheck
-npx expo-doctor             # diagnose dependency and config issues
-npx expo install --fix      # fix incompatible package versions
+npm run check
+npx expo-doctor
 ```
 
-Run lint and typecheck before declaring any task done.
+When Docker is available, also run `npm run db:reset` and `npm run db:test`. Install Expo dependencies with `npx expo install <package>`. Native projects use Continuous Native Generation; configure native behavior in `app.json` or config plugins rather than hand-editing generated native folders.
 
-## Navigation & Routing
+## Architecture boundaries
 
-- Use **Expo Router** for all navigation. Routes live in `src/app/` — every file there is a screen, `_layout.tsx` files define navigators. Keep non-route code (components, hooks, utils) outside `src/app/`.
-- Import `Link`, `router`, and `useLocalSearchParams` from `expo-router`.
-- Docs: https://docs.expo.dev/router/introduction.md
+- Route files live only in `src/app/`. Keep components, stores, services, backend adapters, and pure rules outside it.
+- `src/game/` and `src/daily/` stay pure and platform-independent. No React, Router, animation, storage, or SDK imports.
+- `src/content/` owns typed offline packs and asset registries. Every question needs stable identity, category, name, asset key, difficulty, distractors, and provenance.
+- Hosted Daily packs live in `private.quiz_content` with versioned files in the public-read `quiz-assets` Storage bucket. Keep answer keys and catalog writes private; clients receive only a persisted asset path and opaque choices until submission.
+- `src/store/profile-store.ts` is the persisted local profile/settings/records boundary. Do not rename its legacy storage key without a migration.
+- `src/backend/` owns anonymous auth and RPC calls. Never expose secret/service-role credentials to the app.
+- Ranked score fields are mutated only in locked, authenticated database functions. Keep client table privileges and RLS regression tests strict.
+- `src/services/rewarded-ad.ts` remains the replaceable casual-ad boundary. Ranked Daily never uses revives or ads.
 
-## Building with EAS
+## Game invariants
 
-Use EAS to build, sign, and submit the app in the cloud (`eas build`, `eas submit`) and to ship over-the-air updates (`eas update`) — no local Xcode or Android Studio required. Run EAS CLI as `bunx eas-cli <command>` in Bun projects, or `npx eas-cli@latest <command>` otherwise; substitute that for bare `eas` in docs examples.
-Docs: https://docs.expo.dev/eas/index.md
+- Casual timers pause outside the foreground and rebuild from stored remaining time. Daily ranked timers do not pause and are projected from server timestamps.
+- Only an answering state accepts a choice. First selection or timeout transitions immediately to feedback.
+- A run never repeats a question. A round has exactly one correct answer and three unique valid distractors.
+- Daily uses ten questions, one ranked attempt per anonymous identity/category/UTC day, a 30-minute expiry, idempotent request IDs, and server-authoritative points/time.
+- Daily answer keys are never returned to the ranked client. Practice becomes available only after ranked completion.
+- Daily rankings contain completed real attempts only: score descending, active duration ascending, exact ties sharing rank.
+- A casual rewarded callback grants at most one revive, and the engine independently permits at most one revive per run. Cancellation/failure never consumes it.
+- Future/dummy features must say "Coming soon". Never fabricate ranking rows, ad delivery, backend state, or device acceptance.
+- Startup asset warming must remain bounded and failure-tolerant; connectivity loss must never block offline Casual play indefinitely.
 
-## Rules
+## UI conventions
 
-- If `ios/` and `android/` directories do not exist, they are generated (Continuous Native Generation). Never create or edit them by hand — configure native behavior in `app.json` and config plugins.
-- Expo Go only includes its bundled native modules. After adding a library with native code, the app needs a development build: `npx expo run:ios|android` locally, or `eas build --profile development`.
-- Prefer recommended Expo modules over third-party libraries, and check your available skills before adding dependencies. Docs: https://docs.expo.dev/versions/latest/index.md
+- Reuse `src/theme/tokens.ts`; preserve safe areas and 44pt+ touch targets.
+- Render flags with `resizeMode="contain"`; never crop, stylize, substitute emoji, or generate flag artwork.
+- Keep flag question art on the shared `flagStage` contrast mat so white flag fields retain a visible boundary.
+- Combine system reduced motion with the in-app override for nonessential motion.
+- Settings must change runtime behavior, not decorative switches.
+- Answer feedback must remain understandable without relying on color alone.
+
+## Compatibility identifiers
+
+The visible brand is BloopIQ, but `guessr` remains the Expo slug and URL scheme, `com.guessr.game` remains the native application ID, and `guessr-player-v1` remains the AsyncStorage key. Treat changes to these as explicit migrations, not cosmetic renames.

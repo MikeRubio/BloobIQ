@@ -1,0 +1,4018 @@
+{
+  "schemaVersion": 1,
+  "flagSourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad",
+  "flagPackageVersion": "1.2.10",
+  "items": [
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ad",
+      "displayName": "Andorra",
+      "assetPath": "flags-195-v1/ad.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ad.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "AD",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "b48117c722cafbe9857ad302f8fba3f0891236608ad5bc19a41fe71b36750791",
+      "bytes": 8989,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ae",
+      "displayName": "United Arab Emirates",
+      "assetPath": "flags-195-v1/ae.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ae.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "AE",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "ef5e50816629b1a574f60e5950482abac17ca7d87214628f7b3f90f70e5a6924",
+      "bytes": 258,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-af",
+      "displayName": "Afghanistan",
+      "assetPath": "flags-195-v1/af.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/af.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "AF",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "92cd9b87a142744cef76c0495771d0366bc320bf752118b2db476867e03e68ea",
+      "bytes": 9539,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ag",
+      "displayName": "Antigua and Barbuda",
+      "assetPath": "flags-195-v1/ag.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ag.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "AG",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "b0b7a4a388879597254f19a860fb9478e0d5af5d0f96bfa8f69dc608318c6f47",
+      "bytes": 2880,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-al",
+      "displayName": "Albania",
+      "assetPath": "flags-195-v1/al.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/al.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "AL",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "881570cd81e84ce848abb1eae5d2ca701026ca0c13f401ea972aceed6b9ae1c2",
+      "bytes": 4217,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-am",
+      "displayName": "Armenia",
+      "assetPath": "flags-195-v1/am.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/am.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "AM",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "de9b67feeb7c0f4aaf6b64298e153b8c1b632c8b43ecdb20dfabea81431a4fa2",
+      "bytes": 165,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ao",
+      "displayName": "Angola",
+      "assetPath": "flags-195-v1/ao.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ao.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "AO",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "f47b74075db3c9c8f82b99ac9494cd2be0c62316cda82b032369657112c9fb78",
+      "bytes": 2452,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ar",
+      "displayName": "Argentina",
+      "assetPath": "flags-195-v1/ar.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ar.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "AR",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "9c07fb6f1448bea9ea2847619abf959c77840789b38a904984adb294b73deb83",
+      "bytes": 4292,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-at",
+      "displayName": "Austria",
+      "assetPath": "flags-195-v1/at.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/at.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "AT",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "f0902cd1e864f06ea2ac1fce008e8d8a0423bb1caf5cbc74928bcbb8afb5ef21",
+      "bytes": 211,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-au",
+      "displayName": "Australia",
+      "assetPath": "flags-195-v1/au.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/au.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "AU",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "568609b19db05c84aba7014bf422654df867ac2cd7007b0e8486411d5510d4b1",
+      "bytes": 2776,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-az",
+      "displayName": "Azerbaijan",
+      "assetPath": "flags-195-v1/az.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/az.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "AZ",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "189104fcc06738d9f6c0f98c7ccd4fae416b8996e4200746fc373100aa4211a1",
+      "bytes": 1024,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ba",
+      "displayName": "Bosnia and Herzegovina",
+      "assetPath": "flags-195-v1/ba.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ba.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "BA",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "7cda7a5c3f708ae778b0fffaca60b7a173f103c33efc6570c86c7a8889d91b05",
+      "bytes": 2450,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-bb",
+      "displayName": "Barbados",
+      "assetPath": "flags-195-v1/bb.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/bb.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "BB",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "916d681022f41d4601730114a47e06d520124652dc2c2ddb4d4330e4061d4d24",
+      "bytes": 1701,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-bd",
+      "displayName": "Bangladesh",
+      "assetPath": "flags-195-v1/bd.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/bd.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "BD",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "801f7b0170e31c155b6469d35b63ac7a68791587d015f3de2ac86b682298f26b",
+      "bytes": 878,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-be",
+      "displayName": "Belgium",
+      "assetPath": "flags-195-v1/be.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/be.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "BE",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "850a2e2b94a27d673036266215e5127599c6c18f0372eaf7aa6c52487a929c63",
+      "bytes": 248,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-bf",
+      "displayName": "Burkina Faso",
+      "assetPath": "flags-195-v1/bf.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/bf.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "BF",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "4be08e64f00fa45aa74e47a9f9003fda29dfae8d138a6b50f34200667478bac6",
+      "bytes": 1185,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-bg",
+      "displayName": "Bulgaria",
+      "assetPath": "flags-195-v1/bg.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/bg.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "BG",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "81ce0834db80ea530e022d2c1e539b56cc87927564d742aa1a65a445bf1f0094",
+      "bytes": 136,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-bh",
+      "displayName": "Bahrain",
+      "assetPath": "flags-195-v1/bh.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/bh.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "BH",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "97e41f2eb000731f648e4251c01b6de01e366c302e10b9666adb31d35d82f071",
+      "bytes": 479,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-bi",
+      "displayName": "Burundi",
+      "assetPath": "flags-195-v1/bi.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/bi.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "BI",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "b9af18620de3853c9c26137bbda81bc18ee3c62b0f3d730e353600ff5518bc69",
+      "bytes": 2820,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-bj",
+      "displayName": "Benin",
+      "assetPath": "flags-195-v1/bj.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/bj.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "BJ",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "f8ce9f7ea5010417d389f9aa8f8a59bd3560d4c5a13b77de626ba14f6b93ca5f",
+      "bytes": 248,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-bn",
+      "displayName": "Brunei Darussalam",
+      "assetPath": "flags-195-v1/bn.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/bn.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "BN",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "df329e3b9eb3b40de21e689a02e116316da59b87d747f9a887113fdf71993650",
+      "bytes": 6213,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-bo",
+      "displayName": "Bolivia",
+      "assetPath": "flags-195-v1/bo.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/bo.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "BO",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "d4b4c3ec55b9b3240b29f6cf3a4ab2538eee01dd7df858b97e40b2e0ae8d70d9",
+      "bytes": 3596,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-br",
+      "displayName": "Brazil",
+      "assetPath": "flags-195-v1/br.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/br.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "BR",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "f0156420e2eb2380e1ed031e1567da3f5aa34347d59549e5efefa72f704f16bf",
+      "bytes": 6295,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-bs",
+      "displayName": "Bahamas",
+      "assetPath": "flags-195-v1/bs.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/bs.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "BS",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "42d895e42d0a32702d3644c3665dd827a252ac6ce213f6ef68f705c041a32808",
+      "bytes": 1432,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-bt",
+      "displayName": "Bhutan",
+      "assetPath": "flags-195-v1/bt.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/bt.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "BT",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "3d3383132a4d3369ea483745538da677de59e861afddd5c6ea0cecd4894137f5",
+      "bytes": 16243,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-bw",
+      "displayName": "Botswana",
+      "assetPath": "flags-195-v1/bw.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/bw.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "BW",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "a0c5279ebdbfde1f50b8e21599671af4d3380cd5b6991db52d5b66ae4df2be96",
+      "bytes": 259,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-by",
+      "displayName": "Belarus",
+      "assetPath": "flags-195-v1/by.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/by.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "BY",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "36d67d27b7a09985adccedb2167a93db551560adaeb4c31826825bd283108ed3",
+      "bytes": 4015,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-bz",
+      "displayName": "Belize",
+      "assetPath": "flags-195-v1/bz.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/bz.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "BZ",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "83d94cccc384378427937a4ed172684762231cc73ea028fe3711d6d204b9b4cf",
+      "bytes": 5743,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ca",
+      "displayName": "Canada",
+      "assetPath": "flags-195-v1/ca.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ca.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "CA",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "5f0afe13fa7524372fc9b404d00a15764a36cd54daf591c9aff4c270f066c1bc",
+      "bytes": 2044,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-cd",
+      "displayName": "Democratic Republic of the Congo",
+      "assetPath": "flags-195-v1/cd.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/cd.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "CD",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "2cb173ef71174f7d8b1078f77e74c8d8679c8edb5d4cf95182cba652d6f93fdd",
+      "bytes": 1926,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-cf",
+      "displayName": "Central African Republic",
+      "assetPath": "flags-195-v1/cf.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/cf.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "CF",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "7f7c9a5a230474eb15fbae08229e9cd644c2ebb4213534cb28d32761f60fac80",
+      "bytes": 1040,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-cg",
+      "displayName": "Republic of the Congo",
+      "assetPath": "flags-195-v1/cg.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/cg.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "CG",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "39e0e695bee8b65b5b488c67a6d13edda163f59e32ef32c3f1724fdb6ac69b4b",
+      "bytes": 610,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ch",
+      "displayName": "Switzerland",
+      "assetPath": "flags-195-v1/ch.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ch.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "CH",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "082c7a7b9e3b0df530b3eea779d8a23013f625ed5dd6fa8fc2bc5937b6e00e2c",
+      "bytes": 246,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ci",
+      "displayName": "Côte d'Ivoire",
+      "assetPath": "flags-195-v1/ci.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ci.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "CI",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "9753952bfb100dd683c167ec498c33d6e1514a45521a8520d1df6a5540ce013e",
+      "bytes": 230,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-cl",
+      "displayName": "Chile",
+      "assetPath": "flags-195-v1/cl.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/cl.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "CL",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "d84bd811e5211937fa930b3cb5697ed34714a3b0c9a3cf7f69bfc98b67136335",
+      "bytes": 1050,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-cm",
+      "displayName": "Cameroon",
+      "assetPath": "flags-195-v1/cm.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/cm.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "CM",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "87f099c8ec5192334c206612dcc48f8a8656a6ff68b4bb60130085449b04c61f",
+      "bytes": 1011,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-cn",
+      "displayName": "China",
+      "assetPath": "flags-195-v1/cn.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/cn.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "CN",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "c9aa86d45441f3525cf1acb4f7aecd4d9d7d45fa81c12aad7e9ced80a668215a",
+      "bytes": 1635,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-co",
+      "displayName": "Colombia",
+      "assetPath": "flags-195-v1/co.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/co.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "CO",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "9d264312fe2e19d8949beaba177d45fee0eda329d6c8e4543ee620ae6ea8c069",
+      "bytes": 233,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-cr",
+      "displayName": "Costa Rica",
+      "assetPath": "flags-195-v1/cr.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/cr.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "CR",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "8f8211e2985b8633c2ab67c69f353b9e5ea6def91c7bebbe8e1ed3bcb942c3c4",
+      "bytes": 2190,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-cu",
+      "displayName": "Cuba",
+      "assetPath": "flags-195-v1/cu.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/cu.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "CU",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "ee328c44cd0a898d1ea290487d883af373c526dec4a59a72b04616c241eca2db",
+      "bytes": 2149,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-cv",
+      "displayName": "Cabo Verde",
+      "assetPath": "flags-195-v1/cv.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/cv.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "CV",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "9e820bf7431d016be4387475dadb0942da2c6fbb97681607edafcc55c95f2528",
+      "bytes": 3011,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-cy",
+      "displayName": "Cyprus",
+      "assetPath": "flags-195-v1/cy.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/cy.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "CY",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "4f7e838e4e383d4d949f88052afc4a7b5ceb5865f268c15a241cf16ffe7ac178",
+      "bytes": 2766,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-cz",
+      "displayName": "Czechia",
+      "assetPath": "flags-195-v1/cz.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/cz.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "CZ",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "c995fb91d0bfc90c4d08f7e445a71e10741b783c6c566df1af4ed89b8f1df9bc",
+      "bytes": 712,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-de",
+      "displayName": "Germany",
+      "assetPath": "flags-195-v1/de.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/de.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "DE",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "8551510a2206f01bcdc9e99a8f2366210d48010890f2fc548a7bf408b691fccd",
+      "bytes": 136,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-dj",
+      "displayName": "Djibouti",
+      "assetPath": "flags-195-v1/dj.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/dj.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "DJ",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "59f84a118b381495617175496482836b820d5c4d3fae36b2f11442f52bbb73b1",
+      "bytes": 2989,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-dk",
+      "displayName": "Denmark",
+      "assetPath": "flags-195-v1/dk.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/dk.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "DK",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "9a056b57739303b8b97afd9b86be589d60d295c1fe22518ad06dcacf8258f2f5",
+      "bytes": 235,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-dm",
+      "displayName": "Dominica",
+      "assetPath": "flags-195-v1/dm.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/dm.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "DM",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "ae85fa466e56b1f56d724d18638387ed7f69e7558754cb94428113496a83d909",
+      "bytes": 2637,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-do",
+      "displayName": "Dominican Republic",
+      "assetPath": "flags-195-v1/do.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/do.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "DO",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "353b73f8cb22345dbec6a2dffadcc2c8e348cd03c4bf20de47ec35ac2a875df8",
+      "bytes": 2127,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-dz",
+      "displayName": "Algeria",
+      "assetPath": "flags-195-v1/dz.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/dz.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "DZ",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "ee96a8e4fec844793bb0503190d67c8c28f635b5e2a2f2a765c49d3c4ec44f7f",
+      "bytes": 2781,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ec",
+      "displayName": "Ecuador",
+      "assetPath": "flags-195-v1/ec.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ec.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "EC",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "e84ae20ea230a3f901140f45520a5332d7bf4c7ec05b537d34e1bbc904106be7",
+      "bytes": 10571,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ee",
+      "displayName": "Estonia",
+      "assetPath": "flags-195-v1/ee.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ee.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "EE",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "b437752278291529c243cad4cb83fb316126d2eee19ecb9422547b8529c9e542",
+      "bytes": 207,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-eg",
+      "displayName": "Egypt",
+      "assetPath": "flags-195-v1/eg.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/eg.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "EG",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "5f5b73b300192c3530f212bfda83dceaf8ea2d1b2b9b8584760ff528504ac9ec",
+      "bytes": 4267,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-er",
+      "displayName": "Eritrea",
+      "assetPath": "flags-195-v1/er.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/er.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "ER",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "543538ee7d70f0b5540756c751d4b089716ba5ab6a395267adfec5239818db4c",
+      "bytes": 3221,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-es",
+      "displayName": "Spain",
+      "assetPath": "flags-195-v1/es.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/es.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "ES",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "3a4b06e853aab4c9aa2999bcd736671a9083b5d6c26b8f5a82c9b59e8c97dece",
+      "bytes": 7239,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-et",
+      "displayName": "Ethiopia",
+      "assetPath": "flags-195-v1/et.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/et.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "ET",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "93edf038a7706cd78e8e69bcace61a063c7991e00d03d2989299762adad743f1",
+      "bytes": 3755,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-fi",
+      "displayName": "Finland",
+      "assetPath": "flags-195-v1/fi.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/fi.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "FI",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "acc2845b300d86d2174dafd2eb2b735bb356105df5e6baaee2e34ec9f4858fe7",
+      "bytes": 272,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-fj",
+      "displayName": "Fiji",
+      "assetPath": "flags-195-v1/fj.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/fj.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "FJ",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "380e9926286c32a78e2ed02f01d73a0fa619fa3b8187df5b019a20eead35e8dd",
+      "bytes": 3643,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-fm",
+      "displayName": "Micronesia",
+      "assetPath": "flags-195-v1/fm.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/fm.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "FM",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "3f55c03868ccb4c1a8db595e280f1558d59f7030d497883e2ddaad9413ae0a0d",
+      "bytes": 1193,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-fr",
+      "displayName": "France",
+      "assetPath": "flags-195-v1/fr.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/fr.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "FR",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "591395fc4c3495664b3466cafc4095d98103f0c97f461467af15c405c069399b",
+      "bytes": 242,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ga",
+      "displayName": "Gabon",
+      "assetPath": "flags-195-v1/ga.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ga.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "GA",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "3b5f02e6594ec32bff95a6acd74d76d57663228289eb5b6e08d073d85915c572",
+      "bytes": 231,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-gb",
+      "displayName": "United Kingdom",
+      "assetPath": "flags-195-v1/gb.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/gb.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "GB",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "dda1fb99d092110451681339f6b3dbca0dd80c9e033baf198b454fb6770bc708",
+      "bytes": 1364,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-gd",
+      "displayName": "Grenada",
+      "assetPath": "flags-195-v1/gd.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/gd.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "GD",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "4b5830ed52dce92208ac59961cf1c07f05c71000fe3f5d21a52ef527fa6242e1",
+      "bytes": 3735,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ge",
+      "displayName": "Georgia",
+      "assetPath": "flags-195-v1/ge.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ge.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "GE",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "03a2a2a24c1e886e6b4cb888b0735a7a3b3b98e8551c35a2fccfb386730aba53",
+      "bytes": 1706,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-gh",
+      "displayName": "Ghana",
+      "assetPath": "flags-195-v1/gh.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/gh.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "GH",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "e19394b4a0a0a1ac4c8d226dabac7d5f406c6b9a6a3064ea13cf210838e91fe0",
+      "bytes": 1165,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-gm",
+      "displayName": "Gambia",
+      "assetPath": "flags-195-v1/gm.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/gm.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "GM",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "5f621ac92ef6ebc75cba38d1c79b8a67387dd7621023ce3830e34fb568c22c57",
+      "bytes": 244,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-gn",
+      "displayName": "Guinea",
+      "assetPath": "flags-195-v1/gn.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/gn.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "GN",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "6882b6ebc22883bd1f8c0d1f021ea18dba1548451d9d4030b2d7160e3a5a6e03",
+      "bytes": 231,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-gq",
+      "displayName": "Equatorial Guinea",
+      "assetPath": "flags-195-v1/gq.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/gq.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "GQ",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "b00e1d3d568a60e011abd74121be43bc189dbb90619d692a804637028fc1c8cf",
+      "bytes": 3590,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-gr",
+      "displayName": "Greece",
+      "assetPath": "flags-195-v1/gr.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/gr.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "GR",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "04cd13e63000e03375d99e07c0e0e28f692e16c8535f5abd2c4ad9c39528e418",
+      "bytes": 443,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-gt",
+      "displayName": "Guatemala",
+      "assetPath": "flags-195-v1/gt.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/gt.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "GT",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "49ed30272fe1709bd5b5cea3479337ca1b39df433cc7e0c8f06e498e7244b547",
+      "bytes": 6055,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-gw",
+      "displayName": "Guinea-Bissau",
+      "assetPath": "flags-195-v1/gw.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/gw.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "GW",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "541d9d76ed0edd0ec7d26e375c78d2cebbb40692da7b502728395304102ff8be",
+      "bytes": 951,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-gy",
+      "displayName": "Guyana",
+      "assetPath": "flags-195-v1/gy.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/gy.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "GY",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "63a4ac2bd931e52de97ccd6b0d8b99c310a279fefd5067ecbbf2761f2aaa0503",
+      "bytes": 2156,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-hn",
+      "displayName": "Honduras",
+      "assetPath": "flags-195-v1/hn.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/hn.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "HN",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "255f11fe2cfdccc950f536bd1beef984291d894abae49a7566e4debfa376513a",
+      "bytes": 1237,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-hr",
+      "displayName": "Croatia",
+      "assetPath": "flags-195-v1/hr.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/hr.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "HR",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "1ea94a159d523111e2c87cafb3025326a50b454e934bce8929661d895463cc0a",
+      "bytes": 3323,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ht",
+      "displayName": "Haiti",
+      "assetPath": "flags-195-v1/ht.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ht.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "HT",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "a39ef2bf28c3fd32883a19e52a157f1113a59e0765b4a9712780ea079e42e536",
+      "bytes": 3974,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-hu",
+      "displayName": "Hungary",
+      "assetPath": "flags-195-v1/hu.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/hu.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "HU",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "9ab6e7ebe3002d7627fce9c265a9f58c16cd4a9e9b5cb474d98c3a5187f90e78",
+      "bytes": 164,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-id",
+      "displayName": "Indonesia",
+      "assetPath": "flags-195-v1/id.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/id.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "ID",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "87ef9322a7285f8757d91a028a6a5c484d965aa2af162fe7a4ba1095b5d3ab25",
+      "bytes": 220,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ie",
+      "displayName": "Ireland",
+      "assetPath": "flags-195-v1/ie.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ie.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "IE",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "d09d1908e81e35b3491d004d66b601b98829b5f49993c1be5db8d11307ec921a",
+      "bytes": 208,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-il",
+      "displayName": "Israel",
+      "assetPath": "flags-195-v1/il.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/il.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "IL",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "b791b73c7f3ae564dc9da0a05e71195f015ea3d943e08a7562b66b14cc98125b",
+      "bytes": 1471,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-in",
+      "displayName": "India",
+      "assetPath": "flags-195-v1/in.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/in.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "IN",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "b735625ab60c14b5208677d848900d06aa2229cac80006c368e6dbce86a89ca0",
+      "bytes": 2123,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-iq",
+      "displayName": "Iraq",
+      "assetPath": "flags-195-v1/iq.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/iq.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "IQ",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "7f780c5c47b779e04676bbc13099ed1d20398efc1e28354faaa1dbc24ecef6b6",
+      "bytes": 1695,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ir",
+      "displayName": "Iran",
+      "assetPath": "flags-195-v1/ir.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ir.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "IR",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "2f004c2de825e87a7be0cdb7691e1f979ea08c0b8c233ce7aa95b9480c7ee875",
+      "bytes": 4001,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-is",
+      "displayName": "Iceland",
+      "assetPath": "flags-195-v1/is.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/is.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "IS",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "bf3eaa9d915be05555bf4b89e6117d2516d7eeb6517fb695601067c4af6f02d1",
+      "bytes": 170,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-it",
+      "displayName": "Italy",
+      "assetPath": "flags-195-v1/it.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/it.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "IT",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "9f2f26f85d7621b83508156924708dfda81b01bdf1152686a9e636186afa61d7",
+      "bytes": 231,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-jm",
+      "displayName": "Jamaica",
+      "assetPath": "flags-195-v1/jm.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/jm.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "JM",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "1677e111fc96aab812fb3d8f668f91c3eee0cc0a6ee2d11711ad0c50ba91ba5e",
+      "bytes": 496,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-jo",
+      "displayName": "Jordan",
+      "assetPath": "flags-195-v1/jo.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/jo.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "JO",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "f80c256f08f05720467dce3afce528e5cd98ade57be564f310fed279078c40df",
+      "bytes": 861,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-jp",
+      "displayName": "Japan",
+      "assetPath": "flags-195-v1/jp.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/jp.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "JP",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "c18f9200bee9ab71f984af59e4f01089b1306c449ff275174cd8cf0725595952",
+      "bytes": 1243,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ke",
+      "displayName": "Kenya",
+      "assetPath": "flags-195-v1/ke.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ke.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "KE",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "d953ca536ebd5572878507fd0d415721842aad84c4474d8ae41b634b452b5f4f",
+      "bytes": 4060,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-kg",
+      "displayName": "Kyrgyzstan",
+      "assetPath": "flags-195-v1/kg.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/kg.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "KG",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "b930852a96f54417dc9bbc299f2173f28dc1b558490678b2e714a6129f61675d",
+      "bytes": 4454,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-kh",
+      "displayName": "Cambodia",
+      "assetPath": "flags-195-v1/kh.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/kh.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "KH",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "295553a50f49c178246dc4f3bd0cfb89144cfd1612d1d3d4f6ea93837adaaccc",
+      "bytes": 5227,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ki",
+      "displayName": "Kiribati",
+      "assetPath": "flags-195-v1/ki.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ki.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "KI",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "fba9bd6ae46f6eb45000184d4f7d6892f7b1dbc85e1199ffdd92ab7dd57f076c",
+      "bytes": 4141,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-km",
+      "displayName": "Comoros",
+      "assetPath": "flags-195-v1/km.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/km.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "KM",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "398db0c07afb4cc66112399fefc11808baa439a6892052665e78c1940d8d51f8",
+      "bytes": 2025,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-kn",
+      "displayName": "Saint Kitts and Nevis",
+      "assetPath": "flags-195-v1/kn.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/kn.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "KN",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "64c4d52a4020b8f30e998d60f7a524739785a96aa423bac71e5402fc76bd3229",
+      "bytes": 2349,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-kp",
+      "displayName": "North Korea",
+      "assetPath": "flags-195-v1/kp.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/kp.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "KP",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "839ebdfb7bbb6cc9a554b2f4aa4d2077612e931d11b7238c84c6ac7a49d72eee",
+      "bytes": 1559,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-kr",
+      "displayName": "South Korea",
+      "assetPath": "flags-195-v1/kr.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/kr.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "KR",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "39f877b6028a09da1f811cfeabe3b008d142ccb70d0995d4130d91c7001634e2",
+      "bytes": 3833,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-kw",
+      "displayName": "Kuwait",
+      "assetPath": "flags-195-v1/kw.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/kw.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "KW",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "4d816d0e7fdc025b1389f225c9532ff9e94ba85f558309cbabbe39deb6228c66",
+      "bytes": 562,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-kz",
+      "displayName": "Kazakhstan",
+      "assetPath": "flags-195-v1/kz.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/kz.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "KZ",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "51c276afe419389310f724ad62c7234385963c6bcc4e17effd33619d48e9b86b",
+      "bytes": 6734,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-la",
+      "displayName": "Laos",
+      "assetPath": "flags-195-v1/la.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/la.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "LA",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "018a796fdd4b6038bd7ff773c461e79c521c9e98acb52788805ce68ce61fba9d",
+      "bytes": 902,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-lb",
+      "displayName": "Lebanon",
+      "assetPath": "flags-195-v1/lb.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/lb.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "LB",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "08ad29bb32eeb2141e5860da21af5cd48cff1852163126e03d10971a907fafa1",
+      "bytes": 2506,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-lc",
+      "displayName": "Saint Lucia",
+      "assetPath": "flags-195-v1/lc.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/lc.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "LC",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "ff0e28c5099bb394e90cb90e8782fdaceafa73a99053dd4fae8adcedf9b00825",
+      "bytes": 2690,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-li",
+      "displayName": "Liechtenstein",
+      "assetPath": "flags-195-v1/li.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/li.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "LI",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "3926567d8d2f35c4632992e268e43e320e31c6e2fc29ae67639039398890c7ca",
+      "bytes": 3716,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-lk",
+      "displayName": "Sri Lanka",
+      "assetPath": "flags-195-v1/lk.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/lk.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "LK",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "986b5365a6bae5e3b93677b0b888eec54521fe1136dbd816dca496197ec08977",
+      "bytes": 7640,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-lr",
+      "displayName": "Liberia",
+      "assetPath": "flags-195-v1/lr.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/lr.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "LR",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "3f7dc9030f2a0f178a1a6bdfa79b3a3e1fa79fa60305016c8a5fd0ec79fb12cd",
+      "bytes": 969,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ls",
+      "displayName": "Lesotho",
+      "assetPath": "flags-195-v1/ls.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ls.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "LS",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "98740ea4b052c9a1870f3f587ec8aeb8543086ba80d85cc9fd2aa3974ceb8afd",
+      "bytes": 1979,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-lt",
+      "displayName": "Lithuania",
+      "assetPath": "flags-195-v1/lt.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/lt.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "LT",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "120153f54f1c4f1efb5612a7eb04d63f7e3ea506f695a8d37248fe450a71c8d6",
+      "bytes": 136,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-lu",
+      "displayName": "Luxembourg",
+      "assetPath": "flags-195-v1/lu.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/lu.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "LU",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "42459bad4fbe7e6c7b5999dc73042b1530e648463f0dc3d229f34b2038461108",
+      "bytes": 136,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-lv",
+      "displayName": "Latvia",
+      "assetPath": "flags-195-v1/lv.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/lv.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "LV",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "8262fbbb4419beb5a59bf23b8b415d7d0c2b07210b7f2fe070ed73c681ad6502",
+      "bytes": 112,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ly",
+      "displayName": "Libya",
+      "assetPath": "flags-195-v1/ly.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ly.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "LY",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "bb71bd8d27b1e5f78c438ecaf0f987c168e11e53240c997e17e6537503dfc33e",
+      "bytes": 1008,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ma",
+      "displayName": "Morocco",
+      "assetPath": "flags-195-v1/ma.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ma.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "MA",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "63bf579a74ddf432be8bd1f0520a5a6f1eab91729a0bbf1b33363e8da8ff8fb9",
+      "bytes": 1272,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-mc",
+      "displayName": "Monaco",
+      "assetPath": "flags-195-v1/mc.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/mc.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "MC",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "7ff745bb0469e7074e644f9c579e660fb8913b3f832b9319aba58f9159fa203f",
+      "bytes": 117,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-md",
+      "displayName": "Moldova",
+      "assetPath": "flags-195-v1/md.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/md.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "MD",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "231bec3c62134784c84b5b02053842e61995be80f94e0461b658d6fb279ae72f",
+      "bytes": 5425,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-me",
+      "displayName": "Montenegro",
+      "assetPath": "flags-195-v1/me.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/me.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "ME",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "6b2069c42928f7a43b0d1f4cf1c25c0037940e5b483d2558ac234982648111b6",
+      "bytes": 7702,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-mg",
+      "displayName": "Madagascar",
+      "assetPath": "flags-195-v1/mg.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/mg.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "MG",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "4b6b04a66875c9c1ef9c6cf08958d64bc3874a7d72b00fa255ec6cd69005e386",
+      "bytes": 260,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-mh",
+      "displayName": "Marshall Islands",
+      "assetPath": "flags-195-v1/mh.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/mh.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "MH",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "c471e5ba035cfa0f8be9704265ada351b70a02946637fbb5ef40b1cad0a41912",
+      "bytes": 7309,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-mk",
+      "displayName": "North Macedonia",
+      "assetPath": "flags-195-v1/mk.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/mk.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "MK",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "eefea9eef675657ae0b42a8054c491b1f49d6186ea49fe7effe67e9cb1294630",
+      "bytes": 2576,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ml",
+      "displayName": "Mali",
+      "assetPath": "flags-195-v1/ml.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ml.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "ML",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "43fb6f2b06b9b41c2d3a9f70e43dc876c163236386e95c6489d95a5b32ee1db8",
+      "bytes": 230,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-mm",
+      "displayName": "Myanmar",
+      "assetPath": "flags-195-v1/mm.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/mm.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "MM",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "f8f7580f79bd9f302341dff3632cdd0d6179f88a16c0f82a45174052435e18ea",
+      "bytes": 2345,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-mn",
+      "displayName": "Mongolia",
+      "assetPath": "flags-195-v1/mn.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/mn.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "MN",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "a652afb9b7031498fb1506bd32e20689383eaf0d370ea2e30f50174d7f9a2805",
+      "bytes": 1701,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-mr",
+      "displayName": "Mauritania",
+      "assetPath": "flags-195-v1/mr.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/mr.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "MR",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "cdd3c601a8270cfc9ddc8363976168c681621a97856cec5a43102ddca908c4b3",
+      "bytes": 2097,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-mt",
+      "displayName": "Malta",
+      "assetPath": "flags-195-v1/mt.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/mt.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "MT",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "e620783c017afb34c2aea9e5bfda6d4810705e7db11d6743f3fe791f8a1ec829",
+      "bytes": 2027,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-mu",
+      "displayName": "Mauritius",
+      "assetPath": "flags-195-v1/mu.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/mu.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "MU",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "886273ad53028411fb8aa71aaecc97a199adc86b951dd34775b30c836d6027e4",
+      "bytes": 250,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-mv",
+      "displayName": "Maldives",
+      "assetPath": "flags-195-v1/mv.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/mv.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "MV",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "37ed981672ddcba1f12eaf786e735790a4ca5e84f6176daf41e2b3860531c53f",
+      "bytes": 922,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-mw",
+      "displayName": "Malawi",
+      "assetPath": "flags-195-v1/mw.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/mw.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "MW",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "c32f3262934157cabef40efdf1c51ae8dab1bdc71eec7fc5330e0dab78ccec3a",
+      "bytes": 2880,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-mx",
+      "displayName": "Mexico",
+      "assetPath": "flags-195-v1/mx.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/mx.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "MX",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "f864d12b22264eda49b16035f5a0e9ab90d2da1954fac1bce8d236688fa71d03",
+      "bytes": 3444,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-my",
+      "displayName": "Malaysia",
+      "assetPath": "flags-195-v1/my.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/my.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "MY",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "c5f5fc4baee0e1ed6fe6d43e540b390a5f3e2669c05838a49710eb5a8ea1e74c",
+      "bytes": 2147,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-mz",
+      "displayName": "Mozambique",
+      "assetPath": "flags-195-v1/mz.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/mz.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "MZ",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "bf4feb7952a3f094898ebf9595057be7ba0e813dc10848cecbadb79ad1a59d97",
+      "bytes": 5102,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-na",
+      "displayName": "Namibia",
+      "assetPath": "flags-195-v1/na.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/na.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "NA",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "3ea0f4187b3aedda0bfae9a4d60b2a122d7eec80bcd8c328d8c9a3f2274a846e",
+      "bytes": 3225,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ne",
+      "displayName": "Niger",
+      "assetPath": "flags-195-v1/ne.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ne.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "NE",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "451d57f095ff4d707b7f9dd9e98beb04db2f08228a3a778c49e1f876248bd10f",
+      "bytes": 830,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ng",
+      "displayName": "Nigeria",
+      "assetPath": "flags-195-v1/ng.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ng.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "NG",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "e906b06383f375b08d7cc3628ac9f724bfd45305a13e747e34689d2ce2b2a0f6",
+      "bytes": 137,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ni",
+      "displayName": "Nicaragua",
+      "assetPath": "flags-195-v1/ni.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ni.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "NI",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "a2582379aca56d1ec188141571b0024d19eb52527b439b831c4864048033d017",
+      "bytes": 2914,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-nl",
+      "displayName": "Netherlands",
+      "assetPath": "flags-195-v1/nl.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/nl.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "NL",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "f88977dc62bf5c395e61030d5ca063d92e647d7d2ee2417be0948d5ca730093d",
+      "bytes": 231,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-no",
+      "displayName": "Norway",
+      "assetPath": "flags-195-v1/no.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/no.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "NO",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "c82386961fded0d9947ad3320b7ff4c066eea989d082b6409a0815ce0f9a6eb5",
+      "bytes": 414,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-np",
+      "displayName": "Nepal",
+      "assetPath": "flags-195-v1/np.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/np.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "NP",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "bdb67489c04447d895e533722b355b2156f83e886cf6f1990e2f74fa92b004fa",
+      "bytes": 8031,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-nr",
+      "displayName": "Nauru",
+      "assetPath": "flags-195-v1/nr.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/nr.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "NR",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "027a68d4e4dd57cc28954da05056a96952deeb5bdae2bd909d45b6b1c21422fa",
+      "bytes": 1143,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-nz",
+      "displayName": "New Zealand",
+      "assetPath": "flags-195-v1/nz.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/nz.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "NZ",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "6c12e0fef61ffb57ed4c0818f3e97979ccd82945bb8e1fd9be35aaa5694c2aa1",
+      "bytes": 2308,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-om",
+      "displayName": "Oman",
+      "assetPath": "flags-195-v1/om.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/om.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "OM",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "a20e761c2a913a4635953f18da790e31b6e3dc0fb2cc170cbbd8c40f186088fa",
+      "bytes": 2215,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-pa",
+      "displayName": "Panama",
+      "assetPath": "flags-195-v1/pa.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/pa.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "PA",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "6604bbe3db3b6f334776e30151b0db00ee0588277b936e368779ffabd521800b",
+      "bytes": 1662,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-pe",
+      "displayName": "Peru",
+      "assetPath": "flags-195-v1/pe.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/pe.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "PE",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "6a1c127a82ed2140bf652903cc1a5dce2acb65ca4ea8a35b5c87a7acdb620765",
+      "bytes": 10289,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-pg",
+      "displayName": "Papua New Guinea",
+      "assetPath": "flags-195-v1/pg.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/pg.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "PG",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "9b3c54c81695cdcf5ee5b4ad87b68d25ec72f3bf03e63fc89a062a57579c040d",
+      "bytes": 5080,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ph",
+      "displayName": "Philippines",
+      "assetPath": "flags-195-v1/ph.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ph.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "PH",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "9dee1ec70005b721e5dcf0fd101445cc5a93235c45428e688bac4652066029ca",
+      "bytes": 4048,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-pk",
+      "displayName": "Pakistan",
+      "assetPath": "flags-195-v1/pk.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/pk.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "PK",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "5350bb4f9a830720d788eba5360cafb339ce05fc1d73dd1aeec695d71da0d2b2",
+      "bytes": 2012,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-pl",
+      "displayName": "Poland",
+      "assetPath": "flags-195-v1/pl.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/pl.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "PL",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "4509085ffc1724a0e2e4e0f5358817395e0a67e6f60e9fab4f44a0c343964f9d",
+      "bytes": 205,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ps",
+      "displayName": "Palestine",
+      "assetPath": "flags-195-v1/ps.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ps.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "PS",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "b93fc618a32fbf3e77968f31cc8396b318aa203654fbd6ebc3f096f98ae9ad8b",
+      "bytes": 650,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-pt",
+      "displayName": "Portugal",
+      "assetPath": "flags-195-v1/pt.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/pt.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "PT",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "82fd05649b3b7db8ebd263fa4bdbfd6140914c1f58a9dd283e653793e9883572",
+      "bytes": 9460,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-pw",
+      "displayName": "Palau",
+      "assetPath": "flags-195-v1/pw.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/pw.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "PW",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "ccdaef6caccde412b5c2b82cdf6dd452419ef08da381886302faa86ef41057b5",
+      "bytes": 1276,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-py",
+      "displayName": "Paraguay",
+      "assetPath": "flags-195-v1/py.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/py.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "PY",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "aeb3fdc3a50d111d078c6597c223c3cbdb57c017c6b40a40d9ffd998830be803",
+      "bytes": 2831,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-qa",
+      "displayName": "Qatar",
+      "assetPath": "flags-195-v1/qa.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/qa.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "QA",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "2fe9499a96d7c19ae2b1f3d0c8f03640d7d5e91605baba4e16571ce014280a27",
+      "bytes": 2877,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ro",
+      "displayName": "Romania",
+      "assetPath": "flags-195-v1/ro.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ro.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "RO",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "32bef8f643c0e915fbff9dfc638318e36f2482bcd519158ebe7493f2aada1550",
+      "bytes": 234,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-rs",
+      "displayName": "Serbia",
+      "assetPath": "flags-195-v1/rs.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/rs.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "RS",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "1f595d7030209ad3f6ec740a56fc13fd6260143f84cfd24c7acb223715e8f730",
+      "bytes": 13900,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ru",
+      "displayName": "Russian Federation",
+      "assetPath": "flags-195-v1/ru.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ru.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "RU",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "c9e652f098f304060fa236956fba8a7126f9b9cd1e57e0fb890670dfc9761caa",
+      "bytes": 242,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-rw",
+      "displayName": "Rwanda",
+      "assetPath": "flags-195-v1/rw.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/rw.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "RW",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "210682a8a10e4fb4ace1c59d29bbf929f4ca5c40bb56db6fc9a247e4619aa6ec",
+      "bytes": 3501,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-sa",
+      "displayName": "Saudi Arabia",
+      "assetPath": "flags-195-v1/sa.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/sa.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "SA",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "5c6d98ee715c3133032c3ae0cb861d0d0586c2dd9bcaf9244ab6849bdf087e71",
+      "bytes": 6675,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-sb",
+      "displayName": "Solomon Islands",
+      "assetPath": "flags-195-v1/sb.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/sb.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "SB",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "356157b35e9f3d5bbf50dd8264b8ef7e55b35717fd185a702570d3a74b36d324",
+      "bytes": 2384,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-sc",
+      "displayName": "Seychelles",
+      "assetPath": "flags-195-v1/sc.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/sc.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "SC",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "d010464e2efdcc62b39db3c32ebd7448adbaca42b986048a3c5f23ccab2dad92",
+      "bytes": 1044,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-sd",
+      "displayName": "Sudan",
+      "assetPath": "flags-195-v1/sd.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/sd.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "SD",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "2144d0c3fdd699b488236892fa9141d0167a2858da00d4dc0fd4eccd54751142",
+      "bytes": 641,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-se",
+      "displayName": "Sweden",
+      "assetPath": "flags-195-v1/se.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/se.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "SE",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "e03a4bfd3c5b2815760190b840cb17739dc00a8afc57bd8dc77457a382ad7a86",
+      "bytes": 280,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-sg",
+      "displayName": "Singapore",
+      "assetPath": "flags-195-v1/sg.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/sg.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "SG",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "a8d945087ed73e8b35f50042cd20b6b642152dec88dca08272043b51c66dc381",
+      "bytes": 1889,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-si",
+      "displayName": "Slovenia",
+      "assetPath": "flags-195-v1/si.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/si.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "SI",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "99c7810d0894ce75faf5a87ad3cb154ab161c86962b243f28616d48a57b876db",
+      "bytes": 1655,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-sk",
+      "displayName": "Slovakia",
+      "assetPath": "flags-195-v1/sk.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/sk.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "SK",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "c8baff2fc3766230abc0f24d21a5f3265b238b419f05efec152a8de7ebfa1290",
+      "bytes": 3599,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-sl",
+      "displayName": "Sierra Leone",
+      "assetPath": "flags-195-v1/sl.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/sl.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "SL",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "bbce5007efaf8f9a572641626b0030519cc9541bd62bb39262817c766bd139bf",
+      "bytes": 224,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-sm",
+      "displayName": "San Marino",
+      "assetPath": "flags-195-v1/sm.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/sm.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "SM",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "123d7bdecef619573fdcac4a2a37f316c0c89e6fe1a3b81fcdb1577eba2c0dea",
+      "bytes": 17956,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-sn",
+      "displayName": "Senegal",
+      "assetPath": "flags-195-v1/sn.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/sn.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "SN",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "dac7514c01963f48c0cdf3e6d784a35abe0b6bc95b3e81c072cc30189503aec8",
+      "bytes": 1167,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-so",
+      "displayName": "Somalia",
+      "assetPath": "flags-195-v1/so.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/so.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "SO",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "b8eaebee5085cc5563c682058ad8ef727971e641d848da7511ff8fd654811642",
+      "bytes": 1330,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-sr",
+      "displayName": "Suriname",
+      "assetPath": "flags-195-v1/sr.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/sr.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "SR",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "66b9958b049c9d3aa2834f2507a4e33bb33b6bcfad60919fc1f5c70fc66f8436",
+      "bytes": 1172,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ss",
+      "displayName": "South Sudan",
+      "assetPath": "flags-195-v1/ss.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ss.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "SS",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "4a6461a6c801ffdc4979ce6012568111b37a1b7ba96d4cbd65730ccbd5419157",
+      "bytes": 2031,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-st",
+      "displayName": "Sao Tome and Principe",
+      "assetPath": "flags-195-v1/st.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/st.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "ST",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "2d98024c428cde364b6f96fe319516d148a51ee7ccc0baa0fd48a7fae2905a39",
+      "bytes": 1388,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-sv",
+      "displayName": "El Salvador",
+      "assetPath": "flags-195-v1/sv.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/sv.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "SV",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "01e897c30cae92143089c105c7a0c97653fadd0be2613ca98224e3ed1c14330c",
+      "bytes": 4502,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-sy",
+      "displayName": "Syria",
+      "assetPath": "flags-195-v1/sy.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/sy.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "SY",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "afecd1cc88707abdefc2cdc7550f45428428e11e1ab96bc19fdb654b254e418e",
+      "bytes": 1048,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-sz",
+      "displayName": "Eswatini",
+      "assetPath": "flags-195-v1/sz.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/sz.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "SZ",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "d54ec9c1677936cc99ebff3678b7e7426011abc4f7bcc2d4c2f08070b21ed73d",
+      "bytes": 6425,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-td",
+      "displayName": "Chad",
+      "assetPath": "flags-195-v1/td.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/td.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "TD",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "883b0dfc4e4edb300f2c608af2bb1cab4176153d029d790eb6973a2604eb6113",
+      "bytes": 227,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-tg",
+      "displayName": "Togo",
+      "assetPath": "flags-195-v1/tg.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/tg.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "TG",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "a349f122d2ed895ca8b267e4a48fd41ec0fc3e4b449a25418e06369a00661500",
+      "bytes": 1278,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-th",
+      "displayName": "Thailand",
+      "assetPath": "flags-195-v1/th.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/th.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "TH",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "8d3c537835922613e2d819b00180469157282944d096bdf213b122ede468c3d7",
+      "bytes": 224,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-tj",
+      "displayName": "Tajikistan",
+      "assetPath": "flags-195-v1/tj.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/tj.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "TJ",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "bda8e3f8d3e5cac2072b8202c9de43905d23ffaf772f517361976cb5b61ddf71",
+      "bytes": 1742,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-tl",
+      "displayName": "Timor-Leste",
+      "assetPath": "flags-195-v1/tl.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/tl.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "TL",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "e6dd6a2054b5b68ae29eaf2247bf916c7dc5bfb0da39c62f279de36757b97482",
+      "bytes": 1910,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-tm",
+      "displayName": "Turkmenistan",
+      "assetPath": "flags-195-v1/tm.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/tm.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "TM",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "687649f4e55bb30d636625f8dbeef8079636b52778189a6ce9c029c626ef4936",
+      "bytes": 15093,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-tn",
+      "displayName": "Tunisia",
+      "assetPath": "flags-195-v1/tn.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/tn.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "TN",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "cf70064c62898827092bc7bfbd9fa67a65da7e06c9e1bd75e30756dc5fd4442d",
+      "bytes": 2010,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-to",
+      "displayName": "Tonga",
+      "assetPath": "flags-195-v1/to.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/to.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "TO",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "bbfefd6a92cd364874d191f8e64c59882db70b4bec8586d8849f7f8993aa801d",
+      "bytes": 310,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-tr",
+      "displayName": "Türkiye",
+      "assetPath": "flags-195-v1/tr.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/tr.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "TR",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "f3db6a40259c1d00b8cf7e08d307015c58a1f4d85d1aca6cf3128352b168a152",
+      "bytes": 1796,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-tt",
+      "displayName": "Trinidad and Tobago",
+      "assetPath": "flags-195-v1/tt.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/tt.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "TT",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "5bc782117d3d0b6f05029f3ea56d049970e40e55e56fbb0dd01343bb00bc5643",
+      "bytes": 5156,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-tv",
+      "displayName": "Tuvalu",
+      "assetPath": "flags-195-v1/tv.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/tv.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "TV",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "e6f4e7b7cd18a6be063830e9087be0381911a2d992411bfb2e486ed74f09cad7",
+      "bytes": 3118,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-tz",
+      "displayName": "Tanzania",
+      "assetPath": "flags-195-v1/tz.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/tz.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "TZ",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "ea0c1598a662f8b717073decb51c44f8f6e99097c252bf2b6c7a256a79fe59b4",
+      "bytes": 856,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ua",
+      "displayName": "Ukraine",
+      "assetPath": "flags-195-v1/ua.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ua.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "UA",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "2bc96fc8fb5cca920e5fb7236fe02d94a805242cdfc3a52fd822b5ce038dcce4",
+      "bytes": 208,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ug",
+      "displayName": "Uganda",
+      "assetPath": "flags-195-v1/ug.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ug.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "UG",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "cc97b0cb7ed20029f859270d5cbfa1a839bf8720418f4174582fe1ddbab6182e",
+      "bytes": 3191,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-us",
+      "displayName": "United States",
+      "assetPath": "flags-195-v1/us.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/us.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "US",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "5b38ab13f52bc95184012a4b6afafa3eca7a6ac03c762515b4550b4337548ca7",
+      "bytes": 2375,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-uy",
+      "displayName": "Uruguay",
+      "assetPath": "flags-195-v1/uy.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/uy.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "UY",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "f81e4b358c556d4b2236b0de545b8faf5762f3ab4ed7fee95715c3fc9acd325c",
+      "bytes": 6158,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-uz",
+      "displayName": "Uzbekistan",
+      "assetPath": "flags-195-v1/uz.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/uz.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "UZ",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "3b9e6dbad80e2fb71ee526ae0b6e3fbffc6b6e0a8926dd4e33af148bd2d7b867",
+      "bytes": 624,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-va",
+      "displayName": "Vatican City",
+      "assetPath": "flags-195-v1/va.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/va.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "VA",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "24bfa683a9089fee9f00f3a9bc625689ea6f9fcf853a375ea4856c2706270cbf",
+      "bytes": 13244,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-vc",
+      "displayName": "Saint Vincent and the Grenadines",
+      "assetPath": "flags-195-v1/vc.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/vc.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "VC",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "d23e4a917498f7c0f4214d2160939bd388ed1d1c4569c2381ae9984d67962a00",
+      "bytes": 863,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ve",
+      "displayName": "Venezuela",
+      "assetPath": "flags-195-v1/ve.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ve.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "VE",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "943e4b21979c686cda5a6fb5c9912794036a2f93346072e1a139896ca9aa0492",
+      "bytes": 2255,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-vn",
+      "displayName": "Vietnam",
+      "assetPath": "flags-195-v1/vn.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/vn.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "VN",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "5b4c6f0abe96cb2cfe690bdac3002599f5260ad203c8eaed30a699cd4feba3fb",
+      "bytes": 1447,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-vu",
+      "displayName": "Vanuatu",
+      "assetPath": "flags-195-v1/vu.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/vu.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "VU",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "fabfc33c838a801b2d878ba0dff88720645c0fb49c788da46221e5c2e472fc34",
+      "bytes": 4712,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ws",
+      "displayName": "Samoa",
+      "assetPath": "flags-195-v1/ws.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ws.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "WS",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "a354530c6be8ddc0db51d823ea299a79159394043eca609be1c4db509704a9e1",
+      "bytes": 1138,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-ye",
+      "displayName": "Yemen",
+      "assetPath": "flags-195-v1/ye.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/ye.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "YE",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "b550e2d5ac0003087dd86c42082b5a46dd452816294e76ac62d3a4e93ad8e8e7",
+      "bytes": 224,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-za",
+      "displayName": "South Africa",
+      "assetPath": "flags-195-v1/za.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/za.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "ZA",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "c7c16e79659269734abdf7809d5f3184db140bbad82cbd3f6d5f9193f565a35a",
+      "bytes": 1178,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-zm",
+      "displayName": "Zambia",
+      "assetPath": "flags-195-v1/zm.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/zm.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "ZM",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "cc063de34b78b71c9976c0a5a7f72166b6cd3f60ad980fd9307f02e4ff2d141a",
+      "bytes": 3463,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "flags",
+      "contentVersion": "flags-195-v1",
+      "itemId": "flag-zw",
+      "displayName": "Zimbabwe",
+      "assetPath": "flags-195-v1/zw.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://github.com/hampusborgos/country-flags",
+      "sourceAssetUrl": "https://unpkg.com/svg-country-flags@1.2.10/png250px/zw.png",
+      "rightsStatus": "public_domain_national_symbol",
+      "attribution": "hampusborgos/country-flags 1.2.10 (PD)",
+      "metadata": {
+        "iso2": "ZW",
+        "sourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+      },
+      "sha256": "827b17f96e2d9a04354423d7c52e390fb922ac1d4510ded926406777298f1573",
+      "bytes": 4981,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-v1",
+      "itemId": "football-uefa",
+      "displayName": "UEFA",
+      "assetPath": "football-v1/uefa.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/UEFA",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/en/thumb/9/9d/UEFA_full_logo.svg/330px-UEFA_full_logo.svg.png",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "confederation"
+      },
+      "sha256": "6c4457053bae576f1b1c5e7a5c4272d3663189cb842dcc735b48206703b9d2e4",
+      "bytes": 57377,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-v1",
+      "itemId": "football-caf",
+      "displayName": "CAF",
+      "assetPath": "football-v1/caf.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/Confederation_of_African_Football",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/en/thumb/7/72/Confederation_of_African_Football_logo.svg/330px-Confederation_of_African_Football_logo.svg.png",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "confederation"
+      },
+      "sha256": "3bae54dfaea729560439d5f612d78e4f858862155d5caa71dff365b5ebc3354b",
+      "bytes": 56292,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-v1",
+      "itemId": "football-afc",
+      "displayName": "AFC",
+      "assetPath": "football-v1/afc.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/Asian_Football_Confederation",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/en/thumb/2/28/Asian_Football_Confederation_logo_2025.svg/500px-Asian_Football_Confederation_logo_2025.svg.png",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "confederation"
+      },
+      "sha256": "b672215adc3fcd752f1c14d730404fba1fc0540b159aa66c94558c0be6fd9756",
+      "bytes": 16559,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-v1",
+      "itemId": "football-concacaf",
+      "displayName": "CONCACAF",
+      "assetPath": "football-v1/concacaf.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/CONCACAF",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Concacaf_logo.svg/500px-Concacaf_logo.svg.png",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "confederation"
+      },
+      "sha256": "c7db0794728da5aa9abd418fd19a053ac7a80de359e01061978b14a413fb1248",
+      "bytes": 41038,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-v1",
+      "itemId": "football-conmebol",
+      "displayName": "CONMEBOL",
+      "assetPath": "football-v1/conmebol.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/CONMEBOL",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/en/thumb/a/a8/CONMEBOL_logo_%282017%29.svg/500px-CONMEBOL_logo_%282017%29.svg.png",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "confederation"
+      },
+      "sha256": "07dc7e3f8aa8f7eba9daba20577d3d1a3854bc5a08f8c0fa7e7f0b2e546fe2e2",
+      "bytes": 54555,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-v1",
+      "itemId": "football-ofc",
+      "displayName": "OFC",
+      "assetPath": "football-v1/ofc.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/Oceania_Football_Confederation",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Oceania_Football_Confederation_logo.svg/500px-Oceania_Football_Confederation_logo.svg.png",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "confederation"
+      },
+      "sha256": "e8b6ae0a283b178a83a376a19cec6436356872c334bf67f65bbd3cc26daa6c7e",
+      "bytes": 20925,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-v1",
+      "itemId": "football-premier-league",
+      "displayName": "English Premier League",
+      "assetPath": "football-v1/premier-league.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/Premier_League",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/en/thumb/f/f2/Premier_League_Logo.svg/500px-Premier_League_Logo.svg.png",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "league"
+      },
+      "sha256": "e4c378af86fd34ae8f6e3acaeb5e9225332dc65202e9e4db92e9c84dd87433f0",
+      "bytes": 10597,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-v1",
+      "itemId": "football-la-liga",
+      "displayName": "La Liga",
+      "assetPath": "football-v1/la-liga.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/La_Liga",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/LaLiga_EA_Sports_2023_Vertical_Logo.svg/500px-LaLiga_EA_Sports_2023_Vertical_Logo.svg.png",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "league"
+      },
+      "sha256": "4bda5d49e4ce2556d7092b5bd49883a13bff18a824c78ee3fef41334f1e02541",
+      "bytes": 20096,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-v1",
+      "itemId": "football-bundesliga",
+      "displayName": "Bundesliga",
+      "assetPath": "football-v1/bundesliga.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/Bundesliga",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/en/thumb/d/df/Bundesliga_logo_%282017%29.svg/500px-Bundesliga_logo_%282017%29.svg.png",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "league"
+      },
+      "sha256": "623d1d9e873f0944acec2eb9293aa3d73f136d1bab3ff6320235bf620f94c504",
+      "bytes": 21461,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-v1",
+      "itemId": "football-serie-a",
+      "displayName": "Serie A",
+      "assetPath": "football-v1/serie-a.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/Serie_A",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/en/thumb/a/ab/Serie_A_ENILIVE_logo.svg/500px-Serie_A_ENILIVE_logo.svg.png",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "league"
+      },
+      "sha256": "139a587c23e9549cd8d494900edbb8a62a478f1dd4260fff3e8972d9d8a7e032",
+      "bytes": 54887,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-v1",
+      "itemId": "football-ligue-1",
+      "displayName": "Ligue 1",
+      "assetPath": "football-v1/ligue-1.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/Ligue_1",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Logo_Ligue_1_McDonald%27s_2024.svg/500px-Logo_Ligue_1_McDonald%27s_2024.svg.png",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "league"
+      },
+      "sha256": "af90bad6043c3b36a8fec67368fbdcd24dac5116bf55068cb5698b0f902c3660",
+      "bytes": 28581,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-v1",
+      "itemId": "football-major-league-soccer",
+      "displayName": "Major League Soccer",
+      "assetPath": "football-v1/major-league-soccer.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/Major_League_Soccer",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/en/thumb/c/c7/Major_League_Soccer_logo.svg/500px-Major_League_Soccer_logo.svg.png",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "league"
+      },
+      "sha256": "22f86477526fd080391b998c886871489d3e1e0ec8514fec21246cf49a1ed2b9",
+      "bytes": 39767,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-v1",
+      "itemId": "football-liga-mx",
+      "displayName": "Liga MX",
+      "assetPath": "football-v1/liga-mx.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/Liga_MX",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Liga_MX_logo.svg/500px-Liga_MX_logo.svg.png",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "league"
+      },
+      "sha256": "c1e0703a0f908f12c73b056d817df8ded553329f0b936dfb64548cb71a69717b",
+      "bytes": 50111,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-v1",
+      "itemId": "football-brasileirao-serie-a",
+      "displayName": "Brasileirão Série A",
+      "assetPath": "football-v1/brasileirao-serie-a.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/Campeonato_Brasileiro_S%C3%A9rie_A",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/Campeonato_Brasileiro_S%C3%A9rie_A_logo_%282024%29.svg/500px-Campeonato_Brasileiro_S%C3%A9rie_A_logo_%282024%29.svg.png",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "league"
+      },
+      "sha256": "8b690ce2ec012f34248cfbffcd53e1bb0c1cf43e9fadb0833f2392ef59e00e79",
+      "bytes": 66925,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-v1",
+      "itemId": "football-j1-league",
+      "displayName": "J1 League",
+      "assetPath": "football-v1/j1-league.jpg",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://www.antlers.co.jp/blogs/news/260616v8d97u",
+      "sourceAssetUrl": "https://www.antlers.co.jp/cdn/shop/articles/pickup_j1_rogo_5b23f6dc-d23b-4e17-bb11-ef5ab1102c24.jpg?v=1781657246&width=1200",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "league"
+      },
+      "sha256": "8abc00e4e2631ad5a56b398a565df78a9a93e0635c038909b3c74bfc2d4468a8",
+      "bytes": 34059,
+      "contentType": "image/jpeg"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-v1",
+      "itemId": "football-k-league-1",
+      "displayName": "K League 1",
+      "assetPath": "football-v1/k-league-1.png",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://www.kleague.com/about/ci.do",
+      "sourceAssetUrl": "https://pub-3bd35431294c47068cbf31a95d572166.r2.dev/logos/k-league-1-south-korea/k-league-1-south-korea-logo-footylogos.png",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "league"
+      },
+      "sha256": "eb42faf2a842ad585cb59b34825c3014124b3e5991695dc3fc23bd5b514af149",
+      "bytes": 58914,
+      "contentType": "image/png"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-v1",
+      "itemId": "football-saudi-pro-league",
+      "displayName": "Saudi Pro League",
+      "assetPath": "football-v1/saudi-pro-league.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Saudi_Pro_League_Logo.svg",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Saudi_Pro_League_Logo.svg/500px-Saudi_Pro_League_Logo.svg.png",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "league"
+      },
+      "sha256": "3dfd2a32918b89a8ac28aeedd3b8aa2bc054e607c89eb963d70036416251f56e",
+      "bytes": 39073,
+      "contentType": "image/png"
+    }
+  ]
+}

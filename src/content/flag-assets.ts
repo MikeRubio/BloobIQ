@@ -1,0 +1,28 @@
+import type { FlagAssetMap } from '@/game/types';
+
+export const flagAssets: FlagAssetMap = {
+  ar: require('../../assets/flags/ar.png'), au: require('../../assets/flags/au.png'),
+  at: require('../../assets/flags/at.png'), be: require('../../assets/flags/be.png'),
+  br: require('../../assets/flags/br.png'), ca: require('../../assets/flags/ca.png'),
+  cl: require('../../assets/flags/cl.png'), cn: require('../../assets/flags/cn.png'),
+  co: require('../../assets/flags/co.png'), hr: require('../../assets/flags/hr.png'),
+  cz: require('../../assets/flags/cz.png'), dk: require('../../assets/flags/dk.png'),
+  eg: require('../../assets/flags/eg.png'), fi: require('../../assets/flags/fi.png'),
+  fr: require('../../assets/flags/fr.png'), de: require('../../assets/flags/de.png'),
+  gr: require('../../assets/flags/gr.png'), hu: require('../../assets/flags/hu.png'),
+  is: require('../../assets/flags/is.png'), in: require('../../assets/flags/in.png'),
+  id: require('../../assets/flags/id.png'), ie: require('../../assets/flags/ie.png'),
+  it: require('../../assets/flags/it.png'), jp: require('../../assets/flags/jp.png'),
+  mx: require('../../assets/flags/mx.png'), ma: require('../../assets/flags/ma.png'),
+  nl: require('../../assets/flags/nl.png'), nz: require('../../assets/flags/nz.png'),
+  ng: require('../../assets/flags/ng.png'), no: require('../../assets/flags/no.png'),
+  pl: require('../../assets/flags/pl.png'), pt: require('../../assets/flags/pt.png'),
+  ro: require('../../assets/flags/ro.png'), sa: require('../../assets/flags/sa.png'),
+  za: require('../../assets/flags/za.png'), kr: require('../../assets/flags/kr.png'),
+  es: require('../../assets/flags/es.png'), se: require('../../assets/flags/se.png'),
+  ch: require('../../assets/flags/ch.png'), th: require('../../assets/flags/th.png'),
+  tr: require('../../assets/flags/tr.png'), ua: require('../../assets/flags/ua.png'),
+  gb: require('../../assets/flags/gb.png'), us: require('../../assets/flags/us.png'),
+  vn: require('../../assets/flags/vn.png'), gh: require('../../assets/flags/gh.png'),
+  ke: require('../../assets/flags/ke.png'), pe: require('../../assets/flags/pe.png'),
+};

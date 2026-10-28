@@ -1,0 +1,63 @@
+import { readFileSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
+import { describe, expect, it } from 'vitest';
+
+const migrationsDirectory = join(process.cwd(), 'supabase', 'migrations');
+const migrationName = readdirSync(migrationsDirectory).find((name) => name.endsWith('_bloopiq_backend_foundation.sql'));
+if (!migrationName) throw new Error('BloopIQ backend migration is missing');
+const sql = readFileSync(join(migrationsDirectory, migrationName), 'utf8').toLowerCase();
+const allSql = readdirSync(migrationsDirectory)
+  .filter((name) => name.endsWith('.sql'))
+  .sort()
+  .map((name) => readFileSync(join(migrationsDirectory, name), 'utf8'))
+  .join('\n')
+  .toLowerCase();
+
+describe('BloopIQ migration security contract', () => {
+  it.each(['guest_profiles', 'daily_challenges', 'daily_attempts', 'daily_answers'])(
+    'enables RLS on %s',
+    (table) => expect(sql).toContain(`alter table public.${table} enable row level security`),
+  );
+
+  it('keeps attempts and answers read-only to the app role', () => {
+    expect(sql).toContain('revoke all on public.categories, public.guest_profiles, public.daily_challenges, public.daily_attempts, public.daily_answers from anon, authenticated');
+    expect(sql).toContain('grant select on public.daily_attempts to authenticated');
+    expect(sql).not.toMatch(/grant\s+(insert|update|delete)[^;]*daily_attempts/);
+    expect(sql).not.toMatch(/grant\s+(select|insert|update|delete)[^;]*daily_answers/);
+  });
+
+  it('authorizes score mutations through authenticated RPCs only', () => {
+    expect(sql).toContain('create or replace function public.submit_daily_answer');
+    expect(sql).toContain("declare\n  v_user uuid := private.require_user()");
+    expect(sql).toContain("security definer set search_path = ''");
+    expect(sql).toContain('revoke all on function public.submit_daily_answer(uuid, smallint, uuid, uuid) from public, anon');
+    expect(sql).toContain('grant execute on function public.submit_daily_answer(uuid, smallint, uuid, uuid) to authenticated');
+  });
+
+  it('pins one attempt per user and makes submissions idempotent', () => {
+    expect(sql).toContain('unique (challenge_id, user_id)');
+    expect(sql).toContain('unique (attempt_id, question_index)');
+    expect(sql).toContain('unique (attempt_id, request_id)');
+    expect(sql).toContain('where id = p_attempt_id and user_id = v_user for update');
+  });
+
+  it('serializes concurrent challenge creation', () => {
+    expect(allSql).toContain('pg_advisory_xact_lock');
+    expect(sql).toContain('unique (category_id, challenge_date)');
+    expect(sql).toContain('on conflict (category_id, challenge_date) do nothing');
+  });
+
+  it.each(['flag_content', 'daily_challenge_rounds', 'quiz_content'])(
+    'enables RLS on private.%s',
+    (table) => expect(allSql).toContain(`alter table private.${table} enable row level security`),
+  );
+
+  it('keeps the hosted content catalog private and versioned', () => {
+    expect(allSql).toContain('revoke all on table private.quiz_content from public, anon, authenticated');
+    expect(allSql).toContain("'flags-195-v1'");
+    expect(allSql).toContain("'football-v1'");
+    expect(allSql).toContain("values ('quiz-assets', 'quiz-assets', true");
+    expect(allSql).toContain("rights_status = 'trademark_reviewed_approved'");
+    expect(allSql).toContain("where category_id = 'flags' and content_version = 'flags-v1'");
+  });
+});

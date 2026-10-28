@@ -1,14 +1,16 @@
 {
   "expo": {
-    "name": "guess-game",
-    "slug": "guess-game",
+    "name": "BloopIQ",
+    "slug": "guessr",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "guessgame",
-    "userInterfaceStyle": "automatic",
+    "scheme": "guessr",
+    "userInterfaceStyle": "light",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "supportsTablet": true,
+      "bundleIdentifier": "com.guessr.game"
     },
     "android": {
       "adaptiveIcon": {
@@ -17,10 +19,11 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.guessr.game"
     },
     "web": {
-      "output": "server",
+      "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
@@ -28,11 +31,14 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "backgroundColor": "#2D9CDB",
+          "image": "./assets/images/bloopiq-splash-mark.png",
+          "imageWidth": 180,
+          "resizeMode": "contain"
         }
-      ]
+      ],
+      "expo-audio",
+      "expo-asset"
     ],
     "experiments": {
       "typedRoutes": true,
