@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, AppState, Image, Pressable, StyleSheet, Text, View, type ImageSourcePropType } from 'react-native';
+import { ActivityIndicator, AppState, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, type ImageSource } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { flagAssets } from '@/content/flag-assets';
@@ -54,7 +55,7 @@ export default function DailyGameScreen() {
   const deadline = isPractice ? practiceDeadline : rankedDeadline;
   const correctChoiceId = feedback?.correctChoiceId ?? (isPractice ? round?.correctChoiceId : null);
   const correctName = feedback?.correctLabel ?? round?.options.find((option) => option.id === correctChoiceId)?.label;
-  const assetSource = useMemo<ImageSourcePropType | undefined>(() => {
+  const assetSource = useMemo<ImageSource | number | undefined>(() => {
     if (!round) return undefined;
     const remoteUrl = round.assetPath ? getQuizAssetUrl(round.assetPath) : null;
     return remoteUrl ? { uri: remoteUrl } : flagAssets[round.assetKey];
@@ -127,8 +128,8 @@ export default function DailyGameScreen() {
         <View style={styles.timerTrack}><View style={[styles.timerFill, { width: `${timer.progress * 100}%`, backgroundColor: timer.progress < 0.3 ? colors.coral : colors.yellow }]} /></View>
         <View style={styles.content}>
           <Text style={styles.prompt}>{copy.prompt}</Text>
-          <View style={[styles.flagCard, categoryId === 'flags' && styles.flagStage, shadow.card]}>
-            {assetSource ? <Image source={assetSource} resizeMode="contain" style={styles.flag} /> : <Text style={styles.assetError}>Image unavailable</Text>}
+          <View style={[styles.flagCard, styles.flagStage, shadow.card]}>
+            {assetSource ? <Image cachePolicy="memory-disk" contentFit="contain" source={assetSource} style={styles.flag} /> : <Text style={styles.assetError}>Image unavailable</Text>}
             {feedback ? <View style={[styles.feedbackBadge, feedback.isCorrect ? styles.correctBadge : styles.wrongBadge]}><Text style={styles.feedbackText}>{feedback.isCorrect ? '✓  +100' : '0 POINTS'}</Text></View> : null}
           </View>
           <View style={styles.answers}>{round.options.map((option, index) => {

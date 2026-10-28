@@ -1,5 +1,18 @@
 export type DailyOption = { id: string; label: string };
-export type QuizCategoryId = 'flags' | 'football';
+export type QuizCategoryId = 'flags' | 'football' | 'baseball' | 'basketball';
+export type CasualContentItem = {
+  id: string;
+  displayName: string;
+  assetPath: string;
+  difficulty: 'easy' | 'medium' | 'hard';
+  contentType: string | null;
+  distractorIds?: string[] | null;
+};
+export type CasualPack = {
+  categoryId: QuizCategoryId;
+  contentVersion: string;
+  items: CasualContentItem[];
+};
 export type DailyRound = {
   index: number;
   roundId: string;

@@ -28,9 +28,30 @@
 - RLS-protected Realtime invalidation events with authoritative fetch recovery, persisted identity/room rejoin, connection state, lobby host transfer, late-join prevention, expiry/empty-room closure, standings with shared ranks, and fresh host rematches.
 - Live two-client Supabase smoke coverage for all ten questions, Realtime delivery, mid-match session reconstruction, and final standings, plus pgTAP and pure timing tests.
 
+## Shipped: scalable Home and category navigation
+
+- Compact Home ordered around Daily Challenge, direct Create/Join multiplayer actions, broad category discovery, and a smaller last-played Casual shortcut.
+- Typed separation of browsing groups, specific backend quiz IDs, and supported game modes, preserving `flags` and `football` data contracts.
+- Flags routes directly to All Flags; Sports opens Football → Leagues & Confederations, while unavailable sports and future Brands/People remain compact noninteractive previews.
+- Quiz-scoped Daily selection, rankings browsing, and room creation use the shared catalogue and never fabricate unsupported content packs.
+
+## Shipped: complete Football modes
+
+- `Football → Leagues & Confederations` supports Casual, Daily, and With Friends using the existing `football` ID and `football-v1` hosted pack.
+- Casual uses all 17 identities once per completed run, same-type-first distractors, image-gated ten-second timers, retry-safe artwork loading, one simulated-ad revive, and independent Football records.
+- The authenticated Casual-pack RPC exposes only active identity metadata and asset paths; private catalog tables plus ranked/friends answer keys remain inaccessible.
+
+## Shipped: complete Baseball and Basketball modes
+
+- `Baseball → MLB Team Logos` and `Basketball → NBA Team Logos` each provide 30 current official team identities through immutable `baseball-mlb-v1` and `basketball-nba-v1` packs.
+- Casual exhausts each 30-team pack without repeats, prioritizes recorded same-division distractors, gates timers on artwork readiness, and saves quiz-specific records/Quick Play state.
+- Daily generation, Today/This Week rankings, Friends room selection/join inference, authoritative rounds, reconnect, standings, and rematches support both quiz IDs without changing Flags or Football history.
+- Team IDs, names, aliases, league/conference/division metadata, official source URLs, SHA-256 hashes, and trademark-review status are recorded in the repeatable content manifest.
+
 ## Next: content operations and additional categories
 
 - Repeat the football identity review if assets change or before the distribution context changes, and establish a repeatable asset renewal audit.
+- Complete production trademark review for the 30 MLB and 30 NBA primary logos; they remain explicitly marked `trademark_review_required`.
 - Add reviewed, licensed, versioned brand and sport packs through the generic content model.
 - Add content-version retirement procedures so old active attempts remain playable while obsolete assets can eventually be removed.
 

@@ -1,7 +1,7 @@
 begin;
 
 create extension if not exists pgtap with schema extensions;
-select plan(39);
+select plan(47);
 
 select ok((select relrowsecurity from pg_class where oid = 'public.guest_profiles'::regclass), 'profiles use RLS');
 select ok((select relrowsecurity from pg_class where oid = 'public.daily_attempts'::regclass), 'attempts use RLS');
@@ -18,6 +18,10 @@ select ok((select relrowsecurity from pg_class where oid = 'private.quiz_content
 select is((select count(*) from private.quiz_content where content_version = 'flags-195-v1'), 195::bigint, 'hosted flag pack contains 195 sovereign states');
 select is((select count(*) from private.quiz_content where content_version = 'football-v1'), 17::bigint, 'hosted football pack contains all requested identities');
 select is((select count(*) from private.quiz_content where content_version = 'football-v1' and rights_status = 'trademark_reviewed_approved'), 17::bigint, 'all football identities record project-owner approval');
+select is((select count(*) from private.quiz_content where content_version = 'baseball-mlb-v1'), 30::bigint, 'hosted baseball pack contains all current MLB teams');
+select is((select count(*) from private.quiz_content where content_version = 'basketball-nba-v1'), 30::bigint, 'hosted basketball pack contains all current NBA teams');
+select is((select count(*) from private.quiz_content where content_version = 'baseball-mlb-v1' and rights_status = 'trademark_review_required'), 30::bigint, 'MLB trademarks remain explicitly pending production review');
+select is((select count(*) from private.quiz_content where content_version = 'basketball-nba-v1' and rights_status = 'trademark_review_required'), 30::bigint, 'NBA trademarks remain explicitly pending production review');
 select is((select count(*) from private.flag_content where content_version = 'flags-v1'), 0::bigint, 'legacy Flags v1 content is retired');
 select ok((select public from storage.buckets where id = 'quiz-assets'), 'quiz asset bucket is public for reads');
 select is(private.ensure_daily_challenge('football', date '2099-01-02'), private.ensure_daily_challenge('football', date '2099-01-02'), 'football challenge generation is stable');
@@ -25,6 +29,18 @@ select is(
   (select count(*) from private.daily_challenge_rounds r join public.daily_challenges c on c.id = r.challenge_id where c.category_id = 'football' and c.challenge_date = date '2099-01-02'),
   10::bigint,
   'a football challenge has ten rounds'
+);
+select is(private.ensure_daily_challenge('baseball', date '2099-01-02'), private.ensure_daily_challenge('baseball', date '2099-01-02'), 'baseball challenge generation is stable');
+select is(
+  (select count(*) from private.daily_challenge_rounds r join public.daily_challenges c on c.id = r.challenge_id where c.category_id = 'baseball' and c.challenge_date = date '2099-01-02'),
+  10::bigint,
+  'a baseball challenge has ten rounds'
+);
+select is(private.ensure_daily_challenge('basketball', date '2099-01-02'), private.ensure_daily_challenge('basketball', date '2099-01-02'), 'basketball challenge generation is stable');
+select is(
+  (select count(*) from private.daily_challenge_rounds r join public.daily_challenges c on c.id = r.challenge_id where c.category_id = 'basketball' and c.challenge_date = date '2099-01-02'),
+  10::bigint,
+  'a basketball challenge has ten rounds'
 );
 select is(
   (select count(*) from private.daily_challenge_rounds where asset_path is not null),

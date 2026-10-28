@@ -5,6 +5,7 @@ export type Database = {
     Tables: Record<string, never>;
     Views: Record<string, never>;
     Functions: {
+      get_casual_quiz_pack: { Args: { p_category_id: string }; Returns: Json };
       sync_guest_profile: { Args: { p_display_name: string; p_avatar: string; p_avatar_color: string }; Returns: Json };
       get_daily_state: { Args: { p_category_id?: string }; Returns: Json };
       start_daily_attempt: { Args: { p_category_id?: string }; Returns: Json };

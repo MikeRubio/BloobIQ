@@ -9,6 +9,7 @@ import { useDailyStore } from '@/store/daily-store';
 import { useProfileStore } from '@/store/profile-store';
 import { backendProfileFromLocal } from '@/backend/profile-migration';
 import { normalizeQuizCategory, quizCategoryCopy } from '@/backend/categories';
+import { getQuiz } from '@/content/quiz-catalog';
 import { colors, radius, shadow, spacing, type } from '@/theme/tokens';
 
 const rules = [
@@ -18,6 +19,7 @@ const rules = [
 export default function DailyIntroScreen() {
   const params = useLocalSearchParams<{ category?: string }>();
   const categoryId = normalizeQuizCategory(params.category);
+  const quiz = getQuiz(categoryId);
   const copy = quizCategoryCopy[categoryId];
   const profile = useProfileStore((state) => state.profile);
   const hydrated = useProfileStore((state) => state.hydrated);
@@ -48,7 +50,7 @@ export default function DailyIntroScreen() {
       <SafeAreaView style={styles.safe}>
         <ScreenHeader title={copy.dailyTitle} subtitle="Ranked challenge" />
         <ScrollView contentContainerStyle={styles.content}>
-          <View style={[styles.hero, shadow.card]}><Text style={styles.sun}>{categoryId === 'flags' ? '🌍' : '⚽'}</Text><Text style={styles.title}>One shot at today’s board</Text><Text style={styles.body}>{copy.introBody}</Text></View>
+          <View style={[styles.hero, shadow.card]}><Text style={styles.sun}>{quiz.icon}</Text><Text style={styles.title}>One shot at today’s board</Text><Text style={styles.body}>{copy.introBody}</Text></View>
           <View style={styles.ruleGrid}>{rules.map(([value, labelText]) => <View key={labelText} style={styles.rule}><Text style={styles.ruleValue}>{value}</Text><Text style={styles.ruleLabel}>{labelText}</Text></View>)}</View>
           <View style={[styles.info, shadow.card]}>
             <Text style={styles.infoTitle}>Before you start</Text>

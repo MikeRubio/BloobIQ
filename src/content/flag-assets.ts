@@ -1,6 +1,4 @@
-import type { FlagAssetMap } from '@/game/types';
-
-export const flagAssets: FlagAssetMap = {
+export const flagAssets: Record<string, number> = {
   ar: require('../../assets/flags/ar.png'), au: require('../../assets/flags/au.png'),
   at: require('../../assets/flags/at.png'), be: require('../../assets/flags/be.png'),
   br: require('../../assets/flags/br.png'), ca: require('../../assets/flags/ca.png'),

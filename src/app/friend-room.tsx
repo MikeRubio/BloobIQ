@@ -1,9 +1,11 @@
 import * as Clipboard from 'expo-clipboard';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
-import { Image, Pressable, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { getQuizAssetUrl } from '@/backend/supabase';
+import { getQuiz } from '@/content/quiz-catalog';
 import type { FriendMember } from '@/backend/types';
 import { BubbleBackground } from '@/components/bubble-background';
 import { GameButton } from '@/components/game-button';
@@ -64,7 +66,7 @@ export default function FriendRoomScreen() {
   const leaveRoom = async () => { await leave(); router.replace('/'); };
 
   if (snapshot.status === 'lobby') return <RoomShell>
-    <Connection state={connection} /><Text style={styles.eyebrow}>{snapshot.categoryId === 'flags' ? '🌍 FLAGS' : '⚽ FOOTBALL'}</Text><Text style={styles.heading}>Lobby</Text>
+    <Connection state={connection} /><Text style={styles.eyebrow}>{getQuiz(snapshot.categoryId).icon} {getQuiz(snapshot.categoryId).label.toUpperCase()}</Text><Text style={styles.heading}>Lobby</Text>
     <View style={[styles.codeCard, shadow.card]}><Text style={styles.codeLabel}>ROOM CODE</Text><Text selectable style={styles.code}>{snapshot.code}</Text><View style={styles.codeActions}>
       <Pressable onPress={() => void Clipboard.setStringAsync(snapshot.code)} style={styles.smallAction}><Text style={styles.smallActionText}>Copy</Text></Pressable>
       <Pressable onPress={() => void Share.share({ message: `Join my BloopIQ game! Open Play with Friends and enter code ${snapshot.code}.` })} style={styles.smallAction}><Text style={styles.smallActionText}>Share</Text></Pressable>
@@ -87,7 +89,7 @@ export default function FriendRoomScreen() {
     <View style={styles.matchTop}><Text style={styles.progress}>QUESTION {(projected?.questionIndex ?? 0) + 1} / 10</Text><Text style={[styles.timer, revealed && styles.timerReveal]}>{Math.max(0, Math.ceil((projected?.remainingMs ?? 0) / 1000))}</Text></View>
     <Text style={styles.answerCount}>{snapshot.answerCount}/{snapshot.members.length} answers locked</Text>
     {waiting ? <Text style={styles.loading}>Syncing the next question…</Text> : <>
-      <View style={[styles.imageStage, shadow.card]}>{round.assetPath ? <Image resizeMode="contain" source={{ uri: getQuizAssetUrl(round.assetPath) ?? undefined }} style={styles.quizImage} /> : null}</View>
+      <View style={[styles.imageStage, shadow.card]}>{round.assetPath ? <Image cachePolicy="memory-disk" contentFit="contain" source={{ uri: getQuizAssetUrl(round.assetPath) ?? undefined }} style={styles.quizImage} /> : null}</View>
       <Text style={styles.prompt}>{revealed ? 'Answer revealed' : 'What is this?'}</Text>
       <View style={styles.answers}>{round.options.map((option) => {
         const selected = snapshot.myAnswer?.choiceId === option.id;

@@ -12,6 +12,9 @@ const allSql = readdirSync(migrationsDirectory)
   .map((name) => readFileSync(join(migrationsDirectory, name), 'utf8'))
   .join('\n')
   .toLowerCase();
+const casualMigrationName = readdirSync(migrationsDirectory).find((name) => name.endsWith('_add_casual_quiz_pack_rpc.sql'));
+if (!casualMigrationName) throw new Error('Casual quiz pack migration is missing');
+const casualSql = readFileSync(join(migrationsDirectory, casualMigrationName), 'utf8').toLowerCase();
 
 describe('BloopIQ migration security contract', () => {
   it.each(['guest_profiles', 'daily_challenges', 'daily_attempts', 'daily_answers'])(
@@ -56,8 +59,19 @@ describe('BloopIQ migration security contract', () => {
     expect(allSql).toContain('revoke all on table private.quiz_content from public, anon, authenticated');
     expect(allSql).toContain("'flags-195-v1'");
     expect(allSql).toContain("'football-v1'");
+    expect(allSql).toContain("'baseball-mlb-v1'");
+    expect(allSql).toContain("'basketball-nba-v1'");
     expect(allSql).toContain("values ('quiz-assets', 'quiz-assets', true");
+    expect(allSql).toContain("'image/svg+xml'");
     expect(allSql).toContain("rights_status = 'trademark_reviewed_approved'");
     expect(allSql).toContain("where category_id = 'flags' and content_version = 'flags-v1'");
+  });
+
+  it('exposes only a scoped authenticated Casual pack RPC', () => {
+    expect(allSql).toContain('create or replace function public.get_casual_quiz_pack');
+    expect(allSql).toContain("v_user uuid := private.require_user()");
+    expect(allSql).toContain('revoke all on function public.get_casual_quiz_pack(text) from public, anon');
+    expect(allSql).toContain('grant execute on function public.get_casual_quiz_pack(text) to authenticated');
+    expect(casualSql).not.toContain('correct_choice_id');
   });
 });

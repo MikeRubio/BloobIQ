@@ -9,6 +9,8 @@ for (const line of readFileSync(new URL('../.env', import.meta.url), 'utf8').spl
 const url = process.env.EXPO_PUBLIC_SUPABASE_URL;
 const key = process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 if (!url || !key) throw new Error('Supabase public environment variables are required.');
+const category = process.argv.find((arg) => arg.startsWith('--category='))?.split('=')[1] ?? 'football';
+if (!['flags', 'football', 'baseball', 'basketball'].includes(category)) throw new Error(`Unsupported smoke category: ${category}`);
 
 const makeClient = () => createClient(url, key, { auth: { persistSession: false, autoRefreshToken: true, detectSessionInUrl: false } });
 async function player(name, avatar, color) {
@@ -27,9 +29,9 @@ async function rpc(client, fn, args) {
 
 let host = await player(`Smoke Host ${Date.now().toString().slice(-5)}`, '🦊', '#FF8A65');
 let guest = await player(`Smoke Guest ${Date.now().toString().slice(-5)}`, '🐼', '#A88BEB');
-const created = await rpc(host.client, 'create_friend_room', { p_category_id: 'football' });
+const created = await rpc(host.client, 'create_friend_room', { p_category_id: category });
 const joined = await rpc(guest.client, 'join_friend_room', { p_code: created.code });
-if (joined.members.length !== 2) throw new Error('Expected two room members.');
+if (joined.members.length !== 2 || joined.categoryId !== category) throw new Error('Expected two room members in the selected quiz.');
 let realtimeEvents = 0;
 const realtimeReady = new Promise((resolve, reject) => {
   host.client.channel(`smoke-${created.roomId}`)
@@ -43,7 +45,7 @@ await Promise.race([realtimeReady, new Promise((_, reject) => setTimeout(() => r
 await rpc(host.client, 'set_friend_ready', { p_room_id: created.roomId, p_ready: true });
 await rpc(guest.client, 'set_friend_ready', { p_room_id: created.roomId, p_ready: true });
 let state = await rpc(host.client, 'start_friend_match', { p_room_id: created.roomId });
-console.log(JSON.stringify({ stage: 'started', roomId: state.roomId, code: state.code, matchId: state.matchId, startsAt: state.startsAt }));
+console.log(JSON.stringify({ stage: 'started', category, roomId: state.roomId, code: state.code, matchId: state.matchId, startsAt: state.startsAt, hostUserId: host.id, guestUserId: guest.id }));
 
 if (process.argv.includes('--lobby-only')) process.exit(0);
 let lastQuestion = -1;
@@ -52,6 +54,7 @@ while (true) {
   state = await rpc(host.client, 'get_friend_room_state', { p_room_id: created.roomId });
   if (state.phase === 'results' || state.status === 'results') break;
   if (state.phase === 'question' && state.questionIndex !== lastQuestion && state.round) {
+    if (category !== 'flags' && !state.round.assetPath?.startsWith(`${category}-`)) throw new Error(`Wrong asset pack for ${category}: ${state.round.assetPath}`);
     lastQuestion = state.questionIndex;
     const hostChoice = state.round.options[0].id;
     const guestState = await rpc(guest.client, 'get_friend_room_state', { p_room_id: created.roomId });

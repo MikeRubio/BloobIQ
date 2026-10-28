@@ -8,11 +8,13 @@ import { useDailyStore } from '@/store/daily-store';
 import { useProfileStore } from '@/store/profile-store';
 import { backendProfileFromLocal } from '@/backend/profile-migration';
 import { normalizeQuizCategory, quizCategoryCopy } from '@/backend/categories';
+import { getQuiz } from '@/content/quiz-catalog';
 import { colors, radius, shadow, spacing, type } from '@/theme/tokens';
 
 export default function DailyResultsScreen() {
   const params = useLocalSearchParams<{ category?: string; practice?: string; score?: string; correct?: string }>();
   const categoryId = normalizeQuizCategory(params.category);
+  const quiz = getQuiz(categoryId);
   const copy = quizCategoryCopy[categoryId];
   const isPractice = params.practice === '1';
   const profile = useProfileStore((state) => state.profile);
@@ -35,7 +37,7 @@ export default function DailyResultsScreen() {
       <BubbleBackground />
       <SafeAreaView style={styles.safe}>
         <View style={styles.content}>
-          <View style={styles.badge}><Text style={styles.badgeIcon}>{isPractice ? '↻' : categoryId === 'flags' ? '🌍' : '⚽'}</Text></View>
+          <View style={styles.badge}><Text style={styles.badgeIcon}>{isPractice ? '↻' : quiz.icon}</Text></View>
           <Text style={styles.category}>{copy.label}</Text>
           <Text style={styles.eyebrow}>{isPractice ? 'PRACTICE COMPLETE' : 'TODAY’S RANKED RESULT'}</Text>
           <Text style={styles.title}>{isPractice ? 'Nice replay!' : categorySnapshot?.state === 'expired' ? 'Attempt expired' : 'Daily complete!'}</Text>

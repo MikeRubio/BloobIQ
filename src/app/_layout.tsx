@@ -46,6 +46,8 @@ export default function RootLayout() {
           <Stack.Screen name="rankings" />
           <Stack.Screen name="friends" />
           <Stack.Screen name="friend-room" options={{ gestureEnabled: false }} />
+          <Stack.Screen name="category" />
+          <Stack.Screen name="quiz" />
         </Stack>
       </SafeAreaProvider>
     </GestureHandlerRootView>

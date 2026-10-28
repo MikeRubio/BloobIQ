@@ -1,14 +1,18 @@
 import { create } from 'zustand';
-import { flagQuestions } from '@/content/flags';
+import { loadCasualQuestions } from '@/backend/casual-api';
+import type { QuizCategoryId } from '@/backend/types';
 import {
-  advanceAfterFeedback, beginAd, finishRun, grantRevive, initialGameState, pauseRun,
+  advanceAfterFeedback, beginAd, beginQuestion, finishRun, grantRevive, initialGameState, pauseRun,
   resumeRun, returnToReviveOffer, startRun, submitAnswer,
 } from '@/game/engine';
 import type { GameRunState } from '@/game/types';
 import { useProfileStore } from './profile-store';
 
 type GameActions = {
-  start: (now?: number) => void;
+  launching: boolean;
+  launchError: string | null;
+  start: (categoryId?: QuizCategoryId, now?: number, forceRefresh?: boolean) => Promise<boolean>;
+  questionReady: (now?: number) => void;
   answer: (optionId: string | null, now?: number) => void;
   advance: (now?: number) => void;
   pause: (now?: number) => void;
@@ -20,8 +24,8 @@ type GameActions = {
   reset: () => void;
 };
 
-function previousBest(): number {
-  return useProfileStore.getState().records.flags?.highScore ?? 0;
+function previousBest(categoryId: GameRunState['categoryId']): number {
+  return useProfileStore.getState().records[categoryId]?.highScore ?? 0;
 }
 
 function commitCompleted(previous: GameRunState, next: GameRunState): void {
@@ -32,10 +36,25 @@ function commitCompleted(previous: GameRunState, next: GameRunState): void {
 
 export const useGameStore = create<GameRunState & GameActions>((set) => ({
   ...initialGameState,
-  start: (now) => set(startRun(flagQuestions, now)),
+  launching: false,
+  launchError: null,
+  start: async (categoryId = 'flags', now, forceRefresh = false) => {
+    set({ launching: true, launchError: null });
+    try {
+      const profile = useProfileStore.getState().profile;
+      const questions = await loadCasualQuestions(categoryId, { name: profile.name, avatar: profile.avatar, color: profile.color }, forceRefresh);
+      useProfileStore.getState().markCasualQuizPlayed(categoryId);
+      set({ ...startRun(questions, now), launching: false, launchError: null });
+      return true;
+    } catch (error) {
+      set({ launching: false, launchError: error instanceof Error ? error.message : 'This quiz could not be loaded.' });
+      return false;
+    }
+  },
+  questionReady: (now) => set((state) => beginQuestion(state, now)),
   answer: (optionId, now) => set((state) => submitAnswer(state, optionId, now)),
   advance: (now) => set((state) => {
-    const next = advanceAfterFeedback(state, previousBest(), now);
+    const next = advanceAfterFeedback(state, previousBest(state.categoryId), now);
     commitCompleted(state, next);
     return next;
   }),
@@ -45,9 +64,9 @@ export const useGameStore = create<GameRunState & GameActions>((set) => ({
   adDidNotReward: (message) => set((state) => returnToReviveOffer(state, message)),
   revive: (now) => set((state) => grantRevive(state, now)),
   finish: (now) => set((state) => {
-    const next = finishRun(state, previousBest(), false, now);
+    const next = finishRun(state, previousBest(state.categoryId), false, now);
     commitCompleted(state, next);
     return next;
   }),
-  reset: () => set(initialGameState),
+  reset: () => set({ ...initialGameState, launching: false, launchError: null }),
 }));

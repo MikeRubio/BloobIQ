@@ -1,5 +1,3 @@
-import type { ImageSourcePropType } from 'react-native';
-
 export type CategoryId = 'flags' | 'brands' | 'football' | 'nfl' | 'baseball' | 'basketball' | 'hockey';
 export type Difficulty = 'easy' | 'medium' | 'hard';
 export type FlagAssetKey = string;
@@ -11,6 +9,8 @@ export type QuizQuestion = {
   categoryId: CategoryId;
   displayName: string;
   assetKey: FlagAssetKey;
+  assetUri?: string;
+  contentType?: string;
   difficulty: Difficulty;
   distractorCandidates: string[];
   provenance: AssetProvenance;
@@ -18,7 +18,7 @@ export type QuizQuestion = {
 
 export type QuestionRound = { questionId: string; optionIds: string[] };
 
-export type RunPhase = 'idle' | 'answering' | 'feedback' | 'revive-offer' | 'ad-in-progress' | 'complete';
+export type RunPhase = 'idle' | 'loading' | 'answering' | 'feedback' | 'revive-offer' | 'ad-in-progress' | 'complete';
 
 export type Feedback = {
   kind: 'correct' | 'wrong' | 'timeout';
@@ -41,7 +41,9 @@ export type RunResult = {
 };
 
 export type GameRunState = {
+  categoryId: CategoryId;
   phase: RunPhase;
+  questions: QuizQuestion[];
   rounds: QuestionRound[];
   currentIndex: number;
   hearts: number;
@@ -58,5 +60,3 @@ export type GameRunState = {
   adMessage: string | null;
   result: RunResult | null;
 };
-
-export type FlagAssetMap = Record<string, ImageSourcePropType>;

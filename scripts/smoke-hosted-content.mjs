@@ -21,8 +21,31 @@ const { error: profileError } = await client.rpc('sync_guest_profile', {
 });
 if (profileError) throw profileError;
 
+const expectedPacks = {
+  football: { version: 'football-v1', count: 17 },
+  baseball: { version: 'baseball-mlb-v1', count: 30 },
+  basketball: { version: 'basketball-nba-v1', count: 30 },
+};
+const casualSummaries = [];
+for (const [categoryId, expected] of Object.entries(expectedPacks)) {
+  const { data: casualPack, error: casualError } = await client.rpc('get_casual_quiz_pack', { p_category_id: categoryId });
+  if (casualError) throw casualError;
+  if (casualPack?.categoryId !== categoryId || casualPack?.contentVersion !== expected.version || casualPack?.items?.length !== expected.count || new Set(casualPack.items.map((item) => item.id)).size !== expected.count) {
+    throw new Error(`Invalid ${categoryId} Casual pack response`);
+  }
+  if (categoryId === 'football' && (casualPack.items.filter((item) => item.contentType === 'confederation').length !== 6 || casualPack.items.filter((item) => item.contentType === 'league').length !== 11)) {
+    throw new Error('Invalid Football content scopes');
+  }
+  if (categoryId !== 'football' && casualPack.items.some((item) => item.distractorIds?.length !== 4)) throw new Error(`Invalid ${categoryId} distractors`);
+  const casualAssets = await Promise.all(casualPack.items.map((item) => fetch(`${url}/storage/v1/object/public/quiz-assets/${item.assetPath}`, { method: 'HEAD' })));
+  if (casualAssets.some((response) => !response.ok || !response.headers.get('content-type')?.startsWith('image/'))) {
+    throw new Error(`At least one ${categoryId} Casual asset is unavailable or has the wrong content type`);
+  }
+  casualSummaries.push({ categoryId, contentVersion: casualPack.contentVersion, items: casualPack.items.length, assetsOk: casualAssets.length });
+}
+
 const summaries = [];
-for (const categoryId of ['flags', 'football']) {
+for (const categoryId of ['flags', 'football', 'baseball', 'basketball']) {
   const { data, error } = await client.rpc('start_daily_attempt', { p_category_id: categoryId });
   if (error) throw error;
   const round = data?.currentRound;
@@ -32,7 +55,7 @@ for (const categoryId of ['flags', 'football']) {
   const assetResponse = await fetch(`${url}/storage/v1/object/public/quiz-assets/${round.assetPath}`, { method: 'HEAD' });
   if (!assetResponse.ok) throw new Error(`${categoryId} asset returned ${assetResponse.status}`);
   summaries.push({ categoryId, contentVersion: data.contentVersion, assetPath: round.assetPath, choices: round.options.length, assetStatus: assetResponse.status });
-  if (categoryId === 'football') {
+  if (categoryId === 'basketball') {
     const { data: answer, error: answerError } = await client.rpc('submit_daily_answer', {
       p_attempt_id: data.attemptId, p_question_index: data.questionIndex, p_choice_id: null, p_request_id: randomUUID(),
     });
@@ -41,4 +64,4 @@ for (const categoryId of ['flags', 'football']) {
   }
 }
 
-console.log(JSON.stringify({ userId, summaries }));
+console.log(JSON.stringify({ userId, casual: casualSummaries, summaries }));

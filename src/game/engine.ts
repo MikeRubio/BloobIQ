@@ -3,7 +3,7 @@ import { shuffle, type RandomSource } from './random';
 import type { GameRunState, QuestionRound, QuizQuestion, RunResult } from './types';
 
 export const initialGameState: GameRunState = {
-  phase: 'idle', rounds: [], currentIndex: 0, hearts: 3, score: 0, streak: 0, bestStreak: 0,
+  categoryId: 'flags', phase: 'idle', questions: [], rounds: [], currentIndex: 0, hearts: 3, score: 0, streak: 0, bestStreak: 0,
   correctAnswers: 0, answeredQuestions: 0, selectedOptionId: null, feedback: null,
   deadlineAt: null, pausedRemainingMs: null, reviveUsed: false, adMessage: null, result: null,
 };
@@ -13,14 +13,21 @@ export function createRounds(questions: QuizQuestion[], random: RandomSource = M
   return shuffle(questions, random).map((question) => {
     const candidates = question.distractorCandidates.filter((id) => id !== question.id && ids.has(id));
     const fallback = questions.map((item) => item.id).filter((id) => id !== question.id && !candidates.includes(id));
-    const distractors = shuffle([...candidates, ...fallback], random).slice(0, 3);
+    const distractors = [...shuffle(candidates, random), ...shuffle(fallback, random)].slice(0, 3);
     return { questionId: question.id, optionIds: shuffle([question.id, ...distractors], random) };
   });
 }
 
 export function startRun(questions: QuizQuestion[], now = Date.now(), random: RandomSource = Math.random): GameRunState {
   if (questions.length < 4) throw new Error('A quiz pack needs at least four questions.');
-  return { ...initialGameState, phase: 'answering', rounds: createRounds(questions, random), deadlineAt: now + QUESTION_DURATION_MS };
+  const categoryId = questions[0]!.categoryId;
+  if (!questions.every((question) => question.categoryId === categoryId)) throw new Error('A quiz run cannot mix categories.');
+  return { ...initialGameState, categoryId, phase: 'loading', questions, rounds: createRounds(questions, random), deadlineAt: null };
+}
+
+export function beginQuestion(state: GameRunState, now = Date.now()): GameRunState {
+  if (state.phase !== 'loading') return state;
+  return { ...state, phase: 'answering', deadlineAt: now + QUESTION_DURATION_MS, pausedRemainingMs: null };
 }
 
 export function submitAnswer(state: GameRunState, optionId: string | null, now = Date.now()): GameRunState {
@@ -49,7 +56,7 @@ export function submitAnswer(state: GameRunState, optionId: string | null, now =
 
 export function finishRun(state: GameRunState, previousBest: number, completedPack = false, now = Date.now()): GameRunState {
   const result: RunResult = {
-    categoryId: 'flags', score: state.score, correctAnswers: state.correctAnswers,
+    categoryId: state.categoryId, score: state.score, correctAnswers: state.correctAnswers,
     answeredQuestions: state.answeredQuestions, bestStreak: state.bestStreak,
     totalQuestions: state.rounds.length, completedPack, finishedAt: now, previousBest,
     isNewPersonalBest: state.score > previousBest,
@@ -65,8 +72,8 @@ export function advanceAfterFeedback(state: GameRunState, previousBest: number, 
     return state.reviveUsed ? finishRun(state, previousBest, false, now) : { ...state, phase: 'revive-offer', adMessage: null };
   }
   return {
-    ...state, phase: 'answering', currentIndex: state.currentIndex + 1, selectedOptionId: null,
-    feedback: null, deadlineAt: now + QUESTION_DURATION_MS, pausedRemainingMs: null,
+    ...state, phase: 'loading', currentIndex: state.currentIndex + 1, selectedOptionId: null,
+    feedback: null, deadlineAt: null, pausedRemainingMs: null,
   };
 }
 
@@ -91,8 +98,8 @@ export function returnToReviveOffer(state: GameRunState, message: string): GameR
 export function grantRevive(state: GameRunState, now = Date.now()): GameRunState {
   if (state.phase !== 'ad-in-progress' || state.reviveUsed || state.currentIndex >= state.rounds.length - 1) return state;
   return {
-    ...state, phase: 'answering', hearts: 1, reviveUsed: true, currentIndex: state.currentIndex + 1,
-    selectedOptionId: null, feedback: null, deadlineAt: now + QUESTION_DURATION_MS,
+    ...state, phase: 'loading', hearts: 1, reviveUsed: true, currentIndex: state.currentIndex + 1,
+    selectedOptionId: null, feedback: null, deadlineAt: null,
     pausedRemainingMs: null, adMessage: null,
   };
 }

@@ -4013,6 +4013,1783 @@
       "sha256": "3dfd2a32918b89a8ac28aeedd3b8aa2bc054e607c89eb963d70036416251f56e",
       "bytes": 39073,
       "contentType": "image/png"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-arizona-diamondbacks",
+      "displayName": "Arizona Diamondbacks",
+      "assetPath": "baseball-mlb-v1/arizona-diamondbacks.svg",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/109.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "National League",
+        "division": "National League West",
+        "scope": "National League West",
+        "officialTeamId": 109,
+        "distractorIds": [
+          "baseball-colorado-rockies",
+          "baseball-los-angeles-dodgers",
+          "baseball-san-diego-padres",
+          "baseball-san-francisco-giants"
+        ]
+      },
+      "sha256": "b63b3aaf303ff3bd856c480ef855a0bdab1794e78185e3b791492c860fdf804a",
+      "bytes": 2440,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-athletics",
+      "displayName": "Athletics",
+      "assetPath": "baseball-mlb-v1/athletics.svg",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/133.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [
+          "A's"
+        ],
+        "league": "MLB",
+        "conference": "American League",
+        "division": "American League West",
+        "scope": "American League West",
+        "officialTeamId": 133,
+        "distractorIds": [
+          "baseball-houston-astros",
+          "baseball-los-angeles-angels",
+          "baseball-seattle-mariners",
+          "baseball-texas-rangers"
+        ]
+      },
+      "sha256": "598538b486eef1fc4834f0a88093fc03b26c558e264afc21f5c3c4b2ba209f0c",
+      "bytes": 2853,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-atlanta-braves",
+      "displayName": "Atlanta Braves",
+      "assetPath": "baseball-mlb-v1/atlanta-braves.svg",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/144.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "National League",
+        "division": "National League East",
+        "scope": "National League East",
+        "officialTeamId": 144,
+        "distractorIds": [
+          "baseball-miami-marlins",
+          "baseball-new-york-mets",
+          "baseball-philadelphia-phillies",
+          "baseball-washington-nationals"
+        ]
+      },
+      "sha256": "11162237c379e6e6e54916ee4eebe4407961b4d37293b71b21868077d1bead0d",
+      "bytes": 2652,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-baltimore-orioles",
+      "displayName": "Baltimore Orioles",
+      "assetPath": "baseball-mlb-v1/baltimore-orioles.svg",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/110.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "American League",
+        "division": "American League East",
+        "scope": "American League East",
+        "officialTeamId": 110,
+        "distractorIds": [
+          "baseball-boston-red-sox",
+          "baseball-new-york-yankees",
+          "baseball-tampa-bay-rays",
+          "baseball-toronto-blue-jays"
+        ]
+      },
+      "sha256": "9e6476d34cd2e98e792cb73ef06e99b2c243089b3a7e102465db427ec3d26535",
+      "bytes": 8913,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-boston-red-sox",
+      "displayName": "Boston Red Sox",
+      "assetPath": "baseball-mlb-v1/boston-red-sox.svg",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/111.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "American League",
+        "division": "American League East",
+        "scope": "American League East",
+        "officialTeamId": 111,
+        "distractorIds": [
+          "baseball-baltimore-orioles",
+          "baseball-new-york-yankees",
+          "baseball-tampa-bay-rays",
+          "baseball-toronto-blue-jays"
+        ]
+      },
+      "sha256": "53eb07384a14fcc54efb807581672b793c75cc1bfdc0c6610345051820cd92af",
+      "bytes": 5328,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-chicago-cubs",
+      "displayName": "Chicago Cubs",
+      "assetPath": "baseball-mlb-v1/chicago-cubs.svg",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/112.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "National League",
+        "division": "National League Central",
+        "scope": "National League Central",
+        "officialTeamId": 112,
+        "distractorIds": [
+          "baseball-cincinnati-reds",
+          "baseball-milwaukee-brewers",
+          "baseball-pittsburgh-pirates",
+          "baseball-st-louis-cardinals"
+        ]
+      },
+      "sha256": "8fe99678c053859b50adbbe769aade0011ed6b2349962a9963dcc0b6db162aef",
+      "bytes": 2321,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-chicago-white-sox",
+      "displayName": "Chicago White Sox",
+      "assetPath": "baseball-mlb-v1/chicago-white-sox.svg",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/145.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "American League",
+        "division": "American League Central",
+        "scope": "American League Central",
+        "officialTeamId": 145,
+        "distractorIds": [
+          "baseball-cleveland-guardians",
+          "baseball-detroit-tigers",
+          "baseball-kansas-city-royals",
+          "baseball-minnesota-twins"
+        ]
+      },
+      "sha256": "ca1ee0dc0e5a0f848703d0081ba60a12d44b0364da5c3b146985b6fe33f2e994",
+      "bytes": 8869,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-cincinnati-reds",
+      "displayName": "Cincinnati Reds",
+      "assetPath": "baseball-mlb-v1/cincinnati-reds.svg",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/113.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "National League",
+        "division": "National League Central",
+        "scope": "National League Central",
+        "officialTeamId": 113,
+        "distractorIds": [
+          "baseball-chicago-cubs",
+          "baseball-milwaukee-brewers",
+          "baseball-pittsburgh-pirates",
+          "baseball-st-louis-cardinals"
+        ]
+      },
+      "sha256": "112b22efe0bb3f7352a0630068977526d2fbaf36c67a10683a8b2c9e966c1618",
+      "bytes": 1432,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-cleveland-guardians",
+      "displayName": "Cleveland Guardians",
+      "assetPath": "baseball-mlb-v1/cleveland-guardians.svg",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/114.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "American League",
+        "division": "American League Central",
+        "scope": "American League Central",
+        "officialTeamId": 114,
+        "distractorIds": [
+          "baseball-chicago-white-sox",
+          "baseball-detroit-tigers",
+          "baseball-kansas-city-royals",
+          "baseball-minnesota-twins"
+        ]
+      },
+      "sha256": "5fada1700c1622777d64d1971e028ea7aca7729a11537736d4e88c6acada763e",
+      "bytes": 1383,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-colorado-rockies",
+      "displayName": "Colorado Rockies",
+      "assetPath": "baseball-mlb-v1/colorado-rockies.svg",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/115.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "National League",
+        "division": "National League West",
+        "scope": "National League West",
+        "officialTeamId": 115,
+        "distractorIds": [
+          "baseball-arizona-diamondbacks",
+          "baseball-los-angeles-dodgers",
+          "baseball-san-diego-padres",
+          "baseball-san-francisco-giants"
+        ]
+      },
+      "sha256": "f4ac929c740e482a4c62127cbb0b04c9aa48848f6481dcabfd66f7c064abdd47",
+      "bytes": 2673,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-detroit-tigers",
+      "displayName": "Detroit Tigers",
+      "assetPath": "baseball-mlb-v1/detroit-tigers.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/116.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "American League",
+        "division": "American League Central",
+        "scope": "American League Central",
+        "officialTeamId": 116,
+        "distractorIds": [
+          "baseball-chicago-white-sox",
+          "baseball-cleveland-guardians",
+          "baseball-kansas-city-royals",
+          "baseball-minnesota-twins"
+        ]
+      },
+      "sha256": "90602ddfa5130edf47241fcde4152d7c7421b881af67ed3d66d0b5d700446c39",
+      "bytes": 1961,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-houston-astros",
+      "displayName": "Houston Astros",
+      "assetPath": "baseball-mlb-v1/houston-astros.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/117.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "American League",
+        "division": "American League West",
+        "scope": "American League West",
+        "officialTeamId": 117,
+        "distractorIds": [
+          "baseball-athletics",
+          "baseball-los-angeles-angels",
+          "baseball-seattle-mariners",
+          "baseball-texas-rangers"
+        ]
+      },
+      "sha256": "fd2e9fa1d895e8cb88fb9ee3562acb6a1b9852158aa4793aa3a742097cc5556e",
+      "bytes": 3263,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-kansas-city-royals",
+      "displayName": "Kansas City Royals",
+      "assetPath": "baseball-mlb-v1/kansas-city-royals.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/118.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [
+          "KC Royals"
+        ],
+        "league": "MLB",
+        "conference": "American League",
+        "division": "American League Central",
+        "scope": "American League Central",
+        "officialTeamId": 118,
+        "distractorIds": [
+          "baseball-chicago-white-sox",
+          "baseball-cleveland-guardians",
+          "baseball-detroit-tigers",
+          "baseball-minnesota-twins"
+        ]
+      },
+      "sha256": "55678f28a752ec5ac86e290b2481b8a5e3d7de7460a3f469412147dc224eb32c",
+      "bytes": 1211,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-los-angeles-angels",
+      "displayName": "Los Angeles Angels",
+      "assetPath": "baseball-mlb-v1/los-angeles-angels.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/108.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [
+          "LA Angels"
+        ],
+        "league": "MLB",
+        "conference": "American League",
+        "division": "American League West",
+        "scope": "American League West",
+        "officialTeamId": 108,
+        "distractorIds": [
+          "baseball-athletics",
+          "baseball-houston-astros",
+          "baseball-seattle-mariners",
+          "baseball-texas-rangers"
+        ]
+      },
+      "sha256": "0b73a6c9523ac0a35a817516e13c4e96a7908dc0df389f01f8dba5d6c47d21e6",
+      "bytes": 3648,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-los-angeles-dodgers",
+      "displayName": "Los Angeles Dodgers",
+      "assetPath": "baseball-mlb-v1/los-angeles-dodgers.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/119.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [
+          "LA Dodgers"
+        ],
+        "league": "MLB",
+        "conference": "National League",
+        "division": "National League West",
+        "scope": "National League West",
+        "officialTeamId": 119,
+        "distractorIds": [
+          "baseball-arizona-diamondbacks",
+          "baseball-colorado-rockies",
+          "baseball-san-diego-padres",
+          "baseball-san-francisco-giants"
+        ]
+      },
+      "sha256": "9840fd7c20fb4614a1797f1fcf9613586fb54dac49dbe4b894086aa07555280f",
+      "bytes": 1188,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-miami-marlins",
+      "displayName": "Miami Marlins",
+      "assetPath": "baseball-mlb-v1/miami-marlins.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/146.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "National League",
+        "division": "National League East",
+        "scope": "National League East",
+        "officialTeamId": 146,
+        "distractorIds": [
+          "baseball-atlanta-braves",
+          "baseball-new-york-mets",
+          "baseball-philadelphia-phillies",
+          "baseball-washington-nationals"
+        ]
+      },
+      "sha256": "6a6e50ca9bad01e65aaeb0557d9e7b4dc94647aea42fdd2549643aca35a767df",
+      "bytes": 11468,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-milwaukee-brewers",
+      "displayName": "Milwaukee Brewers",
+      "assetPath": "baseball-mlb-v1/milwaukee-brewers.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/158.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "National League",
+        "division": "National League Central",
+        "scope": "National League Central",
+        "officialTeamId": 158,
+        "distractorIds": [
+          "baseball-chicago-cubs",
+          "baseball-cincinnati-reds",
+          "baseball-pittsburgh-pirates",
+          "baseball-st-louis-cardinals"
+        ]
+      },
+      "sha256": "9271da480f41d07eaa124a20dd4bc2dfaf879c17721b61bef9c45d8e6cc837d4",
+      "bytes": 3351,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-minnesota-twins",
+      "displayName": "Minnesota Twins",
+      "assetPath": "baseball-mlb-v1/minnesota-twins.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/142.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "American League",
+        "division": "American League Central",
+        "scope": "American League Central",
+        "officialTeamId": 142,
+        "distractorIds": [
+          "baseball-chicago-white-sox",
+          "baseball-cleveland-guardians",
+          "baseball-detroit-tigers",
+          "baseball-kansas-city-royals"
+        ]
+      },
+      "sha256": "9f062b8e0a2626babce4f051f2d3f1bee163fa6d74ff12ff3501be2e2767b090",
+      "bytes": 1124,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-new-york-mets",
+      "displayName": "New York Mets",
+      "assetPath": "baseball-mlb-v1/new-york-mets.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/121.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [
+          "NY Mets"
+        ],
+        "league": "MLB",
+        "conference": "National League",
+        "division": "National League East",
+        "scope": "National League East",
+        "officialTeamId": 121,
+        "distractorIds": [
+          "baseball-atlanta-braves",
+          "baseball-miami-marlins",
+          "baseball-philadelphia-phillies",
+          "baseball-washington-nationals"
+        ]
+      },
+      "sha256": "b8214420e8588f91928f45829e9abd8c5ac30df6293a29597b1aa7cc9bc972e0",
+      "bytes": 2911,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-new-york-yankees",
+      "displayName": "New York Yankees",
+      "assetPath": "baseball-mlb-v1/new-york-yankees.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/147.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [
+          "NY Yankees"
+        ],
+        "league": "MLB",
+        "conference": "American League",
+        "division": "American League East",
+        "scope": "American League East",
+        "officialTeamId": 147,
+        "distractorIds": [
+          "baseball-baltimore-orioles",
+          "baseball-boston-red-sox",
+          "baseball-tampa-bay-rays",
+          "baseball-toronto-blue-jays"
+        ]
+      },
+      "sha256": "a9041069f46b033c0ecaa1472fd5a12da22f1f5af53fd8a686687540d5586fdd",
+      "bytes": 1506,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-philadelphia-phillies",
+      "displayName": "Philadelphia Phillies",
+      "assetPath": "baseball-mlb-v1/philadelphia-phillies.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/143.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "National League",
+        "division": "National League East",
+        "scope": "National League East",
+        "officialTeamId": 143,
+        "distractorIds": [
+          "baseball-atlanta-braves",
+          "baseball-miami-marlins",
+          "baseball-new-york-mets",
+          "baseball-washington-nationals"
+        ]
+      },
+      "sha256": "465da43739de56c09d5f8ec3328be11e9318f53959cc05979d3ab3d0a547a3bb",
+      "bytes": 2516,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-pittsburgh-pirates",
+      "displayName": "Pittsburgh Pirates",
+      "assetPath": "baseball-mlb-v1/pittsburgh-pirates.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/134.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "National League",
+        "division": "National League Central",
+        "scope": "National League Central",
+        "officialTeamId": 134,
+        "distractorIds": [
+          "baseball-chicago-cubs",
+          "baseball-cincinnati-reds",
+          "baseball-milwaukee-brewers",
+          "baseball-st-louis-cardinals"
+        ]
+      },
+      "sha256": "a88e4a6bd86217dd2e1c66f48de97113a7edde01f03d7a9c280b6b05bd0ddaa3",
+      "bytes": 846,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-san-diego-padres",
+      "displayName": "San Diego Padres",
+      "assetPath": "baseball-mlb-v1/san-diego-padres.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/135.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "National League",
+        "division": "National League West",
+        "scope": "National League West",
+        "officialTeamId": 135,
+        "distractorIds": [
+          "baseball-arizona-diamondbacks",
+          "baseball-colorado-rockies",
+          "baseball-los-angeles-dodgers",
+          "baseball-san-francisco-giants"
+        ]
+      },
+      "sha256": "c0d5f92ef4a58f097c74aedebb9fd1ff4270217d45b75ef7aa6eeded115131da",
+      "bytes": 1286,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-san-francisco-giants",
+      "displayName": "San Francisco Giants",
+      "assetPath": "baseball-mlb-v1/san-francisco-giants.svg",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/137.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [
+          "SF Giants"
+        ],
+        "league": "MLB",
+        "conference": "National League",
+        "division": "National League West",
+        "scope": "National League West",
+        "officialTeamId": 137,
+        "distractorIds": [
+          "baseball-arizona-diamondbacks",
+          "baseball-colorado-rockies",
+          "baseball-los-angeles-dodgers",
+          "baseball-san-diego-padres"
+        ]
+      },
+      "sha256": "04d8deeb9e7dd172edae9c1a202bf91461d89a973dd243edddb99329cfe99f3c",
+      "bytes": 1535,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-seattle-mariners",
+      "displayName": "Seattle Mariners",
+      "assetPath": "baseball-mlb-v1/seattle-mariners.svg",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/136.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "American League",
+        "division": "American League West",
+        "scope": "American League West",
+        "officialTeamId": 136,
+        "distractorIds": [
+          "baseball-athletics",
+          "baseball-houston-astros",
+          "baseball-los-angeles-angels",
+          "baseball-texas-rangers"
+        ]
+      },
+      "sha256": "c9508331d23c9a20493210e9cd23d29978fc5e599efeffe6e180118885ff4d06",
+      "bytes": 28186,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-st-louis-cardinals",
+      "displayName": "St. Louis Cardinals",
+      "assetPath": "baseball-mlb-v1/st-louis-cardinals.svg",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/138.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [
+          "Saint Louis Cardinals"
+        ],
+        "league": "MLB",
+        "conference": "National League",
+        "division": "National League Central",
+        "scope": "National League Central",
+        "officialTeamId": 138,
+        "distractorIds": [
+          "baseball-chicago-cubs",
+          "baseball-cincinnati-reds",
+          "baseball-milwaukee-brewers",
+          "baseball-pittsburgh-pirates"
+        ]
+      },
+      "sha256": "c1f1aa692b825d69521a724ca0848b337bd4fe57120daf3760a4e2eb12e3653d",
+      "bytes": 2481,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-tampa-bay-rays",
+      "displayName": "Tampa Bay Rays",
+      "assetPath": "baseball-mlb-v1/tampa-bay-rays.svg",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/139.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "American League",
+        "division": "American League East",
+        "scope": "American League East",
+        "officialTeamId": 139,
+        "distractorIds": [
+          "baseball-baltimore-orioles",
+          "baseball-boston-red-sox",
+          "baseball-new-york-yankees",
+          "baseball-toronto-blue-jays"
+        ]
+      },
+      "sha256": "b50fd02140a8fe66e57eb5c421fc6847a52abfbc7469bc3099a49d1e09ff77fc",
+      "bytes": 2639,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-texas-rangers",
+      "displayName": "Texas Rangers",
+      "assetPath": "baseball-mlb-v1/texas-rangers.svg",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/140.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "American League",
+        "division": "American League West",
+        "scope": "American League West",
+        "officialTeamId": 140,
+        "distractorIds": [
+          "baseball-athletics",
+          "baseball-houston-astros",
+          "baseball-los-angeles-angels",
+          "baseball-seattle-mariners"
+        ]
+      },
+      "sha256": "775ec1e70b6655e087249f7306c8ea033c2cc5c52bd1da71339df02160190a38",
+      "bytes": 1425,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-toronto-blue-jays",
+      "displayName": "Toronto Blue Jays",
+      "assetPath": "baseball-mlb-v1/toronto-blue-jays.svg",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/141.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "MLB",
+        "conference": "American League",
+        "division": "American League East",
+        "scope": "American League East",
+        "officialTeamId": 141,
+        "distractorIds": [
+          "baseball-baltimore-orioles",
+          "baseball-boston-red-sox",
+          "baseball-new-york-yankees",
+          "baseball-tampa-bay-rays"
+        ]
+      },
+      "sha256": "1920a269c4dce0f8f38d338c4a47380144922a7d84f92ad4609188cac0f4d8e3",
+      "bytes": 6124,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "baseball",
+      "contentVersion": "baseball-mlb-v1",
+      "itemId": "baseball-washington-nationals",
+      "displayName": "Washington Nationals",
+      "assetPath": "baseball-mlb-v1/washington-nationals.svg",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://www.mlb.com/team",
+      "sourceAssetUrl": "https://www.mlbstatic.com/team-logos/120.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official MLB team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [
+          "Washington Nats"
+        ],
+        "league": "MLB",
+        "conference": "National League",
+        "division": "National League East",
+        "scope": "National League East",
+        "officialTeamId": 120,
+        "distractorIds": [
+          "baseball-atlanta-braves",
+          "baseball-miami-marlins",
+          "baseball-new-york-mets",
+          "baseball-philadelphia-phillies"
+        ]
+      },
+      "sha256": "69e019986481b7844b548fe2d1cdc88a58815d0b1b8cbf22bd65fcf17f3458d8",
+      "bytes": 1867,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-atlanta-hawks",
+      "displayName": "Atlanta Hawks",
+      "assetPath": "basketball-nba-v1/atlanta-hawks.svg",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Eastern Conference",
+        "division": "Southeast Division",
+        "scope": "Southeast Division",
+        "officialTeamId": 1610612737,
+        "distractorIds": [
+          "basketball-charlotte-hornets",
+          "basketball-miami-heat",
+          "basketball-orlando-magic",
+          "basketball-washington-wizards"
+        ]
+      },
+      "sha256": "efe7639e6daac1a103c13a1c3cc0b2d00979397ab70333e9d8ded492ea250504",
+      "bytes": 1882,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-boston-celtics",
+      "displayName": "Boston Celtics",
+      "assetPath": "basketball-nba-v1/boston-celtics.svg",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Eastern Conference",
+        "division": "Atlantic Division",
+        "scope": "Atlantic Division",
+        "officialTeamId": 1610612738,
+        "distractorIds": [
+          "basketball-brooklyn-nets",
+          "basketball-new-york-knicks",
+          "basketball-philadelphia-76ers",
+          "basketball-toronto-raptors"
+        ]
+      },
+      "sha256": "531038092e848f7319e05d1785ef875353d6168c20ce419218503f1cc24cfd4c",
+      "bytes": 31426,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-brooklyn-nets",
+      "displayName": "Brooklyn Nets",
+      "assetPath": "basketball-nba-v1/brooklyn-nets.svg",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Eastern Conference",
+        "division": "Atlantic Division",
+        "scope": "Atlantic Division",
+        "officialTeamId": 1610612751,
+        "distractorIds": [
+          "basketball-boston-celtics",
+          "basketball-new-york-knicks",
+          "basketball-philadelphia-76ers",
+          "basketball-toronto-raptors"
+        ]
+      },
+      "sha256": "6a3b134fbf97503b196848f6c933246a87c33ee623f13022c4cf7219a785ab34",
+      "bytes": 6207,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-charlotte-hornets",
+      "displayName": "Charlotte Hornets",
+      "assetPath": "basketball-nba-v1/charlotte-hornets.svg",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Eastern Conference",
+        "division": "Southeast Division",
+        "scope": "Southeast Division",
+        "officialTeamId": 1610612766,
+        "distractorIds": [
+          "basketball-atlanta-hawks",
+          "basketball-miami-heat",
+          "basketball-orlando-magic",
+          "basketball-washington-wizards"
+        ]
+      },
+      "sha256": "cf2c99a2d619f635920a94b69e20b2efb2babb992d5a821c22b0129e0cc57f46",
+      "bytes": 9095,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-chicago-bulls",
+      "displayName": "Chicago Bulls",
+      "assetPath": "basketball-nba-v1/chicago-bulls.svg",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Eastern Conference",
+        "division": "Central Division",
+        "scope": "Central Division",
+        "officialTeamId": 1610612741,
+        "distractorIds": [
+          "basketball-cleveland-cavaliers",
+          "basketball-detroit-pistons",
+          "basketball-indiana-pacers",
+          "basketball-milwaukee-bucks"
+        ]
+      },
+      "sha256": "a11d0d6480b75e4eebca54130d195a462547705c8c7e6b501a11a62d57854068",
+      "bytes": 8876,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-cleveland-cavaliers",
+      "displayName": "Cleveland Cavaliers",
+      "assetPath": "basketball-nba-v1/cleveland-cavaliers.svg",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [
+          "Cleveland Cavs"
+        ],
+        "league": "NBA",
+        "conference": "Eastern Conference",
+        "division": "Central Division",
+        "scope": "Central Division",
+        "officialTeamId": 1610612739,
+        "distractorIds": [
+          "basketball-chicago-bulls",
+          "basketball-detroit-pistons",
+          "basketball-indiana-pacers",
+          "basketball-milwaukee-bucks"
+        ]
+      },
+      "sha256": "ef345729b4d9f69863d2f6f20b80bda21191ecf5f49a40a0a4f428d0864a301b",
+      "bytes": 1212,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-dallas-mavericks",
+      "displayName": "Dallas Mavericks",
+      "assetPath": "basketball-nba-v1/dallas-mavericks.svg",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [
+          "Dallas Mavs"
+        ],
+        "league": "NBA",
+        "conference": "Western Conference",
+        "division": "Southwest Division",
+        "scope": "Southwest Division",
+        "officialTeamId": 1610612742,
+        "distractorIds": [
+          "basketball-houston-rockets",
+          "basketball-memphis-grizzlies",
+          "basketball-new-orleans-pelicans",
+          "basketball-san-antonio-spurs"
+        ]
+      },
+      "sha256": "1547494512746c1827808f1650407e675025b20b07bb5bd185093ac49630db5c",
+      "bytes": 11931,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-denver-nuggets",
+      "displayName": "Denver Nuggets",
+      "assetPath": "basketball-nba-v1/denver-nuggets.svg",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Western Conference",
+        "division": "Northwest Division",
+        "scope": "Northwest Division",
+        "officialTeamId": 1610612743,
+        "distractorIds": [
+          "basketball-minnesota-timberwolves",
+          "basketball-oklahoma-city-thunder",
+          "basketball-portland-trail-blazers",
+          "basketball-utah-jazz"
+        ]
+      },
+      "sha256": "4e180a9d1906a726d1eb5d5074ae3468cdf25da5e388a98a112563683b6c8730",
+      "bytes": 2916,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-detroit-pistons",
+      "displayName": "Detroit Pistons",
+      "assetPath": "basketball-nba-v1/detroit-pistons.svg",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Eastern Conference",
+        "division": "Central Division",
+        "scope": "Central Division",
+        "officialTeamId": 1610612765,
+        "distractorIds": [
+          "basketball-chicago-bulls",
+          "basketball-cleveland-cavaliers",
+          "basketball-indiana-pacers",
+          "basketball-milwaukee-bucks"
+        ]
+      },
+      "sha256": "efc20345b37e52206e025a0dbe5b57e28d8f4226b1a70573a9792a2e18595e0b",
+      "bytes": 5623,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-golden-state-warriors",
+      "displayName": "Golden State Warriors",
+      "assetPath": "basketball-nba-v1/golden-state-warriors.svg",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Western Conference",
+        "division": "Pacific Division",
+        "scope": "Pacific Division",
+        "officialTeamId": 1610612744,
+        "distractorIds": [
+          "basketball-la-clippers",
+          "basketball-los-angeles-lakers",
+          "basketball-phoenix-suns",
+          "basketball-sacramento-kings"
+        ]
+      },
+      "sha256": "99af50c32a1b1c19ede6286cda294e98cd19263d1d2b50cd4b79b0e868c96a0a",
+      "bytes": 3171,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-houston-rockets",
+      "displayName": "Houston Rockets",
+      "assetPath": "basketball-nba-v1/houston-rockets.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Western Conference",
+        "division": "Southwest Division",
+        "scope": "Southwest Division",
+        "officialTeamId": 1610612745,
+        "distractorIds": [
+          "basketball-dallas-mavericks",
+          "basketball-memphis-grizzlies",
+          "basketball-new-orleans-pelicans",
+          "basketball-san-antonio-spurs"
+        ]
+      },
+      "sha256": "9a0fd3d351f0726db427e8bed6db098bf88d15e98582b4b8dfd5a3638d6263f0",
+      "bytes": 4452,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-indiana-pacers",
+      "displayName": "Indiana Pacers",
+      "assetPath": "basketball-nba-v1/indiana-pacers.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612754/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Eastern Conference",
+        "division": "Central Division",
+        "scope": "Central Division",
+        "officialTeamId": 1610612754,
+        "distractorIds": [
+          "basketball-chicago-bulls",
+          "basketball-cleveland-cavaliers",
+          "basketball-detroit-pistons",
+          "basketball-milwaukee-bucks"
+        ]
+      },
+      "sha256": "07b320f178a5bf9a800e1369289b1af59d777feff21936856b6f8cf9ef66ea8a",
+      "bytes": 4131,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-la-clippers",
+      "displayName": "LA Clippers",
+      "assetPath": "basketball-nba-v1/la-clippers.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [
+          "Los Angeles Clippers"
+        ],
+        "league": "NBA",
+        "conference": "Western Conference",
+        "division": "Pacific Division",
+        "scope": "Pacific Division",
+        "officialTeamId": 1610612746,
+        "distractorIds": [
+          "basketball-golden-state-warriors",
+          "basketball-los-angeles-lakers",
+          "basketball-phoenix-suns",
+          "basketball-sacramento-kings"
+        ]
+      },
+      "sha256": "6fe94cd7b648afe8a700d2ae7c0a78bec1685adb7374214cbde7251520aa6a5a",
+      "bytes": 4262,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-los-angeles-lakers",
+      "displayName": "Los Angeles Lakers",
+      "assetPath": "basketball-nba-v1/los-angeles-lakers.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [
+          "LA Lakers"
+        ],
+        "league": "NBA",
+        "conference": "Western Conference",
+        "division": "Pacific Division",
+        "scope": "Pacific Division",
+        "officialTeamId": 1610612747,
+        "distractorIds": [
+          "basketball-golden-state-warriors",
+          "basketball-la-clippers",
+          "basketball-phoenix-suns",
+          "basketball-sacramento-kings"
+        ]
+      },
+      "sha256": "5b68f7b92ba7d05878ef7130162c77c1e5e7d4c5ac0608c7bb9f13f995a678b7",
+      "bytes": 12296,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-memphis-grizzlies",
+      "displayName": "Memphis Grizzlies",
+      "assetPath": "basketball-nba-v1/memphis-grizzlies.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Western Conference",
+        "division": "Southwest Division",
+        "scope": "Southwest Division",
+        "officialTeamId": 1610612763,
+        "distractorIds": [
+          "basketball-dallas-mavericks",
+          "basketball-houston-rockets",
+          "basketball-new-orleans-pelicans",
+          "basketball-san-antonio-spurs"
+        ]
+      },
+      "sha256": "677c8053201e90471f0eda3fdd8364c7a598bcba72a7a6e61ed26cbc9ecadcaf",
+      "bytes": 3282,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-miami-heat",
+      "displayName": "Miami Heat",
+      "assetPath": "basketball-nba-v1/miami-heat.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Eastern Conference",
+        "division": "Southeast Division",
+        "scope": "Southeast Division",
+        "officialTeamId": 1610612748,
+        "distractorIds": [
+          "basketball-atlanta-hawks",
+          "basketball-charlotte-hornets",
+          "basketball-orlando-magic",
+          "basketball-washington-wizards"
+        ]
+      },
+      "sha256": "bb56d6319628bed94e5154d20cef555b20321939e05c37f3af7d9fea486b74b3",
+      "bytes": 6159,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-milwaukee-bucks",
+      "displayName": "Milwaukee Bucks",
+      "assetPath": "basketball-nba-v1/milwaukee-bucks.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Eastern Conference",
+        "division": "Central Division",
+        "scope": "Central Division",
+        "officialTeamId": 1610612749,
+        "distractorIds": [
+          "basketball-chicago-bulls",
+          "basketball-cleveland-cavaliers",
+          "basketball-detroit-pistons",
+          "basketball-indiana-pacers"
+        ]
+      },
+      "sha256": "1a315b6ea7d465c48fc58d42cea16732089422e631d8453e8f2945032d0ff4c5",
+      "bytes": 5336,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-minnesota-timberwolves",
+      "displayName": "Minnesota Timberwolves",
+      "assetPath": "basketball-nba-v1/minnesota-timberwolves.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [
+          "Minnesota Wolves"
+        ],
+        "league": "NBA",
+        "conference": "Western Conference",
+        "division": "Northwest Division",
+        "scope": "Northwest Division",
+        "officialTeamId": 1610612750,
+        "distractorIds": [
+          "basketball-denver-nuggets",
+          "basketball-oklahoma-city-thunder",
+          "basketball-portland-trail-blazers",
+          "basketball-utah-jazz"
+        ]
+      },
+      "sha256": "e23cca4da95fe6a0629cd0a425e5dbefbf410948abf7499718d8fb858df5fa9d",
+      "bytes": 6917,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-new-orleans-pelicans",
+      "displayName": "New Orleans Pelicans",
+      "assetPath": "basketball-nba-v1/new-orleans-pelicans.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Western Conference",
+        "division": "Southwest Division",
+        "scope": "Southwest Division",
+        "officialTeamId": 1610612740,
+        "distractorIds": [
+          "basketball-dallas-mavericks",
+          "basketball-houston-rockets",
+          "basketball-memphis-grizzlies",
+          "basketball-san-antonio-spurs"
+        ]
+      },
+      "sha256": "3d74bfcf573428a09814ddae46db420a31dfe5e77faf75b0d7da7b1649ba93b1",
+      "bytes": 15595,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-new-york-knicks",
+      "displayName": "New York Knicks",
+      "assetPath": "basketball-nba-v1/new-york-knicks.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [
+          "NY Knicks"
+        ],
+        "league": "NBA",
+        "conference": "Eastern Conference",
+        "division": "Atlantic Division",
+        "scope": "Atlantic Division",
+        "officialTeamId": 1610612752,
+        "distractorIds": [
+          "basketball-boston-celtics",
+          "basketball-brooklyn-nets",
+          "basketball-philadelphia-76ers",
+          "basketball-toronto-raptors"
+        ]
+      },
+      "sha256": "42e914c5226c3ff71fa09fe018e8604a4abb6a935e1896e5414733d6cd5fcde9",
+      "bytes": 7473,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-oklahoma-city-thunder",
+      "displayName": "Oklahoma City Thunder",
+      "assetPath": "basketball-nba-v1/oklahoma-city-thunder.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [
+          "OKC Thunder"
+        ],
+        "league": "NBA",
+        "conference": "Western Conference",
+        "division": "Northwest Division",
+        "scope": "Northwest Division",
+        "officialTeamId": 1610612760,
+        "distractorIds": [
+          "basketball-denver-nuggets",
+          "basketball-minnesota-timberwolves",
+          "basketball-portland-trail-blazers",
+          "basketball-utah-jazz"
+        ]
+      },
+      "sha256": "fb684464e11e07989b3121108b54f12fafc85631644ad534f3fef53fd9927d89",
+      "bytes": 8885,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-orlando-magic",
+      "displayName": "Orlando Magic",
+      "assetPath": "basketball-nba-v1/orlando-magic.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Eastern Conference",
+        "division": "Southeast Division",
+        "scope": "Southeast Division",
+        "officialTeamId": 1610612753,
+        "distractorIds": [
+          "basketball-atlanta-hawks",
+          "basketball-charlotte-hornets",
+          "basketball-miami-heat",
+          "basketball-washington-wizards"
+        ]
+      },
+      "sha256": "aa38562ae665b4266e21f38698abdd2b45bb5a099e23246973a6bd8b71f056bf",
+      "bytes": 5155,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-philadelphia-76ers",
+      "displayName": "Philadelphia 76ers",
+      "assetPath": "basketball-nba-v1/philadelphia-76ers.svg",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [
+          "Philadelphia Sixers",
+          "Sixers"
+        ],
+        "league": "NBA",
+        "conference": "Eastern Conference",
+        "division": "Atlantic Division",
+        "scope": "Atlantic Division",
+        "officialTeamId": 1610612755,
+        "distractorIds": [
+          "basketball-boston-celtics",
+          "basketball-brooklyn-nets",
+          "basketball-new-york-knicks",
+          "basketball-toronto-raptors"
+        ]
+      },
+      "sha256": "1e3fbaf4f2d48a4e8e3ce38cea06af858f1ac103e24d16cfb64728d39e29780d",
+      "bytes": 3400,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-phoenix-suns",
+      "displayName": "Phoenix Suns",
+      "assetPath": "basketball-nba-v1/phoenix-suns.svg",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Western Conference",
+        "division": "Pacific Division",
+        "scope": "Pacific Division",
+        "officialTeamId": 1610612756,
+        "distractorIds": [
+          "basketball-golden-state-warriors",
+          "basketball-la-clippers",
+          "basketball-los-angeles-lakers",
+          "basketball-sacramento-kings"
+        ]
+      },
+      "sha256": "b4ec319fc4551e87c13bdfbe4eddcaeb38701a2a946fc977887669bbb6bb06e1",
+      "bytes": 2459,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-portland-trail-blazers",
+      "displayName": "Portland Trail Blazers",
+      "assetPath": "basketball-nba-v1/portland-trail-blazers.svg",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [
+          "Portland Blazers"
+        ],
+        "league": "NBA",
+        "conference": "Western Conference",
+        "division": "Northwest Division",
+        "scope": "Northwest Division",
+        "officialTeamId": 1610612757,
+        "distractorIds": [
+          "basketball-denver-nuggets",
+          "basketball-minnesota-timberwolves",
+          "basketball-oklahoma-city-thunder",
+          "basketball-utah-jazz"
+        ]
+      },
+      "sha256": "65fbdafe950a7064f5303a1a45942b1519061cf9f56681e304763c81f87ca719",
+      "bytes": 2051,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-sacramento-kings",
+      "displayName": "Sacramento Kings",
+      "assetPath": "basketball-nba-v1/sacramento-kings.svg",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Western Conference",
+        "division": "Pacific Division",
+        "scope": "Pacific Division",
+        "officialTeamId": 1610612758,
+        "distractorIds": [
+          "basketball-golden-state-warriors",
+          "basketball-la-clippers",
+          "basketball-los-angeles-lakers",
+          "basketball-phoenix-suns"
+        ]
+      },
+      "sha256": "36bcebbe9c06361db15791796bd6fd1ee39dd88047b1ecb7d3a00702617141cf",
+      "bytes": 3669,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-san-antonio-spurs",
+      "displayName": "San Antonio Spurs",
+      "assetPath": "basketball-nba-v1/san-antonio-spurs.svg",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Western Conference",
+        "division": "Southwest Division",
+        "scope": "Southwest Division",
+        "officialTeamId": 1610612759,
+        "distractorIds": [
+          "basketball-dallas-mavericks",
+          "basketball-houston-rockets",
+          "basketball-memphis-grizzlies",
+          "basketball-new-orleans-pelicans"
+        ]
+      },
+      "sha256": "c4df842e0d660dbc6dd1f8e523b1ca03dd2cfee314624071a6ab8425ab885271",
+      "bytes": 1912,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-toronto-raptors",
+      "displayName": "Toronto Raptors",
+      "assetPath": "basketball-nba-v1/toronto-raptors.svg",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Eastern Conference",
+        "division": "Atlantic Division",
+        "scope": "Atlantic Division",
+        "officialTeamId": 1610612761,
+        "distractorIds": [
+          "basketball-boston-celtics",
+          "basketball-brooklyn-nets",
+          "basketball-new-york-knicks",
+          "basketball-philadelphia-76ers"
+        ]
+      },
+      "sha256": "cb754caf37f8132f366e20d5af618575c314bc7d716253566d11932e4d723883",
+      "bytes": 10023,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-utah-jazz",
+      "displayName": "Utah Jazz",
+      "assetPath": "basketball-nba-v1/utah-jazz.svg",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Western Conference",
+        "division": "Northwest Division",
+        "scope": "Northwest Division",
+        "officialTeamId": 1610612762,
+        "distractorIds": [
+          "basketball-denver-nuggets",
+          "basketball-minnesota-timberwolves",
+          "basketball-oklahoma-city-thunder",
+          "basketball-portland-trail-blazers"
+        ]
+      },
+      "sha256": "f1df72b502f198c452085fc01dcfcb1f352a93a5fa085cb0314bd0fa1aea1358",
+      "bytes": 1492,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "basketball",
+      "contentVersion": "basketball-nba-v1",
+      "itemId": "basketball-washington-wizards",
+      "displayName": "Washington Wizards",
+      "assetPath": "basketball-nba-v1/washington-wizards.svg",
+      "difficulty": "hard",
+      "sourcePageUrl": "https://www.nba.com/teams",
+      "sourceAssetUrl": "https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg",
+      "rightsStatus": "trademark_review_required",
+      "attribution": "Official NBA team identity; trademark review required before production release",
+      "metadata": {
+        "aliases": [],
+        "league": "NBA",
+        "conference": "Eastern Conference",
+        "division": "Southeast Division",
+        "scope": "Southeast Division",
+        "officialTeamId": 1610612764,
+        "distractorIds": [
+          "basketball-atlanta-hawks",
+          "basketball-charlotte-hornets",
+          "basketball-miami-heat",
+          "basketball-orlando-magic"
+        ]
+      },
+      "sha256": "4e99c8f715c1af7e5cce17d507d5a4b21cf83f3c721cbb526f1b8597d58660b4",
+      "bytes": 3156,
+      "contentType": "image/svg+xml"
     }
   ]
 }

@@ -1,17 +1,21 @@
 # BloopIQ
 
-BloopIQ is a guest-first mobile quiz game built with Expo, React Native, TypeScript, Expo Router, Zustand, Reanimated, and Supabase. It includes offline Casual Flags, server-authoritative Daily play, and live private friend rooms.
+BloopIQ is a guest-first mobile quiz game built with Expo, React Native, TypeScript, Expo Router, Zustand, Reanimated, and Supabase. It includes offline Casual Flags, online sports quizzes, server-authoritative Daily play, and live private friend rooms.
 
 ## Playable now
 
 - Casual Flags: 48 public-domain flags, four choices, three hearts, ten-second deadlines, speed bonuses, streaks, one optional simulated-ad revive, and local records.
+- Casual Football: all 17 reviewed league/confederation identities from `football-v1`, loaded through an authenticated read-only pack RPC with hosted artwork, same-type-first distractors, image-gated timers, one simulated-ad revive, and Football-specific local records. A connection is required to open the pack.
+- Casual Baseball and Basketball: all 30 current MLB teams from `baseball-mlb-v1` and all 30 current NBA teams from `basketball-nba-v1`, with official hosted primary logos, same-division-first distractors, image-gated timers, and separate local records. A connection is required to open either pack.
 - Daily Flags: ten deterministic questions selected from a hosted 195-sovereign-state pack for everyone each UTC day, one ranked attempt per anonymous identity, no hints or revives, server-controlled scoring, and resumable 30-minute attempts.
 - Daily Football: a hosted pack of all six continental confederations plus 11 requested leagues, using the same ranked rules and an independent daily attempt/ranking.
-- Startup: a branded BloopIQ preload gate warms all 212 hosted quiz images plus bundled flags/sounds, with a bounded timeout so offline Casual play is never trapped behind the network.
+- Daily Baseball and Basketball: independent deterministic ten-question challenges, attempts, and rankings pinned to their MLB/NBA content versions.
+- Startup: a branded BloopIQ preload gate warms bundled flags/sounds and a bounded sample of every hosted pack; the current question flow and Friends lobby preload the selected pack on demand.
 - Practice: after completing the ranked attempt, the daily set can be replayed without changing the ranked score.
 - Rankings: real completed attempts for Today and This Week. Higher score ranks first, then lower server-measured active answering time; exact ties share a rank.
 - Working sound, haptics, and reduced-motion settings.
-- Play with Friends: private six-character rooms for 2–8 anonymous players, Flags or Football, ready checks, live server-timed questions/reveals, reconnect recovery, final standings, and host rematches.
+- Play with Friends: private six-character rooms for 2–8 anonymous players, with Flags, Football, Baseball, or Basketball selection, ready checks, live server-timed questions/reveals, reconnect recovery, final standings, and host rematches.
+- Scalable browsing: Home separates broad groups (Flags, Sports, Brands, People), specific quizzes, and game modes. Only Flags and Sports are active; future groups stay compact previews without empty screens.
 
 Additional sports/brand packs, production rewarded ads, and account linking remain future milestones. See [MILESTONES.md](./MILESTONES.md).
 
@@ -30,7 +34,7 @@ copy .env.example .env
 npm start
 ```
 
-Without Supabase environment values, Casual Flags remains playable and Daily screens show an honest setup state. Direct Expo commands are also available:
+Without Supabase environment values, Casual Flags remains playable; hosted sports Casual, Daily, and Friends show honest unavailable/retry states. Direct Expo commands are also available:
 
 ```bash
 npm run android
@@ -65,8 +69,10 @@ Regenerate the immutable hosted content manifest and upload staging files with:
 
 ```bash
 node scripts/prepare-quiz-assets.mjs
-npx supabase storage cp -r .quiz-assets/flags-195-v1 ss:///quiz-assets/flags-195-v1 --linked
-npx supabase storage cp -r .quiz-assets/football-v1 ss:///quiz-assets/football-v1 --linked
+npx supabase storage cp -r .quiz-assets/flags-195-v1 ss:///quiz-assets/flags-195-v1 --linked --experimental
+npx supabase storage cp -r .quiz-assets/football-v1 ss:///quiz-assets/football-v1 --linked --experimental
+npx supabase storage cp -r .quiz-assets/baseball-mlb-v1 ss:///quiz-assets/baseball-mlb-v1 --linked --experimental
+npx supabase storage cp -r .quiz-assets/basketball-nba-v1 ss:///quiz-assets/basketball-nba-v1 --linked --experimental --content-type image/svg+xml
 ```
 
 `.quiz-assets/` is ignored staging output. Supabase stores the playable metadata and answer choices; Storage serves the image bytes from stable versioned paths.
@@ -85,13 +91,22 @@ Correct choice IDs and validation stay server-side, but the current app also shi
 
 ## Play with Friends rules
 
-- Create a room from Home → Play with Friends, choose Flags or Football, then share the six-character code. Codes omit ambiguous characters; the app intentionally shares text instructions rather than an unverified deep link.
+- Create a room from Home → Play with Friends, choose one of the four playable quizzes, then share the six-character code. Codes omit ambiguous characters; the app intentionally shares text instructions rather than an unverified deep link.
 - A match requires 2–8 active members and every member must finish asset preparation and mark ready. New identities cannot join after the host starts, while an existing room identity can reconnect from the persisted anonymous session.
 - The database snapshots the roster, content version, ten questions, options, and answer keys at start. A shared schedule provides a three-second countdown, ten-second answer windows, three-second reveals, and the final transition. Closing or backgrounding a phone never pauses it.
 - During an answer window, the client receives only the current asset and opaque options. The server validates membership, match/question identity, choice, deadline, and one answer per player; only an answer count and that player's locked choice are shown early. The correct choice appears during reveal.
 - Exact score and active-duration ties share rank. A host rematch returns recently connected members to a fresh lobby and creates a new match identity/questions when started.
 - Lobby rooms expire after 30 minutes; result rooms receive a 15-minute recovery window. Empty rooms close immediately. Expiry is reconciled whenever a room RPC is called, so cleanup does not depend on a host phone or a background timer.
 - Room creation is limited to five per identity per ten minutes; joins are limited to 20 per identity per five minutes. Anonymous auth is still not high-trust identity—add CAPTCHA and abuse monitoring before a public competitive launch.
+
+## Catalogue and navigation
+
+- `src/content/quiz-catalog.ts` is the typed presentation catalogue. It maps broad browsing groups to the existing backend quiz IDs without renaming database categories.
+- Flags currently exposes the `All Flags` quiz: 48 bundled offline questions for Casual and 195 hosted identities for Daily/Friends.
+- Football exposes `Leagues & Confederations`: 17 hosted identities for online Casual, Daily, and Friends. It does not include clubs or national teams.
+- Baseball exposes `MLB Team Logos`: all 30 current MLB teams for online Casual, Daily, and Friends.
+- Basketball exposes `NBA Team Logos`: all 30 current NBA teams for online Casual, Daily, and Friends.
+- Brands, People, regional Flags, American Football, and Hockey remain preview metadata until real supported content and modes exist.
 
 ### Two-phone Expo test
 
@@ -124,9 +139,9 @@ npx expo-doctor
 npm run db:test
 ```
 
-The TypeScript suite covers casual scoring/lifecycle rules, content/assets, UTC boundaries, ranked deadline behavior, interruption outcomes, tie ranking, profile migration, and static migration security invariants. The pgTAP suite covers RLS/privileges, deterministic challenge shape, hidden answer keys, ownership, idempotent submissions, uniqueness, and daily/weekly ranking.
+The TypeScript suite covers category-aware Casual scoring/lifecycle rules, all hosted pack counts and distractors, artwork-gated timers, separate records and storage migration, content/assets, UTC boundaries, ranked deadline behavior, interruption outcomes, tie ranking, and static migration security invariants. The pgTAP suite covers RLS/privileges, deterministic challenge shape for every quiz, hidden ranked answer keys, ownership, idempotent submissions, uniqueness, and daily/weekly ranking.
 
-For a hosted end-to-end friend-room check (creates temporary anonymous test players), run `node scripts/smoke-friends.mjs`. It uses the real 133-second match schedule, validates Realtime delivery and reconnect, and prints final standings. Remove the temporary test identities afterward.
+For a hosted end-to-end friend-room check (creates temporary anonymous test players), run `node scripts/smoke-friends.mjs --category=baseball` or `--category=basketball`. It uses the real 133-second match schedule, validates Realtime delivery and reconnect, and prints final standings. Remove the temporary test identities afterward.
 
 ## Architecture
 
@@ -135,6 +150,7 @@ For a hosted end-to-end friend-room check (creates temporary anonymous test play
 - `src/daily/` - pure UTC, interruption, and ranking rules used by tests and UI.
 - `src/friends/` - pure projection of the server-owned friend-match schedule.
 - `src/content/` - typed local quiz content and explicit asset registry.
+- `src/content/quiz-catalog.ts` - broad-group, quiz, mode, count, and route metadata used across Home and selection screens.
 - `src/services/startup-preload.ts` - bounded local/hosted asset warming used by the branded launch gate.
 - `src/game/` - pure casual selection, scoring, timing, and run-lifecycle rules.
 - `src/store/` - transient game/daily state plus persisted guest/settings/records state.
@@ -147,6 +163,7 @@ The visible product name is BloopIQ. The Expo slug, URL scheme, Android/iOS appl
 
 - Flags: PNG renders from [`hampusborgos/country-flags`](https://github.com/hampusborgos/country-flags), package version 1.2.10 at pinned commit `c09927e63705529bbf59ca6684cd9b23225dddad`. The package declares `PD`; its README states the artwork is public domain and sourced primarily from Wikimedia Commons. Files keep their native aspect ratios and render with `contain`.
 - Football identities: 17 sourced confederation/league marks with their source page, source asset URL, checksum, and attribution status recorded in `supabase/content/quiz-content.json`. The project owner reviewed and approved the current pack for pre-production quiz use on 2026-10-28. Repeat the release review if the pack or production use changes.
+- MLB and NBA identities: 30 official primary team logos per league, downloaded from league-hosted CDNs after validating the current team directories. Stable IDs, aliases, league/conference/division data, same-division distractors, source URLs, and checksums are recorded in `supabase/content/quiz-content.json`. All 60 remain `trademark_review_required` and must be reviewed before a production release.
 - Font: Nunito through `@expo-google-fonts/nunito`, SIL Open Font License 1.1.
 - Feedback sounds: original short tones generated by `scripts/generate-sounds.mjs`; regenerate with `npm run generate:sounds`.
 

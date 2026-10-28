@@ -1,8 +1,9 @@
 import { Asset } from 'expo-asset';
-import { Image } from 'react-native';
+import { Image } from 'expo-image';
 import { getQuizAssetUrl } from '@/backend/supabase';
+import type { QuizCategoryId } from '@/backend/types';
 import { flagAssets } from '@/content/flag-assets';
-import { flagAssetPaths, footballAssetPaths } from '@/content/hosted-assets';
+import { hostedAssetPathsByQuiz } from '@/content/hosted-assets';
 
 export type PreloadProgress = { completed: number; total: number; label: string };
 
@@ -25,7 +26,8 @@ async function mapLimit<T>(values: readonly T[], limit: number, task: (value: T)
 }
 
 export async function preloadStartupAssets(onProgress?: (progress: PreloadProgress) => void) {
-  const remoteUrls = [...footballAssetPaths, ...flagAssetPaths].map(getQuizAssetUrl).filter((url): url is string => Boolean(url));
+  const startupPaths = Object.values(hostedAssetPathsByQuiz).flatMap((paths) => paths.slice(0, 4));
+  const remoteUrls = startupPaths.map(getQuizAssetUrl).filter((url): url is string => Boolean(url));
   const total = remoteUrls.length + 1;
   let completed = 0;
   const report = (label: string) => onProgress?.({ completed, total, label });
@@ -44,8 +46,8 @@ export async function preloadStartupAssets(onProgress?: (progress: PreloadProgre
   report('Ready to play');
 }
 
-export async function preloadFriendCategory(categoryId: 'flags' | 'football', onProgress?: (progress: PreloadProgress) => void) {
-  const paths = categoryId === 'football' ? footballAssetPaths : flagAssetPaths;
+export async function preloadFriendCategory(categoryId: QuizCategoryId, onProgress?: (progress: PreloadProgress) => void) {
+  const paths: readonly string[] = hostedAssetPathsByQuiz[categoryId];
   const urls = paths.map(getQuizAssetUrl).filter((url): url is string => Boolean(url));
   let completed = 0;
   onProgress?.({ completed, total: urls.length, label: `Preparing ${categoryId}` });

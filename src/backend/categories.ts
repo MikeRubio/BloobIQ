@@ -18,8 +18,21 @@ export const quizCategoryCopy: Record<QuizCategoryId, {
     prompt: 'Which football organization is this?',
     introBody: 'Everyone gets the same football identities, order, and choices. Your first attempt is the only ranked one.',
   },
+  baseball: {
+    label: 'Baseball',
+    dailyTitle: 'Daily Baseball',
+    prompt: 'Which MLB team is this?',
+    introBody: 'Everyone gets the same MLB team logos, order, and choices. Your first attempt is the only ranked one.',
+  },
+  basketball: {
+    label: 'Basketball',
+    dailyTitle: 'Daily Basketball',
+    prompt: 'Which NBA team is this?',
+    introBody: 'Everyone gets the same NBA team logos, order, and choices. Your first attempt is the only ranked one.',
+  },
 };
 
 export function normalizeQuizCategory(value: string | string[] | undefined): QuizCategoryId {
-  return value === 'football' ? 'football' : 'flags';
+  const normalized = Array.isArray(value) ? value[0] : value;
+  return normalized === 'football' || normalized === 'baseball' || normalized === 'basketball' ? normalized : 'flags';
 }

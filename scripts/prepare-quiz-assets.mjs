@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { baseballTeams, basketballTeams, sameDivisionDistractors, teamDifficulty } from './team-logo-packs.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 const stagingRoot = path.join(root, '.quiz-assets');
@@ -120,25 +121,103 @@ async function main() {
     };
   });
 
-  const items = [...flags, ...football];
+  if (baseballTeams.length !== 30 || new Set(baseballTeams.map((team) => team[0])).size !== 30) {
+    throw new Error(`Expected 30 unique MLB teams, received ${baseballTeams.length}`);
+  }
+  const mlbResponse = await fetch('https://statsapi.mlb.com/api/v1/teams?sportId=1&hydrate=division');
+  if (!mlbResponse.ok) throw new Error(`Could not verify current MLB teams: ${mlbResponse.status}`);
+  const mlbOfficial = await mlbResponse.json();
+  const mlbById = new Map(mlbOfficial.teams.map((team) => [team.id, team]));
+  for (const [, officialId, displayName, , division] of baseballTeams) {
+    const official = mlbById.get(officialId);
+    if (!official || official.name !== displayName || official.division?.name !== division) {
+      throw new Error(`MLB verification mismatch for ${displayName}`);
+    }
+  }
+
+  const nbaResponse = await fetch('https://www.nba.com/teams', { headers: { 'User-Agent': 'BloopIQ-content-build/1.0' } });
+  if (!nbaResponse.ok) throw new Error(`Could not verify current NBA teams: ${nbaResponse.status}`);
+  const nbaOfficialPage = await nbaResponse.text();
+  if (basketballTeams.length !== 30 || new Set(basketballTeams.map((team) => team[0])).size !== 30) {
+    throw new Error(`Expected 30 unique NBA teams, received ${basketballTeams.length}`);
+  }
+  for (const [, officialId, displayName] of basketballTeams) {
+    const officialPair = `https://cdn.nba.com/logos/nba/${officialId}/primary/L/logo.svg\" title=\"${displayName} Logo`;
+    if (!nbaOfficialPage.includes(officialPair)) {
+      throw new Error(`NBA verification mismatch for ${displayName}`);
+    }
+  }
+
+  const baseball = await mapLimit(baseballTeams, 6, async ([slug, officialId, displayName, conference, division, aliases], index) => {
+    const sourceAssetUrl = `https://www.mlbstatic.com/team-logos/${officialId}.svg`;
+    const assetPath = `baseball-mlb-v1/${slug}.svg`;
+    const file = await download(sourceAssetUrl, path.join(stagingRoot, assetPath));
+    return {
+      categoryId: 'baseball', contentVersion: 'baseball-mlb-v1', itemId: `baseball-${slug}`,
+      displayName, assetPath, difficulty: teamDifficulty(index), sourcePageUrl: 'https://www.mlb.com/team', sourceAssetUrl,
+      rightsStatus: 'trademark_review_required',
+      attribution: 'Official MLB team identity; trademark review required before production release',
+      metadata: {
+        aliases, league: 'MLB', conference, division, scope: division, officialTeamId: officialId,
+        distractorIds: sameDivisionDistractors(baseballTeams, slug, division, 'baseball'),
+      },
+      ...file,
+    };
+  });
+
+  const basketball = await mapLimit(basketballTeams, 6, async ([slug, officialId, displayName, conference, division, aliases], index) => {
+    const sourceAssetUrl = `https://cdn.nba.com/logos/nba/${officialId}/primary/L/logo.svg`;
+    const assetPath = `basketball-nba-v1/${slug}.svg`;
+    const file = await download(sourceAssetUrl, path.join(stagingRoot, assetPath));
+    return {
+      categoryId: 'basketball', contentVersion: 'basketball-nba-v1', itemId: `basketball-${slug}`,
+      displayName, assetPath, difficulty: teamDifficulty(index), sourcePageUrl: 'https://www.nba.com/teams', sourceAssetUrl,
+      rightsStatus: 'trademark_review_required',
+      attribution: 'Official NBA team identity; trademark review required before production release',
+      metadata: {
+        aliases, league: 'NBA', conference, division, scope: division, officialTeamId: officialId,
+        distractorIds: sameDivisionDistractors(basketballTeams, slug, division, 'basketball'),
+      },
+      ...file,
+    };
+  });
+
+  const items = [...flags, ...football, ...baseball, ...basketball];
+  try {
+    const previous = JSON.parse(await readFile(manifestPath, 'utf8'));
+    const previousByKey = new Map(previous.items.map((item) => [`${item.contentVersion}:${item.itemId}`, item]));
+    for (const item of items) {
+      const existing = previousByKey.get(`${item.contentVersion}:${item.itemId}`);
+      if (!existing) continue;
+      const stableFields = ['categoryId', 'contentVersion', 'itemId', 'displayName', 'assetPath', 'sha256', 'sourcePageUrl', 'sourceAssetUrl', 'rightsStatus', 'attribution', 'difficulty', 'metadata'];
+      if (stableFields.some((field) => JSON.stringify(existing[field]) !== JSON.stringify(item[field]))) {
+        throw new Error(`Immutable content drift detected for ${item.contentVersion}:${item.itemId}; create a new content version instead`);
+      }
+    }
+  } catch (error) {
+    if (error?.code !== 'ENOENT') throw error;
+  }
   await mkdir(path.dirname(manifestPath), { recursive: true });
   await writeFile(manifestPath, `${JSON.stringify({ schemaVersion: 1, flagSourceCommit: flagCommit, flagPackageVersion, items }, null, 2)}\n`);
 
-  const migrationName = (await readdir(migrationsPath)).find((name) => name.endsWith('_expand_quiz_content_catalog.sql'));
+  const migrationName = (await readdir(migrationsPath)).find((name) => name.endsWith('_add_baseball_basketball_quizzes.sql'));
   if (!migrationName) throw new Error('Content catalog migration is missing');
   const migrationPath = path.join(migrationsPath, migrationName);
   const migration = await readFile(migrationPath, 'utf8');
   const start = '-- GENERATED_CONTENT_START';
   const end = '-- GENERATED_CONTENT_END';
   if (!migration.includes(start) || !migration.includes(end)) throw new Error('Migration content markers are missing');
-  const rows = items.map((item) => `  (${[
+  const rows = [...baseball, ...basketball].map((item) => `  (${[
     sql(item.categoryId), sql(item.contentVersion), sql(item.itemId), sql(item.displayName), sql(item.assetPath),
     sql(item.sha256), sql(item.sourcePageUrl), sql(item.sourceAssetUrl), sql(item.rightsStatus), sql(item.attribution),
     sql(item.difficulty), `${sql(JSON.stringify(item.metadata))}::jsonb`,
   ].join(', ')})`).join(',\n');
   const generated = `${start}\ninsert into private.quiz_content\n  (category_id, content_version, item_id, display_name, asset_path, asset_sha256, source_page_url, source_asset_url, rights_status, attribution, difficulty, metadata)\nvalues\n${rows}\non conflict (content_version, item_id) do update set\n  display_name = excluded.display_name, asset_path = excluded.asset_path, asset_sha256 = excluded.asset_sha256,\n  source_page_url = excluded.source_page_url, source_asset_url = excluded.source_asset_url,\n  rights_status = excluded.rights_status, attribution = excluded.attribution, difficulty = excluded.difficulty, metadata = excluded.metadata;\n${end}`;
   await writeFile(migrationPath, migration.replace(new RegExp(`${start}[\\s\\S]*?${end}`), generated));
-  console.log(JSON.stringify({ flags: flags.length, football: football.length, total: items.length, bytes: items.reduce((sum, item) => sum + item.bytes, 0), migration: migrationName }));
+  console.log(JSON.stringify({
+    flags: flags.length, football: football.length, baseball: baseball.length, basketball: basketball.length,
+    total: items.length, bytes: items.reduce((sum, item) => sum + item.bytes, 0), migration: migrationName,
+  }));
 }
 
 main().catch((error) => {
