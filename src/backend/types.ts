@@ -8,6 +8,8 @@ export type CasualContentItem = {
   difficulty: 'easy' | 'medium' | 'hard';
   contentType: string | null;
   distractorIds?: string[] | null;
+  prompt?: string | null;
+  questionDescription?: string | null;
 };
 export type CasualPack = {
   categoryId: QuizCategoryId;
@@ -20,6 +22,8 @@ export type DailyRound = {
   assetKey: string;
   assetPath?: string;
   revealAssetPath?: string;
+  prompt?: string;
+  questionDescription?: string;
   options: DailyOption[];
   correctChoiceId?: string;
 };

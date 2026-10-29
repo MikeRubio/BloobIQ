@@ -1,7 +1,7 @@
 begin;
 
 create extension if not exists pgtap with schema extensions;
-select plan(33);
+select plan(35);
 
 select ok((select relrowsecurity from pg_class where oid = 'public.friend_room_events'::regclass), 'room events use RLS');
 select ok((select relrowsecurity from pg_class where oid = 'private.friend_rooms'::regclass), 'private rooms use RLS');
@@ -60,12 +60,18 @@ select ok(not exists(
         and candidate.metadata->>'scope' = correct_item.metadata->>'scope'
     )
 ), 'friend football distractors remain within identity type');
+select ok(not exists(
+  select 1 from private.friend_match_rounds
+  where match_id = (select (snapshot->>'matchId')::uuid from friend_snapshots where label = 'started')
+    and (coalesce(question_prompt, '') = '' or coalesce(question_description, '') = '')
+), 'friend rounds persist prompt and accessibility copy');
 update private.friend_matches set starts_at = clock_timestamp() - interval '1 second'
 where id = (select (snapshot->>'matchId')::uuid from friend_snapshots where label = 'started');
 set local role authenticated;
 set local "request.jwt.claim.sub" = '11000000-0000-0000-0000-000000000001';
 insert into friend_snapshots select 'question', public.get_friend_room_state((select (snapshot->>'roomId')::uuid from friend_snapshots where label = 'created'));
 select is((select jsonb_array_length(snapshot->'round'->'options') from friend_snapshots where label = 'question'), 4, 'question exposes four choices');
+select ok((select coalesce(snapshot->'round'->>'prompt', '') <> '' and coalesce(snapshot->'round'->>'questionDescription', '') <> '' from friend_snapshots where label = 'question'), 'question snapshot exposes prompt and non-answer artwork description');
 select ok((select not ((snapshot->'round') ? 'correctChoiceId') from friend_snapshots where label = 'question'), 'answer key stays hidden during answering');
 select ok((select not ((snapshot->'round') ? 'revealAssetPath') from friend_snapshots where label = 'question'), 'complete identity artwork stays hidden during answering');
 

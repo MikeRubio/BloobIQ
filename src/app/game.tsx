@@ -134,10 +134,10 @@ export default function GameScreen() {
         <View style={styles.timerTrack}><View style={[styles.timerFill, { width: `${progress * 100}%`, backgroundColor: progress < 0.3 ? colors.coral : colors.yellow }]} /></View>
 
         <ScrollView contentContainerStyle={styles.gameContent} scrollEnabled={false} style={styles.gameScroll}>
-          <Text style={styles.prompt}>{quizCategoryCopy[quiz.id].prompt}</Text>
+          <Text style={styles.prompt}>{question.prompt ?? quizCategoryCopy[quiz.id].prompt}</Text>
           <Animated.View style={[styles.flagCard, styles.flagStage, shadow.card, animatedCard]}>
             <Image
-               accessibilityLabel={feedback ? `${question.displayName} identity artwork` : `${quiz.label} question symbol ${currentIndex + 1}`}
+               accessibilityLabel={feedback ? `${question.displayName} identity artwork` : (question.questionDescription ?? `${quiz.label} question artwork ${currentIndex + 1}`)}
               cachePolicy="memory-disk"
               contentFit="contain"
                key={`${question.id}:${feedback ? 'reveal' : 'question'}:${imageRetry}`}

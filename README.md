@@ -5,10 +5,11 @@ BloopIQ is a guest-first mobile quiz game built with Expo, React Native, TypeScr
 ## Playable now
 
 - Casual Flags: 48 public-domain flags, four choices, three hearts, ten-second deadlines, speed bonuses, streaks, one optional simulated-ad revive, and local records.
-- Casual Football: 10 reviewed league/confederation identities from `football-symbols-v2`, using symbol-only question art and complete `football-v1` reveal art, same-type-first distractors, image-gated timers, one rewarded-ad revive, and Football-specific local records. A connection is required to open the pack.
-- Casual Baseball and Basketball: all 30 current MLB teams from `baseball-mlb-v1` and all 30 current NBA teams from `basketball-nba-v1`, with official hosted primary logos, same-division-first distractors, image-gated timers, and separate local records. A connection is required to open either pack.
+- Casual Football: 30 identities from `football-mixed-v3`: 10 reviewed league/confederation symbols plus five carefully cropped, text-free club symbols from each of the Premier League, La Liga, MLS, and Bundesliga. Complete official crests appear only after an answer locks, and club distractors stay in the same competition. A connection is required to open the pack.
+- Casual Baseball: 54 identities from `baseball-global-v2`: all 30 MLB teams plus all 6 LIDOM, 8 LVBP, and 10 Liga Mexicana del Pacífico clubs. Distractors stay in the same MLB division or Caribbean winter league.
+- Casual Basketball: 78 questions from `basketball-expanded-v2`: all 30 NBA team logos plus 12 each for Mascots, Arenas, Retired Numbers, and Franchise Legends. Each topic uses its own prompt and same-topic distractors.
 - Daily Flags: ten deterministic questions selected from a hosted 195-sovereign-state pack for everyone each UTC day, one ranked attempt per anonymous identity, no hints or revives, server-controlled scoring, and resumable 30-minute attempts.
-- Daily Football: a hosted pack of all six continental confederations plus 11 requested leagues, using the same ranked rules and an independent daily attempt/ranking.
+- Daily Football: ten deterministic questions from the same 30-identity mixed pack, using the same ranked rules and an independent daily attempt/ranking.
 - Daily Baseball and Basketball: independent deterministic ten-question challenges, attempts, and rankings pinned to their MLB/NBA content versions.
 - Startup: a branded BloopIQ preload gate warms bundled flags/sounds and a bounded sample of every hosted pack; the current question flow and Friends lobby preload the selected pack on demand.
 - Practice: after completing the ranked attempt, the daily set can be replayed without changing the ranked score.
@@ -72,8 +73,18 @@ node scripts/prepare-quiz-assets.mjs
 npx supabase storage cp -r .quiz-assets/flags-195-v1 ss:///quiz-assets/flags-195-v1 --linked --experimental
 npx supabase storage cp -r .quiz-assets/football-v1 ss:///quiz-assets/football-v1 --linked --experimental
 npx supabase storage cp -r .quiz-assets/football-symbols-v2 ss:///quiz-assets/football-symbols-v2 --linked --experimental --content-type image/svg+xml
+npx supabase storage cp -r .quiz-assets/football-clubs-v3/premier-league ss:///quiz-assets/football-clubs-v3/premier-league --linked --experimental --content-type image/svg+xml
+npx supabase storage cp -r .quiz-assets/football-clubs-v3/la-liga ss:///quiz-assets/football-clubs-v3/la-liga --linked --experimental --content-type image/png
+npx supabase storage cp -r .quiz-assets/football-clubs-v3/mls ss:///quiz-assets/football-clubs-v3/mls --linked --experimental --content-type image/png
+npx supabase storage cp -r .quiz-assets/football-clubs-v3/bundesliga ss:///quiz-assets/football-clubs-v3/bundesliga --linked --experimental --content-type image/svg+xml
+npx supabase storage cp -r .quiz-assets/football-mixed-v3/clubs/premier-league ss:///quiz-assets/football-mixed-v3/clubs/premier-league --linked --experimental --content-type image/svg+xml
+npx supabase storage cp -r .quiz-assets/football-mixed-v3/clubs/la-liga ss:///quiz-assets/football-mixed-v3/clubs/la-liga --linked --experimental --content-type image/png
+npx supabase storage cp -r .quiz-assets/football-mixed-v3/clubs/mls ss:///quiz-assets/football-mixed-v3/clubs/mls --linked --experimental --content-type image/png
+npx supabase storage cp -r .quiz-assets/football-mixed-v3/clubs/bundesliga ss:///quiz-assets/football-mixed-v3/clubs/bundesliga --linked --experimental --content-type image/svg+xml
 npx supabase storage cp -r .quiz-assets/baseball-mlb-v1 ss:///quiz-assets/baseball-mlb-v1 --linked --experimental
+npx supabase storage cp -r .quiz-assets/baseball-winter-v2 ss:///quiz-assets/baseball-winter-v2 --linked --experimental --content-type image/svg+xml
 npx supabase storage cp -r .quiz-assets/basketball-nba-v1 ss:///quiz-assets/basketball-nba-v1 --linked --experimental --content-type image/svg+xml
+npx supabase storage cp -r .quiz-assets/basketball-expanded-v2 ss:///quiz-assets/basketball-expanded-v2 --linked --experimental --content-type image/svg+xml
 ```
 
 `.quiz-assets/` is ignored staging output. Supabase stores the playable metadata and answer choices; Storage serves the image bytes from stable versioned paths.
@@ -119,14 +130,32 @@ Correct choice IDs and validation stay server-side, but the current app also shi
 
 ## Development builds
 
-`expo-dev-client` and `eas.json` are included so production native integrations can be added behind the existing service boundaries.
+`expo-dev-client` and `eas.json` are included for cloud Android/iOS builds. A Metro reload cannot add a native dependency to an already installed binary. If you see `RNGoogleMobileAdsModule could not be found`, uninstall or replace that old client with a newly generated APK, then restart Metro with a clean cache.
 
 ```bash
 npm run android:dev
 npm run ios:dev
 npm run dev-client
-npx eas-cli@latest build --profile development --platform android
+
+# Preflight + installable Android development APK
+npm run build:android
+
+# Preflight + Android advertising QA APK
+npm run build:android:qa
+
+# Preflight + Android Play Store AAB
+npm run build:android:production
+
+# Preflight + cloud iOS test build, then upload it to App Store Connect/TestFlight
+npm run deploy:ios:testflight
+
+# Public-production iOS build (requires production AdMob EAS environment values)
+npm run build:ios:production
 ```
+
+The TestFlight profile is store-signed but retains Google test ad inventory. It runs on EAS infrastructure and works from Windows; no Mac is required. The first run is interactive so EAS can configure Apple signing and an App Store Connect API key. Automatic submission uploads to TestFlight, not directly to App Store review. Public production builds require the production AdMob environment values described in [docs/ADVERTISING_SETUP.md](./docs/ADVERTISING_SETUP.md).
+
+After installing a development or QA build, run `npm run dev-client -- --clear` and open that installed BloopIQ client rather than Expo Go.
 
 After adding or changing a native dependency, rebuild the development client.
 

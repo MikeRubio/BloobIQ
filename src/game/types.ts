@@ -11,6 +11,8 @@ export type QuizQuestion = {
   assetKey: FlagAssetKey;
   assetUri?: string;
   revealAssetUri?: string;
+  prompt?: string;
+  questionDescription?: string;
   contentType?: string;
   difficulty: Difficulty;
   distractorCandidates: string[];

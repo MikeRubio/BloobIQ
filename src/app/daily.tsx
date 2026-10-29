@@ -126,9 +126,9 @@ export default function DailyGameScreen() {
         <View style={styles.timerRow}><Text style={styles.timerHint}>{isPractice ? 'Practice timer' : 'Server-timed question'}</Text><Text style={styles.timerNumber}>{Math.ceil(timer.remainingMs / 1000)}s</Text></View>
         <View style={styles.timerTrack}><View style={[styles.timerFill, { width: `${timer.progress * 100}%`, backgroundColor: timer.progress < 0.3 ? colors.coral : colors.yellow }]} /></View>
         <View style={styles.content}>
-          <Text style={styles.prompt}>{copy.prompt}</Text>
+          <Text style={styles.prompt}>{round.prompt ?? copy.prompt}</Text>
           <View style={[styles.flagCard, styles.flagStage, shadow.card]}>
-            {assetSource ? <Image accessibilityLabel={feedback && correctName ? `${correctName} identity artwork` : `${copy.label} question symbol ${questionIndex + 1}`} cachePolicy="memory-disk" contentFit="contain" source={assetSource} style={styles.flag} /> : <Text style={styles.assetError}>Image unavailable</Text>}
+            {assetSource ? <Image accessibilityLabel={feedback && correctName ? `${correctName} identity artwork` : (round.questionDescription ?? `${copy.label} question artwork ${questionIndex + 1}`)} cachePolicy="memory-disk" contentFit="contain" source={assetSource} style={styles.flag} /> : <Text style={styles.assetError}>Image unavailable</Text>}
             {feedback ? <View style={[styles.feedbackBadge, feedback.isCorrect ? styles.correctBadge : styles.wrongBadge]}><Text style={styles.feedbackText}>{feedback.isCorrect ? '✓  +100' : '0 POINTS'}</Text></View> : null}
           </View>
           <View style={styles.answers}>{round.options.map((option, index) => {

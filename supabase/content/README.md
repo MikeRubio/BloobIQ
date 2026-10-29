@@ -6,10 +6,14 @@
 
 - `flags-195-v1`: 195 sovereign-state flags from the pinned `hampusborgos/country-flags` source.
 - `football-v1`: immutable reveal artwork for 6 confederations and 11 leagues. The project owner approved this source pack for pre-production use on 2026-10-28.
-- `football-symbols-v2`: the active 10-identity Football pack. Question assets are deterministic symbol-only variants and reveal assets point back to complete `football-v1` artwork. It includes four confederations and six leagues, so every round can offer three same-type distractors.
+- `football-symbols-v2`: the immutable 10-identity symbol pack retained for provenance and existing attempts.
+- `football-clubs-v3`: an immutable source catalogue of complete official crests and provenance for all 88 current clubs from the 2026/27 Premier League (20), La Liga (20), Bundesliga (18), and 2026 MLS (30). It is not directly eligible for question selection.
+- `football-mixed-v3`: the active 30-identity Football pack. It reuses the ten deterministic organisation symbols and adds five carefully cropped, text-free club symbols from each requested competition. Complete official club crests are separate reveal assets, and club distractors stay within the same competition.
 - `baseball-mlb-v1`: 30 current MLB teams verified through `statsapi.mlb.com`; primary marks come from `mlbstatic.com`.
+- `baseball-global-v2`: the active 54-team pack. It retains MLB and adds all current LIDOM (6), LVBP (8), and Liga Mexicana del Pacífico (10) clubs, verified against MLB's 2026 Winter Leagues API. Caribbean distractors stay within their league.
 - `basketball-nba-v1`: 30 current NBA teams verified through `nba.com/teams`; primary marks come from `cdn.nba.com`.
+- `basketball-expanded-v2`: the active 78-question pack. It retains all 30 team-logo questions and adds 12 each for NBA Mascots, Arenas, Retired Numbers, and Franchise Legends. Facts link to NBA-published team, mascot, arena, and retired-number pages; each topic has distinct answers and same-topic distractors.
 
-MLB and NBA team marks are trademarks, not public-domain artwork. Every item is intentionally recorded as `trademark_review_required`; the official source URL and asset hash document provenance but do not grant production usage rights. Complete the project’s trademark/release review before distributing these packs publicly.
+MLB, NBA, and Football club marks are trademarks, not public-domain artwork. Every club/team item is intentionally recorded as `trademark_review_required`; the official source URL and asset hash document provenance but do not grant production usage rights. Complete the project’s trademark/release review before distributing these packs publicly.
 
 Seven source identities are intentionally excluded from symbol recognition because the available mark is fundamentally answer-revealing or has no useful standalone symbol: AFC, OFC, Serie A, Ligue 1, Liga MX, J1 League, and K League 1. Their originals and provenance remain in `football-v1`; they are not eligible for question selection.

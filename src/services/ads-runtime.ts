@@ -1,5 +1,5 @@
 import Constants from 'expo-constants';
-import { Platform } from 'react-native';
+import { Platform, TurboModuleRegistry, type TurboModule } from 'react-native';
 import type { CategoryId } from '@/game/types';
 import { issueAdRewardReference, markAdRewardClientEarned } from '@/backend/reward-api';
 import { runRewardedAd, type RewardedAdService } from './rewarded-ad';
@@ -36,6 +36,17 @@ const qaConfig: NativeAdsQaConfig = {
   mobileAdsTestDeviceIds: config.qaMode === true && config.mode !== 'production' ? (config.mobileAdsTestDeviceIds ?? []) : [],
 };
 const listeners = new Set<Listener>();
+const requiredNativeAdsModules = [
+  'RNAppModule',
+  'RNGoogleMobileAdsModule',
+  'RNGoogleMobileAdsConsentModule',
+  'RNGoogleMobileAdsAppOpenModule',
+  'RNGoogleMobileAdsNativeModule',
+  'RNGoogleMobileAdsPoolModule',
+  'RNGoogleMobileAdsInterstitialModule',
+  'RNGoogleMobileAdsRewardedModule',
+  'RNGoogleMobileAdsRewardedInterstitialModule',
+] as const;
 let state: AdsRuntimeState = {
   lifecycle: 'unavailable',
   message: 'Ads are preparing.',
@@ -60,10 +71,18 @@ const emit = (next: Partial<AdsRuntimeState>) => {
 const unavailableReason = (): string | null => {
   if (Platform.OS !== 'ios' && Platform.OS !== 'android') return 'Rewarded ads are available only on Android and iOS.';
   if (Constants.executionEnvironment === 'storeClient') return 'Expo Go cannot load native ads. Install the BloopIQ development build.';
+  if (requiredNativeAdsModules.some((name) => !TurboModuleRegistry.get<TurboModule>(name))) {
+    return 'This installed BloopIQ build predates the native ads integration. Install a newly built development client.';
+  }
   const adUnitId = Platform.OS === 'ios' ? config.iosRewardedId : config.androidRewardedId;
   if (!adUnitId) return 'This build does not include a rewarded ad unit ID.';
   return null;
 };
+
+function requireNativeAds(): void {
+  const reason = unavailableReason();
+  if (reason) throw new Error(reason);
+}
 
 export const adsRuntime = {
   getSnapshot: () => state,
@@ -89,6 +108,7 @@ export const adsRuntime = {
   },
 
   async showPrivacyOptions(): Promise<void> {
+    requireNativeAds();
     const adapter = await import('./mobile-ads-adapter');
     consent = await adapter.showNativePrivacyOptions(qaConfig);
     emit({
@@ -100,6 +120,7 @@ export const adsRuntime = {
 
   async resetConsentForTesting(): Promise<void> {
     if (!qaConfig.enabled) throw new Error('Consent reset is disabled in this build.');
+    requireNativeAds();
     service?.destroy();
     service = null;
     preparedRunId = null;

@@ -47,6 +47,8 @@ export function casualPackQuestions(pack: CasualPack, assetUrl: (path: string) =
       assetKey: item.id,
       assetUri,
       revealAssetUri,
+      prompt: item.prompt ?? undefined,
+      questionDescription: item.questionDescription ?? undefined,
       contentType: item.contentType ?? undefined,
       difficulty: item.difficulty,
       distractorCandidates: [...specified, ...sameType.filter((other) => !specifiedIds.has(other.id)), ...fallback].map((other) => other.id),

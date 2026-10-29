@@ -66,6 +66,14 @@ The in-app label explicitly says the policy is a draft and that the consent-mess
 
 Expo Go cannot load the native advertising SDK.
 
+An older BloopIQ development client also cannot load a native module added after that binary was built. `RNGoogleMobileAdsModule could not be found` means the Java/Kotlin module is absent from the installed APK; clearing Metro alone cannot repair it. Build and install a new client:
+
+```powershell
+npm run build:android
+# Install from the EAS artifact link, then restart Metro:
+npm run dev-client -- --clear
+```
+
 Build installable QA binaries:
 
 ```powershell

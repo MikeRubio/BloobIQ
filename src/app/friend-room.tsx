@@ -89,8 +89,8 @@ export default function FriendRoomScreen() {
     <View style={styles.matchTop}><Text style={styles.progress}>QUESTION {(projected?.questionIndex ?? 0) + 1} / 10</Text><Text style={[styles.timer, revealed && styles.timerReveal]}>{Math.max(0, Math.ceil((projected?.remainingMs ?? 0) / 1000))}</Text></View>
     <Text style={styles.answerCount}>{snapshot.answerCount}/{snapshot.members.length} answers locked</Text>
     {waiting ? <Text style={styles.loading}>Syncing the next question…</Text> : <>
-      <View style={[styles.imageStage, shadow.card]}>{round.assetPath ? <Image accessibilityLabel={revealed && round.correctChoiceId ? `${round.options.find((option) => option.id === round.correctChoiceId)?.label ?? 'Correct'} identity artwork` : `${getQuiz(snapshot.categoryId).label} question symbol ${(snapshot.questionIndex ?? 0) + 1}`} cachePolicy="memory-disk" contentFit="contain" source={{ uri: getQuizAssetUrl(revealed ? (round.revealAssetPath ?? round.assetPath) : round.assetPath) ?? undefined }} style={styles.quizImage} /> : null}</View>
-      <Text style={styles.prompt}>{revealed ? 'Answer revealed' : 'What is this?'}</Text>
+      <View style={[styles.imageStage, shadow.card]}>{round.assetPath ? <Image accessibilityLabel={revealed && round.correctChoiceId ? `${round.options.find((option) => option.id === round.correctChoiceId)?.label ?? 'Correct'} identity artwork` : (round.questionDescription ?? `${getQuiz(snapshot.categoryId).label} question artwork ${(snapshot.questionIndex ?? 0) + 1}`)} cachePolicy="memory-disk" contentFit="contain" source={{ uri: getQuizAssetUrl(revealed ? (round.revealAssetPath ?? round.assetPath) : round.assetPath) ?? undefined }} style={styles.quizImage} /> : null}</View>
+      <Text style={styles.prompt}>{revealed ? 'Answer revealed' : (round.prompt ?? 'What is this?')}</Text>
       <View style={styles.answers}>{round.options.map((option) => {
         const selected = snapshot.myAnswer?.choiceId === option.id;
         const correct = revealed && round.correctChoiceId === option.id;

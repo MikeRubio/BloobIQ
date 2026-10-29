@@ -26,9 +26,20 @@
         "ADMOB_IOS_APP_ID": "ca-app-pub-6478004441965465~4153069168"
       }
     },
+    "testflight": {
+      "distribution": "store",
+      "environment": "preview",
+      "autoIncrement": true,
+      "env": { "BLOOPIQ_ADS_ENV": "test" }
+    },
     "production": {
+      "autoIncrement": true,
       "environment": "production",
       "env": { "BLOOPIQ_ADS_ENV": "production" }
     }
+  },
+  "submit": {
+    "testflight": {},
+    "production": {}
   }
 }

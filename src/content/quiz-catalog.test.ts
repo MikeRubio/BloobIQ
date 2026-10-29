@@ -5,8 +5,8 @@ describe('quiz catalogue', () => {
   it('keeps browsing groups separate from backend quiz IDs', () => {
     expect(quizzesForGroup('sports').map((quiz) => quiz.id)).toEqual(['football', 'baseball', 'basketball']);
     expect(getQuiz('football').packLabel).toBe('Leagues & Confederations');
-    expect(getQuiz('baseball').packLabel).toBe('MLB Team Logos');
-    expect(getQuiz('basketball').packLabel).toBe('NBA Team Logos');
+    expect(getQuiz('baseball').packLabel).toBe('MLB & Caribbean Teams');
+    expect(getQuiz('basketball').packLabel).toBe('NBA Teams & Trivia');
   });
 
   it('filters only genuinely supported game modes', () => {
@@ -19,9 +19,9 @@ describe('quiz catalogue', () => {
   it('uses real bundled and hosted catalogue counts', () => {
     expect(quizzes.flags.bundledCount).toBe(48);
     expect(quizzes.flags.onlineCount).toBe(195);
-    expect(quizzes.football.onlineCount).toBe(10);
-    expect(quizzes.baseball.onlineCount).toBe(30);
-    expect(quizzes.basketball.onlineCount).toBe(30);
+    expect(quizzes.football.onlineCount).toBe(30);
+    expect(quizzes.baseball.onlineCount).toBe(54);
+    expect(quizzes.basketball.onlineCount).toBe(78);
   });
 
   it('skips an unnecessary Flags browsing screen', () => {

@@ -41,13 +41,13 @@ export const quizzes = {
     bundledCount: 0, onlineCount: footballAssetPaths.length,
   },
   baseball: {
-    id: 'baseball', groupId: 'sports', label: 'Baseball', packLabel: 'MLB Team Logos', icon: '⚾',
-    description: 'Current Major League Baseball team identities.', accent: 'lilac', supportedModes: ['casual', 'daily', 'friends'],
+    id: 'baseball', groupId: 'sports', label: 'Baseball', packLabel: 'MLB & Caribbean Teams', icon: '⚾',
+    description: 'MLB, Dominican, Venezuelan, and Mexican Pacific team identities.', accent: 'lilac', supportedModes: ['casual', 'daily', 'friends'],
     bundledCount: 0, onlineCount: baseballAssetPaths.length,
   },
   basketball: {
-    id: 'basketball', groupId: 'sports', label: 'Basketball', packLabel: 'NBA Team Logos', icon: '🏀',
-    description: 'Current National Basketball Association team identities.', accent: 'orange', supportedModes: ['casual', 'daily', 'friends'],
+    id: 'basketball', groupId: 'sports', label: 'Basketball', packLabel: 'NBA Teams & Trivia', icon: '🏀',
+    description: 'NBA teams, mascots, arenas, retired numbers, and franchise legends.', accent: 'orange', supportedModes: ['casual', 'daily', 'friends'],
     bundledCount: 0, onlineCount: basketballAssetPaths.length,
   },
 } as const satisfies Record<QuizCategoryId, QuizDefinition>;

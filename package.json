@@ -68,7 +68,14 @@
     "db:reset": "npx supabase db reset",
     "db:test": "npx supabase test db",
     "generate:branding": "node ./scripts/generate-brand-assets.mjs",
-    "check:branding": "node ./scripts/check-brand-assets.mjs"
+    "check:branding": "node ./scripts/check-brand-assets.mjs",
+    "preflight": "npm run check && npx expo-doctor",
+    "build:android": "npm run preflight && npx eas-cli build --platform android --profile development",
+    "build:android:qa": "npm run preflight && npx eas-cli build --platform android --profile ads-qa",
+    "build:android:production": "npm run preflight && npx eas-cli build --platform android --profile production",
+    "build:ios": "npm run preflight && npx eas-cli build --platform ios --profile testflight",
+    "build:ios:production": "npm run preflight && npx eas-cli build --platform ios --profile production",
+    "deploy:ios:testflight": "npm run preflight && npx eas-cli build --platform ios --profile testflight --auto-submit"
   },
   "private": true
 }

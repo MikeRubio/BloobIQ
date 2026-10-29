@@ -60,8 +60,12 @@ describe('BloopIQ migration security contract', () => {
     expect(allSql).toContain("'flags-195-v1'");
     expect(allSql).toContain("'football-v1'");
     expect(allSql).toContain("'football-symbols-v2'");
+    expect(allSql).toContain("'football-clubs-v3'");
+    expect(allSql).toContain("'football-mixed-v3'");
     expect(allSql).toContain("'baseball-mlb-v1'");
     expect(allSql).toContain("'basketball-nba-v1'");
+    expect(allSql).toContain("'baseball-global-v2'");
+    expect(allSql).toContain("'basketball-expanded-v2'");
     expect(allSql).toContain("values ('quiz-assets', 'quiz-assets', true");
     expect(allSql).toContain("'image/svg+xml'");
     expect(allSql).toContain("rights_status = 'trademark_reviewed_approved'");
@@ -81,5 +85,18 @@ describe('BloopIQ migration security contract', () => {
     expect(allSql).toContain('"revealassetrole":"complete_original_identity"');
     expect(allSql).toContain("'revealassetpath', v_round.reveal_asset_path");
     expect(allSql).toContain("else '{}'::jsonb end");
+  });
+
+  it('keeps Football club distractors within the same competition first', () => {
+    expect(allSql).toContain("metadata->>'competitionkey' as competition_key");
+    expect(allSql).toContain("coalesce(q.metadata->>'competitionkey', '') = coalesce(c.competition_key, '')");
+  });
+
+  it('persists prompt-aware sports rounds and balances expanded topic groups', () => {
+    expect(allSql).toContain('question_prompt text');
+    expect(allSql).toContain("'questiondescription', question_description");
+    expect(allSql).toContain("metadata->>'selectiongroup'");
+    expect(allSql).toContain('partition by coalesce');
+    expect(allSql).toContain("'prompt', metadata->>'questionprompt'");
   });
 });

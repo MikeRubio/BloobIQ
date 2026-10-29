@@ -27,30 +27,46 @@ describe('hosted Casual packs', () => {
     expect(questions[4]!.distractorCandidates.slice(0, 5).every((id) => Number(id.split('-').at(-1)) >= 4)).toBe(true);
   });
 
+  it('carries item-specific prompts and non-answer accessibility descriptions into game questions', () => {
+    const withPrompt = {
+      ...payload,
+      items: payload.items.map((item) => ({
+        ...item,
+        prompt: 'Which arena does this team call home?',
+        questionDescription: 'Official NBA team identity shown as the question clue',
+      })),
+    };
+    const [question] = casualPackQuestions(parseCasualPack(withPrompt, 'football'), (path) => `https://assets.test/${path}`);
+    expect(question?.prompt).toBe('Which arena does this team call home?');
+    expect(question?.questionDescription).toBe('Official NBA team identity shown as the question clue');
+  });
+
   it('rejects duplicates and wrong-category responses', () => {
     expect(() => parseCasualPack({ ...payload, categoryId: 'flags' }, 'football')).toThrow(/wrong content pack/i);
     expect(() => parseCasualPack({ ...payload, items: payload.items.map((item, index) => index ? item : { ...item, id: payload.items[1]!.id }) }, 'football')).toThrow(/duplicate identities/i);
   });
 
-  it.each(['baseball', 'basketball'] as const)('supports a complete 30-team %s pack with recorded division distractors', (categoryId) => {
+  it.each([
+    ['baseball', 54, 'baseball-global-v2', 4],
+    ['basketball', 78, 'basketball-expanded-v2', 5],
+  ] as const)('supports the expanded %s pack with same-topic distractors', (categoryId, count, contentVersion, groups) => {
     const teamPayload = {
       categoryId,
-      contentVersion: categoryId === 'baseball' ? 'baseball-mlb-v1' : 'basketball-nba-v1',
-      items: Array.from({ length: 30 }, (_, index) => ({
+      contentVersion,
+      items: Array.from({ length: count }, (_, index) => ({
         id: `${categoryId}-${index}`,
         displayName: `${categoryId} team ${index}`,
         assetPath: `${categoryId}-v1/${index}.svg`,
         difficulty: 'medium',
-        contentType: `division-${Math.floor(index / 5)}`,
-        distractorIds: Array.from({ length: 5 }, (__, offset) => Math.floor(index / 5) * 5 + offset)
-          .filter((other) => other !== index)
+        contentType: `topic-${index % groups}`,
+        distractorIds: Array.from({ length: count }, (__, other) => other)
+          .filter((other) => other !== index && other % groups === index % groups)
+          .slice(0, 4)
           .map((other) => `${categoryId}-${other}`),
       })),
     };
     const questions = casualPackQuestions(parseCasualPack(teamPayload, categoryId), (path) => `https://assets.test/${path}`);
-    expect(questions).toHaveLength(30);
-    expect(questions[0]!.distractorCandidates.slice(0, 4)).toEqual([
-      `${categoryId}-1`, `${categoryId}-2`, `${categoryId}-3`, `${categoryId}-4`,
-    ]);
+    expect(questions).toHaveLength(count);
+    expect(questions[0]!.distractorCandidates.slice(0, 4).every((id) => Number(id.split('-').at(-1)) % groups === 0)).toBe(true);
   });
 });

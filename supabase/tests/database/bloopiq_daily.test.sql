@@ -1,7 +1,7 @@
 begin;
 
 create extension if not exists pgtap with schema extensions;
-select plan(57);
+select plan(76);
 
 select ok((select relrowsecurity from pg_class where oid = 'public.guest_profiles'::regclass), 'profiles use RLS');
 select ok((select relrowsecurity from pg_class where oid = 'public.daily_attempts'::regclass), 'attempts use RLS');
@@ -18,13 +18,33 @@ select ok((select relrowsecurity from pg_class where oid = 'private.quiz_content
 select is((select count(*) from private.quiz_content where content_version = 'flags-195-v1'), 195::bigint, 'hosted flag pack contains 195 sovereign states');
 select is((select count(*) from private.quiz_content where content_version = 'football-v1'), 17::bigint, 'hosted football pack contains all requested identities');
 select is((select count(*) from private.quiz_content where content_version = 'football-v1' and rights_status = 'trademark_reviewed_approved'), 17::bigint, 'all football identities record project-owner approval');
-select is((select count(*) from private.quiz_content where content_version = 'football-symbols-v2'), 10::bigint, 'active football pack has ten eligible symbol identities');
-select is((select current_content_version from public.categories where id = 'football'), 'football-symbols-v2', 'football category selects the symbol-only pack');
-select ok((select bool_and(asset_path <> reveal_asset_path and metadata->>'questionAssetRole' = 'symbol_only_quiz_variant' and metadata->>'revealAssetRole' = 'complete_original_identity') from private.quiz_content where content_version = 'football-symbols-v2'), 'football questions and reveals have separate recorded roles');
+select is((select count(*) from private.quiz_content where content_version = 'football-symbols-v2'), 10::bigint, 'archived football symbol pack remains immutable');
+select is((select count(*) from private.quiz_content where content_version = 'football-clubs-v3'), 88::bigint, 'football source catalogue records every current club and original crest');
+select is((select count(*) from private.quiz_content where content_version = 'football-mixed-v3'), 30::bigint, 'active football pack has ten organisations plus twenty club symbols');
+select is((select current_content_version from public.categories where id = 'football'), 'football-mixed-v3', 'football category selects the mixed pack');
+select is((select count(*) from private.quiz_content where content_version = 'football-mixed-v3' and metadata->>'scope' = 'club'), 20::bigint, 'mixed football pack contains five eligible clubs per requested competition');
+select ok((select bool_and(asset_path <> reveal_asset_path and metadata->>'questionAssetRole' = 'symbol_only_quiz_variant' and metadata->>'revealAssetRole' = 'complete_original_identity') from private.quiz_content where content_version = 'football-mixed-v3' and metadata->>'scope' <> 'club'), 'football organisation questions keep separate symbol and reveal roles');
+select ok((select bool_and(asset_path <> reveal_asset_path and metadata->>'questionAssetRole' = 'symbol_only_quiz_variant' and metadata->>'revealAssetRole' = 'complete_official_club_crest') from private.quiz_content where content_version = 'football-mixed-v3' and metadata->>'scope' = 'club'), 'football club questions hide answer text until the complete crest reveal');
 select is((select count(*) from private.quiz_content where content_version = 'baseball-mlb-v1'), 30::bigint, 'hosted baseball pack contains all current MLB teams');
 select is((select count(*) from private.quiz_content where content_version = 'basketball-nba-v1'), 30::bigint, 'hosted basketball pack contains all current NBA teams');
 select is((select count(*) from private.quiz_content where content_version = 'baseball-mlb-v1' and rights_status = 'trademark_review_required'), 30::bigint, 'MLB trademarks remain explicitly pending production review');
 select is((select count(*) from private.quiz_content where content_version = 'basketball-nba-v1' and rights_status = 'trademark_review_required'), 30::bigint, 'NBA trademarks remain explicitly pending production review');
+select is((select count(*) from private.quiz_content where content_version = 'baseball-global-v2'), 54::bigint, 'active baseball pack combines MLB and Caribbean winter leagues');
+select is((select count(*) from private.quiz_content where content_version = 'baseball-global-v2' and metadata->>'leagueKey' = 'lidom'), 6::bigint, 'baseball pack contains all six LIDOM clubs');
+select is((select count(*) from private.quiz_content where content_version = 'baseball-global-v2' and metadata->>'leagueKey' = 'lvbp'), 8::bigint, 'baseball pack contains all eight LVBP clubs');
+select is((select count(*) from private.quiz_content where content_version = 'baseball-global-v2' and metadata->>'leagueKey' = 'lmp'), 10::bigint, 'baseball pack contains all ten Mexican Pacific clubs');
+select is((select current_content_version from public.categories where id = 'baseball'), 'baseball-global-v2', 'baseball category selects the global pack');
+select is((select count(*) from private.quiz_content where content_version = 'basketball-expanded-v2'), 78::bigint, 'active basketball pack combines logos and four trivia topics');
+select is((select count(*) from private.quiz_content where content_version = 'basketball-expanded-v2' and metadata->>'scope' = 'mascot'), 12::bigint, 'basketball pack contains twelve mascot questions');
+select is((select count(*) from private.quiz_content where content_version = 'basketball-expanded-v2' and metadata->>'scope' = 'arena'), 12::bigint, 'basketball pack contains twelve arena questions');
+select is((select count(*) from private.quiz_content where content_version = 'basketball-expanded-v2' and metadata->>'scope' = 'retired-number'), 12::bigint, 'basketball pack contains twelve retired-number questions');
+select is((select count(*) from private.quiz_content where content_version = 'basketball-expanded-v2' and metadata->>'scope' = 'franchise-legend'), 12::bigint, 'basketball pack contains twelve franchise-legend questions');
+select is((select current_content_version from public.categories where id = 'basketball'), 'basketball-expanded-v2', 'basketball category selects the expanded pack');
+select ok(not exists(
+  select 1 from private.quiz_content
+  where content_version in ('baseball-global-v2', 'basketball-expanded-v2')
+    and (coalesce(metadata->>'questionPrompt', '') = '' or coalesce(metadata->>'questionDescription', '') = '')
+), 'expanded sports questions include prompt and accessibility copy');
 select is((select count(*) from private.flag_content where content_version = 'flags-v1'), 0::bigint, 'legacy Flags v1 content is retired');
 select ok((select public from storage.buckets where id = 'quiz-assets'), 'quiz asset bucket is public for reads');
 select is(private.ensure_daily_challenge('football', date '2099-01-02'), private.ensure_daily_challenge('football', date '2099-01-02'), 'football challenge generation is stable');
@@ -45,6 +65,37 @@ select is(
   10::bigint,
   'a basketball challenge has ten rounds'
 );
+select ok(not exists(
+  select 1
+  from private.daily_challenge_rounds r
+  join public.daily_challenges c on c.id = r.challenge_id
+  join private.quiz_content correct_item on correct_item.content_version = c.content_version and correct_item.item_id = r.asset_key
+  cross join lateral jsonb_array_elements(r.options) option
+  where c.category_id = 'baseball' and c.challenge_date = date '2099-01-02'
+    and not exists (
+      select 1 from private.quiz_content candidate
+      where candidate.content_version = c.content_version
+        and candidate.display_name = option->>'label'
+        and candidate.metadata->>'scope' = correct_item.metadata->>'scope'
+        and coalesce(candidate.metadata->>'competitionKey', '') = coalesce(correct_item.metadata->>'competitionKey', '')
+    )
+), 'baseball distractors remain within the same division or winter league');
+select is(
+  (select jsonb_object_agg(scope, questions) from (
+    select q.metadata->>'scope' scope, count(*) questions
+    from private.daily_challenge_rounds r
+    join public.daily_challenges c on c.id = r.challenge_id
+    join private.quiz_content q on q.content_version = c.content_version and q.item_id = r.asset_key
+    where c.category_id = 'basketball' and c.challenge_date = date '2099-01-02'
+    group by q.metadata->>'scope'
+  ) topic_counts),
+  '{"arena":2,"franchise-legend":2,"mascot":2,"retired-number":2,"team-logo":2}'::jsonb,
+  'basketball daily selection balances all five question topics'
+);
+select ok(not exists(
+  select 1 from private.daily_challenge_rounds
+  where coalesce(question_prompt, '') = '' or coalesce(question_description, '') = ''
+), 'every persisted round carries prompt and accessibility copy');
 select is(
   (select count(*) from private.daily_challenge_rounds where asset_path is not null),
   (select count(*) from private.daily_challenge_rounds),
@@ -56,9 +107,11 @@ select is(
   'every persisted round has reveal artwork'
 );
 select ok(not exists(
-  select 1 from private.daily_challenge_rounds r join public.daily_challenges c on c.id = r.challenge_id
-  where c.category_id = 'football' and c.challenge_date = date '2099-01-02' and r.asset_path = r.reveal_asset_path
-), 'football challenge persists separate question and reveal artwork');
+  select 1
+  from private.quiz_content
+  where content_version = 'football-mixed-v3'
+    and asset_path = reveal_asset_path
+), 'every active football identity persists separate question and reveal artwork');
 select ok(not exists(
   select 1
   from private.daily_challenge_rounds r
@@ -71,8 +124,10 @@ select ok(not exists(
       where candidate.content_version = c.content_version
         and candidate.display_name = option->>'label'
         and candidate.metadata->>'scope' = correct_item.metadata->>'scope'
+        and (correct_item.metadata->>'scope' <> 'club'
+          or candidate.metadata->>'competitionKey' = correct_item.metadata->>'competitionKey')
     )
-), 'football distractors compare leagues with leagues and confederations with confederations');
+), 'football distractors compare organisations by type and clubs within their competition');
 select ok(not exists(
   select 1 from private.daily_challenge_rounds r join public.daily_challenges c on c.id = r.challenge_id
   where c.category_id = 'football' and c.challenge_date = date '2099-01-02'
@@ -90,7 +145,7 @@ select is(
 );
 select is(
   (select count(*) from private.daily_challenge_rounds r join public.daily_challenges c on c.id = r.challenge_id where c.challenge_date = date '2099-01-02' and jsonb_array_length(r.options) = 4),
-  10::bigint,
+  40::bigint,
   'every round has four opaque choices'
 );
 

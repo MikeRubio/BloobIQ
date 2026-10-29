@@ -1,4 +1,4 @@
-export const footballAssetPaths = [
+const footballOrganisationAssetPaths = [
   'football-symbols-v2/q-01.svg',
   'football-symbols-v2/q-02.svg',
   'football-symbols-v2/q-03.svg',
@@ -9,6 +9,32 @@ export const footballAssetPaths = [
   'football-symbols-v2/q-08.svg',
   'football-symbols-v2/q-09.svg',
   'football-symbols-v2/q-10.svg',
+] as const;
+
+const premierLeagueClubSlugs = [
+  'brighton-and-hove-albion', 'chelsea', 'manchester-city', 'nottingham-forest',
+  'tottenham-hotspur',
+] as const;
+
+const laLigaClubSlugs = [
+  'atletico-de-madrid', 'celta', 'fc-barcelona', 'real-sociedad', 'valencia-cf',
+] as const;
+
+const mlsClubSlugs = [
+  'austin-fc', 'minnesota-united-fc', 'orlando-city', 'portland-timbers',
+  'seattle-sounders-fc',
+] as const;
+
+const bundesligaClubSlugs = [
+  'fc-augsburg', 'sc-freiburg', 'rb-leipzig', 'bayern-munich', 'vfb-stuttgart',
+] as const;
+
+export const footballAssetPaths = [
+  ...footballOrganisationAssetPaths,
+  ...premierLeagueClubSlugs.map((slug) => `football-mixed-v3/clubs/premier-league/${slug}.svg`),
+  ...laLigaClubSlugs.map((slug) => `football-mixed-v3/clubs/la-liga/${slug}.png`),
+  ...mlsClubSlugs.map((slug) => `football-mixed-v3/clubs/mls/${slug}.png`),
+  ...bundesligaClubSlugs.map((slug) => `football-mixed-v3/clubs/bundesliga/${slug}.svg`),
 ] as const;
 
 export const footballRevealAssetPaths = [
@@ -22,6 +48,10 @@ export const footballRevealAssetPaths = [
   'football-v1/major-league-soccer.png',
   'football-v1/brasileirao-serie-a.png',
   'football-v1/saudi-pro-league.png',
+  ...premierLeagueClubSlugs.map((slug) => `football-clubs-v3/premier-league/${slug}.svg`),
+  ...laLigaClubSlugs.map((slug) => `football-clubs-v3/la-liga/${slug}.png`),
+  ...mlsClubSlugs.map((slug) => `football-clubs-v3/mls/${slug}.png`),
+  ...bundesligaClubSlugs.map((slug) => `football-clubs-v3/bundesliga/${slug}.svg`),
 ] as const;
 
 export const baseballAssetPaths = [
@@ -55,9 +85,24 @@ export const baseballAssetPaths = [
   'baseball-mlb-v1/texas-rangers.svg',
   'baseball-mlb-v1/toronto-blue-jays.svg',
   'baseball-mlb-v1/washington-nationals.svg',
+  ...[
+    'aguilas-cibaenas', 'toros-del-este', 'estrellas-orientales',
+    'gigantes-del-cibao', 'leones-del-escogido', 'tigres-del-licey',
+  ].map((slug) => `baseball-winter-v2/lidom/${slug}.svg`),
+  ...[
+    'aguilas-del-zulia', 'cardenales-de-lara', 'caribes-de-anzoategui',
+    'leones-del-caracas', 'navegantes-del-magallanes', 'bravos-de-margarita',
+    'tiburones-de-la-guaira', 'tigres-de-aragua',
+  ].map((slug) => `baseball-winter-v2/lvbp/${slug}.svg`),
+  ...[
+    'aguilas-de-mexicali', 'charros-de-jalisco', 'jaguares-de-nayarit',
+    'caneros-de-los-mochis', 'mayos-de-navojoa', 'naranjeros-de-hermosillo',
+    'tomateros-de-culiacan', 'venados-de-mazatlan', 'yaquis-de-obregon',
+    'algodoneros-de-guasave',
+  ].map((slug) => `baseball-winter-v2/lmp/${slug}.svg`),
 ] as const;
 
-export const basketballAssetPaths = [
+const basketballTeamAssetPaths = [
   'basketball-nba-v1/atlanta-hawks.svg',
   'basketball-nba-v1/boston-celtics.svg',
   'basketball-nba-v1/brooklyn-nets.svg',
@@ -88,6 +133,36 @@ export const basketballAssetPaths = [
   'basketball-nba-v1/toronto-raptors.svg',
   'basketball-nba-v1/utah-jazz.svg',
   'basketball-nba-v1/washington-wizards.svg',
+] as const;
+
+const basketballTopicSlugs = {
+  mascot: [
+    'atlanta-hawks', 'boston-celtics', 'charlotte-hornets', 'chicago-bulls',
+    'cleveland-cavaliers', 'denver-nuggets', 'houston-rockets', 'milwaukee-bucks',
+    'oklahoma-city-thunder', 'orlando-magic', 'phoenix-suns', 'san-antonio-spurs',
+  ],
+  arena: [
+    'atlanta-hawks', 'boston-celtics', 'brooklyn-nets', 'charlotte-hornets',
+    'chicago-bulls', 'dallas-mavericks', 'denver-nuggets', 'golden-state-warriors',
+    'houston-rockets', 'indiana-pacers', 'la-clippers', 'los-angeles-lakers',
+  ],
+  'retired-number': [
+    'boston-celtics', 'chicago-bulls', 'dallas-mavericks', 'denver-nuggets',
+    'detroit-pistons', 'houston-rockets', 'indiana-pacers', 'los-angeles-lakers',
+    'miami-heat', 'orlando-magic', 'philadelphia-76ers', 'sacramento-kings',
+  ],
+  'franchise-legend': [
+    'boston-celtics', 'chicago-bulls', 'dallas-mavericks', 'denver-nuggets',
+    'detroit-pistons', 'houston-rockets', 'indiana-pacers', 'los-angeles-lakers',
+    'miami-heat', 'orlando-magic', 'philadelphia-76ers', 'sacramento-kings',
+  ],
+} as const;
+
+export const basketballAssetPaths = [
+  ...basketballTeamAssetPaths,
+  ...Object.entries(basketballTopicSlugs).flatMap(([topic, slugs]) =>
+    slugs.map((slug) => `basketball-expanded-v2/${topic}/${slug}.svg`),
+  ),
 ] as const;
 
 const flagCodes = `
