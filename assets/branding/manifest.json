@@ -1,0 +1,163 @@
+{
+  "brand": "BloopIQ",
+  "version": 1,
+  "colors": {
+    "sky": "#2D9CDB",
+    "ink": "#17324D",
+    "coral": "#FF6B6B",
+    "yellow": "#FFD447",
+    "mint": "#54D6A8"
+  },
+  "source": "Generated with built-in Imagegen from the user-supplied splash reference; native exports and lockups built deterministically.",
+  "typography": "Nunito 900 Black; lettering exported to SVG paths.",
+  "adaptiveSafeRadiusPx": 290,
+  "assets": [
+    {
+      "path": "assets/branding/android-adaptive-background.png",
+      "width": 1024,
+      "height": 1024,
+      "hasAlpha": false,
+      "bytes": 4576
+    },
+    {
+      "path": "assets/branding/android-adaptive-foreground.png",
+      "width": 1024,
+      "height": 1024,
+      "hasAlpha": true,
+      "bytes": 265289
+    },
+    {
+      "path": "assets/branding/android-adaptive-monochrome.png",
+      "width": 1024,
+      "height": 1024,
+      "hasAlpha": true,
+      "bytes": 43944
+    },
+    {
+      "path": "assets/branding/app-icon.png",
+      "width": 1024,
+      "height": 1024,
+      "hasAlpha": false,
+      "bytes": 383979
+    },
+    {
+      "path": "assets/branding/asset-preview.png",
+      "width": 1440,
+      "height": 1260,
+      "hasAlpha": true,
+      "bytes": 317926
+    },
+    {
+      "path": "assets/branding/favicon.png",
+      "width": 48,
+      "height": 48,
+      "hasAlpha": false,
+      "bytes": 2166
+    },
+    {
+      "path": "assets/branding/ios-icon-dark.png",
+      "width": 1024,
+      "height": 1024,
+      "hasAlpha": false,
+      "bytes": 384529
+    },
+    {
+      "path": "assets/branding/ios-icon-tinted.png",
+      "width": 1024,
+      "height": 1024,
+      "hasAlpha": false,
+      "bytes": 36825
+    },
+    {
+      "path": "assets/branding/logo-horizontal-dark.png",
+      "width": 2048,
+      "height": 640,
+      "hasAlpha": true,
+      "bytes": 260255
+    },
+    {
+      "path": "assets/branding/logo-horizontal-light.png",
+      "width": 2048,
+      "height": 640,
+      "hasAlpha": true,
+      "bytes": 274711
+    },
+    {
+      "path": "assets/branding/logo-horizontal-on-blue.png",
+      "width": 2048,
+      "height": 640,
+      "hasAlpha": true,
+      "bytes": 262305
+    },
+    {
+      "path": "assets/branding/mark.png",
+      "width": 1024,
+      "height": 1024,
+      "hasAlpha": true,
+      "bytes": 540335
+    },
+    {
+      "path": "assets/branding/notification-monochrome.png",
+      "width": 96,
+      "height": 96,
+      "hasAlpha": true,
+      "bytes": 1778
+    },
+    {
+      "path": "assets/branding/splash-android.png",
+      "width": 1024,
+      "height": 1024,
+      "hasAlpha": true,
+      "bytes": 265289
+    },
+    {
+      "path": "assets/branding/splash-ios.png",
+      "width": 1024,
+      "height": 1024,
+      "hasAlpha": true,
+      "bytes": 540335
+    },
+    {
+      "path": "assets/branding/wordmark-dark.png",
+      "width": 1600,
+      "height": 294,
+      "hasAlpha": true,
+      "bytes": 27107
+    },
+    {
+      "path": "assets/branding/wordmark-light.png",
+      "width": 1600,
+      "height": 294,
+      "hasAlpha": true,
+      "bytes": 34227
+    },
+    {
+      "path": "assets/branding/wordmark-on-blue.png",
+      "width": 1600,
+      "height": 294,
+      "hasAlpha": true,
+      "bytes": 27468
+    },
+    {
+      "path": "assets/store/app-store-icon.png",
+      "width": 1024,
+      "height": 1024,
+      "hasAlpha": false,
+      "bytes": 383979
+    },
+    {
+      "path": "assets/store/google-play-feature-graphic.png",
+      "width": 1024,
+      "height": 500,
+      "hasAlpha": false,
+      "bytes": 131902
+    },
+    {
+      "path": "assets/store/google-play-icon.png",
+      "width": 512,
+      "height": 512,
+      "hasAlpha": true,
+      "bytes": 121953
+    }
+  ]
+}

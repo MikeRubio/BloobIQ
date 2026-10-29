@@ -17,7 +17,7 @@ export function LaunchScreen({
       <SafeAreaView style={styles.safe}>
         <View style={styles.markShell}>
           <Image
-            source={require("../../assets/images/bloopiq-splash-mark.png")}
+            source={require("../../assets/branding/mark.png")}
             resizeMode="contain"
             style={styles.mark}
           />
