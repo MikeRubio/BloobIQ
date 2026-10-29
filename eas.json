@@ -1,15 +1,34 @@
 {
   "cli": {
-    "version": ">= 16.0.0"
+    "version": ">= 16.0.0",
+    "appVersionSource": "local"
   },
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": { "BLOOPIQ_ADS_ENV": "test" }
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": { "BLOOPIQ_ADS_ENV": "test" }
     },
-    "production": {}
+    "ads-qa": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "environment": "preview",
+      "env": {
+        "BLOOPIQ_ADS_APP_ID_MODE": "custom",
+        "BLOOPIQ_ADS_INVENTORY": "test",
+        "BLOOPIQ_ADS_QA": "true",
+        "BLOOPIQ_UMP_DEBUG_GEOGRAPHY": "EEA",
+        "ADMOB_ANDROID_APP_ID": "ca-app-pub-6478004441965465~2620495643",
+        "ADMOB_IOS_APP_ID": "ca-app-pub-6478004441965465~4153069168"
+      }
+    },
+    "production": {
+      "environment": "production",
+      "env": { "BLOOPIQ_ADS_ENV": "production" }
+    }
   }
 }

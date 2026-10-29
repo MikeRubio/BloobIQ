@@ -59,6 +59,7 @@ describe('BloopIQ migration security contract', () => {
     expect(allSql).toContain('revoke all on table private.quiz_content from public, anon, authenticated');
     expect(allSql).toContain("'flags-195-v1'");
     expect(allSql).toContain("'football-v1'");
+    expect(allSql).toContain("'football-symbols-v2'");
     expect(allSql).toContain("'baseball-mlb-v1'");
     expect(allSql).toContain("'basketball-nba-v1'");
     expect(allSql).toContain("values ('quiz-assets', 'quiz-assets', true");
@@ -73,5 +74,12 @@ describe('BloopIQ migration security contract', () => {
     expect(allSql).toContain('revoke all on function public.get_casual_quiz_pack(text) from public, anon');
     expect(allSql).toContain('grant execute on function public.get_casual_quiz_pack(text) to authenticated');
     expect(casualSql).not.toContain('correct_choice_id');
+  });
+
+  it('keeps complete Football artwork private until feedback', () => {
+    expect(allSql).toContain('"questionassetrole":"symbol_only_quiz_variant"');
+    expect(allSql).toContain('"revealassetrole":"complete_original_identity"');
+    expect(allSql).toContain("'revealassetpath', v_round.reveal_asset_path");
+    expect(allSql).toContain("else '{}'::jsonb end");
   });
 });

@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { randomUUID } from 'expo-crypto';
 import { loadCasualQuestions } from '@/backend/casual-api';
 import type { QuizCategoryId } from '@/backend/types';
 import {
@@ -44,7 +45,7 @@ export const useGameStore = create<GameRunState & GameActions>((set) => ({
       const profile = useProfileStore.getState().profile;
       const questions = await loadCasualQuestions(categoryId, { name: profile.name, avatar: profile.avatar, color: profile.color }, forceRefresh);
       useProfileStore.getState().markCasualQuizPlayed(categoryId);
-      set({ ...startRun(questions, now), launching: false, launchError: null });
+      set({ ...startRun(questions, now, Math.random, randomUUID()), launching: false, launchError: null });
       return true;
     } catch (error) {
       set({ launching: false, launchError: error instanceof Error ? error.message : 'This quiz could not be loaded.' });

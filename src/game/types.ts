@@ -10,6 +10,7 @@ export type QuizQuestion = {
   displayName: string;
   assetKey: FlagAssetKey;
   assetUri?: string;
+  revealAssetUri?: string;
   contentType?: string;
   difficulty: Difficulty;
   distractorCandidates: string[];
@@ -41,6 +42,7 @@ export type RunResult = {
 };
 
 export type GameRunState = {
+  runId: string;
   categoryId: CategoryId;
   phase: RunPhase;
   questions: QuizQuestion[];

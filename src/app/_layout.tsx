@@ -8,6 +8,7 @@ import { colors } from '@/theme/tokens';
 import { startAuthLifecycle } from '@/backend/auth-lifecycle';
 import { LaunchScreen } from '@/components/launch-screen';
 import { preloadStartupAssets, type PreloadProgress } from '@/services/startup-preload';
+import { adsRuntime } from '@/services/ads-runtime';
 
 void SplashScreen.preventAutoHideAsync().catch(() => undefined);
 
@@ -28,6 +29,7 @@ export default function RootLayout() {
     return () => { active = false; };
   }, [fontsReady]);
   useEffect(() => startAuthLifecycle(), []);
+  useEffect(() => { void adsRuntime.initialize(); }, []);
   if (!fontsReady) return null;
   if (!ready) return <LaunchScreen label={preload.label} progress={preload.total ? preload.completed / preload.total : 0} />;
 

@@ -5,7 +5,7 @@ BloopIQ is a guest-first mobile quiz game built with Expo, React Native, TypeScr
 ## Playable now
 
 - Casual Flags: 48 public-domain flags, four choices, three hearts, ten-second deadlines, speed bonuses, streaks, one optional simulated-ad revive, and local records.
-- Casual Football: all 17 reviewed league/confederation identities from `football-v1`, loaded through an authenticated read-only pack RPC with hosted artwork, same-type-first distractors, image-gated timers, one simulated-ad revive, and Football-specific local records. A connection is required to open the pack.
+- Casual Football: 10 reviewed league/confederation identities from `football-symbols-v2`, using symbol-only question art and complete `football-v1` reveal art, same-type-first distractors, image-gated timers, one rewarded-ad revive, and Football-specific local records. A connection is required to open the pack.
 - Casual Baseball and Basketball: all 30 current MLB teams from `baseball-mlb-v1` and all 30 current NBA teams from `basketball-nba-v1`, with official hosted primary logos, same-division-first distractors, image-gated timers, and separate local records. A connection is required to open either pack.
 - Daily Flags: ten deterministic questions selected from a hosted 195-sovereign-state pack for everyone each UTC day, one ranked attempt per anonymous identity, no hints or revives, server-controlled scoring, and resumable 30-minute attempts.
 - Daily Football: a hosted pack of all six continental confederations plus 11 requested leagues, using the same ranked rules and an independent daily attempt/ranking.
@@ -71,6 +71,7 @@ Regenerate the immutable hosted content manifest and upload staging files with:
 node scripts/prepare-quiz-assets.mjs
 npx supabase storage cp -r .quiz-assets/flags-195-v1 ss:///quiz-assets/flags-195-v1 --linked --experimental
 npx supabase storage cp -r .quiz-assets/football-v1 ss:///quiz-assets/football-v1 --linked --experimental
+npx supabase storage cp -r .quiz-assets/football-symbols-v2 ss:///quiz-assets/football-symbols-v2 --linked --experimental --content-type image/svg+xml
 npx supabase storage cp -r .quiz-assets/baseball-mlb-v1 ss:///quiz-assets/baseball-mlb-v1 --linked --experimental
 npx supabase storage cp -r .quiz-assets/basketball-nba-v1 ss:///quiz-assets/basketball-nba-v1 --linked --experimental --content-type image/svg+xml
 ```

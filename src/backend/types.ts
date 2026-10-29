@@ -4,6 +4,7 @@ export type CasualContentItem = {
   id: string;
   displayName: string;
   assetPath: string;
+  revealAssetPath?: string | null;
   difficulty: 'easy' | 'medium' | 'hard';
   contentType: string | null;
   distractorIds?: string[] | null;
@@ -18,6 +19,7 @@ export type DailyRound = {
   roundId: string;
   assetKey: string;
   assetPath?: string;
+  revealAssetPath?: string;
   options: DailyOption[];
   correctChoiceId?: string;
 };
@@ -49,6 +51,7 @@ export type DailySnapshot = {
     points: number;
     correctChoiceId?: string;
     correctLabel?: string;
+    revealAssetPath?: string;
   };
 };
 

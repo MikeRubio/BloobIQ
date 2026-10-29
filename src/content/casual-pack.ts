@@ -38,12 +38,15 @@ export function casualPackQuestions(pack: CasualPack, assetUrl: (path: string) =
     const fallback = pack.items.filter((other) => other.id !== item.id && other.contentType !== item.contentType && !specifiedIds.has(other.id));
     const assetUri = assetUrl(item.assetPath);
     if (!assetUri) throw new Error('Quiz images are unavailable. Check the app configuration and try again.');
+    const revealAssetUri = item.revealAssetPath ? assetUrl(item.revealAssetPath) : assetUri;
+    if (!revealAssetUri) throw new Error('Quiz reveal images are unavailable. Check the app configuration and try again.');
     return {
       id: item.id,
       categoryId: pack.categoryId,
       displayName: item.displayName,
       assetKey: item.id,
       assetUri,
+      revealAssetUri,
       contentType: item.contentType ?? undefined,
       difficulty: item.difficulty,
       distractorCandidates: [...specified, ...sameType.filter((other) => !specifiedIds.has(other.id)), ...fallback].map((other) => other.id),

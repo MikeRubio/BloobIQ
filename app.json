@@ -10,7 +10,10 @@
     "ios": {
       "icon": "./assets/expo.icon",
       "supportsTablet": true,
-      "bundleIdentifier": "com.guessr.game"
+      "bundleIdentifier": "com.guessr.game",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -44,6 +47,17 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {
+        "asyncRoutes": {
+          "web": true
+        }
+      },
+      "eas": {
+        "projectId": "da538ae5-c8cd-4004-b00a-2956af3dc0dc"
+      }
+    },
+    "owner": "guerllaje"
   }
 }

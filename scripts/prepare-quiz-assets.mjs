@@ -1,11 +1,12 @@
 import { createHash } from 'node:crypto';
-import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, unlink, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { baseballTeams, basketballTeams, sameDivisionDistractors, teamDifficulty } from './team-logo-packs.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 const stagingRoot = path.join(root, '.quiz-assets');
 const manifestPath = path.join(root, 'supabase', 'content', 'quiz-content.json');
+const footballVariantRoot = path.join(root, 'supabase', 'content', 'football-symbols-v2');
 const migrationsPath = path.join(root, 'supabase', 'migrations');
 const flagCommit = 'c09927e63705529bbf59ca6684cd9b23225dddad';
 const flagPackageVersion = '1.2.10';
@@ -55,21 +56,84 @@ const reviewedFootballSlugs = new Set([
   'liga-mx', 'brasileirao-serie-a', 'j1-league', 'k-league-1', 'saudi-pro-league',
 ]);
 
+const footballQuestionVariants = [
+  { slug: 'uefa', opaqueName: 'q-01.svg', viewBox: '74 74 161 161', vectorUrl: 'https://upload.wikimedia.org/wikipedia/en/9/9d/UEFA_full_logo.svg', removeLastPaths: 2, edit: 'Remove both outlined UEFA lettering paths and crop to the central striped globe.' },
+  { slug: 'caf', opaqueName: 'q-02.svg', viewBox: '0 0 566 430', vectorUrl: 'https://upload.wikimedia.org/wikipedia/en/7/72/Confederation_of_African_Football_logo.svg', removeLastPaths: 4, edit: 'Remove the final four outlined CAF and registration-mark paths, then crop to the globe-and-continent crest.' },
+  { slug: 'concacaf', opaqueName: 'q-03.svg', viewBox: '0 0 1042 650', vectorUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Concacaf_logo.svg', removeGroupIds: ['type'], edit: 'Remove the outlined wordmark group and retain the official gold radial symbol.' },
+  { slug: 'conmebol', opaqueName: 'q-04.svg', viewBox: '25 0 135 120', vectorUrl: 'https://upload.wikimedia.org/wikipedia/en/a/a8/CONMEBOL_logo_%282017%29.svg', edit: 'Crop to the shield-and-continent crest above the outlined CONMEBOL wordmark.' },
+  { slug: 'premier-league', opaqueName: 'q-05.svg', viewBox: '0 0 75 86.213023', vectorUrl: 'https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg', edit: 'Crop to the crowned lion symbol left of the outlined Premier League wordmark.' },
+  { slug: 'la-liga', opaqueName: 'q-06.svg', viewBox: '90 0 250 220', vectorUrl: 'https://upload.wikimedia.org/wikipedia/commons/5/54/LaLiga_EA_Sports_2023_Vertical_Logo.svg', edit: 'Crop to the red geometric competition symbol above the outlined LaLiga and sponsor wordmarks.' },
+  { slug: 'bundesliga', opaqueName: 'q-07.svg', viewBox: '0 0 75 63', vectorUrl: 'https://upload.wikimedia.org/wikipedia/en/d/df/Bundesliga_logo_%282017%29.svg', removeLastPaths: 1, edit: 'Remove the final outlined BUNDESLIGA lettering path and retain the red player-and-ball panel.' },
+  { slug: 'major-league-soccer', opaqueName: 'q-08.svg', viewBox: '0 0 100.77289 106.48469', vectorUrl: 'https://upload.wikimedia.org/wikipedia/en/c/c7/Major_League_Soccer_logo.svg', removeIds: ['path11', 'path13', 'path14', 'path15'], edit: 'Remove the outlined MLS acronym and trademark paths while preserving the official shield, slash, and stars.' },
+  { slug: 'brasileirao-serie-a', opaqueName: 'q-09.svg', viewBox: '0 0 98.453751 100', vectorUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Campeonato_Brasileiro_S%C3%A9rie_A_logo_%282024%29.svg', edit: 'Crop to the trophy-and-ball symbol above the outlined Brasileirão and sponsor wordmarks.' },
+  { slug: 'saudi-pro-league', opaqueName: 'q-10.svg', rasterFilter: true, edit: 'Use the original raster artwork and deterministically make black lettering transparent, preserving the multicolor league symbol.' },
+];
+
 function sql(value) {
   if (value === null) return 'null';
   return `'${String(value).replaceAll("'", "''")}'`;
 }
 
-async function download(url, destination) {
+async function fetchImage(url) {
   const response = await fetch(url, { headers: { 'User-Agent': 'BloopIQ-content-build/1.0' } });
   if (!response.ok) throw new Error(`${response.status} downloading ${url}`);
   const contentType = response.headers.get('content-type')?.split(';')[0] ?? '';
   if (!contentType.startsWith('image/')) throw new Error(`Expected image from ${url}, received ${contentType}`);
   const data = Buffer.from(await response.arrayBuffer());
   if (data.length === 0 || data.length > 2_000_000) throw new Error(`Unexpected asset size ${data.length} for ${url}`);
+  return { data, contentType };
+}
+
+function fileMetadata(data, contentType) {
+  return { sha256: createHash('sha256').update(data).digest('hex'), bytes: data.length, contentType };
+}
+
+async function download(url, destination) {
+  const { data, contentType } = await fetchImage(url);
   await mkdir(path.dirname(destination), { recursive: true });
   await writeFile(destination, data);
-  return { sha256: createHash('sha256').update(data).digest('hex'), bytes: data.length, contentType };
+  return fileMetadata(data, contentType);
+}
+
+function croppedSvg(source, viewBox, { removeGroupIds = [], removeIds = [], removeLastPaths = 0 } = {}) {
+  const open = source.match(/<svg\b[\s\S]*?>/i)?.[0];
+  if (!open) throw new Error('Question variant source is not an SVG.');
+  let replacement = open
+    .replace(/\s(?:width|height)=("[^"]*"|'[^']*')/gi, '')
+    .replace(/\sviewBox=("[^"]*"|'[^']*')/i, '');
+  replacement = replacement.replace(/>$/, ` width="100%" height="100%" viewBox="${viewBox}" preserveAspectRatio="xMidYMid meet" overflow="hidden">`);
+  let result = source
+    .replace(open, replacement)
+    .replace(/<title\b[^>]*>[\s\S]*?<\/title>/gi, '')
+    .replace(/<metadata\b[^>]*>[\s\S]*?<\/metadata>/gi, '')
+    .replace(/sodipodi:docname=("[^"]*"|'[^']*')/gi, '');
+  for (const id of removeIds) {
+    const escaped = id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    result = result.replace(new RegExp(`<[^>]+\\bid=(?:"${escaped}"|'${escaped}')[^>]*/>`, 'gi'), '');
+  }
+  for (const id of removeGroupIds) {
+    const escaped = id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    result = result.replace(new RegExp(`<g\\b[^>]*\\bid=(?:"${escaped}"|'${escaped}')[^>]*>[\\s\\S]*?<\\/g>`, 'gi'), '');
+  }
+  if (removeLastPaths) {
+    const paths = [...result.matchAll(/<path\b[\s\S]*?\/>/gi)];
+    for (const match of paths.slice(-removeLastPaths).reverse()) {
+      result = `${result.slice(0, match.index)}${result.slice((match.index ?? 0) + match[0].length)}`;
+    }
+  }
+  return result;
+}
+
+function pngDimensions(data) {
+  const pngSignature = '89504e470d0a1a0a';
+  if (data.subarray(0, 8).toString('hex') !== pngSignature) throw new Error('Expected PNG artwork for raster question variant.');
+  return { width: data.readUInt32BE(16), height: data.readUInt32BE(20) };
+}
+
+function blackTransparentSvg(data, contentType) {
+  const { width, height } = pngDimensions(data);
+  const encoded = data.toString('base64');
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid meet"><defs><filter id="remove-black" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 1 1 1 0 0"/></filter></defs><image width="${width}" height="${height}" href="data:${contentType};base64,${encoded}" filter="url(#remove-black)"/></svg>\n`;
 }
 
 async function mapLimit(values, limit, mapper) {
@@ -120,6 +184,54 @@ async function main() {
       metadata: { scope }, ...file,
     };
   });
+
+  const footballBySlug = new Map(football.map((item) => [item.itemId.replace('football-', ''), item]));
+  const footballSymbols = await mapLimit(footballQuestionVariants, 3, async (variant) => {
+    const original = footballBySlug.get(variant.slug);
+    if (!original) throw new Error(`Missing original Football identity for ${variant.slug}`);
+    let svg;
+    let questionSourceAssetUrl;
+    if (variant.rasterFilter) {
+      const raster = await fetchImage(original.sourceAssetUrl);
+      svg = blackTransparentSvg(raster.data, raster.contentType);
+      questionSourceAssetUrl = original.sourceAssetUrl;
+    } else {
+      const vector = await fetchImage(variant.vectorUrl);
+      if (vector.contentType !== 'image/svg+xml') throw new Error(`Expected SVG source for ${variant.slug}`);
+      svg = croppedSvg(vector.data.toString('utf8'), variant.viewBox, variant);
+      questionSourceAssetUrl = variant.vectorUrl;
+    }
+    const data = Buffer.from(svg);
+    const assetPath = `football-symbols-v2/${variant.opaqueName}`;
+    await mkdir(footballVariantRoot, { recursive: true });
+    await mkdir(path.join(stagingRoot, 'football-symbols-v2'), { recursive: true });
+    await writeFile(path.join(footballVariantRoot, variant.opaqueName), data);
+    await writeFile(path.join(stagingRoot, assetPath), data);
+    const sameScope = footballQuestionVariants
+      .filter((candidate) => candidate.slug !== variant.slug && footballBySlug.get(candidate.slug)?.metadata.scope === original.metadata.scope)
+      .map((candidate) => `football-${candidate.slug}`);
+    return {
+      categoryId: 'football', contentVersion: 'football-symbols-v2', itemId: original.itemId,
+      displayName: original.displayName, assetPath, revealAssetPath: original.assetPath,
+      difficulty: original.difficulty, sourcePageUrl: original.sourcePageUrl, sourceAssetUrl: original.sourceAssetUrl,
+      questionSourceAssetUrl, rightsStatus: original.rightsStatus, attribution: original.attribution,
+      metadata: {
+        scope: original.metadata.scope,
+        distractorIds: sameScope,
+        questionAssetRole: 'symbol_only_quiz_variant',
+        revealAssetRole: 'complete_original_identity',
+        editRecipe: variant.edit,
+      },
+      revealSha256: original.sha256,
+      ...fileMetadata(data, 'image/svg+xml'),
+    };
+  });
+  const expectedQuestionFiles = new Set(footballQuestionVariants.map((variant) => variant.opaqueName));
+  for (const directory of [footballVariantRoot, path.join(stagingRoot, 'football-symbols-v2')]) {
+    for (const name of await readdir(directory)) {
+      if (name.endsWith('.svg') && !expectedQuestionFiles.has(name)) await unlink(path.join(directory, name));
+    }
+  }
 
   if (baseballTeams.length !== 30 || new Set(baseballTeams.map((team) => team[0])).size !== 30) {
     throw new Error(`Expected 30 unique MLB teams, received ${baseballTeams.length}`);
@@ -182,14 +294,14 @@ async function main() {
     };
   });
 
-  const items = [...flags, ...football, ...baseball, ...basketball];
+  const items = [...flags, ...football, ...footballSymbols, ...baseball, ...basketball];
   try {
     const previous = JSON.parse(await readFile(manifestPath, 'utf8'));
     const previousByKey = new Map(previous.items.map((item) => [`${item.contentVersion}:${item.itemId}`, item]));
     for (const item of items) {
       const existing = previousByKey.get(`${item.contentVersion}:${item.itemId}`);
       if (!existing) continue;
-      const stableFields = ['categoryId', 'contentVersion', 'itemId', 'displayName', 'assetPath', 'sha256', 'sourcePageUrl', 'sourceAssetUrl', 'rightsStatus', 'attribution', 'difficulty', 'metadata'];
+      const stableFields = ['categoryId', 'contentVersion', 'itemId', 'displayName', 'assetPath', 'revealAssetPath', 'sha256', 'revealSha256', 'sourcePageUrl', 'sourceAssetUrl', 'questionSourceAssetUrl', 'rightsStatus', 'attribution', 'difficulty', 'metadata'];
       if (stableFields.some((field) => JSON.stringify(existing[field]) !== JSON.stringify(item[field]))) {
         throw new Error(`Immutable content drift detected for ${item.contentVersion}:${item.itemId}; create a new content version instead`);
       }
@@ -198,7 +310,7 @@ async function main() {
     if (error?.code !== 'ENOENT') throw error;
   }
   await mkdir(path.dirname(manifestPath), { recursive: true });
-  await writeFile(manifestPath, `${JSON.stringify({ schemaVersion: 1, flagSourceCommit: flagCommit, flagPackageVersion, items }, null, 2)}\n`);
+  await writeFile(manifestPath, `${JSON.stringify({ schemaVersion: 2, flagSourceCommit: flagCommit, flagPackageVersion, items }, null, 2)}\n`);
 
   const migrationName = (await readdir(migrationsPath)).find((name) => name.endsWith('_add_baseball_basketball_quizzes.sql'));
   if (!migrationName) throw new Error('Content catalog migration is missing');
@@ -215,7 +327,7 @@ async function main() {
   const generated = `${start}\ninsert into private.quiz_content\n  (category_id, content_version, item_id, display_name, asset_path, asset_sha256, source_page_url, source_asset_url, rights_status, attribution, difficulty, metadata)\nvalues\n${rows}\non conflict (content_version, item_id) do update set\n  display_name = excluded.display_name, asset_path = excluded.asset_path, asset_sha256 = excluded.asset_sha256,\n  source_page_url = excluded.source_page_url, source_asset_url = excluded.source_asset_url,\n  rights_status = excluded.rights_status, attribution = excluded.attribution, difficulty = excluded.difficulty, metadata = excluded.metadata;\n${end}`;
   await writeFile(migrationPath, migration.replace(new RegExp(`${start}[\\s\\S]*?${end}`), generated));
   console.log(JSON.stringify({
-    flags: flags.length, football: football.length, baseball: baseball.length, basketball: basketball.length,
+    flags: flags.length, footballOriginals: football.length, footballSymbols: footballSymbols.length, baseball: baseball.length, basketball: basketball.length,
     total: items.length, bytes: items.reduce((sum, item) => sum + item.bytes, 0), migration: migrationName,
   }));
 }

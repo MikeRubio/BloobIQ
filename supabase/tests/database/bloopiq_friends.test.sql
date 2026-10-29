@@ -1,7 +1,7 @@
 begin;
 
 create extension if not exists pgtap with schema extensions;
-select plan(29);
+select plan(33);
 
 select ok((select relrowsecurity from pg_class where oid = 'public.friend_room_events'::regclass), 'room events use RLS');
 select ok((select relrowsecurity from pg_class where oid = 'private.friend_rooms'::regclass), 'private rooms use RLS');
@@ -41,6 +41,25 @@ select ok((select bool_and((member->>'isReady')::boolean) from friend_snapshots,
 select is((select snapshot->>'status' from friend_snapshots where label = 'started'), 'playing', 'host starts an authoritative match');
 
 reset role;
+select ok(not exists(
+  select 1 from private.friend_match_rounds
+  where match_id = (select (snapshot->>'matchId')::uuid from friend_snapshots where label = 'started')
+    and asset_path = reveal_asset_path
+), 'friend football rounds keep question and reveal artwork separate');
+select ok(not exists(
+  select 1
+  from private.friend_match_rounds r
+  join private.friend_matches m on m.id = r.match_id
+  join private.quiz_content correct_item on correct_item.content_version = m.content_version and correct_item.item_id = r.item_id
+  cross join lateral jsonb_array_elements(r.options) option
+  where r.match_id = (select (snapshot->>'matchId')::uuid from friend_snapshots where label = 'started')
+    and not exists (
+      select 1 from private.quiz_content candidate
+      where candidate.content_version = m.content_version
+        and candidate.display_name = option->>'label'
+        and candidate.metadata->>'scope' = correct_item.metadata->>'scope'
+    )
+), 'friend football distractors remain within identity type');
 update private.friend_matches set starts_at = clock_timestamp() - interval '1 second'
 where id = (select (snapshot->>'matchId')::uuid from friend_snapshots where label = 'started');
 set local role authenticated;
@@ -48,6 +67,7 @@ set local "request.jwt.claim.sub" = '11000000-0000-0000-0000-000000000001';
 insert into friend_snapshots select 'question', public.get_friend_room_state((select (snapshot->>'roomId')::uuid from friend_snapshots where label = 'created'));
 select is((select jsonb_array_length(snapshot->'round'->'options') from friend_snapshots where label = 'question'), 4, 'question exposes four choices');
 select ok((select not ((snapshot->'round') ? 'correctChoiceId') from friend_snapshots where label = 'question'), 'answer key stays hidden during answering');
+select ok((select not ((snapshot->'round') ? 'revealAssetPath') from friend_snapshots where label = 'question'), 'complete identity artwork stays hidden during answering');
 
 insert into friend_snapshots select 'answered', public.submit_friend_answer(
   (select (snapshot->>'roomId')::uuid from friend_snapshots where label = 'created'),
@@ -95,6 +115,7 @@ set local role authenticated;
 set local "request.jwt.claim.sub" = '11000000-0000-0000-0000-000000000001';
 insert into friend_snapshots select 'reveal', public.get_friend_room_state((select (snapshot->>'roomId')::uuid from friend_snapshots where label = 'created'));
 select ok((select (snapshot->'round') ? 'correctChoiceId' from friend_snapshots where label = 'reveal'), 'answer key appears during reveal');
+select ok((select (snapshot->'round') ? 'revealAssetPath' from friend_snapshots where label = 'reveal'), 'complete identity artwork appears during reveal');
 select ok((select count(*) from public.friend_room_events) > 0, 'member can read room event ticks');
 
 reset role;

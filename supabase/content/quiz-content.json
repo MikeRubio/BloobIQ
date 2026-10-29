@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "flagSourceCommit": "c09927e63705529bbf59ca6684cd9b23225dddad",
   "flagPackageVersion": "1.2.10",
   "items": [
@@ -4013,6 +4013,308 @@
       "sha256": "3dfd2a32918b89a8ac28aeedd3b8aa2bc054e607c89eb963d70036416251f56e",
       "bytes": 39073,
       "contentType": "image/png"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-symbols-v2",
+      "itemId": "football-uefa",
+      "displayName": "UEFA",
+      "assetPath": "football-symbols-v2/q-01.svg",
+      "revealAssetPath": "football-v1/uefa.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/UEFA",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/en/thumb/9/9d/UEFA_full_logo.svg/330px-UEFA_full_logo.svg.png",
+      "questionSourceAssetUrl": "https://upload.wikimedia.org/wikipedia/en/9/9d/UEFA_full_logo.svg",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "confederation",
+        "distractorIds": [
+          "football-caf",
+          "football-concacaf",
+          "football-conmebol"
+        ],
+        "questionAssetRole": "symbol_only_quiz_variant",
+        "revealAssetRole": "complete_original_identity",
+        "editRecipe": "Remove both outlined UEFA lettering paths and crop to the central striped globe."
+      },
+      "revealSha256": "6c4457053bae576f1b1c5e7a5c4272d3663189cb842dcc735b48206703b9d2e4",
+      "sha256": "b55355911e48a7253a857439a4bd0eee0771359ed848003e94d2b859593e8259",
+      "bytes": 7579,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-symbols-v2",
+      "itemId": "football-caf",
+      "displayName": "CAF",
+      "assetPath": "football-symbols-v2/q-02.svg",
+      "revealAssetPath": "football-v1/caf.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/Confederation_of_African_Football",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/en/thumb/7/72/Confederation_of_African_Football_logo.svg/330px-Confederation_of_African_Football_logo.svg.png",
+      "questionSourceAssetUrl": "https://upload.wikimedia.org/wikipedia/en/7/72/Confederation_of_African_Football_logo.svg",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "confederation",
+        "distractorIds": [
+          "football-uefa",
+          "football-concacaf",
+          "football-conmebol"
+        ],
+        "questionAssetRole": "symbol_only_quiz_variant",
+        "revealAssetRole": "complete_original_identity",
+        "editRecipe": "Remove the final four outlined CAF and registration-mark paths, then crop to the globe-and-continent crest."
+      },
+      "revealSha256": "3bae54dfaea729560439d5f612d78e4f858862155d5caa71dff365b5ebc3354b",
+      "sha256": "0ef033466d8e371f339f7c75856fb1364310dbab41ed0627729a1b98a8c0ff10",
+      "bytes": 39837,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-symbols-v2",
+      "itemId": "football-concacaf",
+      "displayName": "CONCACAF",
+      "assetPath": "football-symbols-v2/q-03.svg",
+      "revealAssetPath": "football-v1/concacaf.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/CONCACAF",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Concacaf_logo.svg/500px-Concacaf_logo.svg.png",
+      "questionSourceAssetUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/Concacaf_logo.svg",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "confederation",
+        "distractorIds": [
+          "football-uefa",
+          "football-caf",
+          "football-conmebol"
+        ],
+        "questionAssetRole": "symbol_only_quiz_variant",
+        "revealAssetRole": "complete_original_identity",
+        "editRecipe": "Remove the outlined wordmark group and retain the official gold radial symbol."
+      },
+      "revealSha256": "c7db0794728da5aa9abd418fd19a053ac7a80de359e01061978b14a413fb1248",
+      "sha256": "04f49b16486c34e47aa884b333b5a7678dd1865808d73bf26d70a915dca8ca6b",
+      "bytes": 4675,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-symbols-v2",
+      "itemId": "football-conmebol",
+      "displayName": "CONMEBOL",
+      "assetPath": "football-symbols-v2/q-04.svg",
+      "revealAssetPath": "football-v1/conmebol.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/CONMEBOL",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/en/thumb/a/a8/CONMEBOL_logo_%282017%29.svg/500px-CONMEBOL_logo_%282017%29.svg.png",
+      "questionSourceAssetUrl": "https://upload.wikimedia.org/wikipedia/en/a/a8/CONMEBOL_logo_%282017%29.svg",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "confederation",
+        "distractorIds": [
+          "football-uefa",
+          "football-caf",
+          "football-concacaf"
+        ],
+        "questionAssetRole": "symbol_only_quiz_variant",
+        "revealAssetRole": "complete_original_identity",
+        "editRecipe": "Crop to the shield-and-continent crest above the outlined CONMEBOL wordmark."
+      },
+      "revealSha256": "07dc7e3f8aa8f7eba9daba20577d3d1a3854bc5a08f8c0fa7e7f0b2e546fe2e2",
+      "sha256": "08a7f2f0334640959085df7e38d9cbc994687a423e3729c74fb7dde5f5892a60",
+      "bytes": 10461,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-symbols-v2",
+      "itemId": "football-premier-league",
+      "displayName": "English Premier League",
+      "assetPath": "football-symbols-v2/q-05.svg",
+      "revealAssetPath": "football-v1/premier-league.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/Premier_League",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/en/thumb/f/f2/Premier_League_Logo.svg/500px-Premier_League_Logo.svg.png",
+      "questionSourceAssetUrl": "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "league",
+        "distractorIds": [
+          "football-la-liga",
+          "football-bundesliga",
+          "football-major-league-soccer",
+          "football-brasileirao-serie-a",
+          "football-saudi-pro-league"
+        ],
+        "questionAssetRole": "symbol_only_quiz_variant",
+        "revealAssetRole": "complete_original_identity",
+        "editRecipe": "Crop to the crowned lion symbol left of the outlined Premier League wordmark."
+      },
+      "revealSha256": "e4c378af86fd34ae8f6e3acaeb5e9225332dc65202e9e4db92e9c84dd87433f0",
+      "sha256": "c76751cf5fc603db12d56608b726c77c435a94c0ac6dbcaf177c63e9997d838f",
+      "bytes": 7917,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-symbols-v2",
+      "itemId": "football-la-liga",
+      "displayName": "La Liga",
+      "assetPath": "football-symbols-v2/q-06.svg",
+      "revealAssetPath": "football-v1/la-liga.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/La_Liga",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/LaLiga_EA_Sports_2023_Vertical_Logo.svg/500px-LaLiga_EA_Sports_2023_Vertical_Logo.svg.png",
+      "questionSourceAssetUrl": "https://upload.wikimedia.org/wikipedia/commons/5/54/LaLiga_EA_Sports_2023_Vertical_Logo.svg",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "league",
+        "distractorIds": [
+          "football-premier-league",
+          "football-bundesliga",
+          "football-major-league-soccer",
+          "football-brasileirao-serie-a",
+          "football-saudi-pro-league"
+        ],
+        "questionAssetRole": "symbol_only_quiz_variant",
+        "revealAssetRole": "complete_original_identity",
+        "editRecipe": "Crop to the red geometric competition symbol above the outlined LaLiga and sponsor wordmarks."
+      },
+      "revealSha256": "4bda5d49e4ce2556d7092b5bd49883a13bff18a824c78ee3fef41334f1e02541",
+      "sha256": "60cdad81dccd059da12d97df2c7bede2238b14ad5b176a7e917b1f2c98292163",
+      "bytes": 4282,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-symbols-v2",
+      "itemId": "football-bundesliga",
+      "displayName": "Bundesliga",
+      "assetPath": "football-symbols-v2/q-07.svg",
+      "revealAssetPath": "football-v1/bundesliga.png",
+      "difficulty": "easy",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/Bundesliga",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/en/thumb/d/df/Bundesliga_logo_%282017%29.svg/500px-Bundesliga_logo_%282017%29.svg.png",
+      "questionSourceAssetUrl": "https://upload.wikimedia.org/wikipedia/en/d/df/Bundesliga_logo_%282017%29.svg",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "league",
+        "distractorIds": [
+          "football-premier-league",
+          "football-la-liga",
+          "football-major-league-soccer",
+          "football-brasileirao-serie-a",
+          "football-saudi-pro-league"
+        ],
+        "questionAssetRole": "symbol_only_quiz_variant",
+        "revealAssetRole": "complete_original_identity",
+        "editRecipe": "Remove the final outlined BUNDESLIGA lettering path and retain the red player-and-ball panel."
+      },
+      "revealSha256": "623d1d9e873f0944acec2eb9293aa3d73f136d1bab3ff6320235bf620f94c504",
+      "sha256": "1e9221a6510a502f182423553642bb4f342e3cd7c31a0e3ee35dc68d24db04eb",
+      "bytes": 4474,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-symbols-v2",
+      "itemId": "football-major-league-soccer",
+      "displayName": "Major League Soccer",
+      "assetPath": "football-symbols-v2/q-08.svg",
+      "revealAssetPath": "football-v1/major-league-soccer.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/Major_League_Soccer",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/en/thumb/c/c7/Major_League_Soccer_logo.svg/500px-Major_League_Soccer_logo.svg.png",
+      "questionSourceAssetUrl": "https://upload.wikimedia.org/wikipedia/en/c/c7/Major_League_Soccer_logo.svg",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "league",
+        "distractorIds": [
+          "football-premier-league",
+          "football-la-liga",
+          "football-bundesliga",
+          "football-brasileirao-serie-a",
+          "football-saudi-pro-league"
+        ],
+        "questionAssetRole": "symbol_only_quiz_variant",
+        "revealAssetRole": "complete_original_identity",
+        "editRecipe": "Remove the outlined MLS acronym and trademark paths while preserving the official shield, slash, and stars."
+      },
+      "revealSha256": "22f86477526fd080391b998c886871489d3e1e0ec8514fec21246cf49a1ed2b9",
+      "sha256": "f8501297087f933c6bab87c4fa986ce85dea1782e0b17f08d67806367112ee80",
+      "bytes": 5550,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-symbols-v2",
+      "itemId": "football-brasileirao-serie-a",
+      "displayName": "Brasileirão Série A",
+      "assetPath": "football-symbols-v2/q-09.svg",
+      "revealAssetPath": "football-v1/brasileirao-serie-a.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://en.wikipedia.org/wiki/Campeonato_Brasileiro_S%C3%A9rie_A",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/Campeonato_Brasileiro_S%C3%A9rie_A_logo_%282024%29.svg/500px-Campeonato_Brasileiro_S%C3%A9rie_A_logo_%282024%29.svg.png",
+      "questionSourceAssetUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Campeonato_Brasileiro_S%C3%A9rie_A_logo_%282024%29.svg",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "league",
+        "distractorIds": [
+          "football-premier-league",
+          "football-la-liga",
+          "football-bundesliga",
+          "football-major-league-soccer",
+          "football-saudi-pro-league"
+        ],
+        "questionAssetRole": "symbol_only_quiz_variant",
+        "revealAssetRole": "complete_original_identity",
+        "editRecipe": "Crop to the trophy-and-ball symbol above the outlined Brasileirão and sponsor wordmarks."
+      },
+      "revealSha256": "8b690ce2ec012f34248cfbffcd53e1bb0c1cf43e9fadb0833f2392ef59e00e79",
+      "sha256": "c2ffdf7890c777e64633a1e87309b4b117deffbc588866debb32d64a587f661d",
+      "bytes": 17684,
+      "contentType": "image/svg+xml"
+    },
+    {
+      "categoryId": "football",
+      "contentVersion": "football-symbols-v2",
+      "itemId": "football-saudi-pro-league",
+      "displayName": "Saudi Pro League",
+      "assetPath": "football-symbols-v2/q-10.svg",
+      "revealAssetPath": "football-v1/saudi-pro-league.png",
+      "difficulty": "medium",
+      "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Saudi_Pro_League_Logo.svg",
+      "sourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Saudi_Pro_League_Logo.svg/500px-Saudi_Pro_League_Logo.svg.png",
+      "questionSourceAssetUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Saudi_Pro_League_Logo.svg/500px-Saudi_Pro_League_Logo.svg.png",
+      "rightsStatus": "trademark_reviewed_approved",
+      "attribution": "Trademark use reviewed and approved by project owner for pre-production quiz use (2026-10-28)",
+      "metadata": {
+        "scope": "league",
+        "distractorIds": [
+          "football-premier-league",
+          "football-la-liga",
+          "football-bundesliga",
+          "football-major-league-soccer",
+          "football-brasileirao-serie-a"
+        ],
+        "questionAssetRole": "symbol_only_quiz_variant",
+        "revealAssetRole": "complete_original_identity",
+        "editRecipe": "Use the original raster artwork and deterministically make black lettering transparent, preserving the multicolor league symbol."
+      },
+      "revealSha256": "3dfd2a32918b89a8ac28aeedd3b8aa2bc054e607c89eb963d70036416251f56e",
+      "sha256": "5d9fc0bc33e8a52ef03ae994f5e3bbde81c49b504a9c762639f58e97f9c92053",
+      "bytes": 52485,
+      "contentType": "image/svg+xml"
     },
     {
       "categoryId": "baseball",

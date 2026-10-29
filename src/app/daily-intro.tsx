@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -8,6 +7,7 @@ import { ScreenHeader } from '@/components/screen-header';
 import { useDailyStore } from '@/store/daily-store';
 import { useProfileStore } from '@/store/profile-store';
 import { backendProfileFromLocal } from '@/backend/profile-migration';
+import { useDailyStateLifecycle } from '@/hooks/use-daily-state';
 import { normalizeQuizCategory, quizCategoryCopy } from '@/backend/categories';
 import { getQuiz } from '@/content/quiz-catalog';
 import { colors, radius, shadow, spacing, type } from '@/theme/tokens';
@@ -26,14 +26,9 @@ export default function DailyIntroScreen() {
   const status = useDailyStore((state) => state.status);
   const snapshot = useDailyStore((state) => state.snapshot);
   const message = useDailyStore((state) => state.message);
-  const activeCategoryId = useDailyStore((state) => state.activeCategoryId);
   const start = useDailyStore((state) => state.start);
   const load = useDailyStore((state) => state.load);
-  useEffect(() => {
-    if (!hydrated || (status !== 'idle' && activeCategoryId === categoryId)) return;
-    const timer = setTimeout(() => void load(backendProfileFromLocal(profile), categoryId), 0);
-    return () => clearTimeout(timer);
-  }, [activeCategoryId, categoryId, hydrated, load, profile, status]);
+  useDailyStateLifecycle({ categoryId, enabled: hydrated, profile });
   const categorySnapshot = snapshot?.categoryId === categoryId ? snapshot : null;
   const begin = async () => {
     if (categorySnapshot?.state === 'in_progress') return router.replace({ pathname: '/daily', params: { category: categoryId } });
@@ -66,6 +61,7 @@ export default function DailyIntroScreen() {
             <GameButton label={label} onPress={() => void begin()} variant="coral" disabled={status === 'unconfigured' || status === 'error'} />
           )}
           {(status === 'unconfigured' || status === 'error') ? <GameButton compact label="Retry Connection" onPress={() => void load(backendProfileFromLocal(profile), categoryId)} variant="ghost" style={styles.retry} /> : null}
+          {(status === 'unconfigured' || status === 'error') ? <GameButton compact label="Back" onPress={() => router.back()} variant="ghost" style={styles.retry} /> : null}
           <Text style={styles.note}>Practice replay unlocks after the ranked attempt and never changes rankings or your daily streak.</Text>
         </ScrollView>
       </SafeAreaView>

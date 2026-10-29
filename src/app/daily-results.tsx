@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -7,6 +6,7 @@ import { GameButton } from '@/components/game-button';
 import { useDailyStore } from '@/store/daily-store';
 import { useProfileStore } from '@/store/profile-store';
 import { backendProfileFromLocal } from '@/backend/profile-migration';
+import { useDailyStateLifecycle } from '@/hooks/use-daily-state';
 import { normalizeQuizCategory, quizCategoryCopy } from '@/backend/categories';
 import { getQuiz } from '@/content/quiz-catalog';
 import { colors, radius, shadow, spacing, type } from '@/theme/tokens';
@@ -20,17 +20,16 @@ export default function DailyResultsScreen() {
   const profile = useProfileStore((state) => state.profile);
   const hydrated = useProfileStore((state) => state.hydrated);
   const status = useDailyStore((state) => state.status);
-  const snapshot = useDailyStore((state) => state.snapshot);
-  const activeCategoryId = useDailyStore((state) => state.activeCategoryId);
+  const message = useDailyStore((state) => state.message);
   const load = useDailyStore((state) => state.load);
+  const snapshot = useDailyStore((state) => state.snapshot);
   const categorySnapshot = snapshot?.categoryId === categoryId ? snapshot : null;
-  useEffect(() => {
-    if (hydrated && !isPractice && (activeCategoryId !== categoryId || status === 'idle')) void load(backendProfileFromLocal(profile), categoryId);
-  }, [activeCategoryId, categoryId, hydrated, isPractice, load, profile, status]);
+  useDailyStateLifecycle({ categoryId, enabled: hydrated && !isPractice, profile });
 
   const score = isPractice ? Number(params.score ?? 0) : (categorySnapshot?.score ?? 0);
   const correct = isPractice ? Number(params.correct ?? 0) : (categorySnapshot?.correctCount ?? 0);
   if (!isPractice && (!hydrated || status === 'loading') && !categorySnapshot) return <View style={styles.loading}><ActivityIndicator color={colors.sky} size="large" /></View>;
+  if (!isPractice && !categorySnapshot && (status === 'error' || status === 'unconfigured')) return <View style={styles.loading}><Text accessibilityRole="alert" style={styles.errorTitle}>Ranked result unavailable</Text><Text style={styles.errorBody}>{message ?? 'Check your connection and try again.'}</Text><GameButton compact label="Retry" onPress={() => void load(backendProfileFromLocal(profile), categoryId)} variant="ghost" /><GameButton compact label="Back" onPress={() => router.back()} variant="ghost" /></View>;
 
   return (
     <View style={styles.root}>
@@ -65,7 +64,7 @@ export default function DailyResultsScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: colors.surface }, safe: { flex: 1 }, loading: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.surface }, content: { flex: 1, width: '100%', maxWidth: 500, alignSelf: 'center', justifyContent: 'center', padding: spacing.xl },
+  root: { flex: 1, backgroundColor: colors.surface }, safe: { flex: 1 }, loading: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: spacing.md, padding: spacing.xl, backgroundColor: colors.surface }, errorTitle: { ...type.heading, color: colors.coralDark, fontSize: 18 }, errorBody: { ...type.regular, color: colors.inkSoft, fontSize: 12, textAlign: 'center', maxWidth: 320 }, content: { flex: 1, width: '100%', maxWidth: 500, alignSelf: 'center', justifyContent: 'center', padding: spacing.xl },
   badge: { width: 86, height: 86, borderRadius: 43, backgroundColor: colors.surfaceWarm, borderWidth: 4, borderColor: colors.yellow, alignSelf: 'center', alignItems: 'center', justifyContent: 'center' }, badgeIcon: { fontSize: 42 }, category: { ...type.heading, color: colors.coralDark, fontSize: 11, textAlign: 'center', marginTop: spacing.md }, eyebrow: { ...type.heading, color: colors.skyDark, fontSize: 10, letterSpacing: 1.2, textAlign: 'center', marginTop: spacing.xs }, title: { ...type.display, fontSize: 29, textAlign: 'center', marginTop: spacing.xs },
   card: { borderRadius: radius.xl, backgroundColor: colors.white, borderWidth: 2, borderColor: colors.border, padding: spacing.xl, alignItems: 'center', marginTop: spacing.xl }, scoreLabel: { ...type.heading, color: colors.inkSoft, fontSize: 9, letterSpacing: 1 }, score: { ...type.display, color: colors.skyDark, fontSize: 50 }, max: { ...type.regular, color: colors.inkSoft, fontSize: 11 }, rule: { alignSelf: 'stretch', height: 1, backgroundColor: colors.border, marginVertical: spacing.lg }, stats: { flexDirection: 'row', alignSelf: 'stretch', alignItems: 'center' }, stat: { flex: 1, alignItems: 'center' }, statValue: { ...type.display, fontSize: 18 }, statLabel: { ...type.regular, color: colors.inkSoft, fontSize: 9, marginTop: 3 }, divider: { width: 1, height: 38, backgroundColor: colors.border },
   practiceNote: { ...type.regular, color: colors.inkSoft, fontSize: 11, textAlign: 'center', marginTop: spacing.md }, actions: { gap: spacing.md, marginTop: spacing.xl },

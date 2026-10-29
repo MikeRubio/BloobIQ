@@ -17,4 +17,10 @@ describe('rewarded ad gate', () => {
     await runRewardedAd(new SimulatedRewardedAdService('earned', 0, true), onEarned);
     expect(onEarned).toHaveBeenCalledTimes(1);
   });
+
+  it('handles close arriving just before the earned callback', async () => {
+    const onEarned = vi.fn();
+    await expect(runRewardedAd(new SimulatedRewardedAdService('earned', 0, false, true), onEarned)).resolves.toBe('earned');
+    expect(onEarned).toHaveBeenCalledTimes(1);
+  });
 });

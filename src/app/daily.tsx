@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, AppState, Pressable, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Image, type ImageSource } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -7,6 +7,7 @@ import { flagAssets } from '@/content/flag-assets';
 import { localDeadline } from '@/daily/time';
 import { useFeedback } from '@/hooks/use-feedback';
 import { useGameTimer } from '@/hooks/use-game-timer';
+import { useDailyStateLifecycle } from '@/hooks/use-daily-state';
 import type { DailyRound } from '@/backend/types';
 import { useDailyStore } from '@/store/daily-store';
 import { useProfileStore } from '@/store/profile-store';
@@ -16,7 +17,7 @@ import { getQuizAssetUrl } from '@/backend/supabase';
 import { colors, radius, shadow, spacing, type } from '@/theme/tokens';
 
 const optionEdges = [colors.sky, colors.coral, colors.mintDark, colors.lilac];
-type LocalFeedback = { round: DailyRound; choiceId: string | null; correctChoiceId: string | null; correctLabel: string | null; isCorrect: boolean; points: number };
+type LocalFeedback = { round: DailyRound; choiceId: string | null; correctChoiceId: string | null; correctLabel: string | null; isCorrect: boolean; points: number; revealAssetPath: string | null };
 
 export default function DailyGameScreen() {
   const { practice, category } = useLocalSearchParams<{ practice?: string; category?: string }>();
@@ -24,8 +25,10 @@ export default function DailyGameScreen() {
   const categoryId = normalizeQuizCategory(category);
   const copy = quizCategoryCopy[categoryId];
   const profile = useProfileStore((state) => state.profile);
+  const hydrated = useProfileStore((state) => state.hydrated);
   const snapshot = useDailyStore((state) => state.snapshot);
   const status = useDailyStore((state) => state.status);
+  const message = useDailyStore((state) => state.message);
   const activeCategoryId = useDailyStore((state) => state.activeCategoryId);
   const rankedFeedback = useDailyStore((state) => state.feedback);
   const submit = useDailyStore((state) => state.submit);
@@ -37,6 +40,7 @@ export default function DailyGameScreen() {
   const [practiceCorrect, setPracticeCorrect] = useState(0);
   const [practiceDeadline, setPracticeDeadline] = useState(() => Date.now() + 10_000);
   const [practiceFeedback, setPracticeFeedback] = useState<LocalFeedback | null>(null);
+  useDailyStateLifecycle({ categoryId, enabled: hydrated && !isPractice, profile });
 
   const categorySnapshot = snapshot?.categoryId === categoryId ? snapshot : null;
   const categoryFeedback = activeCategoryId === categoryId ? rankedFeedback : null;
@@ -57,22 +61,16 @@ export default function DailyGameScreen() {
   const correctName = feedback?.correctLabel ?? round?.options.find((option) => option.id === correctChoiceId)?.label;
   const assetSource = useMemo<ImageSource | number | undefined>(() => {
     if (!round) return undefined;
-    const remoteUrl = round.assetPath ? getQuizAssetUrl(round.assetPath) : null;
+    const assetPath = feedback?.revealAssetPath ?? (feedback ? round.revealAssetPath : null) ?? round.assetPath;
+    const remoteUrl = assetPath ? getQuizAssetUrl(assetPath) : null;
     return remoteUrl ? { uri: remoteUrl } : flagAssets[round.assetKey];
-  }, [round]);
+  }, [feedback, round]);
 
   useEffect(() => {
+    if (!hydrated || (!categorySnapshot && (status === 'idle' || status === 'loading'))) return;
     if (isPractice && categorySnapshot && practiceRounds.length === 0) router.replace({ pathname: '/daily-results', params: { category: categoryId } });
     if (!isPractice && !categorySnapshot) router.replace({ pathname: '/daily-intro', params: { category: categoryId } });
-  }, [categoryId, categorySnapshot, isPractice, practiceRounds.length]);
-
-  useEffect(() => {
-    if (isPractice) return;
-    const subscription = AppState.addEventListener('change', (next) => {
-      if (next === 'active') void load(backendProfileFromLocal(profile), categoryId);
-    });
-    return () => subscription.remove();
-  }, [categoryId, isPractice, load, profile]);
+  }, [categoryId, categorySnapshot, hydrated, isPractice, practiceRounds.length, status]);
 
   useEffect(() => {
     if (!feedback) return;
@@ -100,7 +98,7 @@ export default function DailyGameScreen() {
     const isCorrect = Boolean(choiceId && choiceId === current.correctChoiceId);
     if (isCorrect) { setPracticeScore((value) => value + 100); setPracticeCorrect((value) => value + 1); }
     const correctLabel = current.options.find((option) => option.id === current.correctChoiceId)?.label ?? null;
-    setPracticeFeedback({ round: current, choiceId, correctChoiceId: current.correctChoiceId ?? null, correctLabel, isCorrect, points: isCorrect ? 100 : 0 });
+    setPracticeFeedback({ round: current, choiceId, correctChoiceId: current.correctChoiceId ?? null, correctLabel, isCorrect, points: isCorrect ? 100 : 0, revealAssetPath: current.revealAssetPath ?? null });
   }, [practiceFeedback, practiceIndex, practiceRounds]);
 
   const timeout = useCallback(() => {
@@ -113,7 +111,8 @@ export default function DailyGameScreen() {
     if (isPractice) answerPractice(choiceId); else void submit(choiceId);
   };
 
-  if (!round) return <View style={styles.loading}><ActivityIndicator color={colors.sky} size="large" /></View>;
+  if (!round && (status === 'error' || status === 'unconfigured')) return <View style={styles.loading}><Text accessibilityRole="alert" style={styles.loadErrorTitle}>Ranked challenge unavailable</Text><Text style={styles.loadErrorBody}>{message ?? 'Check your connection and try again.'}</Text><Pressable accessibilityRole="button" onPress={() => void load(backendProfileFromLocal(profile), categoryId)} style={styles.loadAction}><Text style={styles.loadActionText}>Retry</Text></Pressable><Pressable accessibilityRole="button" onPress={() => router.back()} style={styles.loadAction}><Text style={styles.loadActionText}>Back</Text></Pressable></View>;
+  if (!round) return <View style={styles.loading}><ActivityIndicator color={colors.sky} size="large" /><Text style={styles.loadingText}>Loading ranked challenge…</Text></View>;
 
   return (
     <View style={styles.root}>
@@ -129,7 +128,7 @@ export default function DailyGameScreen() {
         <View style={styles.content}>
           <Text style={styles.prompt}>{copy.prompt}</Text>
           <View style={[styles.flagCard, styles.flagStage, shadow.card]}>
-            {assetSource ? <Image cachePolicy="memory-disk" contentFit="contain" source={assetSource} style={styles.flag} /> : <Text style={styles.assetError}>Image unavailable</Text>}
+            {assetSource ? <Image accessibilityLabel={feedback && correctName ? `${correctName} identity artwork` : `${copy.label} question symbol ${questionIndex + 1}`} cachePolicy="memory-disk" contentFit="contain" source={assetSource} style={styles.flag} /> : <Text style={styles.assetError}>Image unavailable</Text>}
             {feedback ? <View style={[styles.feedbackBadge, feedback.isCorrect ? styles.correctBadge : styles.wrongBadge]}><Text style={styles.feedbackText}>{feedback.isCorrect ? '✓  +100' : '0 POINTS'}</Text></View> : null}
           </View>
           <View style={styles.answers}>{round.options.map((option, index) => {
@@ -152,6 +151,7 @@ const styles = StyleSheet.create({
   timerRow: { flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: spacing.lg, marginTop: spacing.md }, timerHint: { ...type.regular, color: colors.inkSoft, fontSize: 10 }, timerNumber: { ...type.display, fontSize: 18 }, timerTrack: { height: 9, marginHorizontal: spacing.lg, marginTop: 5, backgroundColor: colors.border, borderRadius: radius.round, overflow: 'hidden' }, timerFill: { height: '100%', borderRadius: radius.round },
   content: { flex: 1, width: '100%', maxWidth: 560, alignSelf: 'center', paddingHorizontal: spacing.lg, justifyContent: 'center' }, prompt: { ...type.display, textAlign: 'center', fontSize: 21, marginBottom: spacing.md }, flagCard: { height: 205, borderRadius: radius.xl, backgroundColor: colors.white, borderWidth: 2, borderColor: colors.border, padding: spacing.xl, alignItems: 'center', justifyContent: 'center' }, flagStage: { backgroundColor: colors.flagStage, borderColor: colors.flagStageBorder }, flag: { width: '100%', height: '100%' },
   assetError: { ...type.heading, color: colors.inkSoft, fontSize: 13 },
+  loadingText: { ...type.regular, color: colors.inkSoft, fontSize: 12, marginTop: spacing.md }, loadErrorTitle: { ...type.heading, color: colors.coralDark, fontSize: 18 }, loadErrorBody: { ...type.regular, color: colors.inkSoft, fontSize: 12, textAlign: 'center', marginTop: spacing.sm, maxWidth: 320 }, loadAction: { minWidth: 160, minHeight: 48, borderRadius: radius.md, backgroundColor: colors.white, borderWidth: 2, borderColor: colors.border, alignItems: 'center', justifyContent: 'center', marginTop: spacing.md }, loadActionText: { ...type.heading, color: colors.skyDark, fontSize: 13 },
   feedbackBadge: { position: 'absolute', bottom: -14, borderRadius: radius.round, paddingHorizontal: spacing.lg, paddingVertical: 7, borderWidth: 3, borderColor: colors.white }, correctBadge: { backgroundColor: colors.mintDark }, wrongBadge: { backgroundColor: colors.coral }, feedbackText: { ...type.heading, color: colors.white, fontSize: 12 },
   answers: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.md, marginTop: spacing.xxl }, answer: { width: '48%', minHeight: 80, borderRadius: radius.lg, borderWidth: 2, borderBottomWidth: 6, borderColor: colors.border, backgroundColor: colors.white, padding: spacing.md, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: spacing.sm }, answerText: { ...type.heading, fontSize: 14, textAlign: 'center', flexShrink: 1 }, correctAnswer: { backgroundColor: colors.successPale, borderColor: colors.mintDark, borderBottomColor: colors.mintDark }, wrongAnswer: { backgroundColor: colors.dangerPale, borderColor: colors.coral, borderBottomColor: colors.coral }, dimAnswer: { opacity: 0.45 }, mark: { ...type.display, color: colors.mintDark }, wrongMark: { color: colors.coral },
   note: { ...type.regular, color: colors.inkSoft, fontSize: 10, textAlign: 'center', marginTop: spacing.lg }, reveal: { ...type.regular, color: colors.inkSoft, fontSize: 12, textAlign: 'center', marginTop: spacing.lg }, revealStrong: { ...type.heading, color: colors.ink }, retry: { marginTop: spacing.md, borderRadius: radius.sm, padding: spacing.sm, backgroundColor: colors.dangerPale }, retryText: { ...type.heading, color: colors.coralDark, fontSize: 11, textAlign: 'center' },

@@ -1,7 +1,7 @@
 begin;
 
 create extension if not exists pgtap with schema extensions;
-select plan(47);
+select plan(57);
 
 select ok((select relrowsecurity from pg_class where oid = 'public.guest_profiles'::regclass), 'profiles use RLS');
 select ok((select relrowsecurity from pg_class where oid = 'public.daily_attempts'::regclass), 'attempts use RLS');
@@ -18,6 +18,9 @@ select ok((select relrowsecurity from pg_class where oid = 'private.quiz_content
 select is((select count(*) from private.quiz_content where content_version = 'flags-195-v1'), 195::bigint, 'hosted flag pack contains 195 sovereign states');
 select is((select count(*) from private.quiz_content where content_version = 'football-v1'), 17::bigint, 'hosted football pack contains all requested identities');
 select is((select count(*) from private.quiz_content where content_version = 'football-v1' and rights_status = 'trademark_reviewed_approved'), 17::bigint, 'all football identities record project-owner approval');
+select is((select count(*) from private.quiz_content where content_version = 'football-symbols-v2'), 10::bigint, 'active football pack has ten eligible symbol identities');
+select is((select current_content_version from public.categories where id = 'football'), 'football-symbols-v2', 'football category selects the symbol-only pack');
+select ok((select bool_and(asset_path <> reveal_asset_path and metadata->>'questionAssetRole' = 'symbol_only_quiz_variant' and metadata->>'revealAssetRole' = 'complete_original_identity') from private.quiz_content where content_version = 'football-symbols-v2'), 'football questions and reveals have separate recorded roles');
 select is((select count(*) from private.quiz_content where content_version = 'baseball-mlb-v1'), 30::bigint, 'hosted baseball pack contains all current MLB teams');
 select is((select count(*) from private.quiz_content where content_version = 'basketball-nba-v1'), 30::bigint, 'hosted basketball pack contains all current NBA teams');
 select is((select count(*) from private.quiz_content where content_version = 'baseball-mlb-v1' and rights_status = 'trademark_review_required'), 30::bigint, 'MLB trademarks remain explicitly pending production review');
@@ -47,6 +50,37 @@ select is(
   (select count(*) from private.daily_challenge_rounds),
   'every persisted round has a hosted asset path'
 );
+select is(
+  (select count(*) from private.daily_challenge_rounds where reveal_asset_path is not null),
+  (select count(*) from private.daily_challenge_rounds),
+  'every persisted round has reveal artwork'
+);
+select ok(not exists(
+  select 1 from private.daily_challenge_rounds r join public.daily_challenges c on c.id = r.challenge_id
+  where c.category_id = 'football' and c.challenge_date = date '2099-01-02' and r.asset_path = r.reveal_asset_path
+), 'football challenge persists separate question and reveal artwork');
+select ok(not exists(
+  select 1
+  from private.daily_challenge_rounds r
+  join public.daily_challenges c on c.id = r.challenge_id
+  join private.quiz_content correct_item on correct_item.content_version = c.content_version and correct_item.item_id = r.asset_key
+  cross join lateral jsonb_array_elements(r.options) option
+  where c.category_id = 'football' and c.challenge_date = date '2099-01-02'
+    and not exists (
+      select 1 from private.quiz_content candidate
+      where candidate.content_version = c.content_version
+        and candidate.display_name = option->>'label'
+        and candidate.metadata->>'scope' = correct_item.metadata->>'scope'
+    )
+), 'football distractors compare leagues with leagues and confederations with confederations');
+select ok(not exists(
+  select 1 from private.daily_challenge_rounds r join public.daily_challenges c on c.id = r.challenge_id
+  where c.category_id = 'football' and c.challenge_date = date '2099-01-02'
+    and (jsonb_array_length(r.options) <> 4
+      or (select count(distinct option->>'id') from jsonb_array_elements(r.options) option) <> 4
+      or (select count(distinct option->>'label') from jsonb_array_elements(r.options) option) <> 4
+      or (select count(*) from jsonb_array_elements(r.options) option where (option->>'id')::uuid = r.correct_choice_id) <> 1)
+), 'football rounds have four distinct options and exactly one correct choice');
 
 select is(private.ensure_daily_challenge('flags', date '2099-01-02'), private.ensure_daily_challenge('flags', date '2099-01-02'), 'challenge generation is stable');
 select is(
@@ -79,6 +113,10 @@ insert into runtime_snapshots values ('start', public.start_daily_attempt('flags
 select is((select snapshot->>'state' from runtime_snapshots where label = 'start'), 'in_progress', 'authenticated player starts a ranked attempt');
 select is((select jsonb_array_length(snapshot->'currentRound'->'options') from runtime_snapshots where label = 'start'), 4, 'RPC exposes four choices');
 select ok((select not ((snapshot->'currentRound') ? 'correctChoiceId') from runtime_snapshots where label = 'start'), 'RPC does not expose the correct choice');
+select ok((select not ((snapshot->'currentRound') ? 'revealAssetPath') from runtime_snapshots where label = 'start'), 'RPC hides complete reveal artwork while answering');
+select ok((select not exists(
+  select 1 from private.quiz_content q where q.item_id = snapshot->'currentRound'->>'assetKey'
+) from runtime_snapshots where label = 'start'), 'RPC uses an opaque question asset key');
 
 insert into runtime_snapshots
 select 'answer', public.submit_daily_answer(
@@ -98,6 +136,7 @@ select 'retry', public.submit_daily_answer(
 select is((select (snapshot->>'questionIndex')::integer from runtime_snapshots where label = 'retry'), 1, 'retrying a request does not advance twice');
 select is((select (snapshot->'lastAnswer'->>'questionIndex')::integer from runtime_snapshots where label = 'retry'), 0, 'idempotent retry returns the original feedback');
 select ok((select (snapshot->'lastAnswer') ? 'correctChoiceId' from runtime_snapshots where label = 'retry'), 'answer feedback reveals the correct choice only after submission');
+select ok((select (snapshot->'lastAnswer') ? 'revealAssetPath' from runtime_snapshots where label = 'retry'), 'answer feedback reveals the complete identity artwork');
 select throws_ok(
   $$update public.daily_attempts set score = 1000$$,
   '42501',

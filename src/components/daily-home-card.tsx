@@ -1,7 +1,7 @@
-import { backendProfileFromLocal } from "@/backend/profile-migration";
 import type { QuizCategoryId } from "@/backend/types";
 import { quizzesForMode } from "@/content/quiz-catalog";
 import { formatCountdown } from "@/daily/time";
+import { useDailyStateLifecycle } from "@/hooks/use-daily-state";
 import { useDailyStore } from "@/store/daily-store";
 import { useProfileStore } from "@/store/profile-store";
 import { colors, radius, shadow, spacing, type } from "@/theme/tokens";
@@ -16,32 +16,12 @@ export function DailyHomeCard() {
   const hydrated = useProfileStore((state) => state.hydrated);
   const status = useDailyStore((state) => state.status);
   const snapshot = useDailyStore((state) => state.snapshot);
-  const activeCategoryId = useDailyStore((state) => state.activeCategoryId);
   const message = useDailyStore((state) => state.message);
   const load = useDailyStore((state) => state.load);
   const [selectedQuizId, setSelectedQuizId] = useState<QuizCategoryId>("flags");
   const [, refreshClock] = useState(0);
 
-  useEffect(() => {
-    if (
-      !hydrated ||
-      (status === "loading" && activeCategoryId === selectedQuizId)
-    )
-      return;
-    if (
-      activeCategoryId !== selectedQuizId ||
-      snapshot?.categoryId !== selectedQuizId
-    )
-      void load(backendProfileFromLocal(profile), selectedQuizId);
-  }, [
-    activeCategoryId,
-    hydrated,
-    load,
-    profile,
-    selectedQuizId,
-    snapshot?.categoryId,
-    status,
-  ]);
+  useDailyStateLifecycle({ categoryId: selectedQuizId, enabled: hydrated, profile });
   useEffect(() => {
     const timer = setInterval(() => refreshClock((value) => value + 1), 1000);
     return () => clearInterval(timer);
@@ -77,12 +57,12 @@ export function DailyHomeCard() {
     ? formatCountdown(selectedSnapshot.resetAt)
     : null;
   const body =
-    status === "loading" || !selectedSnapshot
-      ? "Checking today’s challenge…"
-      : status === "unconfigured"
-        ? "Ranked backend setup needed"
-        : status === "error"
-          ? (message ?? "Ranked service unavailable")
+    status === "unconfigured"
+      ? "Ranked backend setup needed"
+      : status === "error"
+        ? (message ?? "Ranked service unavailable")
+        : status === "loading" || !selectedSnapshot
+          ? "Checking today’s challenge…"
           : attemptState === "completed"
             ? `${selectedSnapshot.score}/1000 · Rank ${selectedSnapshot.rank ?? "pending"}`
             : attemptState === "in_progress"
@@ -148,7 +128,7 @@ export function DailyHomeCard() {
           onPress={
             status === "error"
               ? () =>
-                  void load(backendProfileFromLocal(profile), selectedQuizId)
+                  void load({ name: profile.name, avatar: profile.avatar, color: profile.color }, selectedQuizId)
               : open
           }
           style={[styles.action, status === "loading" && styles.disabled]}

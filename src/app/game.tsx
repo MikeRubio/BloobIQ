@@ -9,8 +9,9 @@ import { flagAssets } from '@/content/flag-assets';
 import { getQuiz, quizPath } from '@/content/quiz-catalog';
 import { quizCategoryCopy } from '@/backend/categories';
 import { useFeedback } from '@/hooks/use-feedback';
+import { useAdsRuntime } from '@/hooks/use-ads-runtime';
 import { useGameTimer } from '@/hooks/use-game-timer';
-import { runRewardedAd, SimulatedRewardedAdService, type RewardedAdEvent } from '@/services/rewarded-ad';
+import { adsRuntime } from '@/services/ads-runtime';
 import { useGameStore } from '@/store/game-store';
 import { useProfileStore } from '@/store/profile-store';
 import { colors, motion, radius, shadow, spacing, type } from '@/theme/tokens';
@@ -37,7 +38,6 @@ export default function GameScreen() {
   const [appActive, setAppActive] = useState(AppState.currentState === 'active');
   const loadedQuestionId = useRef<string | null>(null);
   const [imageState, setImageState] = useState({ questionId: '', failed: false, retry: 0 });
-  const [simulatedOutcome, setSimulatedOutcome] = useState<RewardedAdEvent>('earned');
   const forceReduced = useProfileStore((state) => state.settings.reducedMotion);
   const systemReduced = useReducedMotion();
   const reduced = forceReduced || systemReduced;
@@ -71,7 +71,7 @@ export default function GameScreen() {
   }, [advance, appActive, feedback, phase]);
 
   useEffect(() => {
-    if (phase === 'complete') router.replace('/results');
+    if (phase === 'complete') { adsRuntime.resetRun(); router.replace('/results'); }
   }, [phase]);
 
   useEffect(() => {
@@ -90,6 +90,7 @@ export default function GameScreen() {
 
   const imageFailed = imageState.questionId === question?.id && imageState.failed;
   const imageRetry = imageState.questionId === question?.id ? imageState.retry : 0;
+  const displayedAssetUri = feedback ? (question?.revealAssetUri ?? question?.assetUri) : question?.assetUri;
   const imageLoaded = () => {
     if (!question) return;
     loadedQuestionId.current = question.id;
@@ -112,7 +113,7 @@ export default function GameScreen() {
 
   const animatedCard = useAnimatedStyle(() => ({ transform: [{ translateX: cardX.value }, { scale: cardScale.value }] }));
   const quiz = getQuiz(categoryId);
-  const exit = () => { reset(); router.replace(quizPath(quiz.id)); };
+  const exit = () => { adsRuntime.resetRun(); reset(); router.replace(quizPath(quiz.id)); };
 
   if (!round || !question) return <View style={styles.loading}><ActivityIndicator color={colors.sky} size="large" /></View>;
 
@@ -136,13 +137,13 @@ export default function GameScreen() {
           <Text style={styles.prompt}>{quizCategoryCopy[quiz.id].prompt}</Text>
           <Animated.View style={[styles.flagCard, styles.flagStage, shadow.card, animatedCard]}>
             <Image
-              accessibilityLabel={`${quiz.label} question artwork ${currentIndex + 1}`}
+               accessibilityLabel={feedback ? `${question.displayName} identity artwork` : `${quiz.label} question symbol ${currentIndex + 1}`}
               cachePolicy="memory-disk"
               contentFit="contain"
-              key={`${question.id}:${imageRetry}`}
+               key={`${question.id}:${feedback ? 'reveal' : 'question'}:${imageRetry}`}
               onError={() => setImageState((current) => ({ questionId: question.id, failed: true, retry: current.questionId === question.id ? current.retry : 0 }))}
               onLoad={imageLoaded}
-              source={question.assetUri ? { uri: question.assetUri } : flagAssets[question.assetKey]}
+               source={displayedAssetUri ? { uri: displayedAssetUri } : flagAssets[question.assetKey]}
               style={styles.flag}
             />
             {phase === 'loading' && !imageFailed ? <View style={styles.imageStatus}><ActivityIndicator color={colors.sky} /><Text style={styles.imageStatusText}>Preparing question…</Text></View> : null}
@@ -185,29 +186,44 @@ export default function GameScreen() {
           {feedback && feedback.kind !== 'correct' ? <Text style={styles.reveal}>Correct answer: <Text style={styles.revealStrong}>{question.displayName}</Text></Text> : <Text style={styles.hint}>Choose one answer before time runs out</Text>}
         </ScrollView>
       </SafeAreaView>
-      <ReviveModal outcome={simulatedOutcome} setOutcome={setSimulatedOutcome} />
+      <ReviveModal />
     </View>
   );
 }
 
-function ReviveModal({ outcome, setOutcome }: { outcome: RewardedAdEvent; setOutcome: (value: RewardedAdEvent) => void }) {
+function ReviveModal() {
   const phase = useGameStore((state) => state.phase);
+  const runId = useGameStore((state) => state.runId);
+  const categoryId = useGameStore((state) => state.categoryId);
   const message = useGameStore((state) => state.adMessage);
   const startAd = useGameStore((state) => state.startAd);
   const adDidNotReward = useGameStore((state) => state.adDidNotReward);
   const finish = useGameStore((state) => state.finish);
+  const ads = useAdsRuntime();
   const { correct } = useFeedback();
   const visible = phase === 'revive-offer' || phase === 'ad-in-progress';
-  const loading = phase === 'ad-in-progress';
+  const showing = phase === 'ad-in-progress';
+
+  useEffect(() => {
+    if (phase === 'revive-offer') void adsRuntime.prepare(runId, categoryId);
+  }, [categoryId, phase, runId]);
 
   const watch = async () => {
+    if (ads.lifecycle !== 'ready') {
+      await adsRuntime.prepare(runId, categoryId);
+      return;
+    }
     startAd();
-    const service = new SimulatedRewardedAdService(outcome);
-    const result = await runRewardedAd(service, () => useGameStore.getState().revive());
+    const result = await adsRuntime.show(() => useGameStore.getState().revive());
     if (result === 'earned') correct();
-    if (result === 'cancelled') adDidNotReward('Simulator cancelled. No revive was granted—try again or finish.');
-    if (result === 'failed') adDidNotReward('Simulator failed. No revive was granted—try again or finish.');
+    if (result === 'cancelled') adDidNotReward('The ad closed before the reward was earned. Try again or finish.');
+    if (result === 'failed') adDidNotReward('The ad could not be shown. Try again or finish.');
   };
+
+  const preparing = ads.lifecycle === 'loading';
+  const canWatch = ads.lifecycle === 'ready';
+  const retryable = ads.lifecycle === 'failed';
+  const buttonLabel = preparing ? 'Loading Ad…' : canWatch ? 'Watch & Revive' : retryable ? 'Try Ad Again' : 'Ad Unavailable';
 
   return (
     <Modal animationType="fade" onRequestClose={() => undefined} transparent visible={visible}>
@@ -215,21 +231,12 @@ function ReviveModal({ outcome, setOutcome }: { outcome: RewardedAdEvent; setOut
         <View style={[styles.reviveCard, shadow.card]}>
           <View style={styles.heartCircle}><Text style={styles.bigHeart}>♥</Text></View>
           <Text style={styles.reviveTitle}>One more chance?</Text>
-          <Text style={styles.reviveBody}>Revive with one heart and continue on the next question.</Text>
-          <View style={styles.simulatorBox}>
-            <Text style={styles.simulatorTitle}>DEVELOPMENT AD SIMULATOR</Text>
-            <Text style={styles.simulatorBody}>This is not a real advertisement. Pick a test outcome:</Text>
-            <View style={styles.outcomeRow}>
-              {(['earned', 'cancelled', 'failed'] as RewardedAdEvent[]).map((value) => (
-                <Pressable disabled={loading} key={value} onPress={() => setOutcome(value)} style={[styles.outcomeChip, outcome === value && styles.outcomeChipActive]}>
-                  <Text style={[styles.outcomeText, outcome === value && styles.outcomeTextActive]}>{value === 'earned' ? 'Success' : value === 'cancelled' ? 'Cancel' : 'Failure'}</Text>
-                </Pressable>
-              ))}
-            </View>
-          </View>
+          <Text style={styles.reviveBody}>Watch an optional rewarded ad to revive with one heart and continue on the next question.</Text>
+          {ads.isTest ? <View style={styles.testAdBox}><Text style={styles.testAdTitle}>GOOGLE TEST AD</Text><Text style={styles.testAdBody}>This build never requests production inventory.</Text></View> : null}
           {message ? <Text style={styles.adMessage}>{message}</Text> : null}
-          <GameButton disabled={loading} label={loading ? 'Simulating…' : 'Watch & Revive'} onPress={() => void watch()} variant="coral" icon={loading ? <ActivityIndicator color={colors.white} /> : <Text style={styles.videoIcon}>▶</Text>} />
-          <Pressable disabled={loading} onPress={() => finish()} style={styles.finishLink}><Text style={styles.finishLinkText}>Finish Run</Text></Pressable>
+          {!message ? <Text style={styles.adStatus}>{ads.message}</Text> : null}
+          <GameButton disabled={showing || (!canWatch && !retryable)} label={showing ? 'Ad in progress…' : buttonLabel} onPress={() => void watch()} variant="coral" icon={(preparing || showing) ? <ActivityIndicator color={colors.white} /> : <Text style={styles.videoIcon}>▶</Text>} />
+          <Pressable disabled={showing} onPress={() => finish()} style={styles.finishLink}><Text style={styles.finishLinkText}>Finish Run</Text></Pressable>
         </View>
       </View>
     </Modal>
@@ -256,6 +263,6 @@ const styles = StyleSheet.create({
   hint: { ...type.regular, color: colors.inkSoft, textAlign: 'center', fontSize: 11, marginTop: spacing.lg }, reveal: { ...type.regular, color: colors.inkSoft, textAlign: 'center', fontSize: 13, marginTop: spacing.lg }, revealStrong: { ...type.heading, color: colors.ink },
   modalOverlay: { flex: 1, backgroundColor: colors.overlay, padding: spacing.lg, alignItems: 'center', justifyContent: 'center' }, reviveCard: { width: '100%', maxWidth: 440, borderRadius: radius.xl, backgroundColor: colors.white, padding: spacing.xl, alignItems: 'stretch' },
   heartCircle: { width: 74, height: 74, borderRadius: 37, backgroundColor: colors.dangerPale, alignSelf: 'center', alignItems: 'center', justifyContent: 'center', marginTop: -60, borderWidth: 5, borderColor: colors.white }, bigHeart: { color: colors.coral, fontSize: 38 }, reviveTitle: { ...type.display, textAlign: 'center', fontSize: 25, marginTop: spacing.md }, reviveBody: { ...type.regular, color: colors.inkSoft, textAlign: 'center', fontSize: 13, lineHeight: 18, marginTop: spacing.xs, marginBottom: spacing.lg },
-  simulatorBox: { backgroundColor: colors.skyPale, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.md }, simulatorTitle: { ...type.heading, color: colors.skyDark, fontSize: 10, letterSpacing: 0.7 }, simulatorBody: { ...type.regular, color: colors.inkSoft, fontSize: 11, marginTop: 2 }, outcomeRow: { flexDirection: 'row', gap: spacing.sm, marginTop: spacing.md }, outcomeChip: { flex: 1, minHeight: 38, borderRadius: radius.sm, backgroundColor: colors.white, borderWidth: 2, borderColor: colors.border, alignItems: 'center', justifyContent: 'center' }, outcomeChipActive: { backgroundColor: colors.sky, borderColor: colors.skyDark }, outcomeText: { ...type.heading, color: colors.inkSoft, fontSize: 11 }, outcomeTextActive: { color: colors.white },
-  adMessage: { ...type.regular, color: colors.coralDark, backgroundColor: colors.dangerPale, borderRadius: radius.sm, padding: spacing.sm, fontSize: 11, textAlign: 'center', marginBottom: spacing.md }, videoIcon: { color: colors.white, fontSize: 15 }, finishLink: { minHeight: 48, alignItems: 'center', justifyContent: 'center', marginTop: spacing.sm }, finishLinkText: { ...type.heading, color: colors.inkSoft, fontSize: 14, textDecorationLine: 'underline' },
+  testAdBox: { backgroundColor: colors.skyPale, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.md }, testAdTitle: { ...type.heading, color: colors.skyDark, fontSize: 10, letterSpacing: 0.7 }, testAdBody: { ...type.regular, color: colors.inkSoft, fontSize: 11, marginTop: 2 },
+  adMessage: { ...type.regular, color: colors.coralDark, backgroundColor: colors.dangerPale, borderRadius: radius.sm, padding: spacing.sm, fontSize: 11, textAlign: 'center', marginBottom: spacing.md }, adStatus: { ...type.regular, color: colors.inkSoft, fontSize: 11, textAlign: 'center', marginBottom: spacing.md }, videoIcon: { color: colors.white, fontSize: 15 }, finishLink: { minHeight: 48, alignItems: 'center', justifyContent: 'center', marginTop: spacing.sm }, finishLinkText: { ...type.heading, color: colors.inkSoft, fontSize: 14, textDecorationLine: 'underline' },
 });

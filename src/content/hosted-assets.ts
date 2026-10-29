@@ -1,21 +1,27 @@
 export const footballAssetPaths = [
-  'football-v1/afc.png',
-  'football-v1/brasileirao-serie-a.png',
-  'football-v1/bundesliga.png',
+  'football-symbols-v2/q-01.svg',
+  'football-symbols-v2/q-02.svg',
+  'football-symbols-v2/q-03.svg',
+  'football-symbols-v2/q-04.svg',
+  'football-symbols-v2/q-05.svg',
+  'football-symbols-v2/q-06.svg',
+  'football-symbols-v2/q-07.svg',
+  'football-symbols-v2/q-08.svg',
+  'football-symbols-v2/q-09.svg',
+  'football-symbols-v2/q-10.svg',
+] as const;
+
+export const footballRevealAssetPaths = [
+  'football-v1/uefa.png',
   'football-v1/caf.png',
   'football-v1/concacaf.png',
   'football-v1/conmebol.png',
-  'football-v1/j1-league.jpg',
-  'football-v1/k-league-1.png',
-  'football-v1/la-liga.png',
-  'football-v1/liga-mx.png',
-  'football-v1/ligue-1.png',
-  'football-v1/major-league-soccer.png',
-  'football-v1/ofc.png',
   'football-v1/premier-league.png',
+  'football-v1/la-liga.png',
+  'football-v1/bundesliga.png',
+  'football-v1/major-league-soccer.png',
+  'football-v1/brasileirao-serie-a.png',
   'football-v1/saudi-pro-league.png',
-  'football-v1/serie-a.png',
-  'football-v1/uefa.png',
 ] as const;
 
 export const baseballAssetPaths = [
@@ -98,7 +104,7 @@ export const flagAssetPaths = flagCodes.map((code) => `flags-195-v1/${code}.png`
 
 export const hostedAssetPathsByQuiz = {
   flags: flagAssetPaths,
-  football: footballAssetPaths,
+  football: [...footballAssetPaths, ...footballRevealAssetPaths],
   baseball: baseballAssetPaths,
   basketball: basketballAssetPaths,
 } as const;
