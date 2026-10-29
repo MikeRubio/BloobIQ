@@ -1,0 +1,14 @@
+{
+  "tool": "built-in Imagegen",
+  "date": "2026-10-29",
+  "reference": "User-supplied screenshot of the existing BloopIQ splash mark; screenshot itself is not redistributed.",
+  "prompt": "Use case: logo-brand. Asset type: production transparent master brand symbol for BloopIQ, a colourful mobile quiz game. The attached PHONE SCREENSHOT is a style and identity reference only. Recreate and refine ONLY its glossy jelly question-mark emblem at high resolution, with clean antialiased edges and a genuinely transparent background. Keep the recognisable three-piece curved question-mark silhouette: thick rounded cyan/electric-blue upper arc, rounded coral-red upper-right shoulder, warm sunshine-yellow descending hook, plus the detached spherical cyan-blue dot underneath. The rounded segments join into one coherent readable question mark; do not add extra marks or characters. Friendly polished 3D inflated gel/plastic, luminous smooth colour, clean white specular highlights, restrained soft self-shading, readable at small app-icon scale. Preserve its existing colour arrangement and upright orientation. Centre a single emblem in a square canvas with transparent margins, approximately 70% of canvas height, entirely uncropped. No cast shadow outside the emblem. No words, no BloopIQ text, no screenshot, no phone, no status bar, no frame, no tile, no background, no checkerboard graphic, no stars or extra decorations. Deliver one isolated high-resolution transparent PNG master, ideally 2048x2048.",
+  "actualMasterDimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "exportPipeline": "scripts/generate-brand-assets.mjs",
+  "wordmarkPipeline": "scripts/generate-brand-type.py",
+  "font": "Nunito 900Black and 600SemiBold from the existing @expo-google-fonts/nunito dependency; SVG text converted to paths.",
+  "fontLicense": "Nunito-OFL.txt"
+}

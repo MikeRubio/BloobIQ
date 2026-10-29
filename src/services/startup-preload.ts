@@ -9,7 +9,7 @@ export type PreloadProgress = { completed: number; total: number; label: string 
 
 const bundledAssets = [
   ...Object.values(flagAssets),
-  require('../../assets/images/bloopiq-splash-mark.png'),
+  require('../../assets/branding/mark.png'),
   require('../../assets/sounds/correct.wav'),
   require('../../assets/sounds/wrong.wav'),
 ];

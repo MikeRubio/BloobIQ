@@ -46,6 +46,7 @@
     "@types/react": "~19.3.0",
     "eslint": "^9.0.0",
     "eslint-config-expo": "~58.0.4",
+    "sharp": "0.35.5",
     "typescript": "~6.0.3",
     "vitest": "^5.0.5"
   },
@@ -60,12 +61,14 @@
     "lint": "expo lint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "check": "npm run typecheck && npm run lint && npm test",
+    "check": "npm run typecheck && npm run lint && npm test && npm run check:branding",
     "generate:sounds": "node ./scripts/generate-sounds.mjs",
     "prepare:quiz-assets": "node ./scripts/prepare-quiz-assets.mjs",
     "db:start": "npx supabase start",
     "db:reset": "npx supabase db reset",
-    "db:test": "npx supabase test db"
+    "db:test": "npx supabase test db",
+    "generate:branding": "node ./scripts/generate-brand-assets.mjs",
+    "check:branding": "node ./scripts/check-brand-assets.mjs"
   },
   "private": true
 }
