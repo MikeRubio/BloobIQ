@@ -20,7 +20,7 @@ describe('quiz catalogue', () => {
     expect(quizzes.flags.bundledCount).toBe(48);
     expect(quizzes.flags.onlineCount).toBe(195);
     expect(quizzes.football.onlineCount).toBe(30);
-    expect(quizzes.baseball.onlineCount).toBe(54);
+    expect(quizzes.baseball.onlineCount).toBe(47);
     expect(quizzes.basketball.onlineCount).toBe(78);
   });
 

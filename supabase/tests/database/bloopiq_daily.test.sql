@@ -1,7 +1,7 @@
 begin;
 
 create extension if not exists pgtap with schema extensions;
-select plan(76);
+select plan(83);
 
 select ok((select relrowsecurity from pg_class where oid = 'public.guest_profiles'::regclass), 'profiles use RLS');
 select ok((select relrowsecurity from pg_class where oid = 'public.daily_attempts'::regclass), 'attempts use RLS');
@@ -29,11 +29,24 @@ select is((select count(*) from private.quiz_content where content_version = 'ba
 select is((select count(*) from private.quiz_content where content_version = 'basketball-nba-v1'), 30::bigint, 'hosted basketball pack contains all current NBA teams');
 select is((select count(*) from private.quiz_content where content_version = 'baseball-mlb-v1' and rights_status = 'trademark_review_required'), 30::bigint, 'MLB trademarks remain explicitly pending production review');
 select is((select count(*) from private.quiz_content where content_version = 'basketball-nba-v1' and rights_status = 'trademark_review_required'), 30::bigint, 'NBA trademarks remain explicitly pending production review');
-select is((select count(*) from private.quiz_content where content_version = 'baseball-global-v2'), 54::bigint, 'active baseball pack combines MLB and Caribbean winter leagues');
-select is((select count(*) from private.quiz_content where content_version = 'baseball-global-v2' and metadata->>'leagueKey' = 'lidom'), 6::bigint, 'baseball pack contains all six LIDOM clubs');
-select is((select count(*) from private.quiz_content where content_version = 'baseball-global-v2' and metadata->>'leagueKey' = 'lvbp'), 8::bigint, 'baseball pack contains all eight LVBP clubs');
-select is((select count(*) from private.quiz_content where content_version = 'baseball-global-v2' and metadata->>'leagueKey' = 'lmp'), 10::bigint, 'baseball pack contains all ten Mexican Pacific clubs');
-select is((select current_content_version from public.categories where id = 'baseball'), 'baseball-global-v2', 'baseball category selects the global pack');
+select is((select count(*) from private.quiz_content where content_version = 'baseball-global-v2'), 54::bigint, 'immutable baseball source pack retains all MLB and winter identities');
+select is((select count(*) from private.quiz_content where content_version = 'baseball-symbols-v3'), 47::bigint, 'active baseball pack has enough curated symbols for daily and friends matches');
+select is((select count(*) from private.quiz_content where content_version = 'baseball-symbols-v3' and metadata->>'leagueKey' = 'lidom'), 6::bigint, 'symbol pack retains six LIDOM clubs');
+select is((select count(*) from private.quiz_content where content_version = 'baseball-symbols-v3' and metadata->>'leagueKey' = 'lvbp'), 6::bigint, 'symbol pack retains six eligible LVBP clubs');
+select is((select count(*) from private.quiz_content where content_version = 'baseball-symbols-v3' and metadata->>'leagueKey' = 'lmp'), 8::bigint, 'symbol pack retains eight eligible Mexican Pacific clubs');
+select is((select count(*) from private.quiz_content where content_version = 'baseball-symbols-v3' and metadata->>'competitionKey' = 'mlb'), 27::bigint, 'symbol pack retains twenty-seven eligible MLB clubs');
+select is((select current_content_version from public.categories where id = 'baseball'), 'baseball-symbols-v3', 'baseball category selects the symbol-only pack');
+select ok((select bool_and(asset_path <> reveal_asset_path and metadata->>'revealAssetRole' = 'complete_official_team_identity') from private.quiz_content where content_version = 'baseball-symbols-v3'), 'baseball questions keep separate question and reveal artwork');
+select ok(not exists(
+  select 1 from private.quiz_content
+  where content_version = 'baseball-symbols-v3'
+    and item_id = any(array[
+      'baseball-athletics', 'baseball-chicago-cubs', 'baseball-chicago-white-sox',
+      'baseball-lvbp-bravos-de-margarita',
+      'baseball-lvbp-caribes-de-anzoategui', 'baseball-lmp-tomateros-de-culiacan',
+      'baseball-lmp-yaquis-de-obregon'
+    ])
+), 'wordmark-only baseball identities are reveal-only and excluded from question selection');
 select is((select count(*) from private.quiz_content where content_version = 'basketball-expanded-v2'), 78::bigint, 'active basketball pack combines logos and four trivia topics');
 select is((select count(*) from private.quiz_content where content_version = 'basketball-expanded-v2' and metadata->>'scope' = 'mascot'), 12::bigint, 'basketball pack contains twelve mascot questions');
 select is((select count(*) from private.quiz_content where content_version = 'basketball-expanded-v2' and metadata->>'scope' = 'arena'), 12::bigint, 'basketball pack contains twelve arena questions');
@@ -41,8 +54,49 @@ select is((select count(*) from private.quiz_content where content_version = 'ba
 select is((select count(*) from private.quiz_content where content_version = 'basketball-expanded-v2' and metadata->>'scope' = 'franchise-legend'), 12::bigint, 'basketball pack contains twelve franchise-legend questions');
 select is((select current_content_version from public.categories where id = 'basketball'), 'basketball-expanded-v2', 'basketball category selects the expanded pack');
 select ok(not exists(
+  select 1
+  from private.quiz_content correct_item
+  cross join lateral jsonb_array_elements(
+    private.quiz_options(correct_item.content_version, correct_item.item_id, 'answer-type-regression')->'options'
+  ) option
+  where correct_item.content_version = 'basketball-expanded-v2'
+    and not exists (
+      select 1
+      from private.quiz_content candidate
+      where candidate.content_version = correct_item.content_version
+        and candidate.display_name = option->>'label'
+        and candidate.metadata->>'scope' is not distinct from correct_item.metadata->>'scope'
+    )
+), 'basketball options always match the question answer type');
+select ok(not exists(
+  select 1
+  from private.quiz_content correct_item
+  cross join lateral jsonb_array_elements(
+    private.quiz_options(correct_item.content_version, correct_item.item_id, 'retired-number-regression')->'options'
+  ) option
+  where correct_item.content_version = 'basketball-expanded-v2'
+    and correct_item.metadata->>'scope' = 'retired-number'
+    and option->>'label' !~ '^No[.] [0-9]+$'
+), 'retired-number questions present four numeric answers');
+select ok(not exists(
+  select 1
+  from private.quiz_content correct_item
+  cross join lateral jsonb_array_elements(
+    private.quiz_options(correct_item.content_version, correct_item.item_id, 'legend-name-regression')->'options'
+  ) option
+  where correct_item.content_version = 'basketball-expanded-v2'
+    and correct_item.metadata->>'scope' = 'franchise-legend'
+    and not exists (
+      select 1
+      from private.quiz_content candidate
+      where candidate.content_version = correct_item.content_version
+        and candidate.display_name = option->>'label'
+        and candidate.metadata->>'scope' = 'franchise-legend'
+    )
+), 'franchise-legend questions present four player names');
+select ok(not exists(
   select 1 from private.quiz_content
-  where content_version in ('baseball-global-v2', 'basketball-expanded-v2')
+  where content_version in ('baseball-symbols-v3', 'basketball-expanded-v2')
     and (coalesce(metadata->>'questionPrompt', '') = '' or coalesce(metadata->>'questionDescription', '') = '')
 ), 'expanded sports questions include prompt and accessibility copy');
 select is((select count(*) from private.flag_content where content_version = 'flags-v1'), 0::bigint, 'legacy Flags v1 content is retired');

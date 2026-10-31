@@ -4,6 +4,7 @@ import { useReducedMotion } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BubbleBackground } from '@/components/bubble-background';
 import { ScreenHeader } from '@/components/screen-header';
+import { PlayerNameEditor } from '@/components/player-name-editor';
 import { useFeedback } from '@/hooks/use-feedback';
 import { useAdsRuntime } from '@/hooks/use-ads-runtime';
 import { adsRuntime } from '@/services/ads-runtime';
@@ -33,6 +34,11 @@ export default function SettingsScreen() {
       <SafeAreaView style={styles.safe}>
         <ScreenHeader title="Settings" subtitle="Make BloopIQ feel right" />
         <ScrollView contentContainerStyle={styles.content}>
+          <View style={[styles.nameCard, shadow.card]}>
+            <Text style={styles.nameTitle}>Your player name</Text>
+            <Text style={styles.nameBody}>Change the name shown on your profile and existing ranked records.</Text>
+            <View style={styles.nameForm}><PlayerNameEditor /></View>
+          </View>
           <View style={[styles.card, shadow.card]}>
             {rows.map((row, index) => (
               <View key={row.key} style={[styles.row, index < rows.length - 1 && styles.divider]}>
@@ -100,6 +106,10 @@ export default function SettingsScreen() {
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: colors.surface }, safe: { flex: 1, paddingHorizontal: spacing.lg }, content: { paddingTop: spacing.lg, paddingBottom: spacing.xxl },
+  nameCard: { backgroundColor: colors.white, borderRadius: radius.lg, padding: spacing.lg, marginBottom: spacing.lg },
+  nameTitle: { ...type.heading, fontSize: 17 },
+  nameBody: { ...type.regular, color: colors.inkSoft, fontSize: 12, lineHeight: 17, marginTop: spacing.xs },
+  nameForm: { marginTop: spacing.lg },
   card: { backgroundColor: colors.white, borderRadius: radius.lg, paddingHorizontal: spacing.lg }, row: { minHeight: 92, flexDirection: 'row', alignItems: 'center', gap: spacing.md }, divider: { borderBottomWidth: 1, borderBottomColor: colors.border },
   icon: { width: 46, height: 46, borderRadius: radius.md, backgroundColor: colors.skyPale, alignItems: 'center', justifyContent: 'center' }, iconText: { ...type.display, color: colors.skyDark, fontSize: 23 }, copy: { flex: 1 },
   title: { ...type.heading, fontSize: 16 }, body: { ...type.regular, color: colors.inkSoft, fontSize: 12, lineHeight: 16, marginTop: 3 },

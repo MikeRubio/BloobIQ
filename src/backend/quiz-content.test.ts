@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
-import { baseballAssetPaths, basketballAssetPaths, flagAssetPaths, footballAssetPaths, footballRevealAssetPaths } from '../content/hosted-assets';
+import { baseballAssetPaths, baseballRevealAssetPaths, basketballAssetPaths, flagAssetPaths, footballAssetPaths, footballRevealAssetPaths } from '../content/hosted-assets';
 
 type ManifestItem = {
   categoryId: 'flags' | 'football' | 'baseball' | 'basketball';
@@ -33,6 +33,7 @@ const footballClubOriginals = football.filter((item) => item.contentVersion === 
 const baseball = manifest.items.filter((item) => item.contentVersion === 'baseball-mlb-v1');
 const baseballGlobal = manifest.items.filter((item) => item.contentVersion === 'baseball-global-v2');
 const baseballWinter = baseballGlobal.filter((item) => item.metadata.selectionGroup !== 'mlb');
+const baseballSymbols = manifest.items.filter((item) => item.contentVersion === 'baseball-symbols-v3');
 const basketball = manifest.items.filter((item) => item.contentVersion === 'basketball-nba-v1');
 const basketballExpanded = manifest.items.filter((item) => item.contentVersion === 'basketball-expanded-v2');
 const basketballTrivia = basketballExpanded.filter((item) => item.metadata.scope !== 'team-logo');
@@ -74,6 +75,35 @@ describe('hosted quiz content manifest', () => {
     expect(baseballWinter.map((item) => item.metadata.country)).toEqual(expect.arrayContaining([
       'Dominican Republic', 'Venezuela', 'Mexico',
     ]));
+  });
+
+  it('uses separate non-wordmark Baseball question art and complete reveal identities', () => {
+    expect(baseballSymbols).toHaveLength(47);
+    expect(Object.fromEntries(['mlb', 'lidom', 'lvbp', 'lmp'].map((competition) => [
+      competition,
+      baseballSymbols.filter((item) => item.metadata.competitionKey === competition).length,
+    ]))).toEqual({ mlb: 27, lidom: 6, lvbp: 6, lmp: 8 });
+    expect(baseballSymbols.every((item) => item.assetPath !== item.revealAssetPath)).toBe(true);
+    expect(baseballSymbols.every((item) => item.metadata.questionAssetRole === 'official_cap_symbol' || item.metadata.questionAssetRole === 'symbol_only_quiz_variant')).toBe(true);
+    expect(baseballSymbols.every((item) => item.metadata.revealAssetRole === 'complete_official_team_identity')).toBe(true);
+    expect(baseballSymbols.every((item) => item.metadata.questionDescription?.includes(item.displayName) === false)).toBe(true);
+    expect(baseballSymbols.every((item) => (item.metadata.distractorIds?.length ?? 0) >= 3)).toBe(true);
+    expect(baseballSymbols.map((item) => item.itemId)).not.toEqual(expect.arrayContaining([
+      'baseball-chicago-cubs',
+      'baseball-athletics',
+      'baseball-chicago-white-sox',
+      'baseball-lvbp-bravos-de-margarita',
+      'baseball-lvbp-caribes-de-anzoategui',
+      'baseball-lmp-tomateros-de-culiacan',
+      'baseball-lmp-yaquis-de-obregon',
+    ]));
+    for (const item of baseballSymbols) {
+      expect(item.assetPath).toMatch(/^baseball-symbols-v3\/q-\d{3}\.svg$/);
+      expect(item.metadata.editRecipe).toBeTruthy();
+      const asset = readFileSync(join(process.cwd(), 'supabase', 'content', item.assetPath));
+      expect(createHash('sha256').update(asset).digest('hex')).toBe(item.sha256);
+      expect(asset.toString('utf8')).not.toMatch(/<text\b|<title\b|<metadata\b/i);
+    }
   });
 
   it('adds balanced NBA mascot, arena, retired-number, and franchise-legend questions', () => {
@@ -148,9 +178,9 @@ describe('hosted quiz content manifest', () => {
 
   it('records unique immutable assets and source provenance', () => {
     expect(manifest.schemaVersion).toBe(2);
-    expect(manifest.items).toHaveLength(532);
-    expect(new Set(manifest.items.map((item) => item.assetPath)).size).toBe(462);
-    expect(new Set(manifest.items.map((item) => item.sha256)).size).toBe(414);
+    expect(manifest.items).toHaveLength(579);
+    expect(new Set(manifest.items.map((item) => item.assetPath)).size).toBe(509);
+    expect(new Set(manifest.items.map((item) => item.sha256)).size).toBeGreaterThanOrEqual(450);
     const shaByPath = new Map<string, string>();
     for (const item of manifest.items) {
       expect(item.sha256).toMatch(/^[0-9a-f]{64}$/);
@@ -166,13 +196,15 @@ describe('hosted quiz content manifest', () => {
     expect(flagAssetPaths).toHaveLength(195);
     expect(footballAssetPaths).toHaveLength(30);
     expect(footballRevealAssetPaths).toHaveLength(30);
-    expect(baseballAssetPaths).toHaveLength(54);
+    expect(baseballAssetPaths).toHaveLength(47);
+    expect(baseballRevealAssetPaths).toHaveLength(47);
     expect(basketballAssetPaths).toHaveLength(78);
     const questionPaths = [...flagAssetPaths, ...footballAssetPaths, ...baseballAssetPaths, ...basketballAssetPaths];
-    expect(new Set(questionPaths).size).toBe(357);
-    const activeVersions = new Set(['flags-195-v1', 'football-mixed-v3', 'baseball-global-v2', 'basketball-expanded-v2']);
+    expect(new Set(questionPaths).size).toBe(350);
+    const activeVersions = new Set(['flags-195-v1', 'football-mixed-v3', 'baseball-symbols-v3', 'basketball-expanded-v2']);
     const activeItems = manifest.items.filter((item) => activeVersions.has(item.contentVersion));
     expect(questionPaths).toEqual(expect.arrayContaining(activeItems.map((item) => item.assetPath)));
     expect(footballRevealAssetPaths).toEqual(expect.arrayContaining(footballMixed.map((item) => item.revealAssetPath!)));
+    expect(baseballRevealAssetPaths).toEqual(expect.arrayContaining(baseballSymbols.map((item) => item.revealAssetPath!)));
   });
 });

@@ -44,10 +44,11 @@ describe('hosted Casual packs', () => {
   it('rejects duplicates and wrong-category responses', () => {
     expect(() => parseCasualPack({ ...payload, categoryId: 'flags' }, 'football')).toThrow(/wrong content pack/i);
     expect(() => parseCasualPack({ ...payload, items: payload.items.map((item, index) => index ? item : { ...item, id: payload.items[1]!.id }) }, 'football')).toThrow(/duplicate identities/i);
+    expect(() => parseCasualPack({ ...payload, items: payload.items.map((item, index) => index ? item : { ...item, contentType: null }) }, 'football')).toThrow(/incomplete content/i);
   });
 
   it.each([
-    ['baseball', 54, 'baseball-global-v2', 4],
+    ['baseball', 47, 'baseball-symbols-v3', 4],
     ['basketball', 78, 'basketball-expanded-v2', 5],
   ] as const)('supports the expanded %s pack with same-topic distractors', (categoryId, count, contentVersion, groups) => {
     const teamPayload = {

@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import type { RunResult } from '@/game/types';
-import { migrateProfileState, updateCategoryRecords } from './profile-store';
+import {
+  getPlayerNameError,
+  migrateProfileState,
+  normalizePlayerName,
+  playerNameUpdate,
+  updateCategoryRecords,
+} from './profile-store';
 
 const baseResult: RunResult = {
   categoryId: 'football', score: 1250, correctAnswers: 9, answeredQuestions: 12,
@@ -22,7 +28,30 @@ describe('profile record compatibility', () => {
       settings: { sound: true, haptics: true, reducedMotion: false },
       records: { flags: { highScore: 700, gamesPlayed: 2, totalCorrect: 10, bestStreak: 4 } },
     };
-    expect(migrateProfileState(legacy)).toMatchObject(legacy);
+    expect(migrateProfileState(legacy)).toMatchObject({ ...legacy, nameSetupComplete: true });
+  });
+
+  it('normalizes and validates player names with the backend length limits', () => {
+    expect(normalizePlayerName('  Mighty   Fox  ')).toBe('Mighty Fox');
+    expect(getPlayerNameError('ab')).toBe('Use at least 3 characters.');
+    expect(getPlayerNameError('A'.repeat(41))).toBe('Use 40 characters or fewer.');
+    expect(getPlayerNameError('Mighty Fox')).toBeNull();
+  });
+
+  it('changes the profile name without replacing personal records', () => {
+    const records = { flags: { highScore: 700, gamesPlayed: 2, totalCorrect: 10, bestStreak: 4 } };
+    const state = {
+      profile: { id: 'guest-1', name: 'Sunny Fox 123', avatar: 'fox', color: '#FF8A65' },
+      nameSetupComplete: false,
+      records,
+    };
+    const updated = { ...state, ...playerNameUpdate(state.profile, '  Quiz   Master  ') };
+
+    expect(updated).toMatchObject({
+      profile: { name: 'Quiz Master' },
+      nameSetupComplete: true,
+      records,
+    });
   });
 
   it.each(['baseball', 'basketball'] as const)('stores %s records independently from every existing quiz', (categoryId) => {

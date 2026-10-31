@@ -12,6 +12,7 @@ const stagingRoot = path.join(root, '.quiz-assets');
 const manifestPath = path.join(root, 'supabase', 'content', 'quiz-content.json');
 const footballVariantRoot = path.join(root, 'supabase', 'content', 'football-symbols-v2');
 const footballMixedVariantRoot = path.join(root, 'supabase', 'content', 'football-mixed-v3', 'clubs');
+const baseballSymbolRoot = path.join(root, 'supabase', 'content', 'baseball-symbols-v3');
 const basketballExpandedRoot = path.join(root, 'supabase', 'content', 'basketball-expanded-v2');
 const migrationsPath = path.join(root, 'supabase', 'migrations');
 const flagCommit = 'c09927e63705529bbf59ca6684cd9b23225dddad';
@@ -60,6 +61,30 @@ const reviewedFootballSlugs = new Set([
   'uefa', 'caf', 'afc', 'concacaf', 'conmebol', 'ofc', 'premier-league',
   'la-liga', 'bundesliga', 'serie-a', 'ligue-1', 'major-league-soccer',
   'liga-mx', 'brasileirao-serie-a', 'j1-league', 'k-league-1', 'saudi-pro-league',
+]);
+
+const excludedWinterBaseballQuestionArt = new Map([
+  ['lvbp/bravos-de-margarita', 'The available official identity is a team-name wordmark with no separate recognizable symbol.'],
+  ['lvbp/caribes-de-anzoategui', 'The available official identity is a team-name wordmark with no separate recognizable symbol.'],
+  ['lmp/tomateros-de-culiacan', 'The available official identity is a team-name wordmark with no separate recognizable symbol.'],
+  ['lmp/yaquis-de-obregon', 'The available mascot artwork includes an outlined team-name wordmark that cannot be removed without damaging the mark.'],
+]);
+
+const excludedMlbBaseballQuestionArt = new Map([
+  [112, 'The available official cap and primary marks spell CUBS, so this identity has no non-wordmark question asset in the current source set.'],
+  [133, 'The available official cap mark spells the A\'s nickname, so it remains reveal-only.'],
+  [145, 'The available official cap mark spells SOX, so it remains reveal-only.'],
+]);
+
+const winterBaseballQuestionEdits = new Map([
+  ['lidom/aguilas-cibaenas', { viewBox: '32 32 56 56', edit: 'Crop away the circular team-name ring and retain the official interlocking AC symbol.' }],
+  ['lmp/aguilas-de-mexicali', { viewBox: '12 8 98 96', removeGroupIds: ['AGUILAS_DE_MEXICALI'], edit: 'Remove the outlined team-name group and retain the official eagle mascot.' }],
+  ['lmp/caneros-de-los-mochis', { viewBox: '33 28 58 62', edit: 'Crop away the circular team-name ring and retain the official batting mascot.' }],
+  ['lvbp/aguilas-del-zulia', { viewBox: '120 70 900 650', edit: 'Crop away the script wordmark and retain the official eagle-head symbol.' }],
+  ['lvbp/leones-del-caracas', { viewBox: '120 15 620 490', edit: 'Crop away the lower crest lettering and retain the official lion-head symbol.' }],
+  ['lvbp/navegantes-del-magallanes', { viewBox: '103 97 94 96', edit: 'Crop inside the team-name wheel and retain the official sailing-ship symbol.' }],
+  ['lvbp/tiburones-de-la-guaira', { viewBox: '52 75 196 62', edit: 'Crop away the team-name and founding-date lettering and retain the official shark symbol.' }],
+  ['lvbp/tigres-de-aragua', { viewBox: '25 50 180 155', edit: 'Crop away the lower team-name lettering and retain the official tiger symbol.' }],
 ]);
 
 const footballQuestionVariants = [
@@ -118,8 +143,7 @@ function croppedSvg(source, viewBox, { removeGroupIds = [], removeIds = [], remo
     result = result.replace(new RegExp(`<[^>]+\\bid=(?:"${escaped}"|'${escaped}')[^>]*/>`, 'gi'), '');
   }
   for (const id of removeGroupIds) {
-    const escaped = id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    result = result.replace(new RegExp(`<g\\b[^>]*\\bid=(?:"${escaped}"|'${escaped}')[^>]*>[\\s\\S]*?<\\/g>`, 'gi'), '');
+    result = removeNestedSvgGroupById(result, id);
   }
   if (removeLastPaths) {
     const paths = [...result.matchAll(/<path\b[\s\S]*?\/>/gi)];
@@ -128,6 +152,29 @@ function croppedSvg(source, viewBox, { removeGroupIds = [], removeIds = [], remo
     }
   }
   return result;
+}
+
+function removeNestedSvgGroupById(source, id) {
+  const escaped = id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const opener = new RegExp(`<g\\b[^>]*\\bid=(?:"${escaped}"|'${escaped}')[^>]*>`, 'i').exec(source);
+  if (!opener || opener.index === undefined) return source;
+  const tokens = /<\/?g\b[^>]*>/gi;
+  tokens.lastIndex = opener.index + opener[0].length;
+  let depth = 1;
+  for (let token = tokens.exec(source); token; token = tokens.exec(source)) {
+    if (/^<\/g/i.test(token[0])) depth -= 1;
+    else if (!/\/>$/.test(token[0])) depth += 1;
+    if (depth === 0) return `${source.slice(0, opener.index)}${source.slice(tokens.lastIndex)}`;
+  }
+  throw new Error(`Unclosed SVG group ${id}`);
+}
+
+function sourceSvgViewBox(source) {
+  const open = source.match(/<svg\b[\s\S]*?>/i)?.[0];
+  const match = open?.match(/\bviewBox=(?:"([^"]+)"|'([^']+)')/i);
+  const viewBox = (match?.[1] ?? match?.[2] ?? '').trim();
+  if (!viewBox) throw new Error('Question variant source is missing a viewBox.');
+  return viewBox;
 }
 
 function pngDimensions(data) {
@@ -500,6 +547,77 @@ async function main() {
     ...baseballInternational,
   ];
 
+  const baseballSymbolItems = [];
+  const eligibleMlbItems = baseball.filter((item) => !excludedMlbBaseballQuestionArt.has(item.metadata.officialTeamId));
+  const eligibleMlbIds = new Set(eligibleMlbItems.map((item) => item.itemId));
+  for (const [index, original] of eligibleMlbItems.entries()) {
+    const questionSourceAssetUrl = `https://www.mlbstatic.com/team-logos/team-cap-on-light/${original.metadata.officialTeamId}.svg`;
+    const questionSource = await fetchImage(questionSourceAssetUrl);
+    if (questionSource.contentType !== 'image/svg+xml') throw new Error(`Expected MLB cap SVG for ${original.displayName}`);
+    const source = questionSource.data.toString('utf8');
+    const data = Buffer.from(croppedSvg(source, sourceSvgViewBox(source)));
+    const opaqueName = `q-${String(index + 1).padStart(3, '0')}.svg`;
+    const assetPath = `baseball-symbols-v3/${opaqueName}`;
+    await mkdir(baseballSymbolRoot, { recursive: true });
+    await mkdir(path.join(stagingRoot, 'baseball-symbols-v3'), { recursive: true });
+    await writeFile(path.join(baseballSymbolRoot, opaqueName), data);
+    await writeFile(path.join(stagingRoot, assetPath), data);
+    baseballSymbolItems.push({
+      ...original,
+      contentVersion: 'baseball-symbols-v3', assetPath, revealAssetPath: original.assetPath,
+      questionSourceAssetUrl, revealSha256: original.sha256,
+      metadata: {
+        ...original.metadata,
+        distractorIds: original.metadata.distractorIds.filter((id) => eligibleMlbIds.has(id)),
+        competitionKey: 'mlb', selectionGroup: 'mlb', identityKey: original.itemId,
+        questionPrompt: 'Which Major League Baseball team is this?',
+        questionDescription: 'Official baseball cap symbol shown as the question clue',
+        questionAssetRole: 'official_cap_symbol', revealAssetRole: 'complete_official_team_identity',
+        editRecipe: 'Use MLB official cap artwork as the question symbol and reserve the complete primary identity for reveal.',
+      },
+      ...fileMetadata(data, 'image/svg+xml'),
+    });
+  }
+
+  const eligibleWinterItems = baseballInternational.filter((item) => {
+    const slug = item.itemId.replace(`baseball-${item.metadata.leagueKey}-`, '');
+    return !excludedWinterBaseballQuestionArt.has(`${item.metadata.leagueKey}/${slug}`);
+  });
+  const eligibleWinterIds = new Set(eligibleWinterItems.map((item) => item.itemId));
+  for (const [index, original] of eligibleWinterItems.entries()) {
+    const slug = original.itemId.replace(`baseball-${original.metadata.leagueKey}-`, '');
+    const key = `${original.metadata.leagueKey}/${slug}`;
+    const edit = winterBaseballQuestionEdits.get(key);
+    const source = (await readFile(path.join(stagingRoot, original.assetPath))).toString('utf8');
+    const data = Buffer.from(croppedSvg(source, edit?.viewBox ?? sourceSvgViewBox(source), edit));
+    const opaqueName = `q-${String(eligibleMlbItems.length + index + 1).padStart(3, '0')}.svg`;
+    const assetPath = `baseball-symbols-v3/${opaqueName}`;
+    await mkdir(baseballSymbolRoot, { recursive: true });
+    await mkdir(path.join(stagingRoot, 'baseball-symbols-v3'), { recursive: true });
+    await writeFile(path.join(baseballSymbolRoot, opaqueName), data);
+    await writeFile(path.join(stagingRoot, assetPath), data);
+    baseballSymbolItems.push({
+      ...original,
+      contentVersion: 'baseball-symbols-v3', assetPath, revealAssetPath: original.assetPath,
+      questionSourceAssetUrl: original.sourceAssetUrl, revealSha256: original.sha256,
+      metadata: {
+        ...original.metadata,
+        distractorIds: original.metadata.distractorIds.filter((id) => eligibleWinterIds.has(id)),
+        questionDescription: 'Symbol from an official winter-league team identity shown as the question clue',
+        questionAssetRole: 'symbol_only_quiz_variant', revealAssetRole: 'complete_official_team_identity',
+        editRecipe: edit?.edit ?? 'Use the official symbol-only or monogram identity without the complete team-name wordmark.',
+      },
+      ...fileMetadata(data, 'image/svg+xml'),
+    });
+  }
+  if (baseballSymbolItems.length !== 47) throw new Error(`Expected 47 eligible Baseball symbols, received ${baseballSymbolItems.length}`);
+  const expectedBaseballQuestionFiles = new Set(baseballSymbolItems.map((item) => path.basename(item.assetPath)));
+  for (const directory of [baseballSymbolRoot, path.join(stagingRoot, 'baseball-symbols-v3')]) {
+    for (const name of await readdir(directory)) {
+      if (name.endsWith('.svg') && !expectedBaseballQuestionFiles.has(name)) await unlink(path.join(directory, name));
+    }
+  }
+
   const basketballTeamBySlug = new Map(basketballTeams.map((team) => [team[0], team]));
   const basketballBySlug = new Map(basketball.map((item) => [item.itemId.replace('basketball-', ''), item]));
   const basketballTeamQuestions = basketball.map((item) => ({
@@ -566,7 +684,7 @@ async function main() {
 
   const items = [
     ...flags, ...football, ...footballSymbols, ...footballClubOriginals, ...footballMixed,
-    ...baseball, ...basketball, ...baseballGlobal, ...basketballExpanded,
+    ...baseball, ...basketball, ...baseballGlobal, ...baseballSymbolItems, ...basketballExpanded,
   ];
   try {
     const previous = JSON.parse(await readFile(manifestPath, 'utf8'));
@@ -633,15 +751,32 @@ async function main() {
   ].join(', ')})`).join(',\n');
   const generatedSports = `${sportsStart}\ninsert into private.quiz_content\n  (category_id, content_version, item_id, display_name, asset_path, reveal_asset_path, asset_sha256, source_page_url, source_asset_url, rights_status, attribution, difficulty, metadata)\nvalues\n${sportsRows}\non conflict (content_version, item_id) do update set\n  display_name = excluded.display_name, asset_path = excluded.asset_path, reveal_asset_path = excluded.reveal_asset_path,\n  asset_sha256 = excluded.asset_sha256, source_page_url = excluded.source_page_url, source_asset_url = excluded.source_asset_url,\n  rights_status = excluded.rights_status, attribution = excluded.attribution, difficulty = excluded.difficulty, metadata = excluded.metadata;\n${sportsEnd}`;
   await writeFile(sportsMigrationPath, sportsMigration.replace(new RegExp(`${sportsStart}[\\s\\S]*?${sportsEnd}`), generatedSports));
+
+  const baseballSymbolMigrationName = (await readdir(migrationsPath)).find((name) => name.endsWith('_separate_baseball_question_artwork.sql'));
+  if (!baseballSymbolMigrationName) throw new Error('Baseball symbol migration is missing');
+  const baseballSymbolMigrationPath = path.join(migrationsPath, baseballSymbolMigrationName);
+  const baseballSymbolMigration = await readFile(baseballSymbolMigrationPath, 'utf8');
+  const baseballSymbolStart = '-- GENERATED_BASEBALL_SYMBOL_CONTENT_START';
+  const baseballSymbolEnd = '-- GENERATED_BASEBALL_SYMBOL_CONTENT_END';
+  if (!baseballSymbolMigration.includes(baseballSymbolStart) || !baseballSymbolMigration.includes(baseballSymbolEnd)) {
+    throw new Error('Baseball symbol migration content markers are missing');
+  }
+  const baseballSymbolRows = baseballSymbolItems.map((item) => `  (${[
+    sql(item.categoryId), sql(item.contentVersion), sql(item.itemId), sql(item.displayName), sql(item.assetPath),
+    sql(item.revealAssetPath), sql(item.sha256), sql(item.sourcePageUrl), sql(item.sourceAssetUrl),
+    sql(item.rightsStatus), sql(item.attribution), sql(item.difficulty), `${sql(JSON.stringify(item.metadata))}::jsonb`,
+  ].join(', ')})`).join(',\n');
+  const generatedBaseballSymbols = `${baseballSymbolStart}\ninsert into private.quiz_content\n  (category_id, content_version, item_id, display_name, asset_path, reveal_asset_path, asset_sha256, source_page_url, source_asset_url, rights_status, attribution, difficulty, metadata)\nvalues\n${baseballSymbolRows}\non conflict (content_version, item_id) do update set\n  display_name = excluded.display_name, asset_path = excluded.asset_path, reveal_asset_path = excluded.reveal_asset_path,\n  asset_sha256 = excluded.asset_sha256, source_page_url = excluded.source_page_url, source_asset_url = excluded.source_asset_url,\n  rights_status = excluded.rights_status, attribution = excluded.attribution, difficulty = excluded.difficulty, metadata = excluded.metadata;\n${baseballSymbolEnd}`;
+  await writeFile(baseballSymbolMigrationPath, baseballSymbolMigration.replace(new RegExp(`${baseballSymbolStart}[\\s\\S]*?${baseballSymbolEnd}`), generatedBaseballSymbols));
   console.log(JSON.stringify({
     flags: flags.length, footballOriginals: football.length, footballSymbols: footballSymbols.length,
     footballClubOriginals: footballClubOriginals.length, footballMixed: footballMixed.length,
     footballClubQuestions: footballClubQuestions.length,
-    baseball: baseball.length, baseballGlobal: baseballGlobal.length,
+    baseball: baseball.length, baseballGlobal: baseballGlobal.length, baseballSymbols: baseballSymbolItems.length,
     basketball: basketball.length, basketballExpanded: basketballExpanded.length,
     basketballTrivia: basketballTrivia.length,
     total: items.length, bytes: items.reduce((sum, item) => sum + item.bytes, 0),
-    migrations: [migrationName, footballMigrationName, sportsMigrationName],
+    migrations: [migrationName, footballMigrationName, sportsMigrationName, baseballSymbolMigrationName],
   }));
 }
 

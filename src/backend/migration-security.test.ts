@@ -65,6 +65,7 @@ describe('BloopIQ migration security contract', () => {
     expect(allSql).toContain("'baseball-mlb-v1'");
     expect(allSql).toContain("'basketball-nba-v1'");
     expect(allSql).toContain("'baseball-global-v2'");
+    expect(allSql).toContain("'baseball-symbols-v3'");
     expect(allSql).toContain("'basketball-expanded-v2'");
     expect(allSql).toContain("values ('quiz-assets', 'quiz-assets', true");
     expect(allSql).toContain("'image/svg+xml'");

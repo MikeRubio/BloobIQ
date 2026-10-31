@@ -54,14 +54,16 @@ export const footballRevealAssetPaths = [
   ...bundesligaClubSlugs.map((slug) => `football-clubs-v3/bundesliga/${slug}.svg`),
 ] as const;
 
-export const baseballAssetPaths = [
+export const baseballAssetPaths = Array.from(
+  { length: 47 },
+  (_, index) => `baseball-symbols-v3/q-${String(index + 1).padStart(3, '0')}.svg`,
+);
+
+export const baseballRevealAssetPaths = [
   'baseball-mlb-v1/arizona-diamondbacks.svg',
-  'baseball-mlb-v1/athletics.svg',
   'baseball-mlb-v1/atlanta-braves.svg',
   'baseball-mlb-v1/baltimore-orioles.svg',
   'baseball-mlb-v1/boston-red-sox.svg',
-  'baseball-mlb-v1/chicago-cubs.svg',
-  'baseball-mlb-v1/chicago-white-sox.svg',
   'baseball-mlb-v1/cincinnati-reds.svg',
   'baseball-mlb-v1/cleveland-guardians.svg',
   'baseball-mlb-v1/colorado-rockies.svg',
@@ -90,14 +92,14 @@ export const baseballAssetPaths = [
     'gigantes-del-cibao', 'leones-del-escogido', 'tigres-del-licey',
   ].map((slug) => `baseball-winter-v2/lidom/${slug}.svg`),
   ...[
-    'aguilas-del-zulia', 'cardenales-de-lara', 'caribes-de-anzoategui',
-    'leones-del-caracas', 'navegantes-del-magallanes', 'bravos-de-margarita',
+    'aguilas-del-zulia', 'cardenales-de-lara',
+    'leones-del-caracas', 'navegantes-del-magallanes',
     'tiburones-de-la-guaira', 'tigres-de-aragua',
   ].map((slug) => `baseball-winter-v2/lvbp/${slug}.svg`),
   ...[
     'aguilas-de-mexicali', 'charros-de-jalisco', 'jaguares-de-nayarit',
     'caneros-de-los-mochis', 'mayos-de-navojoa', 'naranjeros-de-hermosillo',
-    'tomateros-de-culiacan', 'venados-de-mazatlan', 'yaquis-de-obregon',
+    'venados-de-mazatlan',
     'algodoneros-de-guasave',
   ].map((slug) => `baseball-winter-v2/lmp/${slug}.svg`),
 ] as const;
@@ -180,6 +182,6 @@ export const flagAssetPaths = flagCodes.map((code) => `flags-195-v1/${code}.png`
 export const hostedAssetPathsByQuiz = {
   flags: flagAssetPaths,
   football: [...footballAssetPaths, ...footballRevealAssetPaths],
-  baseball: baseballAssetPaths,
+  baseball: [...baseballAssetPaths, ...baseballRevealAssetPaths],
   basketball: basketballAssetPaths,
 } as const;

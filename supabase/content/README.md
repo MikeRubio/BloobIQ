@@ -10,10 +10,13 @@
 - `football-clubs-v3`: an immutable source catalogue of complete official crests and provenance for all 88 current clubs from the 2026/27 Premier League (20), La Liga (20), Bundesliga (18), and 2026 MLS (30). It is not directly eligible for question selection.
 - `football-mixed-v3`: the active 30-identity Football pack. It reuses the ten deterministic organisation symbols and adds five carefully cropped, text-free club symbols from each requested competition. Complete official club crests are separate reveal assets, and club distractors stay within the same competition.
 - `baseball-mlb-v1`: 30 current MLB teams verified through `statsapi.mlb.com`; primary marks come from `mlbstatic.com`.
-- `baseball-global-v2`: the active 54-team pack. It retains MLB and adds all current LIDOM (6), LVBP (8), and Liga Mexicana del Pacífico (10) clubs, verified against MLB's 2026 Winter Leagues API. Caribbean distractors stay within their league.
+- `baseball-global-v2`: the immutable 54-team source pack retained for provenance and existing attempts.
+- `baseball-symbols-v3`: the active 47-team pack. Question artwork uses 27 official MLB cap symbols plus 20 deterministic winter-league symbol or mascot variants; complete primary identities remain separate reveal assets. Distractors stay within the MLB division or winter league.
 - `basketball-nba-v1`: 30 current NBA teams verified through `nba.com/teams`; primary marks come from `cdn.nba.com`.
 - `basketball-expanded-v2`: the active 78-question pack. It retains all 30 team-logo questions and adds 12 each for NBA Mascots, Arenas, Retired Numbers, and Franchise Legends. Facts link to NBA-published team, mascot, arena, and retired-number pages; each topic has distinct answers and same-topic distractors.
 
 MLB, NBA, and Football club marks are trademarks, not public-domain artwork. Every club/team item is intentionally recorded as `trademark_review_required`; the official source URL and asset hash document provenance but do not grant production usage rights. Complete the project’s trademark/release review before distributing these packs publicly.
 
 Seven source identities are intentionally excluded from symbol recognition because the available mark is fundamentally answer-revealing or has no useful standalone symbol: AFC, OFC, Serie A, Ligue 1, Liga MX, J1 League, and K League 1. Their originals and provenance remain in `football-v1`; they are not eligible for question selection.
+
+Seven Baseball source identities are likewise reveal-only because the available official art spells the answer and has no clean standalone symbol: Athletics, Chicago Cubs, Chicago White Sox, Bravos de Margarita, Caribes de Anzoátegui, Tomateros de Culiacán, and Yaquis de Obregón. Their complete originals and provenance remain in the earlier source packs.

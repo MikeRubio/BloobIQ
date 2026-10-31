@@ -16,7 +16,7 @@ export function parseCasualPack(value: unknown, expectedCategory: QuizCategoryId
     if (
       typeof item.id !== 'string' || !item.id || typeof item.displayName !== 'string' || !item.displayName ||
       typeof item.assetPath !== 'string' || !item.assetPath || typeof item.difficulty !== 'string' ||
-      !validDifficulties.has(item.difficulty) || (item.contentType !== null && typeof item.contentType !== 'string')
+      !validDifficulties.has(item.difficulty) || typeof item.contentType !== 'string' || !item.contentType
     ) throw new Error('The quiz service returned incomplete content.');
     if (item.distractorIds != null && (!Array.isArray(item.distractorIds) || item.distractorIds.some((id) => typeof id !== 'string'))) {
       throw new Error('The quiz service returned invalid distractors.');

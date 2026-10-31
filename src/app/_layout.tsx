@@ -7,6 +7,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { colors } from '@/theme/tokens';
 import { startAuthLifecycle } from '@/backend/auth-lifecycle';
 import { LaunchScreen } from '@/components/launch-screen';
+import { FirstLaunchNamePrompt } from '@/components/first-launch-name-prompt';
 import { preloadStartupAssets, type PreloadProgress } from '@/services/startup-preload';
 import { adsRuntime } from '@/services/ads-runtime';
 
@@ -51,6 +52,7 @@ export default function RootLayout() {
           <Stack.Screen name="category" />
           <Stack.Screen name="quiz" />
         </Stack>
+        <FirstLaunchNamePrompt />
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );

@@ -115,6 +115,29 @@ describe('game lifecycle', () => {
     }
   });
 
+  it('never mixes answer types when supplied distractors are incomplete or wrong', () => {
+    const typed = [
+      ...Array.from({ length: 4 }, (_, index): QuizQuestion => ({
+        id: `number-${index}`, categoryId: 'basketball', displayName: `No. ${index + 1}`, assetKey: `number-${index}`,
+        contentType: 'retired-number', difficulty: 'medium',
+        distractorCandidates: index === 0 ? ['name-0'] : [],
+        provenance: { sourceName: 'test', sourceUrl: 'test', license: 'test' },
+      })),
+      ...Array.from({ length: 4 }, (_, index): QuizQuestion => ({
+        id: `name-${index}`, categoryId: 'basketball', displayName: `Player ${index + 1}`, assetKey: `name-${index}`,
+        contentType: 'franchise-legend', difficulty: 'medium', distractorCandidates: [],
+        provenance: { sourceName: 'test', sourceUrl: 'test', license: 'test' },
+      })),
+    ];
+    const byId = Object.fromEntries(typed.map((question) => [question.id, question]));
+
+    for (const round of createRounds(typed, () => 0.23)) {
+      expect(new Set(round.optionIds.map((id) => byId[id]!.contentType))).toEqual(
+        new Set([byId[round.questionId]!.contentType]),
+      );
+    }
+  });
+
   it.each(['baseball', 'basketball'] as const)('uses every %s team once, then completes the 30-team pack', (categoryId) => {
     const teams = Array.from({ length: 30 }, (_, index): QuizQuestion => ({
       id: `${categoryId}-${index}`, categoryId, displayName: `Team ${index}`, assetKey: `${categoryId}-${index}`,

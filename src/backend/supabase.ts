@@ -26,6 +26,8 @@ export function getQuizAssetUrl(assetPath: string): string | null {
 }
 
 let sessionPromise: Promise<string> | null = null;
+let profileSyncPromise: Promise<string> | null = null;
+let syncedProfileKey: string | null = null;
 
 export class BackendUnavailableError extends Error {
   constructor(message: string, readonly reason: 'configuration' | 'network' | 'auth' = 'network') {
@@ -34,7 +36,7 @@ export class BackendUnavailableError extends Error {
   }
 }
 
-export async function ensureAnonymousSession(profile: GuestProfilePayload): Promise<string> {
+async function ensureAnonymousUser(): Promise<string> {
   if (!supabase) throw new BackendUnavailableError('Add Supabase environment variables to enable ranked play.', 'configuration');
   if (sessionPromise) return sessionPromise;
   sessionPromise = (async () => {
@@ -46,13 +48,46 @@ export async function ensureAnonymousSession(profile: GuestProfilePayload): Prom
       if (error || !data.user) throw new BackendUnavailableError(error?.message ?? 'Anonymous sign-in failed.', 'auth');
       userId = data.user.id;
     }
-    const { error: profileError } = await supabase.rpc('sync_guest_profile', {
+    return userId;
+  })().finally(() => { sessionPromise = null; });
+  return sessionPromise;
+}
+
+function profileKey(userId: string, profile: GuestProfilePayload): string {
+  return `${userId}\u0000${profile.name}\u0000${profile.avatar}\u0000${profile.color}`;
+}
+
+export async function syncGuestProfile(profile: GuestProfilePayload): Promise<string> {
+  const client = supabase;
+  const userId = await ensureAnonymousUser();
+  const key = profileKey(userId, profile);
+  if (syncedProfileKey === key) return userId;
+
+  // Serialize profile writes. If a second name arrives while the first is in
+  // flight, it waits and then writes the newest value instead of being dropped.
+  while (profileSyncPromise) {
+    try {
+      await profileSyncPromise;
+    } catch {
+      // A newer profile still gets its own attempt after an older sync fails.
+    }
+    if (syncedProfileKey === key) return userId;
+  }
+
+  profileSyncPromise = (async () => {
+    const { error } = await client!.rpc('sync_guest_profile', {
       p_display_name: profile.name,
       p_avatar: profile.avatar,
       p_avatar_color: profile.color,
     });
-    if (profileError) throw new BackendUnavailableError(profileError.message);
+    if (error) throw new BackendUnavailableError(error.message);
+    syncedProfileKey = key;
     return userId;
-  })().finally(() => { sessionPromise = null; });
-  return sessionPromise;
+  })().finally(() => { profileSyncPromise = null; });
+
+  return profileSyncPromise;
+}
+
+export async function ensureAnonymousSession(profile: GuestProfilePayload): Promise<string> {
+  return syncGuestProfile(profile);
 }

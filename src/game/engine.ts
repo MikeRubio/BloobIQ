@@ -11,9 +11,21 @@ export const initialGameState: GameRunState = {
 export function createRounds(questions: QuizQuestion[], random: RandomSource = Math.random): QuestionRound[] {
   const ids = new Set(questions.map((question) => question.id));
   return shuffle(questions, random).map((question) => {
-    const candidates = question.distractorCandidates.filter((id) => id !== question.id && ids.has(id));
-    const fallback = questions.map((item) => item.id).filter((id) => id !== question.id && !candidates.includes(id));
+    const matchingTypeIds = new Set(
+      questions
+        .filter((item) => item.contentType === question.contentType)
+        .map((item) => item.id),
+    );
+    const candidates = question.distractorCandidates.filter(
+      (id) => id !== question.id && ids.has(id) && matchingTypeIds.has(id),
+    );
+    const fallback = questions
+      .filter((item) => item.id !== question.id && item.contentType === question.contentType && !candidates.includes(item.id))
+      .map((item) => item.id);
     const distractors = [...shuffle(candidates, random), ...shuffle(fallback, random)].slice(0, 3);
+    if (distractors.length !== 3) {
+      throw new Error('Every question needs three answer choices of the same type.');
+    }
     return { questionId: question.id, optionIds: shuffle([question.id, ...distractors], random) };
   });
 }
