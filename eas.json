@@ -7,11 +7,15 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "env": { "BLOOPIQ_ADS_ENV": "test" }
+      "env": {
+        "BLOOPIQ_ADS_ENV": "test"
+      }
     },
     "preview": {
       "distribution": "internal",
-      "env": { "BLOOPIQ_ADS_ENV": "test" }
+      "env": {
+        "BLOOPIQ_ADS_ENV": "test"
+      }
     },
     "ads-qa": {
       "developmentClient": true,
@@ -30,16 +34,33 @@
       "distribution": "store",
       "environment": "preview",
       "autoIncrement": true,
-      "ios": { "image": "sdk-58" },
-      "env": { "BLOOPIQ_ADS_ENV": "test" }
+      "ios": {
+        "image": "sdk-58"
+      },
+      "env": {
+        "BLOOPIQ_ADS_ENV": "test",
+        "EXPO_PUBLIC_RELEASE_CATALOG": "flags-only"
+      }
     },
     "production": {
       "autoIncrement": true,
       "environment": "production",
-      "ios": { "image": "sdk-58" },
+      "ios": {
+        "image": "sdk-58"
+      },
       "env": {
         "BLOOPIQ_ADS_ENV": "production",
-        "BLOOPIQ_ENABLE_PRODUCTION_ADS": "false"
+        "BLOOPIQ_ENABLE_PRODUCTION_ADS": "false",
+        "EXPO_PUBLIC_RELEASE_CATALOG": "flags-only"
+      },
+      "android": {
+        "buildType": "app-bundle"
+      }
+    },
+    "android-internal": {
+      "extends": "testflight",
+      "android": {
+        "buildType": "app-bundle"
       }
     }
   },

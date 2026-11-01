@@ -49,6 +49,7 @@ const rows = [
 
 const PRIVACY_POLICY_URL =
   "https://bloopiq-privacy.merry-coin-3817.chatgpt.site/";
+const SUPPORT_URL = `${PRIVACY_POLICY_URL}support.html`;
 
 export default function SettingsScreen() {
   const settings = useProfileStore((state) => state.settings);
@@ -144,6 +145,9 @@ export default function SettingsScreen() {
               style={styles.privacyButton}
             >
               <Text style={styles.privacyButtonText}>Open privacy policy</Text>
+            </Pressable>
+            <Pressable accessibilityRole="link" onPress={() => { void Linking.openURL(SUPPORT_URL); }} style={styles.privacyButton}>
+              <Text style={styles.privacyButtonText}>Help &amp; support</Text>
             </Pressable>
           </View>
           <View style={styles.dangerCard}>

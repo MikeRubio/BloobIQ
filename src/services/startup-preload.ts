@@ -2,7 +2,7 @@ import { Asset } from 'expo-asset';
 import { Image } from 'expo-image';
 import { getQuizAssetUrl } from '@/backend/supabase';
 import type { QuizCategoryId } from '@/backend/types';
-import { hostedAssetPathsByQuiz } from '@/content/hosted-assets';
+import { friendQuizAssetPaths, startupQuizAssetPaths } from '@/content/startup-assets';
 
 export type PreloadProgress = { completed: number; total: number; label: string };
 
@@ -24,7 +24,7 @@ async function mapLimit<T>(values: readonly T[], limit: number, task: (value: T)
 }
 
 export async function preloadStartupAssets(onProgress?: (progress: PreloadProgress) => void) {
-  const startupPaths = Object.values(hostedAssetPathsByQuiz).flatMap((paths) => paths.slice(0, 4));
+  const startupPaths = startupQuizAssetPaths();
   const remoteUrls = startupPaths.map(getQuizAssetUrl).filter((url): url is string => Boolean(url));
   const total = remoteUrls.length + 1;
   let completed = 0;
@@ -47,7 +47,7 @@ export async function preloadStartupAssets(onProgress?: (progress: PreloadProgre
 export async function preloadFriendCategory(categoryId: QuizCategoryId, onProgress?: (progress: PreloadProgress) => void) {
   // A room must not wait for an entire large catalogue (People has 195 images).
   // Warm a bounded sample; each selected round still loads its persisted asset on demand.
-  const paths: readonly string[] = hostedAssetPathsByQuiz[categoryId].slice(0, 12);
+  const paths = friendQuizAssetPaths(categoryId);
   const urls = paths.map(getQuizAssetUrl).filter((url): url is string => Boolean(url));
   let completed = 0;
   onProgress?.({ completed, total: urls.length, label: `Preparing ${categoryId}` });

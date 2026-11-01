@@ -1,4 +1,5 @@
 import type { QuizCategoryId } from '@/backend/types';
+import { isQuizAvailable } from './release-policy';
 import { baseballAssetPaths, basketballAssetPaths, brandAssetPaths, celebrityAssetPaths, flagAssetPaths, footballAssetPaths, historyAssetPaths } from './hosted-assets';
 
 export type BrowseGroupId = 'flags' | 'sports' | 'brands' | 'people';
@@ -65,12 +66,14 @@ export const quizzes = {
   },
 } as const satisfies Record<QuizCategoryId, QuizDefinition>;
 
-export const browseGroups: readonly BrowseGroup[] = [
+const allBrowseGroups: readonly BrowseGroup[] = [
   { id: 'flags', label: 'Flags', icon: '🌍', color: 'sky', description: 'Countries and world geography', available: true, quizIds: ['flags'], futureItems: ['Regional packs'] },
   { id: 'sports', label: 'Sports', icon: '⚽', color: 'mint', description: 'Football, baseball, and basketball', available: true, quizIds: ['football', 'baseball', 'basketball'], futureItems: ['American Football', 'Hockey'] },
   { id: 'brands', label: 'Brands', icon: '✦', color: 'coral', description: 'Cars, watches, and food', available: true, quizIds: ['brands'], futureItems: [] },
   { id: 'people', label: 'People', icon: '★', color: 'lilac', description: 'History and celebrities', available: true, quizIds: ['history', 'celebrities'], futureItems: [] },
 ];
+
+export const browseGroups = allBrowseGroups.filter((group) => group.quizIds.some(isQuizAvailable));
 
 export function getBrowseGroup(id: string | string[] | undefined): BrowseGroup | undefined {
   const value = Array.isArray(id) ? id[0] : id;
@@ -79,20 +82,20 @@ export function getBrowseGroup(id: string | string[] | undefined): BrowseGroup |
 
 export function getQuiz(id: string | string[] | undefined): QuizDefinition {
   const value = Array.isArray(id) ? id[0] : id;
-  return value && value in quizzes ? quizzes[value as QuizCategoryId] : quizzes.flags;
+  return isQuizAvailable(value) ? quizzes[value] : quizzes.flags;
 }
 
 export function quizzesForGroup(groupId: BrowseGroupId): QuizDefinition[] {
   const group = browseGroups.find((candidate) => candidate.id === groupId);
-  return (group?.quizIds ?? []).map((id) => quizzes[id]);
+  return (group?.quizIds ?? []).filter(isQuizAvailable).map((id) => quizzes[id]);
 }
 
 export function quizzesForMode(mode: GameModeId): QuizDefinition[] {
-  return Object.values(quizzes).filter((quiz) => (quiz.supportedModes as readonly GameModeId[]).includes(mode));
+  return Object.values(quizzes).filter((quiz) => isQuizAvailable(quiz.id) && (quiz.supportedModes as readonly GameModeId[]).includes(mode));
 }
 
 export function supportsMode(quizId: QuizCategoryId, mode: GameModeId): boolean {
-  return (quizzes[quizId].supportedModes as readonly GameModeId[]).includes(mode);
+  return isQuizAvailable(quizId) && (quizzes[quizId].supportedModes as readonly GameModeId[]).includes(mode);
 }
 
 export function quickPlayQuiz(lastPlayed: QuizCategoryId | undefined): QuizDefinition {
@@ -100,9 +103,9 @@ export function quickPlayQuiz(lastPlayed: QuizCategoryId | undefined): QuizDefin
 }
 
 export function quizPath(quizId: QuizCategoryId) {
-  return { pathname: '/quiz' as const, params: { quiz: quizId } };
+  return { pathname: '/quiz' as const, params: { quiz: getQuiz(quizId).id } };
 }
 
 export function browsePath(groupId: BrowseGroupId) {
-  return groupId === 'flags' ? quizPath('flags') : { pathname: '/category' as const, params: { group: groupId } };
+  return groupId === 'flags' || !getBrowseGroup(groupId) ? quizPath('flags') : { pathname: '/category' as const, params: { group: groupId } };
 }

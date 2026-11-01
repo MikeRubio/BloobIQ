@@ -1,14 +1,19 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-const isProduction = process.env.EAS_BUILD_PROFILE === 'production' || process.argv.includes('--force');
+const isProduction = process.env.EAS_BUILD_PROFILE === 'production'
+  || process.env.BLOOPIQ_ADS_ENV === 'production' || process.argv.includes('--force');
 if (!isProduction) {
   console.log('Content-rights release gate skipped outside the production build profile.');
   process.exit(0);
 }
 
 const catalog = JSON.parse(readFileSync(resolve('supabase/content/quiz-content.json'), 'utf8'));
-const items = Array.isArray(catalog.items) ? catalog.items : [];
+const mode = process.env.EXPO_PUBLIC_RELEASE_CATALOG ?? 'flags-only';
+if (!['flags-only', 'full'].includes(mode)) throw new Error(`Invalid release catalogue: ${mode}`);
+const allItems = Array.isArray(catalog.items) ? catalog.items : [];
+const items = mode === 'flags-only' ? allItems.filter((item) => item.categoryId === 'flags') : allItems;
+if (!items.length) throw new Error('The release catalogue is empty.');
 const allowedStatuses = new Set(['public_domain_national_symbol', 'production_cleared']);
 const genericAttribution = /wikimedia commons (contributor|license)/i;
 const blocked = items.filter((item) =>
@@ -27,4 +32,4 @@ if (blocked.length) {
   process.exit(1);
 }
 
-console.log(`Production content-rights gate passed for ${items.length} catalog entries.`);
+console.log(`Production content-rights gate passed for ${items.length} ${mode} catalog entries. ${allItems.length - items.length} entries are excluded from this release.`);

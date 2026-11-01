@@ -1,4 +1,5 @@
 import { randomUUID } from 'expo-crypto';
+import { assertQuizAvailable } from '../content/release-policy';
 import type { DailySnapshot, GuestProfilePayload, LeaderboardResponse, QuizCategoryId } from './types';
 import { BackendUnavailableError, ensureAnonymousSession, supabase } from './supabase';
 
@@ -15,6 +16,7 @@ export async function fetchDailyState(
   categoryId: QuizCategoryId,
   signal?: AbortSignal,
 ): Promise<DailySnapshot> {
+  assertQuizAvailable(categoryId);
   await ensureAnonymousSession(profile);
   let request = supabase!.rpc('get_daily_state', { p_category_id: categoryId });
   if (signal) request = request.abortSignal(signal);
@@ -23,6 +25,7 @@ export async function fetchDailyState(
 }
 
 export async function startDailyAttempt(profile: GuestProfilePayload, categoryId: QuizCategoryId, signal?: AbortSignal): Promise<DailySnapshot> {
+  assertQuizAvailable(categoryId);
   await ensureAnonymousSession(profile);
   let request = supabase!.rpc('start_daily_attempt', { p_category_id: categoryId });
   if (signal) request = request.abortSignal(signal);
@@ -31,6 +34,7 @@ export async function startDailyAttempt(profile: GuestProfilePayload, categoryId
 }
 
 export async function submitDailyAnswer(snapshot: DailySnapshot, choiceId: string | null, signal?: AbortSignal): Promise<DailySnapshot> {
+  assertQuizAvailable(snapshot.categoryId);
   if (!supabase || !snapshot.attemptId || snapshot.questionIndex === undefined) {
     throw new BackendUnavailableError('No ranked attempt is active.');
   }
@@ -51,6 +55,7 @@ export async function submitDailyAnswer(snapshot: DailySnapshot, choiceId: strin
 }
 
 export async function fetchLeaderboard(profile: GuestProfilePayload, period: 'today' | 'week', categoryId: QuizCategoryId): Promise<LeaderboardResponse> {
+  assertQuizAvailable(categoryId);
   await ensureAnonymousSession(profile);
   const { data, error } = await supabase!.rpc('get_leaderboard', { p_category_id: categoryId, p_period: period, p_limit: 20 });
   return assertData<LeaderboardResponse>(data, error);

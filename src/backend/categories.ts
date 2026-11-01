@@ -1,4 +1,5 @@
 import type { QuizCategoryId } from './types';
+import { isQuizAvailable } from '../content/release-policy';
 
 export const quizCategoryCopy: Record<QuizCategoryId, {
   label: string;
@@ -46,8 +47,5 @@ export const quizCategoryCopy: Record<QuizCategoryId, {
 
 export function normalizeQuizCategory(value: string | string[] | undefined): QuizCategoryId {
   const normalized = Array.isArray(value) ? value[0] : value;
-  return normalized === 'football' || normalized === 'baseball' || normalized === 'basketball'
-    || normalized === 'brands' || normalized === 'history' || normalized === 'celebrities'
-    ? normalized
-    : 'flags';
+  return isQuizAvailable(normalized) ? normalized : 'flags';
 }

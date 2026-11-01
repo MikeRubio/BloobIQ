@@ -1,4 +1,5 @@
 import { randomUUID } from 'expo-crypto';
+import { assertQuizAvailable, isQuizAvailable } from '../content/release-policy';
 import type { FriendRoomSnapshot, GuestProfilePayload, QuizCategoryId } from './types';
 import { BackendUnavailableError, ensureAnonymousSession, supabase } from './supabase';
 
@@ -7,6 +8,7 @@ const pendingAnswers = new Map<string, string>();
 function snapshot(data: unknown, error: { message: string } | null, requestStartedAtMs: number): FriendRoomSnapshot {
   if (error) throw new BackendUnavailableError(error.message);
   if (!data || typeof data !== 'object') throw new BackendUnavailableError('The friends service returned an invalid response.');
+  assertQuizAvailable((data as FriendRoomSnapshot).categoryId);
   const requestFinishedAtMs = Date.now();
   return {
     ...(data as FriendRoomSnapshot),
@@ -16,6 +18,7 @@ function snapshot(data: unknown, error: { message: string } | null, requestStart
 }
 
 export async function createFriendRoom(profile: GuestProfilePayload, categoryId: QuizCategoryId) {
+  assertQuizAvailable(categoryId);
   await ensureAnonymousSession(profile);
   const requestStartedAtMs = Date.now();
   const { data, error } = await supabase!.rpc('create_friend_room', { p_category_id: categoryId });
@@ -26,6 +29,11 @@ export async function joinFriendRoom(profile: GuestProfilePayload, code: string)
   await ensureAnonymousSession(profile);
   const requestStartedAtMs = Date.now();
   const { data, error } = await supabase!.rpc('join_friend_room', { p_code: code.toUpperCase().replace(/[^A-Z2-9]/g, '') });
+  if (!error && data && !isQuizAvailable((data as unknown as FriendRoomSnapshot).categoryId)) {
+    const joined = data as unknown as FriendRoomSnapshot;
+    await leaveFriendRoom(joined.roomId);
+    assertQuizAvailable(joined.categoryId);
+  }
   return snapshot(data, error, requestStartedAtMs);
 }
 

@@ -19,6 +19,11 @@ const skAdNetworkItems = [
 ];
 
 export default ({ config }: ConfigContext): ExpoConfig => {
+  const releaseCatalog = process.env.EXPO_PUBLIC_RELEASE_CATALOG ?? 'full';
+  if (releaseCatalog !== 'flags-only' && releaseCatalog !== 'full') throw new Error('Invalid EXPO_PUBLIC_RELEASE_CATALOG.');
+  if ((['production', 'testflight'].includes(process.env.EAS_BUILD_PROFILE ?? '') || process.env.BLOOPIQ_ADS_ENV === 'production') && !process.env.EXPO_PUBLIC_RELEASE_CATALOG) {
+    throw new Error('Store builds must explicitly set EXPO_PUBLIC_RELEASE_CATALOG in eas.json.');
+  }
   const ads = resolveAdMobBuildConfig();
   const source = base.expo as ExpoConfig;
   const plugins = (source.plugins ?? []).filter((entry) => {
@@ -31,6 +36,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     extra: {
       ...source.extra,
       ...config.extra,
+      releaseCatalog,
       ads: {
         enabled: ads.enabled,
         audiencePolicy: ads.audiencePolicy,

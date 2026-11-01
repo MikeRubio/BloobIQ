@@ -1,0 +1,5 @@
+{
+  "audience": "all-ages-online",
+  "allAgesOnlinePrivacyReady": false,
+  "reason": "The all-ages online parental-consent and children's data-handling flow is not implemented and verified. Internal adult QA may continue; public release remains blocked."
+}
