@@ -1,3 +1,4 @@
+import { useConsentStore } from '../store/consent-store';
 import { normalizeQuizCategory, quizCategoryCopy } from "@/backend/categories";
 import { fetchLeaderboard } from "@/backend/daily-api";
 import { reportAndBlockPlayer } from "@/backend/moderation-api";
@@ -28,6 +29,7 @@ const rankingGroups = browseGroups.filter((group) =>
 );
 
 export default function RankingsScreen() {
+  const access = useConsentStore((s) => s.access);
   const params = useLocalSearchParams<{ category?: string }>();
   const profile = useProfileStore((state) => state.profile);
   const hydrated = useProfileStore((state) => state.hydrated);
@@ -75,6 +77,7 @@ export default function RankingsScreen() {
       <SafeAreaView style={styles.safe}>
         <ScreenHeader title="Rankings" />
         <ScrollView contentContainerStyle={styles.content}>
+          {access.kind === 'child' && !access.sharingAllowed ? <Text style={{ color: colors.inkSoft, padding: spacing.md }}>Your Daily scores are private. Your parent can enable public rankings and Friends separately.</Text> : null}
           <Text style={styles.selectorLabel}>BROWSE GROUP</Text>
           <ScrollView
             contentContainerStyle={styles.categories}

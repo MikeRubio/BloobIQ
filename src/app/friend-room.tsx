@@ -1,3 +1,4 @@
+import { useConsentStore } from '../store/consent-store';
 import * as Clipboard from 'expo-clipboard';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
@@ -50,6 +51,7 @@ function MemberRow({ member, roomId }: { member: FriendMember; roomId: string })
 }
 
 export default function FriendRoomScreen() {
+  const sharingAllowed = useConsentStore((s) => s.access.sharingAllowed);
   const { roomId } = useLocalSearchParams<{ roomId: string }>();
   const profile = useProfileStore((state) => state.profile);
   const snapshot = useFriendsStore((state) => state.snapshot);
@@ -71,14 +73,14 @@ export default function FriendRoomScreen() {
   const preloadRoomId = snapshot?.roomId;
   const roomStatus = snapshot?.status;
 
-  useEffect(() => { if (roomId) void connect(payload, roomId); return disconnect; }, [connect, disconnect, payload, roomId]);
+  useEffect(() => { if (roomId && sharingAllowed) void connect(payload, roomId); return disconnect; }, [connect, disconnect, payload, roomId, sharingAllowed]);
   useEffect(() => { const timer = setInterval(() => setTick(Date.now()), 200); return () => clearInterval(timer); }, []);
   useEffect(() => {
-    if (!preloadCategory || roomStatus !== 'lobby') return;
+    if (!sharingAllowed || !preloadCategory || roomStatus !== 'lobby') return;
     let active = true;
     void preloadFriendCategory(preloadCategory, (next) => { if (active) { setAssetsReady(false); setPreload(next); } }).then(() => { if (active) setAssetsReady(true); });
     return () => { active = false; };
-  }, [preloadCategory, preloadRoomId, roomStatus]);
+  }, [preloadCategory, preloadRoomId, roomStatus, sharingAllowed]);
 
   const projected = snapshot ? projectFriendPhase(snapshot, tick) : null;
   useEffect(() => {

@@ -1,4 +1,5 @@
-import { KeyboardAvoidingView, Modal, Platform, StyleSheet, Text, View } from 'react-native';
+import { useConsentStore } from '../store/consent-store';
+import { KeyboardAvoidingView, Modal, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BubbleBackground } from '@/components/bubble-background';
 import { PlayerNameEditor } from '@/components/player-name-editor';
@@ -8,7 +9,8 @@ import { colors, radius, shadow, spacing, type } from '@/theme/tokens';
 export function FirstLaunchNamePrompt() {
   const hydrated = useProfileStore((state) => state.hydrated);
   const nameSetupComplete = useProfileStore((state) => state.nameSetupComplete);
-  const visible = hydrated && !nameSetupComplete;
+  const consent = useConsentStore();
+  const visible = hydrated && !nameSetupComplete && consent.access.onlineAllowed && consent.age === 'adult' && !consent.showGate;
 
   return (
     <Modal animationType="fade" onRequestClose={() => undefined} statusBarTranslucent visible={visible}>
@@ -16,12 +18,12 @@ export function FirstLaunchNamePrompt() {
         <BubbleBackground />
         <SafeAreaView style={styles.safe}>
           <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.keyboard}>
-            <View style={[styles.card, shadow.card]}>
+            <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }} keyboardShouldPersistTaps="handled"><View style={[styles.card, shadow.card]}>
               <View style={styles.badge}><Text style={styles.badgeText}>BLOOPIQ</Text></View>
               <Text style={styles.title}>What should we call you?</Text>
               <Text style={styles.body}>Choose the player name shown with your Daily scores and records. You can change it any time in Settings.</Text>
               <View style={styles.form}><PlayerNameEditor firstLaunch /></View>
-            </View>
+            </View></ScrollView>
           </KeyboardAvoidingView>
         </SafeAreaView>
       </View>

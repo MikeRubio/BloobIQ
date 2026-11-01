@@ -1,14 +1,14 @@
 # BloopIQ store release readiness
 
-Verified against `7184f5b` and the follow-up flags-only release changes on 1 November 2026.
+Updated for the parental-consent release milestone on 1 November 2026.
 
 ## Product decisions
 
 The first store release contains country flags only. Casual, Daily, rankings and private Friends rooms remain supported for Flags. Football, baseball, basketball, brands, history and celebrities stay available in full-catalogue development builds while their production artwork rights are unresolved. No rights-status records have been relabelled as approved.
 
-The intended audience remains **all ages with online play**. The publisher explicitly chose to keep that scope, rather than restricting younger users to offline play. The appropriate parental-consent and children's online data-handling flow has not been implemented and verified. Public release therefore remains blocked. Disabling ads, using generated nicknames, publishing a policy, or adding a checkbox does not by itself resolve that blocker.
+The audience remains **all ages with online play**. The under-18 parental flow is now implemented: a neutral age choice, offline play before approval, reviewed signed parental forms, private parent controls, independent public-sharing permission, server-enforced withdrawal/deletion and annual renewal. See [PARENTAL_CONSENT.md](PARENTAL_CONSENT.md) for the publisher's review procedure and evidence-retention duties. No paid identity provider is required; this is a manual signed-form process and real approvals require actual publisher review.
 
-`config/store-release.json` records this pending state. Do not change `allAgesOnlinePrivacyReady` merely to obtain a build: it requires a real implemented and verified flow and an assessment of the complete child-data lifecycle. No parental verification provider is currently integrated. The release work must decide the lawful child-data/consent model, parent and child relationship verification, age handling before data collection, withdrawal and deletion, retention, and provider processing. Avoid storing identity documents or full birth dates in this game.
+`config/store-release.json` records the implemented version and verification evidence. It does not certify universal legal compliance or store acceptance. Signed builds, device acceptance, audience declarations and store-account paperwork still require the checks below.
 
 ## Release catalogue enforcement
 
@@ -17,7 +17,7 @@ The intended audience remains **all ages with online play**. The publisher expli
 - Non-flag deep links fall back to Flags. Backend adapters reject non-flag requests, and an unsupported room joined by code is left before exposing its content.
 - Startup and Friends warming only fetch allowed flag assets.
 - The production content-rights check evaluates the effective catalogue: 195 flag entries pass; 601 other entries remain excluded. Setting the full catalogue still fails the rights check.
-- The public-release gate separately blocks the unfinished all-ages online privacy flow. Test success does not bypass that gate.
+- The public-release gate requires the versioned parental flow, its documentation and disabled production advertising, alongside the Flags rights check.
 
 ## Live backend verification
 
@@ -33,9 +33,9 @@ Production ads default off in `eas.json` and the runtime stops before UMP/SDK in
 
 Native generation was checked for the absence of iOS microphone purpose text and background audio. Android recording, advertising-ID, external-storage and overlay permissions are explicitly removed. Final Android merged manifests and iOS archives still need verification in signed builds.
 
-## Adult internal QA
+## Internal QA
 
-Internal adult QA can continue while public release is blocked. Do not invite children or publish a public beta link as a substitute for completing the online children's flow.
+Use adult testers for initial candidate QA. Test under-18 flows with clearly marked synthetic fixtures; real child online access requires the signed-parent procedure. A public beta does not bypass audience or privacy requirements.
 
 From the project checkout:
 
@@ -64,7 +64,7 @@ npm run check:release-content-rights -- --force
 npm run check:store-release -- --force
 ```
 
-The first passes for Flags. The second currently fails for the unfinished all-ages online privacy flow. Once that work is actually completed and verified, create production candidates using `npm run build:ios:production` and `npm run build:android:production`; test the exact signed candidates before submission.
+Both checks now pass for the implemented Flags-only, ads-disabled release configuration. Create production candidates using `npm run build:ios:production` and `npm run build:android:production`; test the exact signed candidates before submission.
 
 ## Public URLs
 
@@ -72,16 +72,22 @@ The first passes for Flags. The second currently fails for the unfinished all-ag
 - Support: https://bloopiq-privacy.merry-coin-3817.chatgpt.site/support.html
 - Outside-the-app deletion instructions/request: https://bloopiq-privacy.merry-coin-3817.chatgpt.site/delete-account.html
 
-The completed policy, effective 1 November 2026, describes implemented processing, deletion/moderation controls, disabled production ads, retention, service providers and user rights. It contains no draft wording and accurately states that current builds are for internal adult testing, while the intended all-ages public online release remains blocked on the missing consent/data-handling flow. Finishing the policy does not implement or approve that flow. The public deletion page provides the in-app steps and an email request mechanism; a nickname or email address alone does not establish ownership of an anonymous account. Do not delete an existing account solely because someone emails its public nickname or ID.
+The policy effective 1 November 2026 covers the implemented parent flow, parental contact/consent evidence, guest/game processing, deletion, disabled production ads, retention, service providers and rights. It includes the publisher's supplied Dominican Republic address and telephone. The direct parent notice and controls are linked from the policy, support and deletion pages. A nickname or unverified email alone does not establish authority over another guest.
 
 ## Store account and signed-build checks still required
 
-App Store Connect: confirm bundle ID `com.guessr.game`, agreements, age-rating questionnaire, accurate privacy labels, current public policy/support URLs, content-rights declarations, real iPhone/iPad screenshots, review contacts/notes, and EU trader status. Inspect the signed archive and privacy manifest aggregation; complete Apple upload validation. Use the SDK 58 EAS image configured in the profile and verify the actual Xcode/iOS SDK versions in the build log.
+App Store Connect: include parent name/email and signed-consent correspondence in the privacy assessment, then confirm bundle ID `com.guessr.game`, agreements, age-rating questionnaire, accurate privacy labels, current public policy/support URLs, content-rights declarations, real iPhone/iPad screenshots, review contacts/notes, and EU trader status. Inspect the signed archive and privacy manifest aggregation; complete Apple upload validation. Use the SDK 58 EAS image configured in the profile and verify the actual Xcode/iOS SDK versions in the build log.
 
-Google Play: confirm package `com.guessr.game`, app signing, unique version code, Android target SDK requirement, final merged permissions, native-library 16 KB page-size compatibility, Data safety, account-deletion URL, ads declaration, target audience/Families requirements where applicable, IARC rating, store assets/support details and any account-specific production-testing requirements. Answer disclosures for actual bundled SDK behavior and the all-ages online data model, not solely the lack of a login form.
+Google Play: include parent name/email and consent correspondence/evidence in Data safety, then confirm package `com.guessr.game`, app signing, unique version code, Android target SDK requirement, final merged permissions, native-library 16 KB page-size compatibility, Data safety, account-deletion URL, ads declaration, target audience/Families requirements where applicable, IARC rating, store assets/support details and any account-specific production-testing requirements. Answer disclosures for actual bundled SDK behavior and the all-ages online data model, not solely the lack of a login form.
 
 Both platforms: verify cold launch, flags imagery, Daily start/submission/rankings, two-device room creation/joining/reconnects, Report & Block, account deletion/cancellation/failure, offline error/retry, background/foreground timing, sound restoration, accessibility text sizes and iPad layout. Signed native builds, store forms, legal audience review and physical-device acceptance are not established by Metro exports or unit tests.
 
 ## Validation
 
-`npm run check`: TypeScript, ESLint, 116 tests, and branding checks passed. Expo Doctor: 20/20. iOS and Android native project generation passed. Live account deletion and token invalidation passed as described above. Record subsequent archive/device results separately; no store approval is claimed.
+- `npm run check`: 130 tests, TypeScript, lint and branding checks passed.
+- Expo Doctor: 20/20.
+- iOS and Android Flags-only Metro exports passed; these are not signed archives.
+- 23 live HTTP checks passed with synthetic guests, including real Auth deletion and rejection of former JWTs. Parent public endpoint/CORS also passed without an API key.
+- All four database suites passed in rollback transactions: 158 pgTAP assertions across Daily, Friends, rewarded ads and parental consent. The consent suite also uses explicit exception assertions for isolation, private/public score visibility, no child ad reference, expiry and retention cleanup. Existing SQL fixtures were corrected for role privileges and smallint RPC arguments.
+- New private consent tables have RLS and no client privileges; approval is not client-executable. Anonymous guest access and authenticated game RPC security-definer advisor notices are expected architecture, not blanket ignored errors.
+- The policy and parent pages were checked for links, scripts, published operator contact and DOM rendering. Physical-device acceptance and signed-store upload validation remain unverified here.

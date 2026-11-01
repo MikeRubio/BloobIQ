@@ -1,3 +1,4 @@
+import { useConsentStore } from '../store/consent-store';
 import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -17,6 +18,7 @@ const rules = [
 ] as const;
 
 export default function DailyIntroScreen() {
+  const access = useConsentStore((s) => s.access);
   const params = useLocalSearchParams<{ category?: string }>();
   const categoryId = normalizeQuizCategory(params.category);
   const quiz = getQuiz(categoryId);
@@ -28,7 +30,7 @@ export default function DailyIntroScreen() {
   const message = useDailyStore((state) => state.message);
   const start = useDailyStore((state) => state.start);
   const load = useDailyStore((state) => state.load);
-  useDailyStateLifecycle({ categoryId, enabled: hydrated, profile });
+  useDailyStateLifecycle({ categoryId, enabled: hydrated && access.onlineAllowed, profile });
   const categorySnapshot = snapshot?.categoryId === categoryId ? snapshot : null;
   const begin = async () => {
     if (categorySnapshot?.state === 'in_progress') return router.replace({ pathname: '/daily', params: { category: categoryId } });
@@ -49,6 +51,7 @@ export default function DailyIntroScreen() {
           <View style={styles.ruleGrid}>{rules.map(([value, labelText]) => <View key={labelText} style={styles.rule}><Text style={styles.ruleValue}>{value}</Text><Text style={styles.ruleLabel}>{labelText}</Text></View>)}</View>
           <View style={[styles.info, shadow.card]}>
             <Text style={styles.infoTitle}>Before you start</Text>
+            {access.kind === 'child' && !access.sharingAllowed ? <Text style={styles.infoText}>Your score stays private. A parent can separately allow public rankings and Friends.</Text> : null}
             <Text style={styles.infoText}>• All ten questions count, even after mistakes.</Text>
             <Text style={styles.infoText}>• No speed bonus, hints, hearts, or revives.</Text>
             <Text style={styles.infoText}>• Ranked timers continue while BloopIQ is in the background.</Text>
@@ -60,6 +63,7 @@ export default function DailyIntroScreen() {
           {status === 'loading' || !hydrated ? <ActivityIndicator color={colors.sky} style={styles.loader} /> : (
             <GameButton label={label} onPress={() => void begin()} variant="coral" disabled={status === 'unconfigured' || status === 'error'} />
           )}
+          {(status === 'unconfigured' || status === 'error') ? <GameButton compact label="Online access & parents" onPress={() => useConsentStore.getState().openGate()} variant="sky" style={styles.retry} /> : null}
           {(status === 'unconfigured' || status === 'error') ? <GameButton compact label="Retry Connection" onPress={() => void load(backendProfileFromLocal(profile), categoryId)} variant="ghost" style={styles.retry} /> : null}
           {(status === 'unconfigured' || status === 'error') ? <GameButton compact label="Back" onPress={() => router.back()} variant="ghost" style={styles.retry} /> : null}
           <Text style={styles.note}>Practice replay unlocks after the ranked attempt and never changes rankings or your daily streak.</Text>

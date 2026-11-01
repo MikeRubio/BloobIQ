@@ -44,18 +44,17 @@ describe('flags-only store release', () => {
     expect(run('invalid').status).not.toBe(0);
   });
 
-  it('keeps public release blocked until the chosen all-ages online privacy flow is ready', () => {
+  it('accepts the verified parental-flow Flags release while retaining the native acceptance requirement', () => {
     const result = spawnSync(process.execPath, ['scripts/check-store-release.mjs', '--force'], {
       cwd: process.cwd(), env: { ...process.env, EXPO_PUBLIC_RELEASE_CATALOG: 'flags-only' }, encoding: 'utf8',
     });
-    expect(result.status).toBe(1);
+    expect(result.status).toBe(0);
     expect(result.stdout).toContain('195 flags-only');
-    expect(result.stderr).toContain('Public release blocked');
-    expect(result.stderr).toContain('parental-consent');
+    expect(result.stdout).toContain('Signed archives, store forms, and device acceptance must still be verified.');
     const inherited = spawnSync(process.execPath, ['scripts/check-store-release.mjs'], {
       cwd: process.cwd(), env: { ...process.env, EAS_BUILD_PROFILE: 'custom-release', BLOOPIQ_ADS_ENV: 'production', EXPO_PUBLIC_RELEASE_CATALOG: 'flags-only' }, encoding: 'utf8',
     });
-    expect(inherited.status).toBe(1);
-    expect(inherited.stderr).toContain('Public release blocked');
+    expect(inherited.status).toBe(0);
+    expect(inherited.stdout).toContain('Public release checks passed');
   });
 });

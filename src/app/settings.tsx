@@ -1,3 +1,5 @@
+import { OnlineAccessSettings } from '../components/online-access-gate';
+import { useConsentStore } from '../store/consent-store';
 import { BubbleBackground } from "@/components/bubble-background";
 import { deleteAccountAndServerData } from "@/backend/account-api";
 import { PlayerNameEditor } from "@/components/player-name-editor";
@@ -71,6 +73,7 @@ export default function SettingsScreen() {
       <SafeAreaView style={styles.safe}>
         <ScreenHeader title="Settings" subtitle="Make BloopIQ feel right" />
         <ScrollView contentContainerStyle={styles.content}>
+          <OnlineAccessSettings />
           <View style={[styles.nameCard, shadow.card]}>
             <Text style={styles.nameTitle}>Your player name</Text>
             <Text style={styles.nameBody}>
@@ -179,6 +182,8 @@ export default function SettingsScreen() {
                             useDailyStore.getState().reset();
                             await useFriendsStore.getState().clearLocalData();
                             useProfileStore.getState().resetAfterAccountDeletion();
+                            useConsentStore.getState().reset();
+                            await useConsentStore.persist.clearStorage();
                             await useProfileStore.persist.clearStorage();
                             router.replace("/");
                           })

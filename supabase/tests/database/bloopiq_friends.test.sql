@@ -24,6 +24,9 @@ insert into public.guest_profiles (user_id, display_name, avatar, avatar_color) 
   ('11000000-0000-0000-0000-000000000003', 'Friend Three', '3', '#54D6A8');
 
 create temp table friend_snapshots (label text primary key, snapshot jsonb);
+grant select,insert,update on friend_snapshots to authenticated;
+insert into private.online_access(user_id,kind,notice_version) select id,'adult',private.parent_notice_version() from auth.users where id::text like '11000000-%' on conflict do nothing;
+
 set local role authenticated;
 set local "request.jwt.claim.sub" = '11000000-0000-0000-0000-000000000001';
 insert into friend_snapshots values ('created', public.create_friend_room('football'));
@@ -77,7 +80,7 @@ select ok((select not ((snapshot->'round') ? 'revealAssetPath') from friend_snap
 
 insert into friend_snapshots select 'answered', public.submit_friend_answer(
   (select (snapshot->>'roomId')::uuid from friend_snapshots where label = 'created'),
-  (select (snapshot->>'matchId')::uuid from friend_snapshots where label = 'started'), 0,
+  (select (snapshot->>'matchId')::uuid from friend_snapshots where label = 'started'), 0::smallint,
   (select (snapshot->'round'->'options'->0->>'id')::uuid from friend_snapshots where label = 'question'),
   '22000000-0000-0000-0000-000000000001'
 );
@@ -85,7 +88,7 @@ select ok((select (snapshot->'myAnswer') is not null from friend_snapshots where
 select ok((select not ((snapshot->'round') ? 'correctChoiceId') from friend_snapshots where label = 'answered'), 'early answer does not reveal correctness key');
 insert into friend_snapshots select 'retry', public.submit_friend_answer(
   (select (snapshot->>'roomId')::uuid from friend_snapshots where label = 'created'),
-  (select (snapshot->>'matchId')::uuid from friend_snapshots where label = 'started'), 0,
+  (select (snapshot->>'matchId')::uuid from friend_snapshots where label = 'started'), 0::smallint,
   (select (snapshot->'round'->'options'->0->>'id')::uuid from friend_snapshots where label = 'question'),
   '22000000-0000-0000-0000-000000000001'
 );
@@ -98,7 +101,7 @@ set local "request.jwt.claim.sub" = '11000000-0000-0000-0000-000000000001';
 select throws_ok(
   $$select public.submit_friend_answer(
     (select (snapshot->>'roomId')::uuid from friend_snapshots where label = 'created'),
-    (select (snapshot->>'matchId')::uuid from friend_snapshots where label = 'started'), 0, null,
+    (select (snapshot->>'matchId')::uuid from friend_snapshots where label = 'started'), 0::smallint, null,
     '22000000-0000-0000-0000-000000000002')$$,
   'P0001', 'Your answer for this question is already locked.', 'second answer request is rejected'
 );
@@ -144,5 +147,5 @@ select isnt((select snapshot->>'matchId' from friend_snapshots where label = 'se
 reset role;
 select is((select count(*) from private.friend_match_rounds where match_id = (select (snapshot->>'matchId')::uuid from friend_snapshots where label = 'second_match')), 10::bigint, 'rematch snapshots ten fresh rounds');
 
-select * from finish();
+select * from finish(true);
 rollback;

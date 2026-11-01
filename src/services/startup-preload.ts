@@ -23,8 +23,8 @@ async function mapLimit<T>(values: readonly T[], limit: number, task: (value: T)
   await Promise.all(Array.from({ length: Math.min(limit, values.length) }, worker));
 }
 
-export async function preloadStartupAssets(onProgress?: (progress: PreloadProgress) => void) {
-  const startupPaths = startupQuizAssetPaths();
+export async function preloadStartupAssets(onProgress?: (progress: PreloadProgress) => void, allowOnline = false) {
+  const startupPaths = allowOnline ? startupQuizAssetPaths() : [];
   const remoteUrls = startupPaths.map(getQuizAssetUrl).filter((url): url is string => Boolean(url));
   const total = remoteUrls.length + 1;
   let completed = 0;

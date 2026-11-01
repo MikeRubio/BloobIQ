@@ -1,3 +1,4 @@
+import { OnlineAccessSettings } from '../components/online-access-gate';
 import { BubbleBackground } from "@/components/bubble-background";
 import { GameButton } from "@/components/game-button";
 import {
@@ -73,6 +74,7 @@ export default function HomeScreen() {
             </View>
           </View>
 
+          <OnlineAccessSettings />
           <View style={[styles.friendsCard, shadow.card]}>
             <View style={styles.friendsTop}>
               <View style={styles.friendsIcon}>

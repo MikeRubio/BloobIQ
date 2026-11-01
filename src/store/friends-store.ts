@@ -1,3 +1,4 @@
+import { useConsentStore } from './consent-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { RealtimeChannel } from '@supabase/supabase-js';
 import { create } from 'zustand';
@@ -65,6 +66,7 @@ export const useFriendsStore = create<FriendsStore>((set, get) => ({
     } catch (error) { set({ loading: false, message: errorMessage(error) }); return null; }
   },
   resumeRoom: async (profile) => {
+    if (!useConsentStore.getState().access.sharingAllowed) return null;
     const roomId = await AsyncStorage.getItem(ACTIVE_ROOM_KEY);
     if (!roomId) return null;
     try {
@@ -75,10 +77,11 @@ export const useFriendsStore = create<FriendsStore>((set, get) => ({
     } catch { await remember(null); return null; }
   },
   connect: async (profile, roomId) => {
+    if (!useConsentStore.getState().access.sharingAllowed) { set({ message: 'Online access and parental sharing permission are required for Friends.' }); return; }
     currentProfile = profile;
     set({ connection: 'connecting', message: null });
     await get().refresh();
-    if (!supabase) return;
+    if (!supabase || !useConsentStore.getState().access.sharingAllowed) return;
     if (channel) await supabase.removeChannel(channel);
     channel = supabase.channel(`friend-room-${roomId}`)
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'friend_room_events', filter: `room_id=eq.${roomId}` }, () => { void get().refresh(); })
@@ -90,6 +93,7 @@ export const useFriendsStore = create<FriendsStore>((set, get) => ({
     refreshTimer = setInterval(() => { void get().refresh(); }, 3000);
   },
   refresh: async () => {
+    if (!useConsentStore.getState().access.sharingAllowed) return;
     const roomId = get().snapshot?.roomId ?? await AsyncStorage.getItem(ACTIVE_ROOM_KEY);
     if (!roomId || !currentProfile || refreshBusy) return;
     refreshBusy = true;

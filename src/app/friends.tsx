@@ -1,3 +1,4 @@
+import { useConsentStore } from '../store/consent-store';
 import { useEffect, useMemo, useState } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -15,6 +16,7 @@ import { colors, radius, shadow, spacing, type } from '@/theme/tokens';
 const eligibleQuizzes = quizzesForMode('friends');
 
 export default function FriendsScreen() {
+  const sharingAllowed = useConsentStore((s) => s.access.sharingAllowed);
   const params = useLocalSearchParams<{ action?: string; quiz?: string }>();
   const profile = useProfileStore((state) => state.profile);
   const { createRoom, joinRoom, resumeRoom, loading, message, clearMessage } = useFriendsStore();
@@ -30,12 +32,13 @@ export default function FriendsScreen() {
 
   useEffect(() => {
     let active = true;
+    if (!sharingAllowed) return () => { clearMessage(); };
     void resumeRoom(payload).then((roomId) => {
       if (active && roomId) router.replace({ pathname: '/friend-room', params: { roomId } });
       else if (active) setChecking(false);
     });
     return () => { active = false; clearMessage(); };
-  }, [clearMessage, payload, resumeRoom]);
+  }, [clearMessage, payload, resumeRoom, sharingAllowed]);
 
   const create = async () => { const next = await createRoom(payload, category); if (next) router.replace({ pathname: '/friend-room', params: { roomId: next.roomId } }); };
   const join = async () => { const next = await joinRoom(payload, code); if (next) router.replace({ pathname: '/friend-room', params: { roomId: next.roomId } }); };
@@ -50,7 +53,7 @@ export default function FriendsScreen() {
     <View style={styles.groupSelector}>{eligibleGroups.map((id) => <Pressable accessibilityRole="button" key={id} onPress={() => chooseGroup(id)} style={[styles.groupChoice, groupId === id && styles.groupChoiceActive]}><Text style={styles.groupChoiceIcon}>{id === 'flags' ? '🌍' : id === 'sports' ? '⚽' : id === 'brands' ? '✦' : '★'}</Text><Text style={styles.groupChoiceText}>{id === 'flags' ? 'Flags' : id === 'sports' ? 'Sports' : id === 'brands' ? 'Brands' : 'People'}</Text></Pressable>)}</View>
     <Text style={styles.selectionLabel}>ELIGIBLE QUIZ</Text>
     <View style={styles.categories}>{groupQuizzes.map((quiz) => <Pressable accessibilityRole="button" key={quiz.id} onPress={() => setCategory(quiz.id)} style={[styles.category, category === quiz.id && styles.categoryActive]}><Text style={styles.categoryIcon}>{quiz.icon}</Text><View style={styles.quizCopy}><Text style={styles.categoryText}>{quiz.label}</Text><Text style={styles.quizPack}>{quiz.packLabel}</Text></View><Text style={styles.check}>{category === quiz.id ? '✓' : ''}</Text></Pressable>)}</View>
-    <GameButton disabled={loading || checking} label={checking ? 'Checking for a room…' : 'Create private room'} onPress={create} variant="sky" />
+    <GameButton disabled={loading || (checking && sharingAllowed)} label={checking && sharingAllowed ? 'Checking for a room…' : 'Create private room'} onPress={create} variant="sky" />
   </View>;
   const joinCard = <View style={[styles.card, shadow.card]}>
     <Text style={styles.kicker}>JOIN A ROOM</Text><Text style={styles.title}>Enter the six-character code</Text><Text style={styles.joinHint}>The room chooses the quiz automatically.</Text>

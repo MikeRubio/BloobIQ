@@ -1,7 +1,9 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { clearCasualPackCache, loadCasualQuestions } from './casual-api';
+vi.mock('../store/consent-store', () => ({ useConsentStore: { getState: () => ({ access: { onlineAllowed: backend.onlineAllowed } }) } }));
 
 const backend = vi.hoisted(() => ({
+  onlineAllowed: true,
   ensureAnonymousSession: vi.fn(),
   rpc: vi.fn(),
 }));
@@ -27,11 +29,27 @@ const hostedFlags = {
 };
 
 beforeEach(() => {
+  backend.onlineAllowed = true;
   clearCasualPackCache();
   vi.clearAllMocks();
 });
 
 describe('Casual hosted pack loading', () => {
+  it('plays bundled Flags without Auth or network for offline/pending players', async () => {
+    backend.onlineAllowed = false;
+    expect(await loadCasualQuestions('flags', profile)).toHaveLength(48);
+    expect(backend.ensureAnonymousSession).not.toHaveBeenCalled(); expect(backend.rpc).not.toHaveBeenCalled();
+  });
+  it('stops using a cached hosted pack after permission is withdrawn', async () => {
+    backend.rpc.mockResolvedValueOnce({ data: hostedFlags, error: null });
+    await loadCasualQuestions('flags', profile); backend.onlineAllowed = false;
+    expect(await loadCasualQuestions('flags', profile)).toHaveLength(48);
+    expect(backend.rpc).toHaveBeenCalledTimes(1);
+  });
+  it('falls back to bundled Flags if the online session cannot be checked', async () => {
+    backend.ensureAnonymousSession.mockRejectedValueOnce(new Error('offline'));
+    expect(await loadCasualQuestions('flags', profile)).toHaveLength(48); expect(backend.rpc).not.toHaveBeenCalled();
+  });
   it('loads Flags through the authenticated hosted-pack RPC', async () => {
     backend.rpc.mockResolvedValueOnce({ data: hostedFlags, error: null });
 

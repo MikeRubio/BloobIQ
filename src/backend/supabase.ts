@@ -1,31 +1,8 @@
-import 'react-native-url-polyfill/auto';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { createClient, type SupabaseClient } from '@supabase/supabase-js';
-import type { Database } from './database.types';
+import { supabase } from './client';
+import { requireOnlineAccess } from './online-access';
+import { useProfileStore } from '../store/profile-store';
 import type { GuestProfilePayload } from './types';
-
-const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL?.trim();
-const supabasePublishableKey = process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY?.trim();
-
-export const isSupabaseConfigured = Boolean(supabaseUrl && supabasePublishableKey);
-
-export const supabase: SupabaseClient<Database> | null = isSupabaseConfigured
-  ? createClient<Database>(supabaseUrl!, supabasePublishableKey!, {
-      auth: {
-        storage: AsyncStorage,
-        autoRefreshToken: true,
-        persistSession: true,
-        detectSessionInUrl: false,
-      },
-    })
-  : null;
-
-export function getQuizAssetUrl(assetPath: string): string | null {
-  if (!supabase) return null;
-  return supabase.storage.from('quiz-assets').getPublicUrl(assetPath).data.publicUrl;
-}
-
-let sessionPromise: Promise<string> | null = null;
+export { supabase, isSupabaseConfigured, getQuizAssetUrl } from './client';
 let profileSyncPromise: Promise<string> | null = null;
 let syncedProfileKey: string | null = null;
 
@@ -36,30 +13,13 @@ export class BackendUnavailableError extends Error {
   }
 }
 
-async function ensureAnonymousUser(): Promise<string> {
-  if (!supabase) throw new BackendUnavailableError('Add Supabase environment variables to enable ranked play.', 'configuration');
-  if (sessionPromise) return sessionPromise;
-  sessionPromise = (async () => {
-    const { data: existing, error: sessionError } = await supabase.auth.getSession();
-    if (sessionError) throw new BackendUnavailableError(sessionError.message, 'auth');
-    let userId = existing.session?.user.id;
-    if (!userId) {
-      const { data, error } = await supabase.auth.signInAnonymously();
-      if (error || !data.user) throw new BackendUnavailableError(error?.message ?? 'Anonymous sign-in failed.', 'auth');
-      userId = data.user.id;
-    }
-    return userId;
-  })().finally(() => { sessionPromise = null; });
-  return sessionPromise;
-}
-
 function profileKey(userId: string, profile: GuestProfilePayload): string {
   return `${userId}\u0000${profile.name}\u0000${profile.avatar}\u0000${profile.color}`;
 }
 
 export async function syncGuestProfile(profile: GuestProfilePayload): Promise<string> {
   const client = supabase;
-  const userId = await ensureAnonymousUser();
+  const userId = await requireOnlineAccess();
   const key = profileKey(userId, profile);
   if (syncedProfileKey === key) return userId;
 
@@ -75,12 +35,21 @@ export async function syncGuestProfile(profile: GuestProfilePayload): Promise<st
   }
 
   profileSyncPromise = (async () => {
-    const { error } = await client!.rpc('sync_guest_profile', {
+    const { data, error } = await client!.rpc('sync_guest_profile', {
       p_display_name: profile.name,
       p_avatar: profile.avatar,
       p_avatar_color: profile.color,
     });
     if (error) throw new BackendUnavailableError(error.message);
+    if (data && typeof data === 'object' && !Array.isArray(data) && typeof data.displayName === 'string') {
+      const current = useProfileStore.getState();
+      const name = data.displayName;
+      const avatar = typeof data.avatar === 'string' ? data.avatar : current.profile.avatar;
+      const color = typeof data.avatarColor === 'string' ? data.avatarColor : current.profile.color;
+      if (current.profile.name !== name || current.profile.avatar !== avatar || current.profile.color !== color) {
+        useProfileStore.setState({ profile: { ...current.profile, name, avatar, color }, nameSetupComplete: true });
+      }
+    }
     syncedProfileKey = key;
     return userId;
   })().finally(() => { profileSyncPromise = null; });

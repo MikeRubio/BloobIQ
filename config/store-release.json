@@ -1,5 +1,9 @@
 {
   "audience": "all-ages-online",
-  "allAgesOnlinePrivacyReady": false,
-  "reason": "The all-ages online parental-consent and children's data-handling flow is not implemented and verified. Internal adult QA may continue; public release remains blocked."
+  "allAgesOnlinePrivacyReady": true,
+  "parentalConsentMethod": "reviewed-signed-form",
+  "parentNoticeVersion": "2026-11-01-v1",
+  "productionAdsEnabled": false,
+  "verification": "130 automated tests, 23 live HTTP checks, transaction-only consent/retention checks; see docs/PARENTAL_CONSENT.md",
+  "reason": "Parental flow implemented and server verified. Publisher must review actual signed forms. Signed native candidates, device acceptance and store declarations remain required."
 }
