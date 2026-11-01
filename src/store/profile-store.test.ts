@@ -38,7 +38,8 @@ describe('profile record compatibility', () => {
   it('normalizes and validates player names with the backend length limits', () => {
     expect(normalizePlayerName('  Mighty   Fox  ')).toBe('Mighty Fox');
     expect(getPlayerNameError('ab')).toBe('Use at least 3 characters.');
-    expect(getPlayerNameError('A'.repeat(41))).toBe('Use 40 characters or fewer.');
+    expect(getPlayerNameError('A'.repeat(33))).toBe('Use 32 characters or fewer.');
+    expect(getPlayerNameError('the faggot')).toBe('Choose a respectful player name.');
     expect(getPlayerNameError('Mighty Fox')).toBeNull();
   });
 

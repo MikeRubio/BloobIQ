@@ -21,10 +21,11 @@ type ProfileState = {
   toggleSetting: (setting: keyof Settings) => void;
   recordResult: (result: RunResult) => void;
   markCasualQuizPlayed: (quizId: QuizCategoryId, questionIds: readonly string[]) => void;
+  resetAfterAccountDeletion: () => void;
 };
 
 export const PLAYER_NAME_MIN_LENGTH = 3;
-export const PLAYER_NAME_MAX_LENGTH = 40;
+export const PLAYER_NAME_MAX_LENGTH = 32;
 
 export function normalizePlayerName(value: string): string {
   return value.replace(/\s+/g, ' ').trim();
@@ -36,6 +37,11 @@ export function getPlayerNameError(value: string): string | null {
   if (length < PLAYER_NAME_MIN_LENGTH) return `Use at least ${PLAYER_NAME_MIN_LENGTH} characters.`;
   if (length > PLAYER_NAME_MAX_LENGTH) return `Use ${PLAYER_NAME_MAX_LENGTH} characters or fewer.`;
   if (/[\u0000-\u001f\u007f]/u.test(value)) return 'Remove line breaks or control characters.';
+  const moderationText = normalized.toLocaleLowerCase('en-US').replace(/[^a-z0-9]+/g, ' ').trim();
+  const prohibited = ['fuck', 'shit', 'bitch', 'cunt', 'nigger', 'nigga', 'faggot', 'retard', 'kike'];
+  if (moderationText.split(/\s+/u).some((token) => prohibited.includes(token))) {
+    return 'Choose a respectful player name.';
+  }
   return null;
 }
 
@@ -115,6 +121,15 @@ export const useProfileStore = create<ProfileState>()(
           [lastPlayedCasualQuizId]: [...questionIds],
         },
       })),
+      resetAfterAccountDeletion: () => set({
+        profile: createGuestProfile(),
+        nameSetupComplete: false,
+        settings: { sound: true, haptics: true, reducedMotion: false },
+        records: {},
+        lastPlayedCasualQuizId: undefined,
+        recentCasualQuestionIds: {},
+        hydrated: true,
+      }),
       recordResult: (result) => set((state) => {
         return { records: updateCategoryRecords(state.records, result) };
       }),

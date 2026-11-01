@@ -20,6 +20,10 @@
       }
     },
     "android": {
+      "blockedPermissions": [
+        "android.permission.RECORD_AUDIO",
+        "com.google.android.gms.permission.AD_ID"
+      ],
       "adaptiveIcon": {
         "backgroundColor": "#2D9CDB",
         "foregroundImage": "./assets/branding/android-adaptive-foreground.png",
@@ -53,7 +57,15 @@
           }
         }
       ],
-      "expo-audio",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": false,
+          "recordAudioAndroid": false,
+          "enableBackgroundPlayback": false,
+          "enableBackgroundRecording": false
+        }
+      ],
       "expo-asset",
       "expo-image"
     ],

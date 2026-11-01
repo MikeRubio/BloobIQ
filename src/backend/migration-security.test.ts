@@ -103,4 +103,23 @@ describe('BloopIQ migration security contract', () => {
     expect(allSql).toContain('partition by coalesce');
     expect(allSql).toContain("'prompt', metadata->>'questionprompt'");
   });
+
+  it('keeps account deletion authenticated and clears restrictive Friends references', () => {
+    expect(allSql).toContain('create or replace function public.prepare_account_deletion()');
+    expect(allSql).toContain('v_user uuid := auth.uid()');
+    expect(allSql).toContain('delete from private.friend_rooms where host_user_id = v_user');
+    expect(allSql).toContain('delete from private.friend_match_players where user_id = v_user');
+    expect(allSql).toContain('delete from private.friend_room_members where user_id = v_user');
+    expect(allSql).toContain('revoke all on function public.prepare_account_deletion() from public, anon');
+    expect(allSql).toContain('grant execute on function public.prepare_account_deletion() to authenticated');
+    expect(allSql).toContain("auth.jwt()->>'session_id'");
+    expect(allSql).toContain('select 1 from auth.sessions where id = v_session_id and user_id = v_user');
+  });
+
+  it('stores reports privately and exposes only the scoped moderation RPC', () => {
+    expect(allSql).toContain('alter table private.player_reports enable row level security');
+    expect(allSql).toContain('alter table private.player_blocks enable row level security');
+    expect(allSql).toContain('revoke all on private.player_blocks, private.player_reports from public, anon, authenticated');
+    expect(allSql).toContain('revoke all on function public.report_and_block_player(uuid, text, uuid) from public, anon');
+  });
 });

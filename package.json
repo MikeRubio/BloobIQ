@@ -69,12 +69,14 @@
     "db:test": "npx supabase test db",
     "generate:branding": "node ./scripts/generate-brand-assets.mjs",
     "check:branding": "node ./scripts/check-brand-assets.mjs",
+    "check:release-content-rights": "node ./scripts/check-release-content-rights.mjs",
+    "eas-build-pre-install": "node ./scripts/check-release-content-rights.mjs",
     "preflight": "npm run check && npx expo-doctor",
     "build:android": "npm run preflight && npx eas-cli build --platform android --profile development",
     "build:android:qa": "npm run preflight && npx eas-cli build --platform android --profile ads-qa",
-    "build:android:production": "npm run preflight && npx eas-cli build --platform android --profile production",
+    "build:android:production": "npm run preflight && npm run check:release-content-rights -- --force && npx eas-cli build --platform android --profile production",
     "build:ios": "npm run preflight && npx eas-cli build --platform ios --profile testflight",
-    "build:ios:production": "npm run preflight && npx eas-cli build --platform ios --profile production",
+    "build:ios:production": "npm run preflight && npm run check:release-content-rights -- --force && npx eas-cli build --platform ios --profile production",
     "deploy:ios:testflight": "npm run preflight && npx eas-cli build --platform ios --profile testflight --auto-submit"
   },
   "private": true

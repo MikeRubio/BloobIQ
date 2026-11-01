@@ -21,6 +21,8 @@ type LoadedService = RewardedAdService & { destroy(): void };
 type Listener = () => void;
 
 const config = (Constants.expoConfig?.extra?.ads ?? {}) as {
+  enabled?: boolean;
+  audiencePolicy?: 'child-safe';
   mode?: 'test' | 'production';
   qaMode?: boolean;
   androidRewardedId?: string;
@@ -69,6 +71,8 @@ const emit = (next: Partial<AdsRuntimeState>) => {
 };
 
 const unavailableReason = (): string | null => {
+  if (config.enabled !== true) return 'Rewarded ads are disabled in this build.';
+  if (config.audiencePolicy !== 'child-safe') return 'Rewarded ads are disabled until an audience policy is configured.';
   if (Platform.OS !== 'ios' && Platform.OS !== 'android') return 'Rewarded ads are available only on Android and iOS.';
   if (Constants.executionEnvironment === 'storeClient') return 'Expo Go cannot load native ads. Install the BloopIQ development build.';
   if (requiredNativeAdsModules.some((name) => !TurboModuleRegistry.get<TurboModule>(name))) {

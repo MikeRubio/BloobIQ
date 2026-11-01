@@ -4,7 +4,7 @@ import { GOOGLE_SAMPLE_IDS, resolveAdMobBuildConfig } from './admob.cjs';
 describe('AdMob build configuration', () => {
   it('uses only official Google test IDs outside production', () => {
     expect(resolveAdMobBuildConfig({ BLOOPIQ_ADS_ENV: 'test' })).toEqual({
-      mode: 'test', appIdMode: 'google-sample', qaMode: false, ...GOOGLE_SAMPLE_IDS,
+      enabled: true, audiencePolicy: 'child-safe', mode: 'test', appIdMode: 'google-sample', qaMode: false, ...GOOGLE_SAMPLE_IDS,
       umpDebugGeography: undefined, umpTestDeviceIds: [], mobileAdsTestDeviceIds: [],
     });
   });
@@ -20,7 +20,7 @@ describe('AdMob build configuration', () => {
       ADMOB_ANDROID_REWARDED_ID: 'android-unit', ADMOB_IOS_REWARDED_ID: 'ios-unit',
     });
     expect(config).toEqual({
-      mode: 'production', appIdMode: 'custom', qaMode: false, androidAppId: 'android-app', iosAppId: 'ios-app',
+      enabled: false, audiencePolicy: 'child-safe', mode: 'production', appIdMode: 'custom', qaMode: false, androidAppId: 'android-app', iosAppId: 'ios-app',
       androidRewardedId: 'android-unit', iosRewardedId: 'ios-unit',
       umpDebugGeography: undefined, umpTestDeviceIds: [], mobileAdsTestDeviceIds: [],
     });
@@ -38,7 +38,7 @@ describe('AdMob build configuration', () => {
       ADMOB_ANDROID_APP_ID: 'ca-app-pub-6478004441965465~2620495643',
       ADMOB_IOS_APP_ID: 'ca-app-pub-6478004441965465~4153069168',
     })).toEqual({
-      mode: 'test', appIdMode: 'custom', qaMode: true,
+      enabled: true, audiencePolicy: 'child-safe', mode: 'test', appIdMode: 'custom', qaMode: true,
       androidAppId: 'ca-app-pub-6478004441965465~2620495643',
       iosAppId: 'ca-app-pub-6478004441965465~4153069168',
       androidRewardedId: GOOGLE_SAMPLE_IDS.androidRewardedId,
@@ -56,5 +56,19 @@ describe('AdMob build configuration', () => {
     });
     expect(config).toMatchObject({ qaMode: false, umpTestDeviceIds: [], mobileAdsTestDeviceIds: [] });
     expect(config.umpDebugGeography).toBeUndefined();
+  });
+
+  it('requires an explicit runtime switch before production ads can initialize', () => {
+    const environment = {
+      BLOOPIQ_ADS_ENV: 'production',
+      BLOOPIQ_ENABLE_PRODUCTION_ADS: 'true',
+      ADMOB_ANDROID_APP_ID: 'android-app', ADMOB_IOS_APP_ID: 'ios-app',
+      ADMOB_ANDROID_REWARDED_ID: 'android-unit', ADMOB_IOS_REWARDED_ID: 'ios-unit',
+    };
+    expect(resolveAdMobBuildConfig(environment)).toMatchObject({
+      enabled: true,
+      audiencePolicy: 'child-safe',
+      mode: 'production',
+    });
   });
 });

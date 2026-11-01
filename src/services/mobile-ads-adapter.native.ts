@@ -3,6 +3,7 @@ import mobileAds, {
   AdsConsent,
   AdsConsentDebugGeography,
   AdsConsentPrivacyOptionsRequirementStatus,
+  MaxAdContentRating,
   RewardedAd,
   RewardedAdEventType,
 } from 'react-native-google-mobile-ads';
@@ -13,26 +14,24 @@ let initialized: Promise<void> | null = null;
 
 async function consentResult(canRequestAds: boolean, message?: string): Promise<NativeAdsInitialization> {
   const info = await AdsConsent.getConsentInfo();
-  let requestNonPersonalizedAdsOnly = false;
-  try {
-    const gdprApplies = await AdsConsent.getGdprApplies();
-    if (gdprApplies) requestNonPersonalizedAdsOnly = !(await AdsConsent.getUserChoices()).selectPersonalisedAds;
-  } catch {
-    requestNonPersonalizedAdsOnly = false;
-  }
   return {
     canRequestAds,
     privacyOptionsRequired: info.privacyOptionsRequirementStatus === AdsConsentPrivacyOptionsRequirementStatus.REQUIRED,
-    requestNonPersonalizedAdsOnly,
+    // BloopIQ currently applies the conservative child-safe policy to every
+    // user, so no rewarded request may use personalized inventory.
+    requestNonPersonalizedAdsOnly: true,
     message,
   };
 }
 
 async function startSdkIfAllowed(canRequestAds: boolean, qa?: NativeAdsQaConfig): Promise<void> {
   if (!canRequestAds) return;
-  if (qa?.enabled && qa.mobileAdsTestDeviceIds.length) {
-    await mobileAds().setRequestConfiguration({ testDeviceIdentifiers: qa.mobileAdsTestDeviceIds });
-  }
+  await mobileAds().setRequestConfiguration({
+    maxAdContentRating: MaxAdContentRating.G,
+    tagForChildDirectedTreatment: true,
+    tagForUnderAgeOfConsent: true,
+    testDeviceIdentifiers: qa?.enabled ? qa.mobileAdsTestDeviceIds : [],
+  });
   initialized ??= mobileAds().initialize().then(() => undefined);
   await initialized;
 }
@@ -41,10 +40,11 @@ export async function initializeNativeAds(qa?: NativeAdsQaConfig): Promise<Nativ
   let info;
   let message: string | undefined;
   try {
-    info = await AdsConsent.gatherConsent(qa?.enabled ? {
-      debugGeography: qa.umpDebugGeography === 'EEA' ? AdsConsentDebugGeography.EEA : undefined,
-      testDeviceIdentifiers: qa.umpTestDeviceIds,
-    } : undefined);
+    info = await AdsConsent.gatherConsent({
+      tagForUnderAgeOfConsent: true,
+      debugGeography: qa?.umpDebugGeography === 'EEA' ? AdsConsentDebugGeography.EEA : undefined,
+      testDeviceIdentifiers: qa?.enabled ? qa.umpTestDeviceIds : [],
+    });
   } catch (error) {
     message = error instanceof Error ? error.message : 'Consent refresh failed; the previous consent state is being used.';
     info = await AdsConsent.getConsentInfo();

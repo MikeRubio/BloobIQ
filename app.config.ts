@@ -32,6 +32,8 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       ...source.extra,
       ...config.extra,
       ads: {
+        enabled: ads.enabled,
+        audiencePolicy: ads.audiencePolicy,
         mode: ads.mode,
         appIdMode: ads.appIdMode,
         qaMode: ads.qaMode,

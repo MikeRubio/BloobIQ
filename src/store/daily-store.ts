@@ -24,6 +24,7 @@ type DailyStore = {
   submit: (choiceId: string | null) => Promise<DailySnapshot | null>;
   clearFeedback: () => void;
   cancelLoad: (categoryId: QuizCategoryId, ownerId?: string) => void;
+  reset: () => void;
 };
 
 function errorState(error: unknown) {
@@ -158,5 +159,11 @@ export const useDailyStore = create<DailyStore>((set, get) => ({
       refreshing: false,
       message: null,
     });
+  },
+  reset: () => {
+    activeLoad?.controller.abort();
+    activeLoad = null;
+    requestSerial += 1;
+    set({ status: 'idle', refreshing: false, snapshot: null, feedback: null, message: null, activeCategoryId: null });
   },
 }));

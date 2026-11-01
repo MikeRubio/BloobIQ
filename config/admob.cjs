@@ -43,8 +43,13 @@ const resolveAdMobBuildConfig = (environment = process.env) => {
         iosRewardedId: GOOGLE_SAMPLE_IDS.iosRewardedId,
       };
   const qaMode = !production && environment.BLOOPIQ_ADS_QA === 'true';
+  // Live inventory is fail-closed. Supplying production IDs alone must never
+  // enable ad initialization or requests in a release build.
+  const enabled = !production || environment.BLOOPIQ_ENABLE_PRODUCTION_ADS === 'true';
 
   return {
+    enabled,
+    audiencePolicy: 'child-safe',
     mode: inventoryMode,
     appIdMode,
     qaMode,

@@ -1,7 +1,7 @@
 begin;
 
 create extension if not exists pgtap with schema extensions;
-select plan(98);
+select plan(102);
 
 select ok((select relrowsecurity from pg_class where oid = 'public.guest_profiles'::regclass), 'profiles use RLS');
 select ok((select relrowsecurity from pg_class where oid = 'public.daily_attempts'::regclass), 'attempts use RLS');
@@ -11,6 +11,10 @@ select ok(not has_table_privilege('authenticated', 'public.daily_attempts', 'UPD
 select ok(not has_table_privilege('authenticated', 'public.daily_answers', 'INSERT'), 'client cannot insert answers');
 select ok(not has_function_privilege('anon', 'public.start_daily_attempt(text)', 'EXECUTE'), 'anon role cannot start without a session');
 select ok(has_function_privilege('authenticated', 'public.start_daily_attempt(text)', 'EXECUTE'), 'authenticated role can start through RPC');
+select ok(not has_function_privilege('anon', 'public.prepare_account_deletion()', 'EXECUTE'), 'anonymous API role cannot request account deletion');
+select ok(has_function_privilege('authenticated', 'public.prepare_account_deletion()', 'EXECUTE'), 'signed-in guest can prepare their own account deletion');
+select ok(not has_function_privilege('anon', 'public.report_and_block_player(uuid,text,uuid)', 'EXECUTE'), 'anonymous API role cannot submit player reports');
+select ok(has_function_privilege('authenticated', 'public.report_and_block_player(uuid,text,uuid)', 'EXECUTE'), 'signed-in guest can use the scoped report and block RPC');
 select ok(not has_function_privilege('authenticated', 'private.ensure_daily_challenge(text,date)', 'EXECUTE'), 'private generator is not callable by clients');
 select ok((select relrowsecurity from pg_class where oid = 'private.flag_content'::regclass), 'legacy flag content uses RLS');
 select ok((select relrowsecurity from pg_class where oid = 'private.daily_challenge_rounds'::regclass), 'private rounds use RLS');

@@ -1,5 +1,6 @@
 import { normalizeQuizCategory, quizCategoryCopy } from "@/backend/categories";
 import { fetchLeaderboard } from "@/backend/daily-api";
+import { reportAndBlockPlayer } from "@/backend/moderation-api";
 import { backendProfileFromLocal } from "@/backend/profile-migration";
 import type { LeaderboardResponse, QuizCategoryId } from "@/backend/types";
 import { BubbleBackground } from "@/components/bubble-background";
@@ -12,6 +13,7 @@ import { useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 import {
   ActivityIndicator,
+  Alert,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -38,6 +40,7 @@ export default function RankingsScreen() {
   );
   const [data, setData] = useState<LeaderboardResponse | null>(null);
   const [message, setMessage] = useState("");
+  const [moderationMessage, setModerationMessage] = useState("");
   const selectedQuiz = quizzes[categoryId];
   const visibleQuizzes = rankingQuizzes.filter(
     (quiz) => quiz.groupId === selectedQuiz.groupId,
@@ -204,7 +207,7 @@ export default function RankingsScreen() {
             <View style={[styles.board, shadow.card]}>
               {data.entries.map((entry, index) => (
                 <View
-                  key={`${entry.position}-${entry.displayName}-${index}`}
+                  key={entry.userId}
                   style={[
                     styles.row,
                     entry.isCurrentPlayer && styles.currentRow,
@@ -240,10 +243,44 @@ export default function RankingsScreen() {
                   <Text style={styles.points}>
                     {entry.score.toLocaleString()}
                   </Text>
+                  {!entry.isCurrentPlayer ? (
+                    <Pressable
+                      accessibilityLabel={`Report and block ${entry.displayName}`}
+                      accessibilityRole="button"
+                      onPress={() => {
+                        Alert.alert(
+                          "Report and block player?",
+                          `${entry.displayName} will be hidden from your rankings and blocked from future Friends rooms.`,
+                          [
+                            { text: "Cancel", style: "cancel" },
+                            {
+                              text: "Report & block",
+                              style: "destructive",
+                              onPress: () => {
+                                void reportAndBlockPlayer(entry.userId, "rankings")
+                                  .then(() => {
+                                    setData((current) => current ? {
+                                      ...current,
+                                      entries: current.entries.filter((candidate) => candidate.userId !== entry.userId),
+                                    } : current);
+                                    setModerationMessage("Player reported and blocked.");
+                                  })
+                                  .catch((error) => setModerationMessage(error instanceof Error ? error.message : "The report could not be sent."));
+                              },
+                            },
+                          ],
+                        );
+                      }}
+                      style={styles.reportButton}
+                    >
+                      <Text style={styles.reportButtonText}>Report</Text>
+                    </Pressable>
+                  ) : null}
                 </View>
               ))}
             </View>
           ) : null}
+          {moderationMessage ? <Text accessibilityLiveRegion="polite" style={styles.moderationMessage}>{moderationMessage}</Text> : null}
         </ScrollView>
       </SafeAreaView>
     </View>
@@ -425,6 +462,9 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   points: { ...type.display, color: colors.skyDark, fontSize: 17 },
+  reportButton: { minWidth: 44, minHeight: 44, alignItems: "center", justifyContent: "center" },
+  reportButtonText: { ...type.heading, color: colors.coralDark, fontSize: 9 },
+  moderationMessage: { ...type.regular, color: colors.inkSoft, textAlign: "center", fontSize: 11, marginTop: spacing.md },
   note: {
     marginTop: spacing.lg,
     borderRadius: radius.md,

@@ -32,6 +32,7 @@ type FriendsStore = {
   rematch: () => Promise<void>;
   clearMessage: () => void;
   disconnect: () => void;
+  clearLocalData: () => Promise<void>;
 };
 
 function errorMessage(error: unknown) {
@@ -128,5 +129,10 @@ export const useFriendsStore = create<FriendsStore>((set, get) => ({
     if (refreshTimer) clearInterval(refreshTimer); refreshTimer = null;
     if (channel && supabase) void supabase.removeChannel(channel); channel = null;
     currentProfile = null; set({ connection: 'idle' });
+  },
+  clearLocalData: async () => {
+    get().disconnect();
+    await remember(null);
+    set({ snapshot: null, loading: false, message: null, connection: 'idle' });
   },
 }));

@@ -1,13 +1,19 @@
 import { BubbleBackground } from "@/components/bubble-background";
+import { deleteAccountAndServerData } from "@/backend/account-api";
 import { PlayerNameEditor } from "@/components/player-name-editor";
 import { ScreenHeader } from "@/components/screen-header";
 import { useAdsRuntime } from "@/hooks/use-ads-runtime";
 import { useFeedback } from "@/hooks/use-feedback";
 import { adsRuntime } from "@/services/ads-runtime";
+import { clearCasualPackCache } from "@/backend/casual-api";
+import { useDailyStore } from "@/store/daily-store";
+import { useFriendsStore } from "@/store/friends-store";
+import { useGameStore } from "@/store/game-store";
 import { useProfileStore } from "@/store/profile-store";
 import { colors, radius, shadow, spacing, type } from "@/theme/tokens";
 import { useState } from "react";
 import {
+  Alert,
   Linking,
   Pressable,
   ScrollView,
@@ -16,6 +22,7 @@ import {
   Text,
   View,
 } from "react-native";
+import { router } from "expo-router";
 import { useReducedMotion } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -51,6 +58,8 @@ export default function SettingsScreen() {
   const ads = useAdsRuntime();
   const [privacyBusy, setPrivacyBusy] = useState(false);
   const [resetBusy, setResetBusy] = useState(false);
+  const [deleteBusy, setDeleteBusy] = useState(false);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
   const onToggle = (key: keyof typeof settings) => {
     toggle(key);
     if (key !== "haptics") tap();
@@ -136,6 +145,55 @@ export default function SettingsScreen() {
             >
               <Text style={styles.privacyButtonText}>Open privacy policy</Text>
             </Pressable>
+          </View>
+          <View style={styles.dangerCard}>
+            <Text style={styles.dangerTitle}>Delete account and data</Text>
+            <Text style={styles.infoBody}>
+              Permanently removes your guest account, ranked attempts, Friends data,
+              profile, settings, and local records. This cannot be undone.
+            </Text>
+            <Pressable
+              accessibilityRole="button"
+              disabled={deleteBusy}
+              onPress={() => {
+                Alert.alert(
+                  "Delete my account and data?",
+                  "This permanently deletes your BloopIQ guest account and all associated data from the server and this device.",
+                  [
+                    { text: "Cancel", style: "cancel" },
+                    {
+                      text: "Delete permanently",
+                      style: "destructive",
+                      onPress: () => {
+                        setDeleteBusy(true);
+                        setDeleteError(null);
+                        void deleteAccountAndServerData()
+                          .then(async () => {
+                            adsRuntime.resetRun();
+                            clearCasualPackCache();
+                            useGameStore.getState().reset();
+                            useDailyStore.getState().reset();
+                            await useFriendsStore.getState().clearLocalData();
+                            useProfileStore.getState().resetAfterAccountDeletion();
+                            await useProfileStore.persist.clearStorage();
+                            router.replace("/");
+                          })
+                          .catch((error) => {
+                            setDeleteError(error instanceof Error ? error.message : "Your account could not be deleted. Please retry.");
+                          })
+                          .finally(() => setDeleteBusy(false));
+                      },
+                    },
+                  ],
+                );
+              }}
+              style={styles.deleteButton}
+            >
+              <Text style={styles.deleteButtonText}>
+                {deleteBusy ? "Deleting…" : "Delete my account and data"}
+              </Text>
+            </Pressable>
+            {deleteError ? <Text accessibilityRole="alert" style={styles.deleteError}>{deleteError}</Text> : null}
           </View>
           {ads.qaMode ? (
             <View style={styles.infoCard}>
@@ -281,4 +339,25 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     marginTop: spacing.sm,
   },
+  dangerCard: {
+    marginTop: spacing.xl,
+    padding: spacing.lg,
+    borderRadius: radius.lg,
+    borderWidth: 2,
+    borderColor: colors.coral,
+    backgroundColor: colors.dangerPale,
+  },
+  dangerTitle: { ...type.heading, color: colors.coralDark, fontSize: 16 },
+  deleteButton: {
+    minHeight: 44,
+    alignSelf: "flex-start",
+    justifyContent: "center",
+    marginTop: spacing.md,
+    borderRadius: radius.md,
+    backgroundColor: colors.coral,
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.sm,
+  },
+  deleteButtonText: { ...type.heading, color: colors.white, fontSize: 13 },
+  deleteError: { ...type.regular, color: colors.coralDark, fontSize: 11, marginTop: spacing.sm },
 });

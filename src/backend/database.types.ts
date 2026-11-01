@@ -5,6 +5,11 @@ export type Database = {
     Tables: Record<string, never>;
     Views: Record<string, never>;
     Functions: {
+      prepare_account_deletion: { Args: Record<string, never>; Returns: Json };
+      report_and_block_player: {
+        Args: { p_reported_user_id: string; p_context: string; p_room_id?: string | null };
+        Returns: Json;
+      };
       get_casual_quiz_pack: { Args: { p_category_id: string }; Returns: Json };
       issue_ad_reward_reference: { Args: { p_run_id: string; p_category_id: string }; Returns: string };
       mark_ad_reward_client_earned: { Args: { p_reference: string }; Returns: undefined };

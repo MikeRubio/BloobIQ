@@ -1,4 +1,6 @@
 export type AdMobBuildConfig = {
+  enabled: boolean;
+  audiencePolicy: 'child-safe';
   mode: 'test' | 'production';
   appIdMode: 'google-sample' | 'custom';
   qaMode: boolean;

@@ -30,12 +30,17 @@
       "distribution": "store",
       "environment": "preview",
       "autoIncrement": true,
+      "ios": { "image": "sdk-58" },
       "env": { "BLOOPIQ_ADS_ENV": "test" }
     },
     "production": {
       "autoIncrement": true,
       "environment": "production",
-      "env": { "BLOOPIQ_ADS_ENV": "production" }
+      "ios": { "image": "sdk-58" },
+      "env": {
+        "BLOOPIQ_ADS_ENV": "production",
+        "BLOOPIQ_ENABLE_PRODUCTION_ADS": "false"
+      }
     }
   },
   "submit": {

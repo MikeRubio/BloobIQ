@@ -60,6 +60,7 @@ export type DailySnapshot = {
 };
 
 export type LeaderboardEntry = {
+  userId: string;
   position: number;
   displayName: string;
   avatar: string;
