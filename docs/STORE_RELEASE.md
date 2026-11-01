@@ -72,7 +72,7 @@ The first passes for Flags. The second currently fails for the unfinished all-ag
 - Support: https://bloopiq-privacy.merry-coin-3817.chatgpt.site/support.html
 - Outside-the-app deletion instructions/request: https://bloopiq-privacy.merry-coin-3817.chatgpt.site/delete-account.html
 
-The policy describes the implemented deletion/moderation controls and disabled production ads. It explicitly retains pre-release status because all-ages online privacy is unresolved. The public deletion page provides the in-app steps and an email request mechanism; a nickname or email address alone does not establish ownership of an anonymous account. Do not delete an existing account solely because someone emails its public nickname or ID.
+The completed policy, effective 1 November 2026, describes implemented processing, deletion/moderation controls, disabled production ads, retention, service providers and user rights. It contains no draft wording and accurately states that current builds are for internal adult testing, while the intended all-ages public online release remains blocked on the missing consent/data-handling flow. Finishing the policy does not implement or approve that flow. The public deletion page provides the in-app steps and an email request mechanism; a nickname or email address alone does not establish ownership of an anonymous account. Do not delete an existing account solely because someone emails its public nickname or ID.
 
 ## Store account and signed-build checks still required
 

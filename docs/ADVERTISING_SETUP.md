@@ -2,7 +2,7 @@
 
 ## Current release gate
 
-Public production advertising remains disabled until the remaining mixed-age/children's privacy implementation and the draft policy are reviewed. Publishing an AdMob consent message is only one privacy control; it does not complete children's privacy, store audience, or data-disclosure requirements.
+Public production advertising remains disabled. The published privacy policy describes current processing; the all-ages online children's privacy implementation and its verification remain the public-release blocker. Publishing an AdMob consent message is only one privacy control; it does not complete children's privacy, store audience, or data-disclosure requirements.
 
 Use an adult tester for the `ads-qa` session. The app intentionally does not globally mark BloopIQ's mixed-age audience as adults and does not set under-age or child-directed tags without an age-aware product and legal decision.
 
@@ -54,13 +54,17 @@ UMP and Google Mobile Ads log their own test-device identifiers. Capture and sto
 
 Multiple physical devices can be supplied as comma-separated values. The Mobile Ads identifier is not needed for Google's sample rewarded unit, but support is present for the later controlled own-unit test.
 
-## Draft privacy policy
+## Privacy policy and support
 
-Settings always labels and opens the current draft policy:
+Settings links to the published privacy policy:
 
 <https://bloopiq-privacy.merry-coin-3817.chatgpt.site/>
 
-The in-app label explicitly says the policy is a draft and that the consent-message publication does not complete children's privacy requirements.
+The policy is effective 1 November 2026 and covers guest accounts, public game information, moderation, providers, disabled production advertising, retention, deletion and privacy rights. It accurately identifies the current adult internal-testing scope and does not claim a parental-consent flow exists. Publishing it does not clear the separate all-ages online release gate.
+
+Support: <https://bloopiq-privacy.merry-coin-3817.chatgpt.site/support.html>
+
+Outside-the-app deletion requests: <https://bloopiq-privacy.merry-coin-3817.chatgpt.site/delete-account.html>
 
 ## Build, install, and run
 
