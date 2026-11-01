@@ -91,10 +91,17 @@ function RecordSection({
       </View>
       <View style={styles.grid}>
         {stats.map((stat) => (
-          <View key={stat.label} style={[styles.stat, shadow.card]}>
-            <View style={[styles.dot, { backgroundColor: stat.color }]} />
+          <View
+            accessibilityLabel={`${stat.label}: ${stat.value}`}
+            accessible
+            key={stat.label}
+            style={[styles.stat, shadow.card]}
+          >
+            <View style={styles.statHeading}>
+              <View style={[styles.dot, { backgroundColor: stat.color }]} />
+              <Text style={styles.statLabel}>{stat.label}</Text>
+            </View>
             <Text style={styles.value}>{stat.value}</Text>
-            <Text style={styles.label}>{stat.label}</Text>
           </View>
         ))}
       </View>
@@ -132,9 +139,15 @@ const styles = StyleSheet.create({
     padding: spacing.lg,
     justifyContent: "center",
   },
-  dot: { width: 11, height: 11, borderRadius: 6, marginBottom: spacing.sm },
+  statHeading: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: spacing.sm,
+    marginBottom: spacing.sm,
+  },
+  dot: { width: 11, height: 11, borderRadius: 6 },
+  statLabel: { ...type.heading, color: colors.inkSoft, fontSize: 11, flexShrink: 1 },
   value: { ...type.display, fontSize: 28 },
-  label: { ...type.regular, color: colors.inkSoft, fontSize: 12, marginTop: 2 },
   empty: {
     ...type.regular,
     textAlign: "center",
