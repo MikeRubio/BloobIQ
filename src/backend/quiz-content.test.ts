@@ -2,10 +2,10 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
-import { baseballAssetPaths, baseballRevealAssetPaths, basketballAssetPaths, flagAssetPaths, footballAssetPaths, footballRevealAssetPaths } from '../content/hosted-assets';
+import { baseballAssetPaths, baseballRevealAssetPaths, basketballAssetPaths, brandAssetPaths, celebrityAssetPaths, flagAssetPaths, footballAssetPaths, footballRevealAssetPaths, historyAssetPaths } from '../content/hosted-assets';
 
 type ManifestItem = {
-  categoryId: 'flags' | 'football' | 'baseball' | 'basketball';
+  categoryId: 'flags' | 'football' | 'baseball' | 'basketball' | 'brands' | 'history' | 'celebrities';
   contentVersion: string;
   itemId: string;
   displayName: string;
@@ -15,7 +15,7 @@ type ManifestItem = {
   sourcePageUrl: string;
   sourceAssetUrl: string;
   rightsStatus: string;
-  metadata: { iso2?: string; scope?: string; league?: string; leagueKey?: string; country?: string; competition?: string; competitionKey?: string; selectionGroup?: string; identityKey?: string; season?: string; eligibleForQuestion?: boolean; conference?: string; division?: string; aliases?: string[]; officialTeamId?: number | string | null; distractorIds?: string[]; questionAssetRole?: string; revealAssetRole?: string; editRecipe?: string; questionPrompt?: string; questionDescription?: string; teamName?: string; legend?: string | null; retiredNumber?: string | null };
+  metadata: { iso2?: string; scope?: string; league?: string; leagueKey?: string; country?: string; competition?: string; competitionKey?: string; selectionGroup?: string; identityKey?: string; season?: string; eligibleForQuestion?: boolean; conference?: string; division?: string; aliases?: string[]; officialTeamId?: number | string | null; distractorIds?: string[] | null; questionAssetRole?: string; revealAssetRole?: string; editRecipe?: string; questionPrompt?: string; questionDescription?: string; teamName?: string; legend?: string | null; retiredNumber?: string | null; wikidataId?: string; commonsFile?: string; license?: string; licenseUrl?: string };
 };
 
 const manifest = JSON.parse(readFileSync(join(process.cwd(), 'supabase', 'content', 'quiz-content.json'), 'utf8')) as {
@@ -37,6 +37,9 @@ const baseballSymbols = manifest.items.filter((item) => item.contentVersion === 
 const basketball = manifest.items.filter((item) => item.contentVersion === 'basketball-nba-v1');
 const basketballExpanded = manifest.items.filter((item) => item.contentVersion === 'basketball-expanded-v2');
 const basketballTrivia = basketballExpanded.filter((item) => item.metadata.scope !== 'team-logo');
+const brands = manifest.items.filter((item) => item.contentVersion === 'brands-symbols-v1');
+const history = manifest.items.filter((item) => item.contentVersion === 'people-history-v1');
+const celebrities = manifest.items.filter((item) => item.contentVersion === 'people-celebrities-v1');
 
 describe('hosted quiz content manifest', () => {
   it('pins a complete 195-sovereign-state flag pack', () => {
@@ -176,17 +179,44 @@ describe('hosted quiz content manifest', () => {
     }
   });
 
+  it('adds balanced, non-wordmark brand symbols across the requested scopes', () => {
+    expect(brands).toHaveLength(22);
+    expect(Object.fromEntries(['american-car', 'european-car', 'watch', 'food'].map((scope) => [
+      scope, brands.filter((item) => item.metadata.scope === scope).length,
+    ]))).toEqual({ 'american-car': 4, 'european-car': 8, watch: 4, food: 6 });
+    expect(brands.every((item) => item.metadata.questionAssetRole === 'symbol_only_quiz_variant')).toBe(true);
+    expect(brands.every((item) => item.metadata.questionDescription?.includes(item.displayName) === false)).toBe(true);
+    expect(brands.every((item) => (item.metadata.distractorIds?.length ?? 0) >= 3)).toBe(true);
+    expect(new Set(brands.map((item) => item.assetPath)).size).toBe(22);
+  });
+
+  it('includes the requested deduplicated History and Celebrity portrait packs', () => {
+    expect(history).toHaveLength(100);
+    expect(celebrities).toHaveLength(95);
+    expect(new Set(history.map((item) => item.displayName)).size).toBe(100);
+    expect(new Set(celebrities.map((item) => item.displayName)).size).toBe(95);
+    expect(history.map((item) => item.displayName)).toEqual(expect.arrayContaining(['Tutankhamun', 'Akhenaten', 'Mother Teresa']));
+    expect(celebrities.map((item) => item.displayName)).toEqual(expect.arrayContaining(['Marilyn Monroe', 'Jean Smart']));
+    for (const item of [...history, ...celebrities]) {
+      expect(item.assetPath).toMatch(/^people-(history|celebrities)-v1\/q-\d{3}\.jpg$/);
+      expect(item.metadata.wikidataId).toMatch(/^Q\d+$/);
+      expect(item.metadata.commonsFile).toMatch(/^File:/);
+      expect(item.metadata.questionDescription).not.toContain(item.displayName);
+      expect(readFileSync(join(process.cwd(), 'supabase', 'content', item.assetPath)).subarray(0, 2)).toEqual(Buffer.from([0xff, 0xd8]));
+    }
+  });
+
   it('records unique immutable assets and source provenance', () => {
     expect(manifest.schemaVersion).toBe(2);
-    expect(manifest.items).toHaveLength(579);
-    expect(new Set(manifest.items.map((item) => item.assetPath)).size).toBe(509);
-    expect(new Set(manifest.items.map((item) => item.sha256)).size).toBeGreaterThanOrEqual(450);
+    expect(manifest.items).toHaveLength(796);
+    expect(new Set(manifest.items.map((item) => item.assetPath)).size).toBe(726);
+    expect(new Set(manifest.items.map((item) => item.sha256)).size).toBeGreaterThanOrEqual(650);
     const shaByPath = new Map<string, string>();
     for (const item of manifest.items) {
       expect(item.sha256).toMatch(/^[0-9a-f]{64}$/);
       expect(item.sourcePageUrl).toMatch(/^https:\/\//);
       expect(item.sourceAssetUrl).toMatch(/^https:\/\//);
-      expect(['public_domain_national_symbol', 'trademark_review_required', 'trademark_reviewed_approved']).toContain(item.rightsStatus);
+      expect(['public_domain_national_symbol', 'trademark_review_required', 'trademark_reviewed_approved', 'wikimedia_commons_licensed']).toContain(item.rightsStatus);
       expect(shaByPath.get(item.assetPath) ?? item.sha256).toBe(item.sha256);
       shaByPath.set(item.assetPath, item.sha256);
     }
@@ -199,9 +229,12 @@ describe('hosted quiz content manifest', () => {
     expect(baseballAssetPaths).toHaveLength(47);
     expect(baseballRevealAssetPaths).toHaveLength(47);
     expect(basketballAssetPaths).toHaveLength(78);
-    const questionPaths = [...flagAssetPaths, ...footballAssetPaths, ...baseballAssetPaths, ...basketballAssetPaths];
-    expect(new Set(questionPaths).size).toBe(350);
-    const activeVersions = new Set(['flags-195-v1', 'football-mixed-v3', 'baseball-symbols-v3', 'basketball-expanded-v2']);
+    expect(brandAssetPaths).toHaveLength(22);
+    expect(historyAssetPaths).toHaveLength(100);
+    expect(celebrityAssetPaths).toHaveLength(95);
+    const questionPaths = [...flagAssetPaths, ...footballAssetPaths, ...baseballAssetPaths, ...basketballAssetPaths, ...brandAssetPaths, ...historyAssetPaths, ...celebrityAssetPaths];
+    expect(new Set(questionPaths).size).toBe(567);
+    const activeVersions = new Set(['flags-195-v1', 'football-mixed-v3', 'baseball-symbols-v3', 'basketball-expanded-v2', 'brands-symbols-v1', 'people-history-v1', 'people-celebrities-v1']);
     const activeItems = manifest.items.filter((item) => activeVersions.has(item.contentVersion));
     expect(questionPaths).toEqual(expect.arrayContaining(activeItems.map((item) => item.assetPath)));
     expect(footballRevealAssetPaths).toEqual(expect.arrayContaining(footballMixed.map((item) => item.revealAssetPath!)));

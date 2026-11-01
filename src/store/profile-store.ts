@@ -14,12 +14,13 @@ type ProfileState = {
   settings: Settings;
   records: Partial<Record<CategoryId, CategoryRecord>>;
   lastPlayedCasualQuizId?: QuizCategoryId;
+  recentCasualQuestionIds: Partial<Record<QuizCategoryId, string[]>>;
   hydrated: boolean;
   setHydrated: (hydrated: boolean) => void;
   setPlayerName: (name: string) => void;
   toggleSetting: (setting: keyof Settings) => void;
   recordResult: (result: RunResult) => void;
-  markCasualQuizPlayed: (quizId: QuizCategoryId) => void;
+  markCasualQuizPlayed: (quizId: QuizCategoryId, questionIds: readonly string[]) => void;
 };
 
 export const PLAYER_NAME_MIN_LENGTH = 3;
@@ -80,12 +81,14 @@ export function migrateProfileState(persistedState: unknown) {
   const state = persistedState as {
     records?: Partial<Record<CategoryId, CategoryRecord>>;
     lastPlayedCasualQuizId?: QuizCategoryId;
+    recentCasualQuestionIds?: Partial<Record<QuizCategoryId, string[]>>;
     nameSetupComplete?: boolean;
   };
   return {
     ...state,
     records: state.records ?? {},
     lastPlayedCasualQuizId: state.lastPlayedCasualQuizId,
+    recentCasualQuestionIds: state.recentCasualQuestionIds ?? {},
     // Existing installs already received a generated identity. Avoid interrupting
     // them after upgrade; only genuinely new installs see first-launch setup.
     nameSetupComplete: state.nameSetupComplete ?? true,
@@ -100,26 +103,34 @@ export const useProfileStore = create<ProfileState>()(
       settings: { sound: true, haptics: true, reducedMotion: false },
       records: {},
       lastPlayedCasualQuizId: undefined,
+      recentCasualQuestionIds: {},
       hydrated: false,
       setHydrated: (hydrated) => set({ hydrated }),
       setPlayerName: (name) => set((state) => playerNameUpdate(state.profile, name)),
       toggleSetting: (setting) => set((state) => ({ settings: { ...state.settings, [setting]: !state.settings[setting] } })),
-      markCasualQuizPlayed: (lastPlayedCasualQuizId) => set({ lastPlayedCasualQuizId }),
+      markCasualQuizPlayed: (lastPlayedCasualQuizId, questionIds) => set((state) => ({
+        lastPlayedCasualQuizId,
+        recentCasualQuestionIds: {
+          ...state.recentCasualQuestionIds,
+          [lastPlayedCasualQuizId]: [...questionIds],
+        },
+      })),
       recordResult: (result) => set((state) => {
         return { records: updateCategoryRecords(state.records, result) };
       }),
     }),
     {
       name: 'guessr-player-v1',
-      version: 3,
+      version: 4,
       migrate: migrateProfileState,
       storage: createJSONStorage(() => AsyncStorage),
-      partialize: ({ profile, nameSetupComplete, settings, records, lastPlayedCasualQuizId }) => ({
+      partialize: ({ profile, nameSetupComplete, settings, records, lastPlayedCasualQuizId, recentCasualQuestionIds }) => ({
         profile,
         nameSetupComplete,
         settings,
         records,
         lastPlayedCasualQuizId,
+        recentCasualQuestionIds,
       }),
       onRehydrateStorage: () => (state) => state?.setHydrated(true),
     },

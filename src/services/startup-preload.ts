@@ -2,13 +2,11 @@ import { Asset } from 'expo-asset';
 import { Image } from 'expo-image';
 import { getQuizAssetUrl } from '@/backend/supabase';
 import type { QuizCategoryId } from '@/backend/types';
-import { flagAssets } from '@/content/flag-assets';
 import { hostedAssetPathsByQuiz } from '@/content/hosted-assets';
 
 export type PreloadProgress = { completed: number; total: number; label: string };
 
 const bundledAssets = [
-  ...Object.values(flagAssets),
   require('../../assets/branding/mark.png'),
   require('../../assets/sounds/correct.wav'),
   require('../../assets/sounds/wrong.wav'),
@@ -47,7 +45,9 @@ export async function preloadStartupAssets(onProgress?: (progress: PreloadProgre
 }
 
 export async function preloadFriendCategory(categoryId: QuizCategoryId, onProgress?: (progress: PreloadProgress) => void) {
-  const paths: readonly string[] = hostedAssetPathsByQuiz[categoryId];
+  // A room must not wait for an entire large catalogue (People has 195 images).
+  // Warm a bounded sample; each selected round still loads its persisted asset on demand.
+  const paths: readonly string[] = hostedAssetPathsByQuiz[categoryId].slice(0, 12);
   const urls = paths.map(getQuizAssetUrl).filter((url): url is string => Boolean(url));
   let completed = 0;
   onProgress?.({ completed, total: urls.length, label: `Preparing ${categoryId}` });

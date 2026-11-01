@@ -1,6 +1,5 @@
-import { flagQuestions } from '@/content/flags';
-import { casualPackQuestions, parseCasualPack } from '@/content/casual-pack';
-import type { QuizQuestion } from '@/game/types';
+import { casualPackQuestions, parseCasualPack } from '../content/casual-pack';
+import type { QuizQuestion } from '../game/types';
 import type { GuestProfilePayload, QuizCategoryId } from './types';
 import { BackendUnavailableError, ensureAnonymousSession, getQuizAssetUrl, supabase } from './supabase';
 
@@ -11,7 +10,6 @@ export async function loadCasualQuestions(
   profile: GuestProfilePayload,
   forceRefresh = false,
 ): Promise<QuizQuestion[]> {
-  if (categoryId === 'flags') return flagQuestions;
   if (!forceRefresh) {
     const existing = cached.get(categoryId);
     if (existing) return existing;

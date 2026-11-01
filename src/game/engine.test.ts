@@ -115,6 +115,26 @@ describe('game lifecycle', () => {
     }
   });
 
+  it('defers the previous run opening questions while preserving a unique shuffled pack', () => {
+    const questions = Array.from({ length: 24 }, (_, index): QuizQuestion => ({
+      id: `flag-${index}`,
+      categoryId: 'flags',
+      displayName: `Flag ${index}`,
+      assetKey: `flag-${index}`,
+      contentType: 'country-flag',
+      difficulty: 'easy',
+      distractorCandidates: Array.from({ length: 24 }, (__, other) => `flag-${other}`).filter(
+        (id) => id !== `flag-${index}`,
+      ),
+      provenance: { sourceName: 'test', sourceUrl: 'test', license: 'test' },
+    }));
+    const previousOpening = questions.slice(0, 10).map((question) => question.id);
+    const rounds = createRounds(questions, () => 0.37, previousOpening);
+
+    expect(rounds.slice(0, 10).every((round) => !previousOpening.includes(round.questionId))).toBe(true);
+    expect(new Set(rounds.map((round) => round.questionId)).size).toBe(questions.length);
+  });
+
   it('never mixes answer types when supplied distractors are incomplete or wrong', () => {
     const typed = [
       ...Array.from({ length: 4 }, (_, index): QuizQuestion => ({

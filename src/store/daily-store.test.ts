@@ -41,7 +41,7 @@ function deferred<T>() {
 }
 
 beforeEach(() => {
-  for (const category of ['flags', 'football', 'baseball', 'basketball'] as const) {
+  for (const category of ['flags', 'football', 'baseball', 'basketball', 'brands', 'history', 'celebrities'] as const) {
     useDailyStore.getState().cancelLoad(category);
   }
   useDailyStore.setState({

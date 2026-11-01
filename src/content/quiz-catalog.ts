@@ -1,20 +1,18 @@
 import type { QuizCategoryId } from '@/backend/types';
-import { flagQuestions } from './flags';
-import { baseballAssetPaths, basketballAssetPaths, flagAssetPaths, footballAssetPaths } from './hosted-assets';
+import { baseballAssetPaths, basketballAssetPaths, brandAssetPaths, celebrityAssetPaths, flagAssetPaths, footballAssetPaths, historyAssetPaths } from './hosted-assets';
 
 export type BrowseGroupId = 'flags' | 'sports' | 'brands' | 'people';
 export type GameModeId = 'casual' | 'daily' | 'friends';
 
 export type QuizDefinition = {
   id: QuizCategoryId;
-  groupId: Extract<BrowseGroupId, 'flags' | 'sports'>;
+  groupId: BrowseGroupId;
   label: string;
   packLabel: string;
   icon: string;
   description: string;
   accent: 'sky' | 'mint' | 'lilac' | 'orange';
   supportedModes: readonly GameModeId[];
-  bundledCount: number;
   onlineCount: number;
 };
 
@@ -33,30 +31,45 @@ export const quizzes = {
   flags: {
     id: 'flags', groupId: 'flags', label: 'Flags', packLabel: 'All Flags', icon: '🌍',
     description: 'Country flags from around the world.', accent: 'sky', supportedModes: ['casual', 'daily', 'friends'],
-    bundledCount: flagQuestions.length, onlineCount: flagAssetPaths.length,
+    onlineCount: flagAssetPaths.length,
   },
   football: {
     id: 'football', groupId: 'sports', label: 'Football', packLabel: 'Leagues & Confederations', icon: '⚽',
     description: 'League and continental-confederation identities.', accent: 'mint', supportedModes: ['casual', 'daily', 'friends'],
-    bundledCount: 0, onlineCount: footballAssetPaths.length,
+    onlineCount: footballAssetPaths.length,
   },
   baseball: {
     id: 'baseball', groupId: 'sports', label: 'Baseball', packLabel: 'MLB & Caribbean Teams', icon: '⚾',
     description: 'MLB, Dominican, Venezuelan, and Mexican Pacific team identities.', accent: 'lilac', supportedModes: ['casual', 'daily', 'friends'],
-    bundledCount: 0, onlineCount: baseballAssetPaths.length,
+    onlineCount: baseballAssetPaths.length,
   },
   basketball: {
     id: 'basketball', groupId: 'sports', label: 'Basketball', packLabel: 'NBA Teams & Trivia', icon: '🏀',
     description: 'NBA teams, mascots, arenas, retired numbers, and franchise legends.', accent: 'orange', supportedModes: ['casual', 'daily', 'friends'],
-    bundledCount: 0, onlineCount: basketballAssetPaths.length,
+    onlineCount: basketballAssetPaths.length,
+  },
+  brands: {
+    id: 'brands', groupId: 'brands', label: 'Brands', packLabel: 'Cars, Watches & Food', icon: '✦',
+    description: 'American and European cars, watchmakers, and food brands.', accent: 'orange', supportedModes: ['casual', 'daily', 'friends'],
+    onlineCount: brandAssetPaths.length,
+  },
+  history: {
+    id: 'history', groupId: 'people', label: 'History', packLabel: 'Historical Figures', icon: '⌛',
+    description: 'Leaders, thinkers, artists, explorers, and innovators across history.', accent: 'lilac', supportedModes: ['casual', 'daily', 'friends'],
+    onlineCount: historyAssetPaths.length,
+  },
+  celebrities: {
+    id: 'celebrities', groupId: 'people', label: 'Celebrities', packLabel: 'Film & Television', icon: '★',
+    description: 'Recognisable actors and screen personalities.', accent: 'sky', supportedModes: ['casual', 'daily', 'friends'],
+    onlineCount: celebrityAssetPaths.length,
   },
 } as const satisfies Record<QuizCategoryId, QuizDefinition>;
 
 export const browseGroups: readonly BrowseGroup[] = [
   { id: 'flags', label: 'Flags', icon: '🌍', color: 'sky', description: 'Countries and world geography', available: true, quizIds: ['flags'], futureItems: ['Regional packs'] },
   { id: 'sports', label: 'Sports', icon: '⚽', color: 'mint', description: 'Football, baseball, and basketball', available: true, quizIds: ['football', 'baseball', 'basketball'], futureItems: ['American Football', 'Hockey'] },
-  { id: 'brands', label: 'Brands', icon: '✦', color: 'coral', description: 'Brand-logo quizzes', available: false, quizIds: [], futureItems: ['Brand Logos'] },
-  { id: 'people', label: 'People', icon: '★', color: 'lilac', description: 'Famous people through history', available: false, quizIds: [], futureItems: ['Celebrities', 'Historical Figures'] },
+  { id: 'brands', label: 'Brands', icon: '✦', color: 'coral', description: 'Cars, watches, and food', available: true, quizIds: ['brands'], futureItems: [] },
+  { id: 'people', label: 'People', icon: '★', color: 'lilac', description: 'History and celebrities', available: true, quizIds: ['history', 'celebrities'], futureItems: [] },
 ];
 
 export function getBrowseGroup(id: string | string[] | undefined): BrowseGroup | undefined {
@@ -66,7 +79,7 @@ export function getBrowseGroup(id: string | string[] | undefined): BrowseGroup |
 
 export function getQuiz(id: string | string[] | undefined): QuizDefinition {
   const value = Array.isArray(id) ? id[0] : id;
-  return value === 'football' || value === 'baseball' || value === 'basketball' ? quizzes[value] : quizzes.flags;
+  return value && value in quizzes ? quizzes[value as QuizCategoryId] : quizzes.flags;
 }
 
 export function quizzesForGroup(groupId: BrowseGroupId): QuizDefinition[] {

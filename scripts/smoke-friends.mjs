@@ -10,7 +10,7 @@ const url = process.env.EXPO_PUBLIC_SUPABASE_URL;
 const key = process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 if (!url || !key) throw new Error('Supabase public environment variables are required.');
 const category = process.argv.find((arg) => arg.startsWith('--category='))?.split('=')[1] ?? 'football';
-if (!['flags', 'football', 'baseball', 'basketball'].includes(category)) throw new Error(`Unsupported smoke category: ${category}`);
+if (!['flags', 'football', 'baseball', 'basketball', 'brands', 'history', 'celebrities'].includes(category)) throw new Error(`Unsupported smoke category: ${category}`);
 
 const makeClient = () => createClient(url, key, { auth: { persistSession: false, autoRefreshToken: true, detectSessionInUrl: false } });
 async function player(name, avatar, color) {

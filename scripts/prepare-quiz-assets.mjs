@@ -682,9 +682,19 @@ async function main() {
     }
   }
 
+  const additionalItems = [];
+  for (const sidecar of ['brand-content.json', 'people-content.json']) {
+    try {
+      const content = JSON.parse(await readFile(path.join(root, 'supabase', 'content', sidecar), 'utf8'));
+      additionalItems.push(...content.items);
+    } catch (error) {
+      if (error?.code !== 'ENOENT') throw error;
+    }
+  }
   const items = [
     ...flags, ...football, ...footballSymbols, ...footballClubOriginals, ...footballMixed,
     ...baseball, ...basketball, ...baseballGlobal, ...baseballSymbolItems, ...basketballExpanded,
+    ...additionalItems,
   ];
   try {
     const previous = JSON.parse(await readFile(manifestPath, 'utf8'));

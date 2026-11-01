@@ -1,5 +1,5 @@
 export type DailyOption = { id: string; label: string };
-export type QuizCategoryId = 'flags' | 'football' | 'baseball' | 'basketball';
+export type QuizCategoryId = 'flags' | 'football' | 'baseball' | 'basketball' | 'brands' | 'history' | 'celebrities';
 export type CasualContentItem = {
   id: string;
   displayName: string;

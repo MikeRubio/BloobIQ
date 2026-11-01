@@ -19,7 +19,7 @@ export default function FriendsScreen() {
   const profile = useProfileStore((state) => state.profile);
   const { createRoom, joinRoom, resumeRoom, loading, message, clearMessage } = useFriendsStore();
   const initialQuiz = getQuiz(params.quiz);
-  const [groupId, setGroupId] = useState<Extract<BrowseGroupId, 'flags' | 'sports'>>(initialQuiz.groupId);
+  const [groupId, setGroupId] = useState<BrowseGroupId>(initialQuiz.groupId);
   const [category, setCategory] = useState<QuizCategoryId>(initialQuiz.id);
   const [code, setCode] = useState('');
   const [checking, setChecking] = useState(true);
@@ -39,7 +39,7 @@ export default function FriendsScreen() {
 
   const create = async () => { const next = await createRoom(payload, category); if (next) router.replace({ pathname: '/friend-room', params: { roomId: next.roomId } }); };
   const join = async () => { const next = await joinRoom(payload, code); if (next) router.replace({ pathname: '/friend-room', params: { roomId: next.roomId } }); };
-  const chooseGroup = (nextGroup: Extract<BrowseGroupId, 'flags' | 'sports'>) => {
+  const chooseGroup = (nextGroup: BrowseGroupId) => {
     setGroupId(nextGroup);
     const first = eligibleQuizzes.find((quiz) => quiz.groupId === nextGroup);
     if (first) setCategory(first.id);
@@ -47,7 +47,7 @@ export default function FriendsScreen() {
 
   const createCard = <View style={[styles.card, shadow.card]}>
     <Text style={styles.kicker}>CREATE A ROOM</Text><Text style={styles.title}>Choose a category</Text>
-    <View style={styles.groupSelector}>{eligibleGroups.map((id) => <Pressable accessibilityRole="button" key={id} onPress={() => chooseGroup(id)} style={[styles.groupChoice, groupId === id && styles.groupChoiceActive]}><Text style={styles.groupChoiceIcon}>{id === 'flags' ? '🌍' : '⚽'}</Text><Text style={styles.groupChoiceText}>{id === 'flags' ? 'Flags' : 'Sports'}</Text></Pressable>)}</View>
+    <View style={styles.groupSelector}>{eligibleGroups.map((id) => <Pressable accessibilityRole="button" key={id} onPress={() => chooseGroup(id)} style={[styles.groupChoice, groupId === id && styles.groupChoiceActive]}><Text style={styles.groupChoiceIcon}>{id === 'flags' ? '🌍' : id === 'sports' ? '⚽' : id === 'brands' ? '✦' : '★'}</Text><Text style={styles.groupChoiceText}>{id === 'flags' ? 'Flags' : id === 'sports' ? 'Sports' : id === 'brands' ? 'Brands' : 'People'}</Text></Pressable>)}</View>
     <Text style={styles.selectionLabel}>ELIGIBLE QUIZ</Text>
     <View style={styles.categories}>{groupQuizzes.map((quiz) => <Pressable accessibilityRole="button" key={quiz.id} onPress={() => setCategory(quiz.id)} style={[styles.category, category === quiz.id && styles.categoryActive]}><Text style={styles.categoryIcon}>{quiz.icon}</Text><View style={styles.quizCopy}><Text style={styles.categoryText}>{quiz.label}</Text><Text style={styles.quizPack}>{quiz.packLabel}</Text></View><Text style={styles.check}>{category === quiz.id ? '✓' : ''}</Text></Pressable>)}</View>
     <GameButton disabled={loading || checking} label={checking ? 'Checking for a room…' : 'Create private room'} onPress={create} variant="sky" />

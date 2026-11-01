@@ -1,4 +1,4 @@
-export type CategoryId = 'flags' | 'brands' | 'football' | 'nfl' | 'baseball' | 'basketball' | 'hockey';
+export type CategoryId = 'flags' | 'brands' | 'football' | 'nfl' | 'baseball' | 'basketball' | 'hockey' | 'history' | 'celebrities';
 export type Difficulty = 'easy' | 'medium' | 'hard';
 export type FlagAssetKey = string;
 

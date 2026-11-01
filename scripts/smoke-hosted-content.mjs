@@ -45,7 +45,7 @@ for (const [categoryId, expected] of Object.entries(expectedPacks)) {
 }
 
 const summaries = [];
-for (const categoryId of ['flags', 'football', 'baseball', 'basketball']) {
+for (const categoryId of ['flags', 'football', 'baseball', 'basketball', 'brands', 'history', 'celebrities']) {
   const { data, error } = await client.rpc('start_daily_attempt', { p_category_id: categoryId });
   if (error) throw error;
   const round = data?.currentRound;

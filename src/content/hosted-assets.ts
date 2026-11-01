@@ -179,9 +179,19 @@ TN TO TR TT TV TZ UA UG US UY UZ VA VC VE VN VU WS YE ZA ZM ZW
 
 export const flagAssetPaths = flagCodes.map((code) => `flags-195-v1/${code}.png`);
 
+export const brandAssetPaths = Array.from({ length: 22 }, (_, index) =>
+  `brands-symbols-v1/q-${String(index + 1).padStart(3, '0')}.png`);
+export const historyAssetPaths = Array.from({ length: 100 }, (_, index) =>
+  `people-history-v1/q-${String(index + 1).padStart(3, '0')}.jpg`);
+export const celebrityAssetPaths = Array.from({ length: 95 }, (_, index) =>
+  `people-celebrities-v1/q-${String(index + 1).padStart(3, '0')}.jpg`);
+
 export const hostedAssetPathsByQuiz = {
   flags: flagAssetPaths,
   football: [...footballAssetPaths, ...footballRevealAssetPaths],
   baseball: [...baseballAssetPaths, ...baseballRevealAssetPaths],
   basketball: basketballAssetPaths,
+  brands: brandAssetPaths,
+  history: historyAssetPaths,
+  celebrities: celebrityAssetPaths,
 } as const;

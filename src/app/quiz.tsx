@@ -1,7 +1,7 @@
 import { BubbleBackground } from "@/components/bubble-background";
 import { GameButton } from "@/components/game-button";
 import { ScreenHeader } from "@/components/screen-header";
-import { getQuiz, supportsMode } from "@/content/quiz-catalog";
+import { getBrowseGroup, getQuiz, supportsMode } from "@/content/quiz-catalog";
 import { useGameStore } from "@/store/game-store";
 import { colors, radius, shadow, spacing, type } from "@/theme/tokens";
 import { router, useLocalSearchParams } from "expo-router";
@@ -11,6 +11,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function QuizScreen() {
   const { quiz: quizParam } = useLocalSearchParams<{ quiz?: string }>();
   const quiz = getQuiz(quizParam);
+  const group = getBrowseGroup(quiz.groupId);
   const startCasual = useGameStore((state) => state.start);
   const launching = useGameStore((state) => state.launching);
   const launchError = useGameStore((state) => state.launchError);
@@ -23,7 +24,7 @@ export default function QuizScreen() {
       <SafeAreaView style={styles.safe}>
         <ScreenHeader
           title={quiz.label}
-          subtitle={quiz.groupId === "sports" ? `Sports › ${quiz.label}` : "Flags"}
+          subtitle={quiz.groupId === "flags" ? "Flags" : `${group?.label ?? "Explore"} › ${quiz.label}`}
         />
         <ScrollView contentContainerStyle={styles.content}>
           <View style={[styles.hero, { backgroundColor: colors[quiz.accent] }, shadow.card]}>
@@ -35,12 +36,6 @@ export default function QuizScreen() {
                 <Text style={styles.countValue}>{quiz.onlineCount}</Text>
                 <Text style={styles.countLabel}>ONLINE CATALOGUE</Text>
               </View>
-              {quiz.bundledCount ? (
-                <View style={styles.count}>
-                  <Text style={styles.countValue}>{quiz.bundledCount}</Text>
-                  <Text style={styles.countLabel}>BUNDLED OFFLINE</Text>
-                </View>
-              ) : null}
             </View>
           </View>
           <Text style={styles.sectionTitle}>How do you want to play?</Text>
@@ -49,7 +44,7 @@ export default function QuizScreen() {
               <ModeCard
                 icon="▶"
                 title="Casual"
-                body={quiz.id === "flags" ? "Offline play with hearts, streaks, and local records" : `Online play with all ${quiz.onlineCount} identities, hearts, streaks, and local records`}
+                body={`Online play with all ${quiz.onlineCount} identities, hearts, streaks, and local records`}
               >
                 <GameButton
                   compact

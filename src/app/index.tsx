@@ -1,5 +1,4 @@
 import { BubbleBackground } from "@/components/bubble-background";
-import { DailyHomeCard } from "@/components/daily-home-card";
 import { GameButton } from "@/components/game-button";
 import {
   browseGroups,
@@ -31,7 +30,8 @@ export default function HomeScreen() {
   const quickQuiz = quickPlayQuiz(lastPlayed);
   const bestScore = records[quickQuiz.id]?.highScore ?? 0;
   const quickPlay = async () => {
-    if (await start(quickQuiz.id, undefined, Boolean(launchError))) router.push("/game");
+    if (await start(quickQuiz.id, undefined, Boolean(launchError)))
+      router.push("/game");
   };
 
   return (
@@ -72,8 +72,6 @@ export default function HomeScreen() {
               </Pressable>
             </View>
           </View>
-
-          <DailyHomeCard />
 
           <View style={[styles.friendsCard, shadow.card]}>
             <View style={styles.friendsTop}>
@@ -143,7 +141,8 @@ export default function HomeScreen() {
                 <Text style={styles.groupTitle}>{group.label}</Text>
                 <Text style={styles.groupBody}>{group.description}</Text>
                 <Text style={styles.groupAction}>
-                  {group.quizIds.length} {group.quizIds.length === 1 ? "quiz" : "quizzes"} available ›
+                  {group.quizIds.length}{" "}
+                  {group.quizIds.length === 1 ? "quiz" : "quizzes"} available ›
                 </Text>
               </Pressable>
             ))}
@@ -169,7 +168,9 @@ export default function HomeScreen() {
 
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>Quick Play</Text>
-            <Text style={styles.sectionMeta}>Casual · {quickQuiz.bundledCount ? "offline" : "online"}</Text>
+            <Text style={styles.sectionMeta}>
+              Casual · online
+            </Text>
           </View>
           <View style={[styles.quickCard, shadow.card]}>
             <View style={styles.quickTop}>
@@ -182,7 +183,7 @@ export default function HomeScreen() {
                 </Text>
                 <Text style={styles.quickTitle}>Play {quickQuiz.label}</Text>
                 <Text style={styles.quickBody}>
-                  {quickQuiz.bundledCount ? `${quickQuiz.bundledCount} bundled offline · ${quickQuiz.onlineCount} in the online catalogue` : `${quickQuiz.onlineCount} hosted identities · connection required`}
+                  {quickQuiz.onlineCount} hosted identities · connection required
                 </Text>
               </View>
             </View>
@@ -193,7 +194,11 @@ export default function HomeScreen() {
               onPress={() => void quickPlay()}
               variant="yellow"
             />
-            {launchError ? <Text accessibilityRole="alert" style={styles.quickError}>{launchError} Tap Quick Play to retry.</Text> : null}
+            {launchError ? (
+              <Text accessibilityRole="alert" style={styles.quickError}>
+                {launchError} Tap Quick Play to retry.
+              </Text>
+            ) : null}
             <Text style={styles.best}>
               Personal best · {bestScore.toLocaleString()} pts
             </Text>
@@ -402,7 +407,15 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 11,
   },
-  quickError: { ...type.regular, color: colors.white, backgroundColor: "rgba(100,20,20,.28)", borderRadius: radius.sm, padding: spacing.sm, textAlign: "center", fontSize: 11 },
+  quickError: {
+    ...type.regular,
+    color: colors.white,
+    backgroundColor: "rgba(100,20,20,.28)",
+    borderRadius: radius.sm,
+    padding: spacing.sm,
+    textAlign: "center",
+    fontSize: 11,
+  },
   footer: {
     ...type.regular,
     color: colors.inkSoft,

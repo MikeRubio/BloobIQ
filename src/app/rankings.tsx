@@ -73,9 +73,18 @@ export default function RankingsScreen() {
         <ScreenHeader title="Rankings" />
         <ScrollView contentContainerStyle={styles.content}>
           <Text style={styles.selectorLabel}>BROWSE GROUP</Text>
-          <View style={styles.categories}>
+          <ScrollView
+            contentContainerStyle={styles.categories}
+            directionalLockEnabled
+            horizontal
+            nestedScrollEnabled
+            showsHorizontalScrollIndicator={false}
+            style={styles.categoryScroller}
+          >
             {rankingGroups.map((group) => (
               <Pressable
+                accessibilityRole="tab"
+                accessibilityState={{ selected: selectedQuiz.groupId === group.id }}
                 key={group.id}
                 onPress={() => {
                   const first = rankingQuizzes.find(
@@ -99,7 +108,7 @@ export default function RankingsScreen() {
                 </Text>
               </Pressable>
             ))}
-          </View>
+          </ScrollView>
           <Text style={styles.selectorLabel}>QUIZ</Text>
           <View style={styles.quizSelector}>
             {visibleQuizzes.map((quiz) => (
@@ -257,7 +266,8 @@ const styles = StyleSheet.create({
     letterSpacing: 0.8,
     marginTop: spacing.md,
   },
-  categories: { flexDirection: "row", gap: spacing.sm, marginTop: spacing.xs },
+  categoryScroller: { marginTop: spacing.xs },
+  categories: { flexDirection: "row", gap: spacing.sm, paddingRight: spacing.lg },
   category: {
     minHeight: 50,
     borderRadius: radius.md,

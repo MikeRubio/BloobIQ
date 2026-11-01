@@ -1,7 +1,7 @@
 begin;
 
 create extension if not exists pgtap with schema extensions;
-select plan(83);
+select plan(98);
 
 select ok((select relrowsecurity from pg_class where oid = 'public.guest_profiles'::regclass), 'profiles use RLS');
 select ok((select relrowsecurity from pg_class where oid = 'public.daily_attempts'::regclass), 'attempts use RLS');
@@ -99,6 +99,37 @@ select ok(not exists(
   where content_version in ('baseball-symbols-v3', 'basketball-expanded-v2')
     and (coalesce(metadata->>'questionPrompt', '') = '' or coalesce(metadata->>'questionDescription', '') = '')
 ), 'expanded sports questions include prompt and accessibility copy');
+select is((select current_content_version from public.categories where id = 'brands'), 'brands-symbols-v1', 'brands category selects the symbol pack');
+select is((select current_content_version from public.categories where id = 'history'), 'people-history-v1', 'history category selects the portrait pack');
+select is((select current_content_version from public.categories where id = 'celebrities'), 'people-celebrities-v1', 'celebrities category selects the portrait pack');
+select is((select count(*) from private.quiz_content where content_version = 'brands-symbols-v1'), 22::bigint, 'brand pack contains twenty-two eligible symbols');
+select is((select count(*) from private.quiz_content where content_version = 'people-history-v1'), 100::bigint, 'history pack contains one hundred unique figures');
+select is((select count(*) from private.quiz_content where content_version = 'people-celebrities-v1'), 95::bigint, 'celebrity duplicates are removed from the ninety-five-person pack');
+select ok(not exists(
+  select 1 from (
+    select metadata->>'scope' scope, count(*) count
+    from private.quiz_content where content_version = 'brands-symbols-v1' group by 1
+  ) groups where count < 4
+), 'every brand scope has at least four same-type answers');
+select ok(not exists(
+  select 1 from private.quiz_content
+  where content_version in ('brands-symbols-v1', 'people-history-v1', 'people-celebrities-v1')
+    and (coalesce(metadata->>'questionPrompt', '') = '' or coalesce(metadata->>'questionDescription', '') = ''
+      or position(lower(display_name) in lower(metadata->>'questionDescription')) > 0)
+), 'new packs include non-answer-revealing prompts and accessibility descriptions');
+select ok(not exists(
+  select 1 from private.quiz_content item
+  cross join lateral jsonb_array_elements(private.quiz_options(item.content_version, item.item_id, 'new-pack-options')->'options') option
+  where item.content_version in ('brands-symbols-v1', 'people-history-v1', 'people-celebrities-v1')
+  group by item.item_id
+  having count(*) <> 4 or count(distinct option->>'label') <> 4
+), 'new packs always produce four distinct options');
+select is(private.ensure_daily_challenge('brands', date '2099-01-03'), private.ensure_daily_challenge('brands', date '2099-01-03'), 'brand challenge generation is stable');
+select is((select count(*) from private.daily_challenge_rounds r join public.daily_challenges c on c.id = r.challenge_id where c.category_id = 'brands' and c.challenge_date = date '2099-01-03'), 10::bigint, 'a brand challenge has ten rounds');
+select is(private.ensure_daily_challenge('history', date '2099-01-03'), private.ensure_daily_challenge('history', date '2099-01-03'), 'history challenge generation is stable');
+select is((select count(*) from private.daily_challenge_rounds r join public.daily_challenges c on c.id = r.challenge_id where c.category_id = 'history' and c.challenge_date = date '2099-01-03'), 10::bigint, 'a history challenge has ten rounds');
+select is(private.ensure_daily_challenge('celebrities', date '2099-01-03'), private.ensure_daily_challenge('celebrities', date '2099-01-03'), 'celebrity challenge generation is stable');
+select is((select count(*) from private.daily_challenge_rounds r join public.daily_challenges c on c.id = r.challenge_id where c.category_id = 'celebrities' and c.challenge_date = date '2099-01-03'), 10::bigint, 'a celebrity challenge has ten rounds');
 select is((select count(*) from private.flag_content where content_version = 'flags-v1'), 0::bigint, 'legacy Flags v1 content is retired');
 select ok((select public from storage.buckets where id = 'quiz-assets'), 'quiz asset bucket is public for reads');
 select is(private.ensure_daily_challenge('football', date '2099-01-02'), private.ensure_daily_challenge('football', date '2099-01-02'), 'football challenge generation is stable');

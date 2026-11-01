@@ -3,7 +3,7 @@ import { randomUUID } from 'expo-crypto';
 import { loadCasualQuestions } from '@/backend/casual-api';
 import type { QuizCategoryId } from '@/backend/types';
 import {
-  advanceAfterFeedback, beginAd, beginQuestion, finishRun, grantRevive, initialGameState, pauseRun,
+  advanceAfterFeedback, beginAd, beginQuestion, CASUAL_VARIETY_WINDOW, finishRun, grantRevive, initialGameState, pauseRun,
   resumeRun, returnToReviveOffer, startRun, submitAnswer,
 } from '@/game/engine';
 import type { GameRunState } from '@/game/types';
@@ -42,10 +42,17 @@ export const useGameStore = create<GameRunState & GameActions>((set) => ({
   start: async (categoryId = 'flags', now, forceRefresh = false) => {
     set({ launching: true, launchError: null });
     try {
-      const profile = useProfileStore.getState().profile;
+      const profileState = useProfileStore.getState();
+      const profile = profileState.profile;
       const questions = await loadCasualQuestions(categoryId, { name: profile.name, avatar: profile.avatar, color: profile.color }, forceRefresh);
-      useProfileStore.getState().markCasualQuizPlayed(categoryId);
-      set({ ...startRun(questions, now, Math.random, randomUUID()), launching: false, launchError: null });
+      const recentQuestionIds = profileState.recentCasualQuestionIds[categoryId] ?? [];
+      const run = startRun(questions, now, Math.random, randomUUID(), recentQuestionIds);
+      const varietyWindowSize = Math.min(CASUAL_VARIETY_WINDOW, Math.floor(run.rounds.length / 2));
+      profileState.markCasualQuizPlayed(
+        categoryId,
+        run.rounds.slice(0, varietyWindowSize).map((round) => round.questionId),
+      );
+      set({ ...run, launching: false, launchError: null });
       return true;
     } catch (error) {
       set({ launching: false, launchError: error instanceof Error ? error.message : 'This quiz could not be loaded.' });

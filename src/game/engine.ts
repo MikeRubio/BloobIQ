@@ -2,15 +2,29 @@ import { calculateScore, QUESTION_DURATION_MS } from './scoring';
 import { shuffle, type RandomSource } from './random';
 import type { GameRunState, QuestionRound, QuizQuestion, RunResult } from './types';
 
+export const CASUAL_VARIETY_WINDOW = 10;
+
 export const initialGameState: GameRunState = {
   runId: '', categoryId: 'flags', phase: 'idle', questions: [], rounds: [], currentIndex: 0, hearts: 3, score: 0, streak: 0, bestStreak: 0,
   correctAnswers: 0, answeredQuestions: 0, selectedOptionId: null, feedback: null,
   deadlineAt: null, pausedRemainingMs: null, reviveUsed: false, adMessage: null, result: null,
 };
 
-export function createRounds(questions: QuizQuestion[], random: RandomSource = Math.random): QuestionRound[] {
+export function createRounds(
+  questions: QuizQuestion[],
+  random: RandomSource = Math.random,
+  deferQuestionIds: readonly string[] = [],
+): QuestionRound[] {
   const ids = new Set(questions.map((question) => question.id));
-  return shuffle(questions, random).map((question) => {
+  const deferred = new Set(deferQuestionIds);
+  const shuffledQuestions = shuffle(questions, random);
+  const orderedQuestions = deferred.size
+    ? [
+        ...shuffledQuestions.filter((question) => !deferred.has(question.id)),
+        ...shuffledQuestions.filter((question) => deferred.has(question.id)),
+      ]
+    : shuffledQuestions;
+  return orderedQuestions.map((question) => {
     const matchingTypeIds = new Set(
       questions
         .filter((item) => item.contentType === question.contentType)
@@ -30,11 +44,25 @@ export function createRounds(questions: QuizQuestion[], random: RandomSource = M
   });
 }
 
-export function startRun(questions: QuizQuestion[], now = Date.now(), random: RandomSource = Math.random, runId = ''): GameRunState {
+export function startRun(
+  questions: QuizQuestion[],
+  now = Date.now(),
+  random: RandomSource = Math.random,
+  runId = '',
+  deferQuestionIds: readonly string[] = [],
+): GameRunState {
   if (questions.length < 4) throw new Error('A quiz pack needs at least four questions.');
   const categoryId = questions[0]!.categoryId;
   if (!questions.every((question) => question.categoryId === categoryId)) throw new Error('A quiz run cannot mix categories.');
-  return { ...initialGameState, runId, categoryId, phase: 'loading', questions, rounds: createRounds(questions, random), deadlineAt: null };
+  return {
+    ...initialGameState,
+    runId,
+    categoryId,
+    phase: 'loading',
+    questions,
+    rounds: createRounds(questions, random, deferQuestionIds),
+    deadlineAt: null,
+  };
 }
 
 export function beginQuestion(state: GameRunState, now = Date.now()): GameRunState {

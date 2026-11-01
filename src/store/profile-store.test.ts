@@ -28,7 +28,11 @@ describe('profile record compatibility', () => {
       settings: { sound: true, haptics: true, reducedMotion: false },
       records: { flags: { highScore: 700, gamesPlayed: 2, totalCorrect: 10, bestStreak: 4 } },
     };
-    expect(migrateProfileState(legacy)).toMatchObject({ ...legacy, nameSetupComplete: true });
+    expect(migrateProfileState(legacy)).toMatchObject({
+      ...legacy,
+      nameSetupComplete: true,
+      recentCasualQuestionIds: {},
+    });
   });
 
   it('normalizes and validates player names with the backend length limits', () => {
