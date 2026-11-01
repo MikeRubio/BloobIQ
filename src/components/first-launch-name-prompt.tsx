@@ -1,4 +1,3 @@
-import { useConsentStore } from '../store/consent-store';
 import { KeyboardAvoidingView, Modal, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BubbleBackground } from '@/components/bubble-background';
@@ -9,8 +8,7 @@ import { colors, radius, shadow, spacing, type } from '@/theme/tokens';
 export function FirstLaunchNamePrompt() {
   const hydrated = useProfileStore((state) => state.hydrated);
   const nameSetupComplete = useProfileStore((state) => state.nameSetupComplete);
-  const consent = useConsentStore();
-  const visible = hydrated && !nameSetupComplete && consent.access.onlineAllowed && consent.age === 'adult' && !consent.showGate;
+  const visible = hydrated && !nameSetupComplete;
 
   return (
     <Modal animationType="fade" onRequestClose={() => undefined} statusBarTranslucent visible={visible}>

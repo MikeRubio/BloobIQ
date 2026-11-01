@@ -1,18 +1,17 @@
-import { OnlineAccessSettings } from '../components/online-access-gate';
-import { useConsentStore } from '../store/consent-store';
-import { BubbleBackground } from "@/components/bubble-background";
 import { deleteAccountAndServerData } from "@/backend/account-api";
+import { clearCasualPackCache } from "@/backend/casual-api";
+import { BubbleBackground } from "@/components/bubble-background";
 import { PlayerNameEditor } from "@/components/player-name-editor";
 import { ScreenHeader } from "@/components/screen-header";
 import { useAdsRuntime } from "@/hooks/use-ads-runtime";
 import { useFeedback } from "@/hooks/use-feedback";
 import { adsRuntime } from "@/services/ads-runtime";
-import { clearCasualPackCache } from "@/backend/casual-api";
 import { useDailyStore } from "@/store/daily-store";
 import { useFriendsStore } from "@/store/friends-store";
 import { useGameStore } from "@/store/game-store";
 import { useProfileStore } from "@/store/profile-store";
 import { colors, radius, shadow, spacing, type } from "@/theme/tokens";
+import { router } from "expo-router";
 import { useState } from "react";
 import {
   Alert,
@@ -24,7 +23,6 @@ import {
   Text,
   View,
 } from "react-native";
-import { router } from "expo-router";
 import { useReducedMotion } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -73,7 +71,6 @@ export default function SettingsScreen() {
       <SafeAreaView style={styles.safe}>
         <ScreenHeader title="Settings" subtitle="Make BloopIQ feel right" />
         <ScrollView contentContainerStyle={styles.content}>
-          <OnlineAccessSettings />
           <View style={[styles.nameCard, shadow.card]}>
             <Text style={styles.nameTitle}>Your player name</Text>
             <Text style={styles.nameBody}>
@@ -149,15 +146,21 @@ export default function SettingsScreen() {
             >
               <Text style={styles.privacyButtonText}>Open privacy policy</Text>
             </Pressable>
-            <Pressable accessibilityRole="link" onPress={() => { void Linking.openURL(SUPPORT_URL); }} style={styles.privacyButton}>
+            <Pressable
+              accessibilityRole="link"
+              onPress={() => {
+                void Linking.openURL(SUPPORT_URL);
+              }}
+              style={styles.privacyButton}
+            >
               <Text style={styles.privacyButtonText}>Help &amp; support</Text>
             </Pressable>
           </View>
           <View style={styles.dangerCard}>
             <Text style={styles.dangerTitle}>Delete account and data</Text>
             <Text style={styles.infoBody}>
-              Permanently removes your guest account, ranked attempts, Friends data,
-              profile, settings, and local records. This cannot be undone.
+              Permanently removes your guest account, ranked attempts, Friends
+              data, profile, settings, and local records. This cannot be undone.
             </Text>
             <Pressable
               accessibilityRole="button"
@@ -181,14 +184,18 @@ export default function SettingsScreen() {
                             useGameStore.getState().reset();
                             useDailyStore.getState().reset();
                             await useFriendsStore.getState().clearLocalData();
-                            useProfileStore.getState().resetAfterAccountDeletion();
-                            useConsentStore.getState().reset();
-                            await useConsentStore.persist.clearStorage();
+                            useProfileStore
+                              .getState()
+                              .resetAfterAccountDeletion();
                             await useProfileStore.persist.clearStorage();
                             router.replace("/");
                           })
                           .catch((error) => {
-                            setDeleteError(error instanceof Error ? error.message : "Your account could not be deleted. Please retry.");
+                            setDeleteError(
+                              error instanceof Error
+                                ? error.message
+                                : "Your account could not be deleted. Please retry.",
+                            );
                           })
                           .finally(() => setDeleteBusy(false));
                       },
@@ -202,7 +209,11 @@ export default function SettingsScreen() {
                 {deleteBusy ? "Deleting…" : "Delete my account and data"}
               </Text>
             </Pressable>
-            {deleteError ? <Text accessibilityRole="alert" style={styles.deleteError}>{deleteError}</Text> : null}
+            {deleteError ? (
+              <Text accessibilityRole="alert" style={styles.deleteError}>
+                {deleteError}
+              </Text>
+            ) : null}
           </View>
           {ads.qaMode ? (
             <View style={styles.infoCard}>
@@ -308,6 +319,10 @@ const styles = StyleSheet.create({
   noteText: { ...type.regular, flex: 1, fontSize: 12, lineHeight: 17 },
   infoCard: {
     marginTop: spacing.lg,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    gap: spacing.md,
     padding: spacing.lg,
     borderRadius: radius.lg,
     borderWidth: 2,
@@ -368,5 +383,10 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
   },
   deleteButtonText: { ...type.heading, color: colors.white, fontSize: 13 },
-  deleteError: { ...type.regular, color: colors.coralDark, fontSize: 11, marginTop: spacing.sm },
+  deleteError: {
+    ...type.regular,
+    color: colors.coralDark,
+    fontSize: 11,
+    marginTop: spacing.sm,
+  },
 });

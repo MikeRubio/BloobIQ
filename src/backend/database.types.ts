@@ -5,9 +5,6 @@ export type Database = {
     Tables: Record<string, never>;
     Views: Record<string, never>;
     Functions: {
-      register_adult_online_access: { Args: { p_notice_version: string }; Returns: Json };
-      claim_parental_consent: { Args: { p_request_secret: string; p_notice_version: string }; Returns: Json };
-      get_online_access_state: { Args: Record<string, never>; Returns: Json };
       prepare_account_deletion: { Args: Record<string, never>; Returns: Json };
       report_and_block_player: {
         Args: { p_reported_user_id: string; p_context: string; p_room_id?: string | null };

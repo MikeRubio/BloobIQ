@@ -44,13 +44,13 @@ describe('flags-only store release', () => {
     expect(run('invalid').status).not.toBe(0);
   });
 
-  it('accepts the verified parental-flow Flags release while retaining the native acceptance requirement', () => {
+  it('accepts a no-age-gate Flags release with one conservative advertising treatment', () => {
     const result = spawnSync(process.execPath, ['scripts/check-store-release.mjs', '--force'], {
       cwd: process.cwd(), env: { ...process.env, EXPO_PUBLIC_RELEASE_CATALOG: 'flags-only' }, encoding: 'utf8',
     });
     expect(result.status).toBe(0);
     expect(result.stdout).toContain('195 flags-only');
-    expect(result.stdout).toContain('Signed archives, store forms, and device acceptance must still be verified.');
+    expect(result.stdout).toContain('Public release checks passed');
     const inherited = spawnSync(process.execPath, ['scripts/check-store-release.mjs'], {
       cwd: process.cwd(), env: { ...process.env, EAS_BUILD_PROFILE: 'custom-release', BLOOPIQ_ADS_ENV: 'production', EXPO_PUBLIC_RELEASE_CATALOG: 'flags-only' }, encoding: 'utf8',
     });

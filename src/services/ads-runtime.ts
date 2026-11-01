@@ -1,5 +1,3 @@
-import { useConsentStore } from '../store/consent-store';
-import { adsPermitted } from '../privacy/rules';
 import Constants from 'expo-constants';
 import { Platform, TurboModuleRegistry, type TurboModule } from 'react-native';
 import type { CategoryId } from '@/game/types';
@@ -73,8 +71,6 @@ const emit = (next: Partial<AdsRuntimeState>) => {
 };
 
 const unavailableReason = (): string | null => {
-  const privacy = useConsentStore.getState();
-  if (!adsPermitted(privacy.age, privacy.access)) return 'Rewarded ads are unavailable for this player.';
   if (config.enabled !== true) return 'Rewarded ads are disabled in this build.';
   if (config.audiencePolicy !== 'child-safe') return 'Rewarded ads are disabled until an audience policy is configured.';
   if (Platform.OS !== 'ios' && Platform.OS !== 'android') return 'Rewarded ads are available only on Android and iOS.';
@@ -97,13 +93,11 @@ export const adsRuntime = {
   subscribe(listener: Listener) { listeners.add(listener); return () => listeners.delete(listener); },
 
   initialize(): Promise<void> {
-    if (unavailableReason()) { initialization = null; return Promise.resolve(emit({ lifecycle: 'unavailable', message: unavailableReason()! })); }
     initialization ??= (async () => {
       const reason = unavailableReason();
       if (reason) return emit({ lifecycle: 'unavailable', message: reason });
       try {
         const adapter = await import('./mobile-ads-adapter');
-        if (unavailableReason()) return;
         consent = await adapter.initializeNativeAds(qaConfig);
         emit({
           lifecycle: consent.canRequestAds ? 'closed' : 'unavailable',
@@ -149,7 +143,7 @@ export const adsRuntime = {
   async prepare(runId: string, categoryId: CategoryId): Promise<void> {
     if (preparedRunId === runId && service) return;
     await this.initialize();
-    if (unavailableReason() || !consent?.canRequestAds) return;
+    if (!consent?.canRequestAds) return;
     service?.destroy(); service = null; rewardReference = null; preparedRunId = runId;
     emit({ lifecycle: 'loading', message: 'Loading a rewarded ad…' });
     try {
@@ -166,7 +160,7 @@ export const adsRuntime = {
   },
 
   async show(onEarned: () => void): Promise<'earned' | 'cancelled' | 'failed'> {
-    if (unavailableReason() || !service || !rewardReference || state.lifecycle !== 'ready') return 'failed';
+    if (!service || !rewardReference || state.lifecycle !== 'ready') return 'failed';
     emit({ lifecycle: 'showing', message: 'Ad in progress…' });
     const activeService = service;
     const activeReference = rewardReference;
@@ -183,10 +177,6 @@ export const adsRuntime = {
     return result;
   },
 
-  suspend(): void {
-    this.resetRun(); initialization = null; consent = null;
-    emit({ lifecycle: 'unavailable', privacyOptionsRequired: false, message: 'Rewarded ads are unavailable for this player.' });
-  },
   resetRun(): void {
     service?.destroy(); service = null; preparedRunId = null; rewardReference = null;
   },

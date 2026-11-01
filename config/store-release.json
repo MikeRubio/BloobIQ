@@ -1,9 +1,7 @@
 {
-  "audience": "all-ages-online",
-  "allAgesOnlinePrivacyReady": true,
-  "parentalConsentMethod": "reviewed-signed-form",
-  "parentNoticeVersion": "2026-11-01-v1",
-  "productionAdsEnabled": false,
-  "verification": "130 automated tests, 23 live HTTP checks, transaction-only consent/retention checks; see docs/PARENTAL_CONSENT.md",
-  "reason": "Parental flow implemented and server verified. Publisher must review actual signed forms. Signed native candidates, device acceptance and store declarations remain required."
+  "audience": "general-audience",
+  "ageGateRequired": false,
+  "advertisingTreatment": "child-safe-non-personalized",
+  "productionAdsEnabled": true,
+  "reason": "BloopIQ does not ask players to declare an age. Online play uses an automatic guest identity, and optional rewarded ads use one conservative non-personalized configuration for every player."
 }

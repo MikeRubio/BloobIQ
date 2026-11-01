@@ -1,5 +1,3 @@
-import { flagQuestions } from '../content/flags';
-import { useConsentStore } from '../store/consent-store';
 import { casualPackQuestions, parseCasualPack } from '../content/casual-pack';
 import { assertQuizAvailable } from '../content/release-policy';
 import type { QuizQuestion } from '../game/types';
@@ -14,17 +12,13 @@ export async function loadCasualQuestions(
   forceRefresh = false,
 ): Promise<QuizQuestion[]> {
   assertQuizAvailable(categoryId);
-  if (!useConsentStore.getState().access.onlineAllowed && categoryId === 'flags') return [...flagQuestions];
-  try { await ensureAnonymousSession(profile); } catch (error) {
-    if (categoryId === 'flags') return [...flagQuestions];
-    throw error;
-  }
   if (!forceRefresh) {
     const existing = cached.get(categoryId);
     if (existing) return existing;
   }
+  await ensureAnonymousSession(profile);
   const { data, error } = await supabase!.rpc('get_casual_quiz_pack', { p_category_id: categoryId });
-  if (error) { if (categoryId === 'flags') return [...flagQuestions]; throw new BackendUnavailableError(error.message); }
+  if (error) throw new BackendUnavailableError(error.message);
   try {
     const questions = casualPackQuestions(parseCasualPack(data, categoryId), getQuizAssetUrl);
     cached.set(categoryId, questions);

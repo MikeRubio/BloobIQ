@@ -50,7 +50,7 @@
       },
       "env": {
         "BLOOPIQ_ADS_ENV": "production",
-        "BLOOPIQ_ENABLE_PRODUCTION_ADS": "false",
+        "BLOOPIQ_ENABLE_PRODUCTION_ADS": "true",
         "EXPO_PUBLIC_RELEASE_CATALOG": "flags-only"
       },
       "android": {

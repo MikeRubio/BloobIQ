@@ -249,8 +249,6 @@ insert into public.guest_profiles (user_id, display_name, avatar, avatar_color) 
   ('10000000-0000-0000-0000-000000000002', 'Player Two', '2', '#FF8A65'),
   ('10000000-0000-0000-0000-000000000003', 'Player Three', '3', '#9B7EDE');
 
-insert into private.online_access(user_id,kind,notice_version) select id,'adult',private.parent_notice_version() from auth.users where id::text like '10000000-%' on conflict do nothing;
-
 set local role authenticated;
 set local "request.jwt.claim.sub" = '10000000-0000-0000-0000-000000000001';
 create temp table runtime_snapshots (label text primary key, snapshot jsonb);
@@ -260,23 +258,21 @@ select is((select snapshot->>'state' from runtime_snapshots where label = 'start
 select is((select jsonb_array_length(snapshot->'currentRound'->'options') from runtime_snapshots where label = 'start'), 4, 'RPC exposes four choices');
 select ok((select not ((snapshot->'currentRound') ? 'correctChoiceId') from runtime_snapshots where label = 'start'), 'RPC does not expose the correct choice');
 select ok((select not ((snapshot->'currentRound') ? 'revealAssetPath') from runtime_snapshots where label = 'start'), 'RPC hides complete reveal artwork while answering');
-reset role;
 select ok((select not exists(
   select 1 from private.quiz_content q where q.item_id = snapshot->'currentRound'->>'assetKey'
 ) from runtime_snapshots where label = 'start'), 'RPC uses an opaque question asset key');
-set local role authenticated;
 
 insert into runtime_snapshots
 select 'answer', public.submit_daily_answer(
   (select (snapshot->>'attemptId')::uuid from runtime_snapshots where label = 'start'),
-  0::smallint,
+  0,
   null,
   '20000000-0000-0000-0000-000000000001'
 );
 insert into runtime_snapshots
 select 'retry', public.submit_daily_answer(
   (select (snapshot->>'attemptId')::uuid from runtime_snapshots where label = 'start'),
-  0::smallint,
+  0,
   null,
   '20000000-0000-0000-0000-000000000001'
 );
@@ -307,7 +303,7 @@ begin
   for v_index in 1..8 loop
     perform public.submit_daily_answer(
       (select (snapshot->>'attemptId')::uuid from runtime_snapshots where label = 'start'),
-      v_index::smallint,
+      v_index,
       null,
       extensions.gen_random_uuid()
     );
@@ -317,7 +313,7 @@ $$;
 insert into runtime_snapshots
 select 'final', public.submit_daily_answer(
   (select (snapshot->>'attemptId')::uuid from runtime_snapshots where label = 'start'),
-  9::smallint,
+  9,
   null,
   '20000000-0000-0000-0000-000000000010'
 );
@@ -327,7 +323,7 @@ where id = (select (snapshot->>'attemptId')::uuid from runtime_snapshots where l
 insert into runtime_snapshots
 select 'final_retry', public.submit_daily_answer(
   (select (snapshot->>'attemptId')::uuid from runtime_snapshots where label = 'start'),
-  9::smallint,
+  9,
   null,
   '20000000-0000-0000-0000-000000000010'
 );
@@ -382,5 +378,5 @@ select throws_ok(
   'database rejects a second attempt for the same daily challenge'
 );
 
-select * from finish(true);
+select * from finish();
 rollback;

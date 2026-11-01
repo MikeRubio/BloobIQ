@@ -1,4 +1,3 @@
-import { useConsentStore } from '../store/consent-store';
 import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { backendProfileFromLocal } from '@/backend/profile-migration';
@@ -18,7 +17,6 @@ type Props = {
 };
 
 export function PlayerNameEditor({ firstLaunch = false, onSaved }: Props) {
-  const age = useConsentStore((s) => s.age);
   const profile = useProfileStore((state) => state.profile);
   const setPlayerName = useProfileStore((state) => state.setPlayerName);
   const [draft, setDraft] = useState(profile.name);
@@ -52,8 +50,6 @@ export function PlayerNameEditor({ firstLaunch = false, onSaved }: Props) {
         if (mounted.current) setMessage('Saved on this device. Ranked records will update when you reconnect.');
       });
   };
-
-  if (age !== 'adult') return <View><Text style={styles.label}>GENERATED PLAYER NAME</Text><Text style={styles.help}>{profile.name}</Text><Text style={styles.help}>Under-18 and offline players use a generated nickname. A parent controls public sharing.</Text></View>;
 
   return (
     <View>

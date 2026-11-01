@@ -17,12 +17,9 @@ values
   ('12000000-0000-0000-0000-000000000001', 'authenticated', 'authenticated', 'ads-one@example.test', '', now(), now(), now()),
   ('12000000-0000-0000-0000-000000000002', 'authenticated', 'authenticated', 'ads-two@example.test', '', now(), now(), now());
 
-insert into private.online_access(user_id,kind,notice_version) select id,'adult',private.parent_notice_version() from auth.users where id::text like '12000000-%' on conflict do nothing;
-
 set local role authenticated;
 set local "request.jwt.claim.sub" = '12000000-0000-0000-0000-000000000001';
 create temp table reward_snapshots (label text primary key, reference uuid);
-grant select on reward_snapshots to service_role;
 insert into reward_snapshots values ('first', public.issue_ad_reward_reference('32000000-0000-0000-0000-000000000001', 'flags'));
 insert into reward_snapshots values ('retry', public.issue_ad_reward_reference('32000000-0000-0000-0000-000000000001', 'flags'));
 reset role;
@@ -65,5 +62,5 @@ select is(
 reset role;
 select is((select count(*) from private.admob_ssv_events where reward_reference = (select reference from reward_snapshots where label = 'first')), 2::bigint, 'duplicate-reference evidence remains auditable');
 
-select * from finish(true);
+select * from finish();
 rollback;

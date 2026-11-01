@@ -1,6 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { DailySnapshot } from './types';
-vi.mock('../store/consent-store', () => ({ useConsentStore: { getState: () => ({ access: { onlineAllowed: true } }) } }));
 
 const mocks = vi.hoisted(() => ({ rpc: vi.fn(), session: vi.fn() }));
 vi.mock('./supabase', () => ({
