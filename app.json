@@ -17,7 +17,8 @@
       "bundleIdentifier": "com.guessr.game",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
-      }
+      },
+      "buildNumber": "2"
     },
     "android": {
       "blockedPermissions": [
